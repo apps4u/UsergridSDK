@@ -44,10 +44,10 @@ class ASSET_Tests: XCTestCase {
             let asset = UsergridAsset(fileName:ASSET_Tests.imageName,image: localImage!)
             XCTAssertNotNil(asset)
 
-            entity.uploadAsset(asset: asset!, progress:uploadProgress) { (response, uploadedAsset, error) -> Void in
+            entity.uploadAsset(asset!, progress:uploadProgress) { (response, uploadedAsset, error) -> Void in
                 XCTAssertNotNil(asset)
                 XCTAssertNil(error)
-                entity.downloadAsset(contentType: UsergridAsset.ImageContentType.Png.stringValue, progress:downloadProgress)
+                entity.downloadAsset(UsergridAsset.ImageContentType.Png.stringValue, progress:downloadProgress)
                 { (downloadedAsset, error) -> Void in
                     XCTAssertNotNil(downloadedAsset)
                     XCTAssertNil(error)
