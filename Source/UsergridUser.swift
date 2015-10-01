@@ -54,11 +54,19 @@ public class UsergridUser : UsergridEntity {
         super.init(type: UsergridUser.USER_ENTITY_TYPE, name:name, propertyDict:propertyDict)
     }
 
-    public func create(client: UsergridClient = Usergrid.shared, completion: UsergridResponseCompletionBlock) {
+    public func create(completion: UsergridResponseCompletionBlock) {
+        self.create(Usergrid.shared, completion: completion)
+    }
+
+    public func create(client: UsergridClient, completion: UsergridResponseCompletionBlock) {
         client.POST(self,completion:completion)
     }
 
-    public func login(client: UsergridClient = Usergrid.shared, username:String, password:String, completion: UsergridUserAuthCompletionBlock) {
+    public func login(username:String, password:String, completion: UsergridUserAuthCompletionBlock) {
+        self.login(Usergrid.shared, username: username, password: password, completion: completion)
+    }
+
+    public func login(client: UsergridClient, username:String, password:String, completion: UsergridUserAuthCompletionBlock) {
         let userAuth = UsergridUserAuth(username: username, password: password)
         client.authenticateUser(userAuth,setAsCurrentUser:false) { [weak self] (auth, user, error) -> Void in
             self?.auth = userAuth
@@ -66,7 +74,11 @@ public class UsergridUser : UsergridEntity {
         }
     }
 
-    public func logout(client: UsergridClient = Usergrid.shared) {
+    public func logout() {
+        self.logout(Usergrid.shared)
+    }
+
+    public func logout(client: UsergridClient) {
         self.auth = nil
         if self === client.currentUser {
             client.currentUser = nil

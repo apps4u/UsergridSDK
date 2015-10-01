@@ -1,5 +1,5 @@
 //
-//  Client.swift
+//  Usergrid.swift
 //  UsergridSDK
 //
 //  Created by Robert Walsh on 7/21/15.
@@ -20,13 +20,13 @@ public class Usergrid: NSObject {
         return Usergrid.shared.initialize(configuration)
     }
 
-	public static func authenticateApp(auth: UsergridAppAuth? = nil, completion: UsergridAppAuthCompletionBlock) {
-		Usergrid.shared.authenticateApp(auth, completion: completion)
-	}
+    public static func authenticateApp(auth: UsergridAppAuth? = nil, completion: UsergridAppAuthCompletionBlock) {
+        Usergrid.shared.authenticateApp(auth, completion: completion)
+    }
 
-	public static func authenticateUser(auth: UsergridUserAuth, completion: UsergridUserAuthCompletionBlock) {
-		Usergrid.shared.authenticateUser(auth, completion: completion)
-	}
+    public static func authenticateUser(auth: UsergridUserAuth, completion: UsergridUserAuthCompletionBlock) {
+        Usergrid.shared.authenticateUser(auth, completion: completion)
+    }
 
     // GET a single Enitity of a given type with a specific UUID/name using the shared Usergrid instance
     public static func GET(type: String, uuidOrName: String, completion: UsergridResponseCompletionBlock) {
@@ -68,10 +68,10 @@ public class Usergrid: NSObject {
         Usergrid.shared.POST(type, jsonBody: jsonBody, completion: completion)
     }
 
-	// POST Creates an array of Entities while assinging the given type to them using the shared Usergrid instance
-	public static func POST(type: String, jsonBodies:[[String:AnyObject]], completion: UsergridResponseCompletionBlock) {
-		Usergrid.shared.POST(type, jsonBodies: jsonBodies, completion: completion)
-	}
+    // POST Creates an array of Entities while assinging the given type to them using the shared Usergrid instance
+    public static func POST(type: String, jsonBodies:[[String:AnyObject]], completion: UsergridResponseCompletionBlock) {
+        Usergrid.shared.POST(type, jsonBodies: jsonBodies, completion: completion)
+    }
 
     // POST Creates an Entity using the shared Usergrid instance
     public static func POST(entity:UsergridEntity, completion: UsergridResponseCompletionBlock) {

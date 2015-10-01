@@ -31,6 +31,8 @@ public class UsergridEntity: NSObject {
 
     var properties: [String : AnyObject]
     public var asset: UsergridAsset?
+    public var downloadAssetProgressBlock: UsergridAssetProgressBlock?
+    public var uploadAssetProgressBlock: UsergridAssetProgressBlock?
 
     public var jsonObjectValue : [String:AnyObject] { return self.properties }
     public var stringValue : String { return NSString(data: try! NSJSONSerialization.dataWithJSONObject(self.jsonObjectValue, options: NSJSONWritingOptions.PrettyPrinted), encoding: NSASCIIStringEncoding) as! String }
@@ -222,7 +224,11 @@ extension UsergridEntity {
 // MARK: - CRUD Convenience Methods -
 extension UsergridEntity {
 
-    public func reload(client:UsergridClient = Usergrid.shared, completion: UsergridResponseCompletionBlock) {
+    public func reload(completion: UsergridResponseCompletionBlock) {
+        self.reload(Usergrid.shared, completion: completion)
+    }
+
+    public func reload(client:UsergridClient, completion: UsergridResponseCompletionBlock) {
         if let uuidOrName = self.uuidOrName {
             client.GET(self.type, uuidOrName: uuidOrName, completion: completion)
         } else {
@@ -230,7 +236,11 @@ extension UsergridEntity {
         }
     }
 
-    public func save(client:UsergridClient = Usergrid.shared, completion: UsergridResponseCompletionBlock) {
+    public func save(completion: UsergridResponseCompletionBlock) {
+        self.save(Usergrid.shared, completion: completion)
+    }
+
+    public func save(client:UsergridClient, completion: UsergridResponseCompletionBlock) {
         if let _ = self.uuid { // If UUID exists we PUT otherwise POST
             client.PUT(self, completion: completion)
         } else {
@@ -238,7 +248,11 @@ extension UsergridEntity {
         }
     }
 
-    public func remove(client:UsergridClient = Usergrid.shared, completion: UsergridResponseCompletionBlock) {
+    public func remove(completion: UsergridResponseCompletionBlock) {
+        self.remove(Usergrid.shared, completion: completion)
+    }
+
+    public func remove(client:UsergridClient, completion: UsergridResponseCompletionBlock) {
         client.DELETE(self, completion: completion)
     }
 }
@@ -246,16 +260,24 @@ extension UsergridEntity {
 // MARK: - Asset Management -
 extension UsergridEntity {
 
-    public func uploadAsset(client:UsergridClient = Usergrid.shared, asset:UsergridAsset, progress:UsergridAssetProgressBlock? = nil, completion:UsergridAssetUploadCompletionBlock) {
-        client.requestManager.performUploadAsset(self, asset: asset) { [weak self] (response, asset, error) -> Void in
+    public func uploadAsset(asset:UsergridAsset, progress:UsergridAssetProgressBlock? = nil, completion:UsergridAssetUploadCompletionBlock) {
+        self.uploadAsset(Usergrid.shared, asset: asset, progress: progress, completion: completion)
+    }
+
+    public func uploadAsset(client:UsergridClient, asset:UsergridAsset, progress:UsergridAssetProgressBlock? = nil, completion:UsergridAssetUploadCompletionBlock) {
+        client.requestManager.performUploadAsset(self, asset: asset, progress:progress) { [weak self] (response, asset, error) -> Void in
             self?.asset = asset
             completion(response: response, asset: asset, error: error)
         }
     }
 
-    public func downloadAsset(client:UsergridClient = Usergrid.shared, contentType:String, completion:UsergridAssetDownloadCompletionBlock) {
+    public func downloadAsset(contentType:String, progress:UsergridAssetProgressBlock? = nil, completion:UsergridAssetDownloadCompletionBlock) {
+        self.downloadAsset(Usergrid.shared, contentType: contentType, progress:progress, completion:completion);
+    }
+    public func downloadAsset(client:UsergridClient, contentType:String, progress:UsergridAssetProgressBlock? = nil, completion:UsergridAssetDownloadCompletionBlock) {
         if self.hasAsset {
-            client.requestManager.performGetAsset(self, contentType: contentType) { [weak self] (asset, error) -> Void in
+            client.requestManager.performGetAsset(self, contentType: contentType, progress:progress) { [weak self] (asset, error) -> Void in
+                asset?.contentType = contentType
                 self?.asset = asset
                 completion(asset: asset, error: error)
             }
@@ -269,20 +291,32 @@ extension UsergridEntity {
 extension UsergridEntity {
 
     public func connect(entity:UsergridEntity,relationship:String) {
+        self.connect(Usergrid.shared, entity: entity, relationship: relationship)
+    }
+
+    public func connect(client:UsergridClient, entity:UsergridEntity,relationship:String) {
         if let _ = self.uuidOrName, _ = entity.uuidOrName {
-//            self.connect(connectedIDOrName,relationship:relationship)
+
         }
     }
 
     public func disconnect(entity:UsergridEntity,relationship:String) {
+        self.disconnect(Usergrid.shared, entity: entity, relationship: relationship)
+    }
+
+    public func disconnect(client:UsergridClient, entity:UsergridEntity,relationship:String) {
         if let _ = self.uuidOrName, _ = entity.uuidOrName {
-//            self.disconnect(connectedIDOrName,relationship:relationship)
+
         }
     }
 
     public func disconnectAll(entity:UsergridEntity) {
+        self.disconnectAll(Usergrid.shared, entity: entity)
+    }
+
+    public func disconnectAll(client:UsergridClient, entity:UsergridEntity) {
         if let _ = self.uuidOrName, _ = entity.uuidOrName {
-//            self.disconnectAll(connectedIDOrName)
+
         }
     }
 }

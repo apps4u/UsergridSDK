@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import MobileCoreServices
 
-public typealias UsergridAssetProgressBlock = (bytesFinished:Int, bytesExpected: Int) -> Void
+public typealias UsergridAssetProgressBlock = (bytesFinished:Int64, bytesExpected: Int64) -> Void
 public typealias UsergridAssetUploadCompletionBlock = (response:UsergridResponse,asset:UsergridAsset?, error: String?) -> Void
 public typealias UsergridAssetDownloadCompletionBlock = (asset:UsergridAsset?, error: String?) -> Void
 
@@ -20,7 +20,7 @@ public class UsergridAsset: NSObject {
     public let assetData: NSData
 
     public let originalLocation: String?
-    public let contentType: String
+    public var contentType: String
 
     public var contentLength: Int { return self.assetData.length }
 
@@ -78,7 +78,7 @@ public class UsergridAsset: NSObject {
         return nil
     }
 
-    private static let DEFAULT_FILE_NAME: String = "file"
+    private static let DEFAULT_FILE_NAME = "file"
     private static let IMAGE_PNG = "image/png"
     private static let IMAGE_JPEG = "image/jpeg"
 

@@ -28,6 +28,8 @@
 		63AF0F7B1BBC5314009D4196 /* User_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF0F631BBC528E009D4196 /* User_Tests.swift */; settings = {ASSET_TAGS = (); }; };
 		63AF0F7C1BBC5314009D4196 /* UsergridSDKTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF0F641BBC528E009D4196 /* UsergridSDKTests.swift */; settings = {ASSET_TAGS = (); }; };
 		63AF0F7E1BBC5692009D4196 /* TestAssets in Resources */ = {isa = PBXBuildFile; fileRef = 63AF0F7D1BBC5692009D4196 /* TestAssets */; settings = {ASSET_TAGS = (); }; };
+		63AF0F801BBC7171009D4196 /* ObjCTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 63AF0F7F1BBC7171009D4196 /* ObjCTests.m */; settings = {ASSET_TAGS = (); }; };
+		63AF0F821BBC7778009D4196 /* UsergridSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF0F811BBC7778009D4196 /* UsergridSessionDelegate.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +68,8 @@
 		63AF0F631BBC528E009D4196 /* User_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User_Tests.swift; sourceTree = "<group>"; };
 		63AF0F641BBC528E009D4196 /* UsergridSDKTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsergridSDKTests.swift; sourceTree = "<group>"; };
 		63AF0F7D1BBC5692009D4196 /* TestAssets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TestAssets; sourceTree = "<group>"; };
+		63AF0F7F1BBC7171009D4196 /* ObjCTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjCTests.m; sourceTree = "<group>"; };
+		63AF0F811BBC7778009D4196 /* UsergridSessionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsergridSessionDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +139,7 @@
 				63AF0F451BBC4EF6009D4196 /* UsergridRequestManager.swift */,
 				63AF0F461BBC4EF6009D4196 /* UsergridResponse.swift */,
 				63AF0F481BBC4EF6009D4196 /* UsergridUser.swift */,
+				63AF0F811BBC7778009D4196 /* UsergridSessionDelegate.swift */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -154,6 +159,7 @@
 				63AF0F641BBC528E009D4196 /* UsergridSDKTests.swift */,
 				63AF0F5E1BBC528E009D4196 /* Info.plist */,
 				63AF0F7D1BBC5692009D4196 /* TestAssets */,
+				63AF0F7F1BBC7171009D4196 /* ObjCTests.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -272,6 +278,7 @@
 				63AF0F531BBC4EF6009D4196 /* UsergridUser.swift in Sources */,
 				63AF0F501BBC4EF6009D4196 /* UsergridRequestManager.swift in Sources */,
 				63AF0F4A1BBC4EF6009D4196 /* Usergrid.swift in Sources */,
+				63AF0F821BBC7778009D4196 /* UsergridSessionDelegate.swift in Sources */,
 				63AF0F511BBC4EF6009D4196 /* UsergridResponse.swift in Sources */,
 				63AF0F4B1BBC4EF6009D4196 /* UsergridAsset.swift in Sources */,
 				63AF0F4D1BBC4EF6009D4196 /* UsergridClient.swift in Sources */,
@@ -290,6 +297,7 @@
 				63AF0F7B1BBC5314009D4196 /* User_Tests.swift in Sources */,
 				63AF0F7A1BBC5314009D4196 /* PUT_Tests.swift in Sources */,
 				63AF0F7C1BBC5314009D4196 /* UsergridSDKTests.swift in Sources */,
+				63AF0F801BBC7171009D4196 /* ObjCTests.m in Sources */,
 				63AF0F721BBC5314009D4196 /* ApigeeSDKTests.swift in Sources */,
 				63AF0F751BBC5314009D4196 /* ClientCreationTests.swift in Sources */,
 			);

@@ -12,7 +12,7 @@ import XCTest
 class AUTH_Tests: XCTestCase {
 
     let testAuthClient = UsergridClient().initialize(ClientCreationTests.orgID, appID: "sdk.demo")
-    let clientAuth = UsergridAppAuth(id: "b3U6THNcevskEeOQZLcUROUUVA", secret: "b3U6RZHYznP28xieBzQPackFPmmnevU")
+    let clientAuth = UsergridAppAuth(clientID: "b3U6THNcevskEeOQZLcUROUUVA", clientSecret: "b3U6RZHYznP28xieBzQPackFPmmnevU")
     private static let collectionName = "publicevent"
 
     func test_CLIENT_AUTH() {

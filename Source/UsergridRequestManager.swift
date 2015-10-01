@@ -8,17 +8,19 @@
 
 import Foundation
 
-public class UsergridRequestManager : NSObject {
+class UsergridRequestManager : NSObject {
 
     weak var client: UsergridClient?
 
-    let session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
+    let session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration(),
+                                delegate:UsergridSessionDelegate(),
+                                delegateQueue:NSOperationQueue.mainQueue())
 
-    public init(client:UsergridClient? = nil) {
+    init(client:UsergridClient? = nil) {
         self.client = client
     }
 
-    public static func buildRequestURL(baseURL: String, query: UsergridQuery? = nil, paths: [String]? = nil) -> String {
+    static func buildRequestURL(baseURL: String, query: UsergridQuery? = nil, paths: [String]? = nil) -> String {
         var constructedURLString = baseURL
         if let appendingPaths = paths {
             for pathToAppend in appendingPaths {
@@ -34,7 +36,7 @@ public class UsergridRequestManager : NSObject {
         return constructedURLString
     }
 
-    public static func buildRequest(requestURL:String, _ method:UsergridRequestManager.HttpMethod, _ auth: UsergridAuth? = nil, _ headers: [String:String]? = nil, _ body:NSData? = nil) -> NSURLRequest {
+    static func buildRequest(requestURL:String, _ method:UsergridRequestManager.HttpMethod, _ auth: UsergridAuth? = nil, _ headers: [String:String]? = nil, _ body:NSData? = nil) -> NSURLRequest {
         let request = NSMutableURLRequest(URL: NSURL(string:requestURL)!)
         request.HTTPMethod = method.stringValue
         if let httpHeaders = headers {
@@ -55,11 +57,11 @@ public class UsergridRequestManager : NSObject {
         return request
     }
 
-    public func performRequest(type:String, requestURL:String, method:UsergridRequestManager.HttpMethod, headers: [String:String]? = nil, body: NSData? = nil, completion: UsergridResponseCompletionBlock) {
+    func performRequest(type:String, requestURL:String, method:UsergridRequestManager.HttpMethod, headers: [String:String]? = nil, body: NSData? = nil, completion: UsergridResponseCompletionBlock) {
         performRequest(type, request: UsergridRequestManager.buildRequest(requestURL, method, client?.authForRequests(), headers, body), completion: completion)
     }
 
-    public func performAuthRequest(userAuth userAuth:UsergridUserAuth, request:NSURLRequest, completion:UsergridUserAuthCompletionBlock) {
+    func performAuthRequest(userAuth userAuth:UsergridUserAuth, request:NSURLRequest, completion:UsergridUserAuthCompletionBlock) {
         session.dataTaskWithRequest(request) { (data, response, error) -> Void in
             let dataAsJSON = try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
             if let jsonDict = dataAsJSON as? [String:AnyObject] {
@@ -83,7 +85,7 @@ public class UsergridRequestManager : NSObject {
         }.resume()
     }
 
-    public func performAuthRequest(appAuth appAuth: UsergridAppAuth, request:NSURLRequest, completion: UsergridAppAuthCompletionBlock) {
+    func performAuthRequest(appAuth appAuth: UsergridAppAuth, request:NSURLRequest, completion: UsergridAppAuthCompletionBlock) {
         session.dataTaskWithRequest(request) { (data, response, error) -> Void in
             let dataAsJSON = try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
             if let jsonDict = dataAsJSON as? [String:AnyObject] {
@@ -100,7 +102,7 @@ public class UsergridRequestManager : NSObject {
         }.resume()
     }
 
-    public func performRequest(type: String, request: NSURLRequest, completion: UsergridResponseCompletionBlock) {
+    func performRequest(type: String, request: NSURLRequest, progress:UsergridAssetProgressBlock? = nil,completion: UsergridResponseCompletionBlock) {
         session.dataTaskWithRequest(request) { [weak self] (data, response, error) -> Void in
             let dataAsJSON = try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
             if let jsonDict = dataAsJSON as? [String:AnyObject] {
@@ -112,41 +114,46 @@ public class UsergridRequestManager : NSObject {
         }.resume()
     }
 
-    public func performGetAsset(entity:UsergridEntity, contentType:String, completion:UsergridAssetDownloadCompletionBlock) {
+    func performGetAsset(entity:UsergridEntity, contentType:String, progress:UsergridAssetProgressBlock? = nil, completion:UsergridAssetDownloadCompletionBlock) {
         let requestURL = UsergridRequestManager.buildRequestURL(self.client!.clientAppURL, paths: [entity.type,entity.uuidOrName!])
         let request = UsergridRequestManager.buildRequest(requestURL, .GET, self.client?.authForRequests(), ["Accept":contentType], nil)
-        session.dataTaskWithRequest(request) { (data, response, error) -> Void in
-            if error == nil, let assetData = data where assetData.length > 0 {
-                let asset = UsergridAsset(data: assetData, contentType: contentType)
-                completion(asset: asset, error: error?.localizedDescription)
-            } else {
-                completion(asset: nil, error: error?.localizedDescription)
-            }
-        }.resume()
-
+        let task = session.downloadTaskWithRequest(request)
+        if let sessionDelegate = self.session.delegate as? UsergridSessionDelegate {
+            sessionDelegate.addDownloadProgressCompletion(task, progressAndCompletionBlock:(progress,completion))
+        }
+        task.resume()
     }
 
-    public func performUploadAsset(entity:UsergridEntity, asset:UsergridAsset, completion:UsergridAssetUploadCompletionBlock) {
+    func performUploadAsset(entity:UsergridEntity, asset:UsergridAsset, progress:UsergridAssetProgressBlock? = nil, completion:UsergridAssetUploadCompletionBlock) {
         let requestURL = UsergridRequestManager.buildRequestURL(self.client!.clientAppURL, paths: [entity.type,entity.uuidOrName!])
         let mulitpartRequestAndBody = asset.multipartRequestAndBody(NSURL(string:requestURL)!)
-        session.uploadTaskWithRequest(mulitpartRequestAndBody.request, fromData: mulitpartRequestAndBody.multipartData)
-            { (data, response, error) -> Void in
+        let uploadWrapper = UsergridUploadWrapper()
+        let task = session.uploadTaskWithRequest(mulitpartRequestAndBody.request, fromData: mulitpartRequestAndBody.multipartData)
+            { [weak uploadWrapper] (data, response, error) -> Void in
                 let dataAsJSON = try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
                 if let jsonDict = dataAsJSON as? [String:AnyObject] {
                     completion(response: UsergridResponse(client: self.client,type:entity.type,jsonDict:jsonDict),asset:asset,error:nil)
                 } else {
                     completion(response: UsergridResponse(client: self.client),asset:asset,error:error?.localizedDescription)
                 }
-        }.resume()
+                if let uploadTask = uploadWrapper?.uploadTask, sessionDelegate = self.session.delegate as? UsergridSessionDelegate {
+                    sessionDelegate.removeUploadProgressCompletion(uploadTask)
+                }
+        }
+        uploadWrapper.uploadTask = task
+        if let progressBlock = progress, sessionDelegate = self.session.delegate as? UsergridSessionDelegate {
+            sessionDelegate.addUploadProgressCompletion(task, progressBlockAndWrapper:(progressBlock,uploadWrapper))
+        }
+        task.resume()
     }
 
-    public func performConnect(type: String, connectedEntity:UsergridEntity, relationship:String, connectingEntity:UsergridEntity) {
+    func performConnect(type: String, connectedEntity:UsergridEntity, relationship:String, connectingEntity:UsergridEntity) {
 //        if let connectedID = connectedEntity.uuid ?? connectedEntity.name, connectingID = connectingEntity.uuid ?? connectingEntity.name {
 //
 //        }
     }
 
-    public func performDisconnect(type: String, connectedEntity:UsergridEntity, relationship:String, connectingEntity:UsergridEntity) {
+    func performDisconnect(type: String, connectedEntity:UsergridEntity, relationship:String, connectingEntity:UsergridEntity) {
 //        if let connectedID = connectedEntity.uuid ?? connectedEntity.name, connectingID = connectingEntity.uuid ?? connectingEntity.name {
 //
 //        }
@@ -168,7 +175,7 @@ public class UsergridRequestManager : NSObject {
     private static let POST = "POST"
     private static let DELETE = "DELETE"
 
-    public enum HttpMethod : Int {
+    enum HttpMethod : Int {
         case GET; case PUT; case POST; case DELETE
         static func fromString(stringValue: String) -> HttpMethod? {
             switch stringValue.lowercaseString {

@@ -14,7 +14,7 @@ public class UsergridClient: NSObject {
 
     static let DEFAULT_BASE_URL = "https://api.usergrid.com"
 
-    public let requestManager: UsergridRequestManager
+    let requestManager: UsergridRequestManager
 
     public enum Config : String {
         case appID; case orgID; case url; case authFallback

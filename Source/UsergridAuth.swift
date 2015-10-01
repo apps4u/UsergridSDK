@@ -90,21 +90,21 @@ public class UsergridAppAuth : NSObject, UsergridAuth {
     public var accessToken : String?
     public var expiresIn : Int?
 
-    public let id: String
-    public let secret: String
+    public let clientID: String
+    public let clientSecret: String
 
     public var jsonBodyDict: [String:AnyObject] {
         return [GRANT_TYPE:UsergridAppAuth.CLIENT_CREDENTIALS,
-                UsergridAppAuth.CLIENT_ID:self.id,
-                UsergridAppAuth.CLIENT_SECRET:self.secret]
+                UsergridAppAuth.CLIENT_ID:self.clientID,
+                UsergridAppAuth.CLIENT_SECRET:self.clientSecret]
     }
     
-    public init(id:String,secret:String){
-        self.id = id
-        self.secret = secret
+    public init(clientID:String,clientSecret:String){
+        self.clientID = clientID
+        self.clientSecret = clientSecret
     }
 
-    public class func auth(id id:String,secret:String) -> UsergridAppAuth {
-        return UsergridAppAuth(id: id, secret: secret)
+    public class func auth(clientID clientID:String,clientSecret:String) -> UsergridAppAuth {
+        return UsergridAppAuth(clientID: clientID, clientSecret: clientSecret)
     }
 }
