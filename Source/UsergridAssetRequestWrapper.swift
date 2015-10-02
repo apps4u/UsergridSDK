@@ -1,5 +1,5 @@
 //
-//  UsergridRequest.swift
+//  UsergridAssetRequestWrapper.swift
 //  UsergridSDK
 //
 //  Created by Robert Walsh on 10/1/15.
