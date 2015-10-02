@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import MobileCoreServices
 
-public typealias UsergridAssetProgressBlock = (bytesFinished:Int64, bytesExpected: Int64) -> Void
+public typealias UsergridAssetRequestProgressBlock = (bytesFinished:Int64, bytesExpected: Int64) -> Void
 public typealias UsergridAssetUploadCompletionBlock = (response:UsergridResponse,asset:UsergridAsset?, error: String?) -> Void
 public typealias UsergridAssetDownloadCompletionBlock = (asset:UsergridAsset?, error: String?) -> Void
 

@@ -31,8 +31,6 @@ public class UsergridEntity: NSObject {
 
     var properties: [String : AnyObject]
     public var asset: UsergridAsset?
-    public var downloadAssetProgressBlock: UsergridAssetProgressBlock?
-    public var uploadAssetProgressBlock: UsergridAssetProgressBlock?
 
     public var jsonObjectValue : [String:AnyObject] { return self.properties }
     public var stringValue : String { return NSString(data: try! NSJSONSerialization.dataWithJSONObject(self.jsonObjectValue, options: NSJSONWritingOptions.PrettyPrinted), encoding: NSASCIIStringEncoding) as! String }
@@ -260,21 +258,21 @@ extension UsergridEntity {
 // MARK: - Asset Management -
 extension UsergridEntity {
 
-    public func uploadAsset(asset:UsergridAsset, progress:UsergridAssetProgressBlock? = nil, completion:UsergridAssetUploadCompletionBlock) {
+    public func uploadAsset(asset:UsergridAsset, progress:UsergridAssetRequestProgressBlock? = nil, completion:UsergridAssetUploadCompletionBlock) {
         self.uploadAsset(Usergrid.shared, asset: asset, progress: progress, completion: completion)
     }
 
-    public func uploadAsset(client:UsergridClient, asset:UsergridAsset, progress:UsergridAssetProgressBlock? = nil, completion:UsergridAssetUploadCompletionBlock) {
+    public func uploadAsset(client:UsergridClient, asset:UsergridAsset, progress:UsergridAssetRequestProgressBlock? = nil, completion:UsergridAssetUploadCompletionBlock) {
         client.requestManager.performUploadAsset(self, asset: asset, progress:progress) { [weak self] (response, asset, error) -> Void in
             self?.asset = asset
             completion(response: response, asset: asset, error: error)
         }
     }
 
-    public func downloadAsset(contentType:String, progress:UsergridAssetProgressBlock? = nil, completion:UsergridAssetDownloadCompletionBlock) {
+    public func downloadAsset(contentType:String, progress:UsergridAssetRequestProgressBlock? = nil, completion:UsergridAssetDownloadCompletionBlock) {
         self.downloadAsset(Usergrid.shared, contentType: contentType, progress:progress, completion:completion);
     }
-    public func downloadAsset(client:UsergridClient, contentType:String, progress:UsergridAssetProgressBlock? = nil, completion:UsergridAssetDownloadCompletionBlock) {
+    public func downloadAsset(client:UsergridClient, contentType:String, progress:UsergridAssetRequestProgressBlock? = nil, completion:UsergridAssetDownloadCompletionBlock) {
         if self.hasAsset {
             client.requestManager.performGetAsset(self, contentType: contentType, progress:progress) { [weak self] (asset, error) -> Void in
                 asset?.contentType = contentType

@@ -8,13 +8,17 @@
 
 import Foundation
 
-class UsergridRequestManager : NSObject {
+final class UsergridRequestManager : NSObject {
 
     weak var client: UsergridClient?
 
     let session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration(),
                                 delegate:UsergridSessionDelegate(),
                                 delegateQueue:NSOperationQueue.mainQueue())
+
+    var sessionDelegate : UsergridSessionDelegate {
+        return self.session.delegate as! UsergridSessionDelegate
+    }
 
     init(client:UsergridClient? = nil) {
         self.client = client
@@ -102,7 +106,7 @@ class UsergridRequestManager : NSObject {
         }.resume()
     }
 
-    func performRequest(type: String, request: NSURLRequest, progress:UsergridAssetProgressBlock? = nil,completion: UsergridResponseCompletionBlock) {
+    func performRequest(type: String, request: NSURLRequest, completion: UsergridResponseCompletionBlock) {
         session.dataTaskWithRequest(request) { [weak self] (data, response, error) -> Void in
             let dataAsJSON = try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
             if let jsonDict = dataAsJSON as? [String:AnyObject] {
@@ -114,37 +118,37 @@ class UsergridRequestManager : NSObject {
         }.resume()
     }
 
-    func performGetAsset(entity:UsergridEntity, contentType:String, progress:UsergridAssetProgressBlock? = nil, completion:UsergridAssetDownloadCompletionBlock) {
+    func performGetAsset(entity:UsergridEntity, contentType:String, progress:UsergridAssetRequestProgressBlock? = nil, completion:UsergridAssetDownloadCompletionBlock) {
         let requestURL = UsergridRequestManager.buildRequestURL(self.client!.clientAppURL, paths: [entity.type,entity.uuidOrName!])
         let request = UsergridRequestManager.buildRequest(requestURL, .GET, self.client?.authForRequests(), ["Accept":contentType], nil)
-        let task = session.downloadTaskWithRequest(request)
-        if let sessionDelegate = self.session.delegate as? UsergridSessionDelegate {
-            sessionDelegate.addDownloadProgressCompletion(task, progressAndCompletionBlock:(progress,completion))
+        let downloadTask = session.downloadTaskWithRequest(request)
+        let requestWrapper = UsergridAssetRequestWrapper(session: self.session, sessionTask: downloadTask, progress: progress)  { (request) -> Void in
+            if let assetData = request.responseData where assetData.length > 0 {
+                let asset = UsergridAsset(data: assetData, contentType: contentType)
+                completion(asset: asset, error:nil)
+            } else {
+                completion(asset: nil, error: "Downloading asset Failed.  No data was recieved.")
+            }
         }
-        task.resume()
+        self.sessionDelegate.addRequestDelegate(requestWrapper.sessionTask, requestWrapper:requestWrapper)
+        requestWrapper.sessionTask.resume()
     }
 
-    func performUploadAsset(entity:UsergridEntity, asset:UsergridAsset, progress:UsergridAssetProgressBlock? = nil, completion:UsergridAssetUploadCompletionBlock) {
+    func performUploadAsset(entity:UsergridEntity, asset:UsergridAsset, progress:UsergridAssetRequestProgressBlock? = nil, completion:UsergridAssetUploadCompletionBlock) {
         let requestURL = UsergridRequestManager.buildRequestURL(self.client!.clientAppURL, paths: [entity.type,entity.uuidOrName!])
         let mulitpartRequestAndBody = asset.multipartRequestAndBody(NSURL(string:requestURL)!)
-        let uploadWrapper = UsergridUploadWrapper()
-        let task = session.uploadTaskWithRequest(mulitpartRequestAndBody.request, fromData: mulitpartRequestAndBody.multipartData)
-            { [weak uploadWrapper] (data, response, error) -> Void in
-                let dataAsJSON = try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
-                if let jsonDict = dataAsJSON as? [String:AnyObject] {
-                    completion(response: UsergridResponse(client: self.client,type:entity.type,jsonDict:jsonDict),asset:asset,error:nil)
-                } else {
-                    completion(response: UsergridResponse(client: self.client),asset:asset,error:error?.localizedDescription)
-                }
-                if let uploadTask = uploadWrapper?.uploadTask, sessionDelegate = self.session.delegate as? UsergridSessionDelegate {
-                    sessionDelegate.removeUploadProgressCompletion(uploadTask)
-                }
+        let uploadTask = session.uploadTaskWithRequest(mulitpartRequestAndBody.request, fromData: mulitpartRequestAndBody.multipartData)
+
+        let requestWrapper = UsergridAssetRequestWrapper(session: self.session, sessionTask: uploadTask, progress: progress)  { (request) -> Void in
+            let dataAsJSON = try! NSJSONSerialization.JSONObjectWithData(request.responseData!, options: NSJSONReadingOptions.MutableContainers)
+            if let jsonDict = dataAsJSON as? [String:AnyObject] {
+                completion(response: UsergridResponse(client: self.client,type:entity.type,jsonDict:jsonDict),asset:asset,error:nil)
+            } else {
+                completion(response: UsergridResponse(client: self.client),asset:asset,error:request.error?.localizedDescription)
+            }
         }
-        uploadWrapper.uploadTask = task
-        if let progressBlock = progress, sessionDelegate = self.session.delegate as? UsergridSessionDelegate {
-            sessionDelegate.addUploadProgressCompletion(task, progressBlockAndWrapper:(progressBlock,uploadWrapper))
-        }
-        task.resume()
+        self.sessionDelegate.addRequestDelegate(requestWrapper.sessionTask, requestWrapper:requestWrapper)
+        requestWrapper.sessionTask.resume()
     }
 
     func performConnect(type: String, connectedEntity:UsergridEntity, relationship:String, connectingEntity:UsergridEntity) {

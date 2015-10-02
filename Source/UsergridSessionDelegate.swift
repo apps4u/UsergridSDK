@@ -8,56 +8,56 @@
 
 import Foundation
 
-public protocol UsergridProgessDelegate {
-    func progress(currentBytes:Int64,totalBytesExpected:Int64)
-}
-
-class UsergridUploadWrapper {
-    var uploadTask: NSURLSessionUploadTask?
-}
-
 final class UsergridSessionDelegate: NSObject, NSURLSessionTaskDelegate, NSURLSessionDataDelegate {
 
-    private var uploadAssetDelegateCompletions: [Int:(UsergridAssetProgressBlock,UsergridUploadWrapper)] = [:]
-    private var downloadAssetDelegateCompletions: [Int:(UsergridAssetProgressBlock?,UsergridAssetDownloadCompletionBlock)] = [:]
+    private var requestDelegates: [Int:UsergridAssetRequestWrapper] = [:]
 
-    func addUploadProgressCompletion(task:NSURLSessionTask,progressBlockAndWrapper:(UsergridAssetProgressBlock,UsergridUploadWrapper)) {
-        self.uploadAssetDelegateCompletions[task.taskIdentifier] = progressBlockAndWrapper
+    func addRequestDelegate(task:NSURLSessionTask,requestWrapper:UsergridAssetRequestWrapper) {
+        self.requestDelegates[task.taskIdentifier] = requestWrapper
     }
 
-    func removeUploadProgressCompletion(task:NSURLSessionTask) {
-        self.uploadAssetDelegateCompletions.removeValueForKey(task.taskIdentifier)
+    func removeRequestDelegate(task:NSURLSessionTask) {
+        self.requestDelegates[task.taskIdentifier] = nil
     }
 
-    func addDownloadProgressCompletion(task:NSURLSessionTask,progressAndCompletionBlock:(UsergridAssetProgressBlock?,UsergridAssetDownloadCompletionBlock)) {
-        self.downloadAssetDelegateCompletions[task.taskIdentifier] = progressAndCompletionBlock
+    func URLSession(session: NSURLSession, dataTask: NSURLSessionDataTask, didReceiveResponse response: NSURLResponse, completionHandler: (NSURLSessionResponseDisposition) -> Void) {
+        if let request = self.requestDelegates[dataTask.taskIdentifier] {
+            request.response = response
+        }
+        completionHandler(NSURLSessionResponseDisposition.Allow)
     }
 
-    func removeDownloadProgressCompletion(task:NSURLSessionTask) {
-        self.downloadAssetDelegateCompletions.removeValueForKey(task.taskIdentifier)
+    func URLSession(session: NSURLSession, dataTask: NSURLSessionDataTask, didReceiveData data: NSData) {
+        if let request = self.requestDelegates[dataTask.taskIdentifier] {
+            let mutableData = request.responseData != nil ? NSMutableData(data: request.responseData!) : NSMutableData()
+            mutableData.appendData(data)
+            request.responseData = mutableData
+        }
     }
 
     func URLSession(session: NSURLSession, downloadTask: NSURLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
-        if let progressBlock = self.downloadAssetDelegateCompletions[downloadTask.taskIdentifier]?.0 {
+        if let progressBlock = self.requestDelegates[downloadTask.taskIdentifier]?.progress {
             progressBlock(bytesFinished:totalBytesWritten, bytesExpected: totalBytesExpectedToWrite)
         }
     }
 
     func URLSession(session: NSURLSession, downloadTask: NSURLSessionDownloadTask, didFinishDownloadingToURL location: NSURL) {
-        if let completion = self.downloadAssetDelegateCompletions[downloadTask.taskIdentifier]?.1 {
-            if let assetData = NSData(contentsOfURL: location) where assetData.length > 0 {
-                let asset = UsergridAsset(data: assetData, contentType: "") // Content type will be
-                completion(asset: asset, error:nil)
-            } else {
-                completion(asset: nil, error: "Downloading asset Failed.  No data was recieved.")
-            }
+        if let request = self.requestDelegates[downloadTask.taskIdentifier] {
+            request.responseData = NSData(contentsOfURL: location)!
         }
-        self.removeDownloadProgressCompletion(downloadTask)
     }
 
     func URLSession(session: NSURLSession, task: NSURLSessionTask, didSendBodyData bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) {
-        if let progressBlock = self.uploadAssetDelegateCompletions[task.taskIdentifier]?.0 {
+        if let progressBlock = self.requestDelegates[task.taskIdentifier]?.progress {
             progressBlock(bytesFinished:totalBytesSent, bytesExpected: totalBytesExpectedToSend)
         }
+    }
+
+    func URLSession(session: NSURLSession, task: NSURLSessionTask, didCompleteWithError error: NSError?) {
+        if let request = self.requestDelegates[task.taskIdentifier] {
+            request.error = error
+            request.completion(requestWrapper: request)
+        }
+        self.removeRequestDelegate(task)
     }
 }

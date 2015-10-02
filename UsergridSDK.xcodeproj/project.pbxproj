@@ -30,6 +30,7 @@
 		63AF0F7E1BBC5692009D4196 /* TestAssets in Resources */ = {isa = PBXBuildFile; fileRef = 63AF0F7D1BBC5692009D4196 /* TestAssets */; settings = {ASSET_TAGS = (); }; };
 		63AF0F801BBC7171009D4196 /* ObjCTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 63AF0F7F1BBC7171009D4196 /* ObjCTests.m */; settings = {ASSET_TAGS = (); }; };
 		63AF0F821BBC7778009D4196 /* UsergridSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF0F811BBC7778009D4196 /* UsergridSessionDelegate.swift */; settings = {ASSET_TAGS = (); }; };
+		63E512FB1BBF1C9200A976D6 /* UsergridAssetRequestWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E512FA1BBF1C9200A976D6 /* UsergridAssetRequestWrapper.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,7 @@
 		63AF0F7D1BBC5692009D4196 /* TestAssets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TestAssets; sourceTree = "<group>"; };
 		63AF0F7F1BBC7171009D4196 /* ObjCTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjCTests.m; sourceTree = "<group>"; };
 		63AF0F811BBC7778009D4196 /* UsergridSessionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsergridSessionDelegate.swift; sourceTree = "<group>"; };
+		63E512FA1BBF1C9200A976D6 /* UsergridAssetRequestWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsergridAssetRequestWrapper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +117,7 @@
 				63AF0F3F1BBC4EF6009D4196 /* Usergrid.swift */,
 				63AF0F421BBC4EF6009D4196 /* UsergridClient.swift */,
 				63AF0F551BBC4F67009D4196 /* Core */,
+				63E512FC1BBF1EF700A976D6 /* Internal */,
 				63AF0F541BBC4F1F009D4196 /* Supporting Files */,
 			);
 			path = Source;
@@ -136,10 +139,8 @@
 				63AF0F411BBC4EF6009D4196 /* UsergridAuth.swift */,
 				63AF0F431BBC4EF6009D4196 /* UsergridEntity.swift */,
 				63AF0F441BBC4EF6009D4196 /* UsergridQuery.swift */,
-				63AF0F451BBC4EF6009D4196 /* UsergridRequestManager.swift */,
 				63AF0F461BBC4EF6009D4196 /* UsergridResponse.swift */,
 				63AF0F481BBC4EF6009D4196 /* UsergridUser.swift */,
-				63AF0F811BBC7778009D4196 /* UsergridSessionDelegate.swift */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -162,6 +163,16 @@
 				63AF0F7F1BBC7171009D4196 /* ObjCTests.m */,
 			);
 			path = Tests;
+			sourceTree = "<group>";
+		};
+		63E512FC1BBF1EF700A976D6 /* Internal */ = {
+			isa = PBXGroup;
+			children = (
+				63AF0F451BBC4EF6009D4196 /* UsergridRequestManager.swift */,
+				63AF0F811BBC7778009D4196 /* UsergridSessionDelegate.swift */,
+				63E512FA1BBF1C9200A976D6 /* UsergridAssetRequestWrapper.swift */,
+			);
+			name = Internal;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -276,6 +287,7 @@
 				63AF0F4F1BBC4EF6009D4196 /* UsergridQuery.swift in Sources */,
 				63AF0F4E1BBC4EF6009D4196 /* UsergridEntity.swift in Sources */,
 				63AF0F531BBC4EF6009D4196 /* UsergridUser.swift in Sources */,
+				63E512FB1BBF1C9200A976D6 /* UsergridAssetRequestWrapper.swift in Sources */,
 				63AF0F501BBC4EF6009D4196 /* UsergridRequestManager.swift in Sources */,
 				63AF0F4A1BBC4EF6009D4196 /* Usergrid.swift in Sources */,
 				63AF0F821BBC7778009D4196 /* UsergridSessionDelegate.swift in Sources */,

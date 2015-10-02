@@ -24,10 +24,10 @@ class ASSET_Tests: XCTestCase {
 
     func test_IMAGE_UPLOAD() {
         let getExpect = self.expectationWithDescription("\(__FUNCTION__)")
-        let uploadProgress : UsergridAssetProgressBlock = { (bytes,expected) in
+        let uploadProgress : UsergridAssetRequestProgressBlock = { (bytes,expected) in
             print("UPLOAD PROGRESS BLOCK: BYTES:\(bytes) --- EXPECTED:\(expected)")
         }
-        let downloadProgress : UsergridAssetProgressBlock = { (bytes,expected) in
+        let downloadProgress : UsergridAssetRequestProgressBlock = { (bytes,expected) in
             print("DOWNLOAD PROGRESS BLOCK: BYTES:\(bytes) --- EXPECTED:\(expected)")
         }
 
