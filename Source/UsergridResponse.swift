@@ -14,19 +14,19 @@ public class UsergridResponse: NSObject {
 
     public weak var client: UsergridClient?
 
-    private(set) public var responseJSON: [String:AnyObject]?
-    private(set) public var type: String?
-    private(set) public var query: UsergridQuery?
-    private(set) public var cursor: String?
-    private(set) public var entities: [UsergridEntity]?
+    internal(set) public var responseJSON: [String:AnyObject]?
+    
+    internal(set) public var type: String?
+    internal(set) public var query: UsergridQuery?
+    internal(set) public var cursor: String?
+    internal(set) public var entities: [UsergridEntity]?
 
-    private(set) public var headers: [String:String]?
-    private(set) public var statusCode: Int?
-    private(set) public var metadata: [String:AnyObject]?
+    internal(set) public var headers: [String:String]?
+    internal(set) public var statusCode: Int?
 
-    private(set) public var errorName : String?
-    private(set) public var errorDescription: String?
-    private(set) public var exception: String?
+    internal(set) public var errorName : String?
+    internal(set) public var errorDescription: String?
+    internal(set) public var exception: String?
 
     public var count: Int { return self.entities?.count ?? 0 }
 

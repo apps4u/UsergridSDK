@@ -142,7 +142,7 @@ public class UsergridEntity: NSObject {
 
     // Sub properties of Location
     private static let LATITUDE = "latitude"
-    private static let LONGITUDE = "latitude"
+    private static let LONGITUDE = "longitude"
 
     @objc public enum UsergridEntityProperties : Int {
         case EntityType
@@ -254,7 +254,7 @@ extension UsergridEntity {
                     propertyValue = NSDate(utcTimeStamp: utcTimeStamp.description)
                 }
             case .Location :
-                if let locationDict = self.properties[entityProperty.stringValue] as? [String:Double], lat = locationDict["latitude"], long = locationDict["longitude"] {
+                if let locationDict = self.properties[entityProperty.stringValue] as? [String:Double], lat = locationDict[UsergridEntity.LATITUDE], long = locationDict[UsergridEntity.LONGITUDE] {
                     propertyValue = CLLocation(latitude: lat, longitude: long)
                 }
         }

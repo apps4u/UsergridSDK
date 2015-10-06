@@ -249,9 +249,7 @@ extension UsergridClient {
 
     public func downloadAsset(entity:UsergridEntity, contentType:String, progress:UsergridAssetRequestProgress? = nil, completion:UsergridAssetDownloadCompletion?) {
         if entity.hasAsset {
-            self.requestManager.performGetAsset(entity, contentType: contentType, progress:progress) { [weak entity] (asset, error) -> Void in
-                asset?.contentType = contentType
-                entity?.asset = asset
+            self.requestManager.performGetAsset(entity, contentType: contentType, progress:progress) { (asset, error) -> Void in
                 completion?(asset: asset, error: error)
             }
         } else {

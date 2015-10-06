@@ -74,10 +74,16 @@ final class UsergridRequestManager {
         session.dataTaskWithRequest(request) { [weak self] (data, response, error) -> Void in
             let dataAsJSON = try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
             if let jsonDict = dataAsJSON as? [String:AnyObject] {
-                let response = UsergridResponse(client: self?.client, type: type, jsonDict: jsonDict)
-                completion?(response: response)
+                let usergridResponse = UsergridResponse(client: self?.client, type: type, jsonDict: jsonDict)
+                if let urlResponse = response as? NSHTTPURLResponse {
+                    usergridResponse.statusCode = urlResponse.statusCode
+                    usergridResponse.headers = urlResponse.allHeaderFields as? [String:String]
+                }
+                usergridResponse.errorName = error?.domain
+                usergridResponse.errorDescription =  error?.localizedDescription
+                completion?(response: usergridResponse)
             } else {
-                completion?(response: UsergridResponse(client:self?.client, errorName: "", errorDescription: ""))
+                completion?(response: UsergridResponse(client:self?.client, errorName: error?.domain, errorDescription: error?.localizedDescription))
             }
         }.resume()
     }
@@ -156,10 +162,16 @@ extension UsergridRequestManager {
             session.dataTaskWithRequest(request) { [weak self] (data, response, error) -> Void in
                 let dataAsJSON = try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
                 if let jsonDict = dataAsJSON as? [String:AnyObject] {
-                    let response = UsergridResponse(client: self?.client, type: nil, jsonDict: jsonDict)
-                    completion?(response: response)
+                    let usergridResponse = UsergridResponse(client: self?.client, type: nil, jsonDict: jsonDict)
+                    if let urlResponse = response as? NSHTTPURLResponse {
+                        usergridResponse.statusCode = urlResponse.statusCode
+                        usergridResponse.headers = urlResponse.allHeaderFields as? [String:String]
+                    }
+                    usergridResponse.errorName = error?.domain
+                    usergridResponse.errorDescription =  error?.localizedDescription
+                    completion?(response: usergridResponse)
                 } else {
-                    completion?(response: UsergridResponse(client:self?.client, errorName: "", errorDescription: ""))
+                    completion?(response: UsergridResponse(client:self?.client, errorName: error?.domain, errorDescription: error?.localizedDescription))
                 }
             }.resume()
         } else {
@@ -174,10 +186,16 @@ extension UsergridRequestManager {
             session.dataTaskWithRequest(request) { [weak self] (data, response, error) -> Void in
                 let dataAsJSON = try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
                 if let jsonDict = dataAsJSON as? [String:AnyObject] {
-                    let response = UsergridResponse(client: self?.client, type: nil, jsonDict: jsonDict)
-                    completion?(response: response)
+                    let usergridResponse = UsergridResponse(client: self?.client, type:nil, jsonDict: jsonDict)
+                    if let urlResponse = response as? NSHTTPURLResponse {
+                        usergridResponse.statusCode = urlResponse.statusCode
+                        usergridResponse.headers = urlResponse.allHeaderFields as? [String:String]
+                    }
+                    usergridResponse.errorName = error?.domain
+                    usergridResponse.errorDescription =  error?.localizedDescription
+                    completion?(response: usergridResponse)
                 } else {
-                    completion?(response: UsergridResponse(client:self?.client, errorName: "", errorDescription: ""))
+                    completion?(response: UsergridResponse(client:self?.client, errorName: error?.domain, errorDescription: error?.localizedDescription))
                 }
             }.resume()
         } else {
@@ -192,10 +210,16 @@ extension UsergridRequestManager {
             session.dataTaskWithRequest(request) { [weak self] (data,response,error) in
                 let dataAsJSON = try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
                 if let jsonDict = dataAsJSON as? [String:AnyObject] {
-                    let response = UsergridResponse(client: self?.client, type:entity.type, jsonDict: jsonDict)
-                    completion?(response: response)
+                    let usergridResponse = UsergridResponse(client: self?.client, type:entity.type, jsonDict: jsonDict)
+                    if let urlResponse = response as? NSHTTPURLResponse {
+                        usergridResponse.statusCode = urlResponse.statusCode
+                        usergridResponse.headers = urlResponse.allHeaderFields as? [String:String]
+                    }
+                    usergridResponse.errorName = error?.domain
+                    usergridResponse.errorDescription =  error?.localizedDescription
+                    completion?(response: usergridResponse)
                 } else {
-                    completion?(response: UsergridResponse(client:self?.client, errorName: "", errorDescription: ""))
+                    completion?(response: UsergridResponse(client:self?.client, errorName: error?.domain, errorDescription: error?.localizedDescription))
                 }
             }.resume()
         }
@@ -212,9 +236,10 @@ extension UsergridRequestManager {
         let requestWrapper = UsergridAssetRequestWrapper(session: self.session, sessionTask: downloadTask, progress: progress)  { (request) -> Void in
             if let assetData = request.responseData where assetData.length > 0 {
                 let asset = UsergridAsset(data: assetData, contentType: contentType)
+                entity.asset = asset
                 completion?(asset: asset, error:nil)
             } else {
-                completion?(asset: nil, error: "Downloading asset Failed.  No data was recieved.")
+                completion?(asset: nil, error: "Downloading asset failed.  No data was recieved.")
             }
         }
         self.sessionDelegate.addRequestDelegate(requestWrapper.sessionTask, requestWrapper:requestWrapper)
