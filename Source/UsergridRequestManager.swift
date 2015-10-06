@@ -8,19 +8,26 @@
 
 import Foundation
 
-final class UsergridRequestManager : NSObject {
+enum UsergridHttpMethod : String {
+    case GET
+    case PUT
+    case POST
+    case DELETE
+}
 
-    weak var client: UsergridClient?
+final class UsergridRequestManager {
+
+    unowned let client: UsergridClient
 
     let session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration(),
                                 delegate:UsergridSessionDelegate(),
                                 delegateQueue:NSOperationQueue.mainQueue())
 
     var sessionDelegate : UsergridSessionDelegate {
-        return self.session.delegate as! UsergridSessionDelegate
+        return session.delegate as! UsergridSessionDelegate
     }
 
-    init(client:UsergridClient? = nil) {
+    init(client:UsergridClient) {
         self.client = client
     }
 
@@ -40,9 +47,9 @@ final class UsergridRequestManager : NSObject {
         return constructedURLString
     }
 
-    static func buildRequest(requestURL:String, _ method:UsergridRequestManager.HttpMethod, _ auth: UsergridAuth? = nil, _ headers: [String:String]? = nil, _ body:NSData? = nil) -> NSURLRequest {
+    static func buildRequest(requestURL:String, _ method:UsergridHttpMethod, _ auth: UsergridAuth? = nil, _ headers: [String:String]? = nil, _ body:NSData? = nil) -> NSMutableURLRequest {
         let request = NSMutableURLRequest(URL: NSURL(string:requestURL)!)
-        request.HTTPMethod = method.stringValue
+        request.HTTPMethod = method.rawValue
         if let httpHeaders = headers {
             for (key,value) in httpHeaders {
                 request.setValue(value, forHTTPHeaderField: key)
@@ -54,18 +61,50 @@ final class UsergridRequestManager : NSObject {
         }
 
         if let usergridAuth = auth {
-            if usergridAuth.tokenIsValid, let accessToken = usergridAuth.accessToken {
-                request.setValue("\(UsergridRequestManager.BEARER) \(accessToken)", forHTTPHeaderField: UsergridRequestManager.AUTHORIZATION)
-            }
+            UsergridRequestManager.applyAuth(usergridAuth, request: request)
         }
         return request
     }
 
-    func performRequest(type:String, requestURL:String, method:UsergridRequestManager.HttpMethod, headers: [String:String]? = nil, body: NSData? = nil, completion: UsergridResponseCompletionBlock) {
-        performRequest(type, request: UsergridRequestManager.buildRequest(requestURL, method, client?.authForRequests(), headers, body), completion: completion)
+    func performRequest(type:String, requestURL:String, method:UsergridHttpMethod, headers: [String:String]? = nil, body: NSData? = nil, completion: UsergridResponseCompletion?) {
+        performRequest(type, request: UsergridRequestManager.buildRequest(requestURL, method, client.authForRequests(), headers, body), completion: completion)
     }
 
-    func performAuthRequest(userAuth userAuth:UsergridUserAuth, request:NSURLRequest, completion:UsergridUserAuthCompletionBlock) {
+    func performRequest(type: String, request: NSURLRequest, completion: UsergridResponseCompletion?) {
+        session.dataTaskWithRequest(request) { [weak self] (data, response, error) -> Void in
+            let dataAsJSON = try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
+            if let jsonDict = dataAsJSON as? [String:AnyObject] {
+                let response = UsergridResponse(client: self?.client, type: type, jsonDict: jsonDict)
+                completion?(response: response)
+            } else {
+                completion?(response: UsergridResponse(client:self?.client, errorName: "", errorDescription: ""))
+            }
+        }.resume()
+    }
+
+    static let AUTHORIZATION = "Authorization"
+    static let ACCESS_TOKEN = "access_token"
+    static let BEARER = "Bearer"
+    static let CONTENT_TYPE = "Content-Type"
+    static let CONTENT_LENGTH = "Content-Length"
+    static let EXPIRES_IN = "expires_in"
+    static let FORWARD_SLASH = "/"
+    static let APPLICATION_JSON = "application/json"
+
+    static let JSON_CONTENT_TYPE_HEADER = [UsergridRequestManager.CONTENT_TYPE:UsergridRequestManager.APPLICATION_JSON]
+}
+
+
+// MARK: - Authentication -
+extension UsergridRequestManager {
+
+    static func applyAuth(auth:UsergridAuth,request:NSMutableURLRequest) {
+        if auth.tokenIsValid, let accessToken = auth.accessToken {
+            request.setValue("\(UsergridRequestManager.BEARER) \(accessToken)", forHTTPHeaderField: UsergridRequestManager.AUTHORIZATION)
+        }
+    }
+
+    func performAuthRequest(userAuth userAuth:UsergridUserAuth, request:NSURLRequest, completion:UsergridUserAuthCompletionBlock?) {
         session.dataTaskWithRequest(request) { (data, response, error) -> Void in
             let dataAsJSON = try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
             if let jsonDict = dataAsJSON as? [String:AnyObject] {
@@ -82,14 +121,14 @@ final class UsergridRequestManager : NSObject {
                         user = createdUser
                     }
                 }
-                completion(auth: userAuth, user:user, error: nil)
+                completion?(auth: userAuth, user:user, error: nil)
             } else {
-                completion(auth: userAuth, user:nil, error: "Auth Failed")
+                completion?(auth: userAuth, user:nil, error: "Auth Failed. Error Description: \(error?.localizedDescription).")
             }
         }.resume()
     }
 
-    func performAuthRequest(appAuth appAuth: UsergridAppAuth, request:NSURLRequest, completion: UsergridAppAuthCompletionBlock) {
+    func performAuthRequest(appAuth appAuth: UsergridAppAuth, request:NSURLRequest, completion: UsergridAppAuthCompletionBlock?) {
         session.dataTaskWithRequest(request) { (data, response, error) -> Void in
             let dataAsJSON = try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
             if let jsonDict = dataAsJSON as? [String:AnyObject] {
@@ -99,104 +138,106 @@ final class UsergridRequestManager : NSObject {
                 if let expiresIn = jsonDict[UsergridRequestManager.EXPIRES_IN] as? Int {
                     appAuth.expiresIn = expiresIn
                 }
-                completion(auth: appAuth, error: nil)
+                completion?(auth: appAuth, error: nil)
             } else {
-                completion(auth: appAuth, error: "Auth Failed")
+                completion?(auth: appAuth, error: "Auth Failed. Error Description: \(error?.localizedDescription).")
             }
         }.resume()
     }
+}
 
-    func performRequest(type: String, request: NSURLRequest, completion: UsergridResponseCompletionBlock) {
-        session.dataTaskWithRequest(request) { [weak self] (data, response, error) -> Void in
-            let dataAsJSON = try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
-            if let jsonDict = dataAsJSON as? [String:AnyObject] {
-                let response = UsergridResponse(client: self?.client, type: type, jsonDict: jsonDict)
-                completion(response: response)
-            } else {
-                completion(response: UsergridResponse(client:self?.client, errorName: "", errorDescription: ""))
-            }
-        }.resume()
+// MARK: - Entity Connections -
+extension UsergridRequestManager {
+
+    func performConnect(connectedEntity:UsergridEntity, relationship:String, connectingEntity:UsergridEntity, completion: UsergridResponseCompletion?) {
+        if let connectedID = connectedEntity.uuidOrName, connectingID = connectingEntity.uuidOrName {
+            let requestURL = UsergridRequestManager.buildRequestURL(self.client.clientAppURL, paths: [connectedEntity.type,connectedID,relationship,connectingEntity.type,connectingID])
+            let request = UsergridRequestManager.buildRequest(requestURL, .POST, self.client.authForRequests())
+            session.dataTaskWithRequest(request) { [weak self] (data, response, error) -> Void in
+                let dataAsJSON = try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
+                if let jsonDict = dataAsJSON as? [String:AnyObject] {
+                    let response = UsergridResponse(client: self?.client, type: nil, jsonDict: jsonDict)
+                    completion?(response: response)
+                } else {
+                    completion?(response: UsergridResponse(client:self?.client, errorName: "", errorDescription: ""))
+                }
+            }.resume()
+        } else {
+            completion?(response: UsergridResponse(client: self.client, errorName: "Invalid Entity Connection Attempt.", errorDescription: "One or both entities that are attempting to be connected do not contain a valid UUID or Name property."))
+        }
     }
 
-    func performGetAsset(entity:UsergridEntity, contentType:String, progress:UsergridAssetRequestProgressBlock? = nil, completion:UsergridAssetDownloadCompletionBlock) {
-        let requestURL = UsergridRequestManager.buildRequestURL(self.client!.clientAppURL, paths: [entity.type,entity.uuidOrName!])
-        let request = UsergridRequestManager.buildRequest(requestURL, .GET, self.client?.authForRequests(), ["Accept":contentType], nil)
+    func performDisconnect(connectedEntity:UsergridEntity, relationship:String, connectingEntity:UsergridEntity,completion: UsergridResponseCompletion?) {
+        if let connectedID = connectedEntity.uuidOrName, connectingID = connectingEntity.uuidOrName {
+            let requestURL = UsergridRequestManager.buildRequestURL(self.client.clientAppURL, paths: [connectedEntity.type,connectedID,relationship,connectingEntity.type,connectingID])
+            let request = UsergridRequestManager.buildRequest(requestURL, .DELETE, self.client.authForRequests())
+            session.dataTaskWithRequest(request) { [weak self] (data, response, error) -> Void in
+                let dataAsJSON = try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
+                if let jsonDict = dataAsJSON as? [String:AnyObject] {
+                    let response = UsergridResponse(client: self?.client, type: nil, jsonDict: jsonDict)
+                    completion?(response: response)
+                } else {
+                    completion?(response: UsergridResponse(client:self?.client, errorName: "", errorDescription: ""))
+                }
+            }.resume()
+        } else {
+            completion?(response: UsergridResponse(client: self.client, errorName: "", errorDescription: ""))
+        }
+    }
+
+    func getConnectedEntities(entity:UsergridEntity, relationship:String, completion:UsergridResponseCompletion?) {
+        if let entityID = entity.uuidOrName {
+            let requestURL = UsergridRequestManager.buildRequestURL(self.client.clientAppURL, paths: [entity.type,entityID,relationship])
+            let request = UsergridRequestManager.buildRequest(requestURL, .DELETE, self.client.authForRequests())
+            session.dataTaskWithRequest(request) { [weak self] (data,response,error) in
+                let dataAsJSON = try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
+                if let jsonDict = dataAsJSON as? [String:AnyObject] {
+                    let response = UsergridResponse(client: self?.client, type:entity.type, jsonDict: jsonDict)
+                    completion?(response: response)
+                } else {
+                    completion?(response: UsergridResponse(client:self?.client, errorName: "", errorDescription: ""))
+                }
+            }.resume()
+        }
+    }
+}
+
+// MARK: - Asset Management -
+extension UsergridRequestManager {
+
+    func performGetAsset(entity:UsergridEntity, contentType:String, progress:UsergridAssetRequestProgress? = nil, completion:UsergridAssetDownloadCompletion?) {
+        let requestURL = UsergridRequestManager.buildRequestURL(self.client.clientAppURL, paths: [entity.type,entity.uuidOrName!])
+        let request = UsergridRequestManager.buildRequest(requestURL, .GET, self.client.authForRequests(), ["Accept":contentType], nil)
         let downloadTask = session.downloadTaskWithRequest(request)
         let requestWrapper = UsergridAssetRequestWrapper(session: self.session, sessionTask: downloadTask, progress: progress)  { (request) -> Void in
             if let assetData = request.responseData where assetData.length > 0 {
                 let asset = UsergridAsset(data: assetData, contentType: contentType)
-                completion(asset: asset, error:nil)
+                completion?(asset: asset, error:nil)
             } else {
-                completion(asset: nil, error: "Downloading asset Failed.  No data was recieved.")
+                completion?(asset: nil, error: "Downloading asset Failed.  No data was recieved.")
             }
         }
         self.sessionDelegate.addRequestDelegate(requestWrapper.sessionTask, requestWrapper:requestWrapper)
         requestWrapper.sessionTask.resume()
     }
 
-    func performUploadAsset(entity:UsergridEntity, asset:UsergridAsset, progress:UsergridAssetRequestProgressBlock? = nil, completion:UsergridAssetUploadCompletionBlock) {
-        let requestURL = UsergridRequestManager.buildRequestURL(self.client!.clientAppURL, paths: [entity.type,entity.uuidOrName!])
+    func performUploadAsset(entity:UsergridEntity, asset:UsergridAsset, progress:UsergridAssetRequestProgress? = nil, completion:UsergridAssetUploadCompletion?) {
+        let requestURL = UsergridRequestManager.buildRequestURL(self.client.clientAppURL, paths: [entity.type,entity.uuidOrName!])
         let mulitpartRequestAndBody = asset.multipartRequestAndBody(NSURL(string:requestURL)!)
+        if let usergridAuth = self.client.authForRequests() {
+            UsergridRequestManager.applyAuth(usergridAuth, request: mulitpartRequestAndBody.request)
+        }
         let uploadTask = session.uploadTaskWithRequest(mulitpartRequestAndBody.request, fromData: mulitpartRequestAndBody.multipartData)
 
         let requestWrapper = UsergridAssetRequestWrapper(session: self.session, sessionTask: uploadTask, progress: progress)  { (request) -> Void in
             let dataAsJSON = try! NSJSONSerialization.JSONObjectWithData(request.responseData!, options: NSJSONReadingOptions.MutableContainers)
             if let jsonDict = dataAsJSON as? [String:AnyObject] {
-                completion(response: UsergridResponse(client: self.client,type:entity.type,jsonDict:jsonDict),asset:asset,error:nil)
+                completion?(response: UsergridResponse(client: self.client,type:entity.type,jsonDict:jsonDict),asset:asset,error:nil)
             } else {
-                completion(response: UsergridResponse(client: self.client),asset:asset,error:request.error?.localizedDescription)
+                completion?(response: UsergridResponse(client: self.client),asset:asset,error:request.error?.localizedDescription)
             }
         }
         self.sessionDelegate.addRequestDelegate(requestWrapper.sessionTask, requestWrapper:requestWrapper)
         requestWrapper.sessionTask.resume()
-    }
-
-    func performConnect(type: String, connectedEntity:UsergridEntity, relationship:String, connectingEntity:UsergridEntity) {
-//        if let connectedID = connectedEntity.uuid ?? connectedEntity.name, connectingID = connectingEntity.uuid ?? connectingEntity.name {
-//
-//        }
-    }
-
-    func performDisconnect(type: String, connectedEntity:UsergridEntity, relationship:String, connectingEntity:UsergridEntity) {
-//        if let connectedID = connectedEntity.uuid ?? connectedEntity.name, connectingID = connectingEntity.uuid ?? connectingEntity.name {
-//
-//        }
-    }
-
-    static let AUTHORIZATION = "Authorization"
-    static let ACCESS_TOKEN = "access_token"
-    static let BEARER = "Bearer"
-    static let CONTENT_TYPE = "Content-Type"
-    static let CONTENT_LENGTH = "Content-Length"
-    static let EXPIRES_IN = "expires_in"
-    static let FORWARD_SLASH = "/"
-    static let APPLICATION_JSON = "application/json"
-
-    static let JSON_CONTENT_TYPE_HEADER = [UsergridRequestManager.CONTENT_TYPE:UsergridRequestManager.APPLICATION_JSON]
-
-    private static let GET = "GET"
-    private static let PUT = "PUT"
-    private static let POST = "POST"
-    private static let DELETE = "DELETE"
-
-    enum HttpMethod : Int {
-        case GET; case PUT; case POST; case DELETE
-        static func fromString(stringValue: String) -> HttpMethod? {
-            switch stringValue.lowercaseString {
-            case UsergridRequestManager.GET: return .GET
-            case UsergridRequestManager.PUT: return .PUT
-            case UsergridRequestManager.POST: return .POST
-            case UsergridRequestManager.DELETE: return .DELETE
-            default: return nil
-            }
-        }
-        var stringValue: String {
-            switch self {
-            case .GET: return UsergridRequestManager.GET
-            case .PUT: return UsergridRequestManager.PUT
-            case .POST: return UsergridRequestManager.POST
-            case .DELETE: return UsergridRequestManager.DELETE
-            }
-        }
     }
 }

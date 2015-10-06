@@ -11,7 +11,7 @@ import XCTest
 
 class ASSET_Tests: XCTestCase {
 
-    let sharedClient = Usergrid.initialize(ClientCreationTests.orgID, appID: ClientCreationTests.appID)
+    let sharedClient = Usergrid.initSharedInstance(orgID:ClientCreationTests.orgID, appID: ClientCreationTests.appID)
 
     static let collectionName = "books"
     static let entityUUID = "f4078aca-2fb1-11e5-8eb2-e13f8369aad1"
@@ -24,10 +24,10 @@ class ASSET_Tests: XCTestCase {
 
     func test_IMAGE_UPLOAD() {
         let getExpect = self.expectationWithDescription("\(__FUNCTION__)")
-        let uploadProgress : UsergridAssetRequestProgressBlock = { (bytes,expected) in
+        let uploadProgress : UsergridAssetRequestProgress = { (bytes,expected) in
             print("UPLOAD PROGRESS BLOCK: BYTES:\(bytes) --- EXPECTED:\(expected)")
         }
-        let downloadProgress : UsergridAssetRequestProgressBlock = { (bytes,expected) in
+        let downloadProgress : UsergridAssetRequestProgress = { (bytes,expected) in
             print("DOWNLOAD PROGRESS BLOCK: BYTES:\(bytes) --- EXPECTED:\(expected)")
         }
 
@@ -47,7 +47,7 @@ class ASSET_Tests: XCTestCase {
             entity.uploadAsset(asset!, progress:uploadProgress) { (response, uploadedAsset, error) -> Void in
                 XCTAssertNotNil(asset)
                 XCTAssertNil(error)
-                entity.downloadAsset(UsergridAsset.ImageContentType.Png.stringValue, progress:downloadProgress)
+                entity.downloadAsset(UsergridImageContentType.Png.stringValue, progress:downloadProgress)
                 { (downloadedAsset, error) -> Void in
                     XCTAssertNotNil(downloadedAsset)
                     XCTAssertNil(error)

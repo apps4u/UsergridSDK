@@ -11,7 +11,7 @@ import XCTest
 
 class User_Tests: XCTestCase {
 
-    var client : UsergridClient = Usergrid.initialize(ClientCreationTests.orgID, appID: ClientCreationTests.appID)
+    var client : UsergridClient = Usergrid.initSharedInstance(orgID:ClientCreationTests.orgID, appID: ClientCreationTests.appID)
 
     let user = UsergridUser(name: User_Tests.name)
     let userWithNoName = UsergridUser()

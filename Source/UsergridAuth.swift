@@ -11,8 +11,22 @@ import Foundation
 public typealias UsergridAppAuthCompletionBlock = (auth:UsergridAppAuth?, error: String?) -> Void
 public typealias UsergridUserAuthCompletionBlock = (auth:UsergridUserAuth?, user:UsergridUser?, error: String?) -> Void
 
-private let GRANT_TYPE = "grant_type"
-private let TOKEN = "token"
+@objc public enum UsergridAuthFallback : Int {
+    case None
+    case App
+}
+
+struct UsergridAuthConstants {
+    static let CLIENT_CREDENTIALS = "client_credentials"
+    static let CLIENT_ID = "client_id"
+    static let CLIENT_SECRET = "client_secret"
+
+    static let PASSWORD = "password"
+    static let TOKEN = "token"
+
+    static let GRANT_TYPE = "grant_type"
+    static let USERNAME = "username"
+}
 
 public protocol UsergridAuth {
     var accessToken: String? { get set }
@@ -42,9 +56,9 @@ public extension UsergridAuth  {
     }
 
     public func buildAuthRequest(baseURL:String) -> NSURLRequest {
-        let requestURL = UsergridRequestManager.buildRequestURL(baseURL,paths:[TOKEN])
+        let requestURL = UsergridRequestManager.buildRequestURL(baseURL,paths:[UsergridAuthConstants.TOKEN])
         let request = NSMutableURLRequest(URL: NSURL(string:requestURL)!)
-        request.HTTPMethod = UsergridRequestManager.HttpMethod.POST.stringValue
+        request.HTTPMethod = UsergridHttpMethod.POST.rawValue
 
         let jsonData = try! NSJSONSerialization.dataWithJSONObject(self.jsonBodyDict, options: NSJSONWritingOptions())
         request.HTTPBody = jsonData
@@ -56,9 +70,6 @@ public extension UsergridAuth  {
 
 public class UsergridUserAuth : NSObject, UsergridAuth {
 
-    private static let PASSWORD = "password"
-    private static let USERNAME = "username"
-
     public var accessToken : String?
     public var expiresIn : Int?
 
@@ -66,9 +77,9 @@ public class UsergridUserAuth : NSObject, UsergridAuth {
     public let password: String
 
     public var jsonBodyDict: [String:AnyObject] {
-        return [GRANT_TYPE:UsergridUserAuth.PASSWORD,
-                UsergridUserAuth.USERNAME:self.username,
-                UsergridUserAuth.PASSWORD:self.password]
+        return [UsergridAuthConstants.GRANT_TYPE:UsergridAuthConstants.PASSWORD,
+                UsergridAuthConstants.USERNAME:self.username,
+                UsergridAuthConstants.PASSWORD:self.password]
     }
 
     public init(username:String, password: String){
@@ -83,10 +94,6 @@ public class UsergridUserAuth : NSObject, UsergridAuth {
 
 public class UsergridAppAuth : NSObject, UsergridAuth {
 
-    private static let CLIENT_CREDENTIALS = "client_credentials"
-    private static let CLIENT_ID = "client_id"
-    private static let CLIENT_SECRET = "client_secret"
-
     public var accessToken : String?
     public var expiresIn : Int?
 
@@ -94,9 +101,9 @@ public class UsergridAppAuth : NSObject, UsergridAuth {
     public let clientSecret: String
 
     public var jsonBodyDict: [String:AnyObject] {
-        return [GRANT_TYPE:UsergridAppAuth.CLIENT_CREDENTIALS,
-                UsergridAppAuth.CLIENT_ID:self.clientID,
-                UsergridAppAuth.CLIENT_SECRET:self.clientSecret]
+        return [UsergridAuthConstants.GRANT_TYPE:UsergridAuthConstants.CLIENT_CREDENTIALS,
+                UsergridAuthConstants.CLIENT_ID:self.clientID,
+                UsergridAuthConstants.CLIENT_SECRET:self.clientSecret]
     }
     
     public init(clientID:String,clientSecret:String){

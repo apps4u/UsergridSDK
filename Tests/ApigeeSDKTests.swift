@@ -11,7 +11,7 @@ import XCTest
 
 class ApigeeSDKTests: XCTestCase {
 
-    var client = Usergrid.initialize(ClientCreationTests.orgID, appID: ClientCreationTests.appID)
+    let sharedClient = Usergrid.initSharedInstance(orgID:ClientCreationTests.orgID, appID: ClientCreationTests.appID)
 
     override func setUp() {
         super.setUp()

@@ -19,31 +19,31 @@ public class UsergridUser : UsergridEntity {
     }
     public var username: String? {
         set(username) { self[UsergridUserProperties.Username.stringValue] = username }
-        get { return self.getUserSpecificProperty(UsergridUserProperties.Username) as? String }
+        get { return self.getUserSpecificProperty(.Username) as? String }
     }
     public var password: String? {
         set(password) { self[UsergridUserProperties.Password.stringValue] = password }
-        get { return self.getUserSpecificProperty(UsergridUserProperties.Password) as? String }
+        get { return self.getUserSpecificProperty(.Password) as? String }
     }
     public var email: String? {
         set(email) { self[UsergridUserProperties.Email.stringValue] = email }
-        get { return self.getUserSpecificProperty(UsergridUserProperties.Email) as? String }
+        get { return self.getUserSpecificProperty(.Email) as? String }
     }
     public var age: NSNumber? {
         set(age) { self[UsergridUserProperties.Age.stringValue] = age }
-        get { return self.getUserSpecificProperty(UsergridUserProperties.Age) as? NSNumber }
+        get { return self.getUserSpecificProperty(.Age) as? NSNumber }
     }
     public var activated: Bool {
         set(activated) { self[UsergridUserProperties.Activated.stringValue] = activated }
-        get { return self.getUserSpecificProperty(UsergridUserProperties.Activated) as? Bool ?? false }
+        get { return self.getUserSpecificProperty(.Activated) as? Bool ?? false }
     }
     public var disabled: Bool {
         set(disabled) { self[UsergridUserProperties.Disabled.stringValue] = disabled }
-        get { return self.getUserSpecificProperty(UsergridUserProperties.Disabled) as? Bool ?? false }
+        get { return self.getUserSpecificProperty(.Disabled) as? Bool ?? false }
     }
     public var picture: String? {
         set(picture) { self[UsergridUserProperties.Picture.stringValue] = picture }
-        get { return self.getUserSpecificProperty(UsergridUserProperties.Picture) as? String }
+        get { return self.getUserSpecificProperty(.Picture) as? String }
     }
 
     public init(name:String? = nil) {
@@ -54,16 +54,16 @@ public class UsergridUser : UsergridEntity {
         super.init(type: UsergridUser.USER_ENTITY_TYPE, name:name, propertyDict:propertyDict)
     }
 
-    public func create(completion: UsergridResponseCompletionBlock) {
-        self.create(Usergrid.shared, completion: completion)
+    public func create(completion: UsergridResponseCompletion) {
+        self.create(Usergrid.sharedInstance, completion: completion)
     }
 
-    public func create(client: UsergridClient, completion: UsergridResponseCompletionBlock) {
+    public func create(client: UsergridClient, completion: UsergridResponseCompletion) {
         client.POST(self,completion:completion)
     }
 
     public func login(username:String, password:String, completion: UsergridUserAuthCompletionBlock) {
-        self.login(Usergrid.shared, username: username, password: password, completion: completion)
+        self.login(Usergrid.sharedInstance, username: username, password: password, completion: completion)
     }
 
     public func login(client: UsergridClient, username:String, password:String, completion: UsergridUserAuthCompletionBlock) {
@@ -75,7 +75,7 @@ public class UsergridUser : UsergridEntity {
     }
 
     public func logout() {
-        self.logout(Usergrid.shared)
+        self.logout(Usergrid.sharedInstance)
     }
 
     public func logout(client: UsergridClient) {
@@ -87,6 +87,7 @@ public class UsergridUser : UsergridEntity {
 
     public func getUserSpecificProperty(userProperty: UsergridUserProperties) -> AnyObject? {
         var propertyValue: AnyObject? = super[userProperty.stringValue]
+        NSJSONReadingOptions.AllowFragments
         switch userProperty {
             case .Activated,.Disabled :
                 propertyValue = propertyValue?.boolValue
@@ -124,7 +125,7 @@ public class UsergridUser : UsergridEntity {
 
     @objc public enum UsergridUserProperties: Int {
         case Name; case Username; case Password; case Email; case Age; case Activated; case Disabled; case Picture
-        static func fromString(stringValue: String) -> UsergridUserProperties? {
+        public static func fromString(stringValue: String) -> UsergridUserProperties? {
             switch stringValue.lowercaseString {
                 case UsergridUser.NAME: return .Name
                 case UsergridUser.USERNAME: return .Username
@@ -137,7 +138,7 @@ public class UsergridUser : UsergridEntity {
                 default: return nil
             }
         }
-        var stringValue: String {
+        public var stringValue: String {
             switch self {
                 case .Name: return UsergridUser.NAME
                 case .Username: return UsergridUser.USERNAME

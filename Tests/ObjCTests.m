@@ -22,9 +22,13 @@
 - (void)tearDown {
     // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];
-//    UsergridEntity* entity = [[UsergridEntity alloc] initWithType:@"" name:@"" propertyDict:nil];
+    UsergridAsset* asset = [[UsergridAsset alloc] initWithFileName:nil data:[[NSData alloc] init] originalLocation:nil contentType:@""];
 
-//    NSProgress* progress;
+    UsergridEntity* entity = [[UsergridEntity alloc] initWithType:@"" name:@"" propertyDict:nil];
+    entity[@""] = @1;
+    [entity insert:@"" index:1 value:@""];
+
+    //    NSProgress* progress;
 //    [entity uploadAsset:[[UsergridAsset alloc] initWithFileName:@"" data:nil originalLocation:nil contentType:nil]
 //               progress:^(int64_t bytesFinished, int64_t totalBytes) {
 //

@@ -11,8 +11,8 @@ import XCTest
 
 class GET_Tests: XCTestCase {
 
-    let sharedClient = Usergrid.initialize(ClientCreationTests.orgID, appID: ClientCreationTests.appID)
-    let usergridClientInstance = UsergridClient().initialize(ClientCreationTests.orgID, appID: ClientCreationTests.appID)
+    let sharedClient = Usergrid.initSharedInstance(orgID:ClientCreationTests.orgID, appID: ClientCreationTests.appID)
+    let usergridClientInstance = UsergridClient(orgID:ClientCreationTests.orgID, appID: ClientCreationTests.appID)
 
     static let collectionName = "books"
     static let entityUUID = "f4078aca-2fb1-11e5-8eb2-e13f8369aad1"

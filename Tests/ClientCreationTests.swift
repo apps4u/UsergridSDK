@@ -18,31 +18,38 @@ class ClientCreationTests: XCTestCase {
     static let otherAppID = "otherAppID"
     static let otherOrgID = "otherOrgID"
     static let otherBaseURL = "http://www.something.com"
+    static let otherAppAuth = UsergridAppAuth(clientID: "alkdjflsdf", clientSecret: "alkdjflsdf")
 
-    let sharedClient = Usergrid.initialize(ClientCreationTests.orgID, appID: ClientCreationTests.appID)
-    let otherClient = UsergridClient().initialize([UsergridClient.Config.orgID:ClientCreationTests.otherOrgID,UsergridClient.Config.appID:ClientCreationTests.otherAppID,UsergridClient.Config.url:otherBaseURL,UsergridClient.Config.authFallback:UsergridClient.AuthFallback.NONE.rawValue])
+    static let otherConfiguration = UsergridClientConfig(orgID: ClientCreationTests.otherOrgID,
+                                                         appID: ClientCreationTests.otherAppID,
+                                                         baseURL: ClientCreationTests.otherBaseURL,
+                                                         authFallback: .None,
+                                                         appAuth: ClientCreationTests.otherAppAuth)
+
+    let sharedClient = Usergrid.initSharedInstance(orgID:ClientCreationTests.orgID, appID: ClientCreationTests.appID)
+    let otherClient = UsergridClient(configuration: ClientCreationTests.otherConfiguration)
 
     func test_INSTANCES_EXIST() {
         XCTAssertNotNil(sharedClient)
-        XCTAssertNotNil(Usergrid.shared)
+        XCTAssertNotNil(Usergrid.sharedInstance)
         XCTAssertNotNil(otherClient)
     }
 
     func test_GET_INSTANCES() {
-        XCTAssertTrue(sharedClient === Usergrid.shared)
+        XCTAssertTrue(sharedClient === Usergrid.sharedInstance)
         XCTAssertFalse(otherClient === sharedClient)
     }
 
     func test_CLIENT_PROPERTIES() {
         XCTAssertEqual(sharedClient.appID, ClientCreationTests.appID)
         XCTAssertEqual(sharedClient.orgID, ClientCreationTests.orgID)
-        XCTAssertEqual(sharedClient.authFallback, UsergridClient.AuthFallback.APP)
+        XCTAssertEqual(sharedClient.authFallback, UsergridAuthFallback.App)
         XCTAssertEqual(sharedClient.baseURL, UsergridClient.DEFAULT_BASE_URL)
         XCTAssertNil(sharedClient.currentUser)
 
         XCTAssertEqual(otherClient.appID, ClientCreationTests.otherAppID)
         XCTAssertEqual(otherClient.orgID, ClientCreationTests.otherOrgID)
-        XCTAssertEqual(otherClient.authFallback, UsergridClient.AuthFallback.NONE)
+        XCTAssertEqual(otherClient.authFallback, UsergridAuthFallback.None)
         XCTAssertEqual(otherClient.baseURL, ClientCreationTests.otherBaseURL)
         XCTAssertNil(otherClient.currentUser)
     }

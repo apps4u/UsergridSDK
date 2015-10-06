@@ -11,7 +11,7 @@ import XCTest
 
 class POST_Tests: XCTestCase {
 
-    let sharedClient = Usergrid.initialize(ClientCreationTests.orgID, appID: ClientCreationTests.appID)
+    let sharedClient = Usergrid.initSharedInstance(orgID:ClientCreationTests.orgID, appID: ClientCreationTests.appID)
 
     override func setUp() {
         super.setUp()

@@ -10,11 +10,24 @@ import Foundation
 import UIKit
 import MobileCoreServices
 
-public typealias UsergridAssetRequestProgressBlock = (bytesFinished:Int64, bytesExpected: Int64) -> Void
-public typealias UsergridAssetUploadCompletionBlock = (response:UsergridResponse,asset:UsergridAsset?, error: String?) -> Void
-public typealias UsergridAssetDownloadCompletionBlock = (asset:UsergridAsset?, error: String?) -> Void
+public typealias UsergridAssetRequestProgress = (bytesFinished:Int64, bytesExpected: Int64) -> Void
+public typealias UsergridAssetUploadCompletion = (response:UsergridResponse,asset:UsergridAsset?, error: String?) -> Void
+public typealias UsergridAssetDownloadCompletion = (asset:UsergridAsset?, error: String?) -> Void
+
+@objc public enum UsergridImageContentType : Int {
+    case Png
+    case Jpeg
+    public var stringValue: String {
+        switch self {
+            case .Png: return "image/png"
+            case .Jpeg: return "image/jpeg"
+        }
+    }
+}
 
 public class UsergridAsset: NSObject {
+
+    private static let DEFAULT_FILE_NAME = "file"
 
     public let fileName: String
     public let assetData: NSData
@@ -24,14 +37,14 @@ public class UsergridAsset: NSObject {
 
     public var contentLength: Int { return self.assetData.length }
 
-    public init(fileName:String = UsergridAsset.DEFAULT_FILE_NAME, data:NSData, originalLocation:String? = nil, contentType:String) {
-        self.fileName = fileName
+    public init(fileName:String? = UsergridAsset.DEFAULT_FILE_NAME, data:NSData, originalLocation:String? = nil, contentType:String) {
+        self.fileName = fileName ?? UsergridAsset.DEFAULT_FILE_NAME
         self.assetData = data
         self.originalLocation = originalLocation
         self.contentType = contentType
     }
 
-    public convenience init?(fileName:String = UsergridAsset.DEFAULT_FILE_NAME, image:UIImage, imageContentType:ImageContentType = .Png) {
+    public convenience init?(fileName:String? = UsergridAsset.DEFAULT_FILE_NAME, image:UIImage, imageContentType:UsergridImageContentType = .Png) {
         var imageData: NSData?
         switch(imageContentType) {
             case .Png :
@@ -46,7 +59,7 @@ public class UsergridAsset: NSObject {
         }
     }
 
-    public convenience init?(var fileName:String = UsergridAsset.DEFAULT_FILE_NAME, fileURL:NSURL, var contentType:String? = nil) {
+    public convenience init?(var fileName:String? = UsergridAsset.DEFAULT_FILE_NAME, fileURL:NSURL, var contentType:String? = nil) {
         if fileURL.isFileReferenceURL(), let assetData = NSData(contentsOfURL: fileURL) {
             if fileName != UsergridAsset.DEFAULT_FILE_NAME, let inferredFileName = fileURL.lastPathComponent {
                 fileName = inferredFileName
@@ -77,21 +90,6 @@ public class UsergridAsset: NSObject {
         }
         return nil
     }
-
-    private static let DEFAULT_FILE_NAME = "file"
-    private static let IMAGE_PNG = "image/png"
-    private static let IMAGE_JPEG = "image/jpeg"
-
-    @objc public enum ImageContentType : Int {
-        case Png
-        case Jpeg
-        var stringValue: String {
-            switch self {
-                case .Png: return UsergridAsset.IMAGE_PNG
-                case .Jpeg: return UsergridAsset.IMAGE_JPEG
-            }
-        }
-    }
 }
 
 //MARK: - MultiPart Creation -
@@ -119,15 +117,15 @@ extension UsergridAsset {
         return httpBody
     }
 
-    public func multipartRequest(requestURL:NSURL) -> NSURLRequest {
+    public func multipartRequest(requestURL:NSURL) -> NSMutableURLRequest {
         let request = NSMutableURLRequest(URL: requestURL)
-        request.HTTPMethod = UsergridRequestManager.HttpMethod.PUT.stringValue
+        request.HTTPMethod = UsergridHttpMethod.PUT.rawValue
         request.setValue(UsergridAsset.ASSET_UPLOAD_CONTENT_HEADER, forHTTPHeaderField: UsergridRequestManager.CONTENT_TYPE)
         request.setValue(String(format: "%lu", self.multiPartHTTPBody.length), forHTTPHeaderField: UsergridRequestManager.CONTENT_LENGTH)
         return request
     }
 
-    public func multipartRequestAndBody(requestURL:NSURL) -> (request:NSURLRequest,multipartData:NSData) {
+    public func multipartRequestAndBody(requestURL:NSURL) -> (request:NSMutableURLRequest,multipartData:NSData) {
         return (self.multipartRequest(requestURL),self.multiPartHTTPBody)
     }
 }

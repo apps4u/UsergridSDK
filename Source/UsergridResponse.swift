@@ -8,10 +8,13 @@
 
 import Foundation
 
+public typealias UsergridResponseCompletion = (response: UsergridResponse) -> Void
+
 public class UsergridResponse: NSObject {
 
     public weak var client: UsergridClient?
 
+    private(set) public var responseJSON: [String:AnyObject]?
     private(set) public var type: String?
     private(set) public var query: UsergridQuery?
     private(set) public var cursor: String?
@@ -42,14 +45,10 @@ public class UsergridResponse: NSObject {
         self.errorDescription = errorDescription
     }
 
-
-    public init(client:UsergridClient?, type:String, responseData:NSData, response:NSURLResponse, error:NSError) {
-        
-    }
-
     public init(client:UsergridClient?, type: String?, jsonDict:[String:AnyObject], query: UsergridQuery? = nil){
         self.client = client
         self.type = type
+        self.responseJSON = jsonDict
 
         if let errorName = jsonDict[UsergridResponse.ERROR] as? String {
             self.errorName = errorName
@@ -68,11 +67,7 @@ public class UsergridResponse: NSObject {
         }
     }
 
-    public func loadPrevPage() -> UsergridResponse? {
-        return nil
-    }
-
-    public func loadNextPage(completion: UsergridResponseCompletionBlock) {
+    public func loadNextPage(completion: UsergridResponseCompletion) {
         if self.hasNextPage, let type = self.type {
             if let query = self.query?.copy() as? UsergridQuery {
                 self.client?.GET(type, query: query.cursor(self.cursor), completion:completion)

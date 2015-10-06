@@ -18,10 +18,10 @@ final class UsergridAssetRequestWrapper {
     var responseData: NSData?
     var error: NSError?
 
-    var progress: UsergridAssetRequestProgressBlock?
+    var progress: UsergridAssetRequestProgress?
     let completion: UsergridAssetRequestWrapperCompletionBlock
 
-    init(session:NSURLSession?, sessionTask:NSURLSessionTask, progress:UsergridAssetRequestProgressBlock?, completion:UsergridAssetRequestWrapperCompletionBlock) {
+    init(session:NSURLSession?, sessionTask:NSURLSessionTask, progress:UsergridAssetRequestProgress?, completion:UsergridAssetRequestWrapperCompletionBlock) {
         self.session = session
         self.sessionTask = sessionTask
         self.progress = progress

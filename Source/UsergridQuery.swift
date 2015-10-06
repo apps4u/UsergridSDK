@@ -34,10 +34,10 @@ public class UsergridQuery : NSObject,NSCopying {
     public func containsWord(term: String, value: String) -> Self { return self.addRequirement(term + UsergridQuery.SPACE + UsergridQuery.CONTAINS + UsergridQuery.SPACE + UsergridQuery.APOSTROPHE + value + UsergridQuery.APOSTROPHE) }
 
     public func ascending(term: String) -> Self { return self.asc(term) }
-    public func asc(term: String) -> Self { return self.sort(term, sortOrder: QuerySortOrder.Asc) }
+    public func asc(term: String) -> Self { return self.sort(term, sortOrder: UsergridQuerySortOrder.Asc) }
 
     public func descending(term: String) -> Self { return self.desc(term) }
-    public func desc(term: String) -> Self { return self.sort(term, sortOrder: QuerySortOrder.Desc) }
+    public func desc(term: String) -> Self { return self.sort(term, sortOrder: UsergridQuerySortOrder.Desc) }
 
     public func filter(term: String, value: AnyObject) -> Self { return self.eq(term, value: value) }
     public func equals(term: String, value: AnyObject) -> Self { return self.eq(term, value: value) }
@@ -66,7 +66,7 @@ public class UsergridQuery : NSObject,NSCopying {
         return self
     }
 
-    public func sort(term: String, sortOrder: QuerySortOrder) -> Self {
+    public func sort(term: String, sortOrder: UsergridQuerySortOrder) -> Self {
         self.orderClauses[term] = sortOrder
         return self
     }
@@ -94,16 +94,16 @@ public class UsergridQuery : NSObject,NSCopying {
         if (term as NSString).isEqualToString(UsergridQuery.QL) {
             self.ql(equalsValue)
         } else {
-            self.urlTerms.append(term + QueryOperator.Equal.stringValue + equalsValue)
+            self.urlTerms.append(term + UsergridQueryOperator.Equal.stringValue + equalsValue)
         }
         return self
     }
 
-    public func addOperationRequirement(term: String, operation: QueryOperator, stringValue: String) -> Self {
+    public func addOperationRequirement(term: String, operation: UsergridQueryOperator, stringValue: String) -> Self {
         return self.addOperationRequirement(term,operation:operation,value:stringValue)
     }
 
-    public func addOperationRequirement(term: String, operation: QueryOperator, intValue: Int) -> Self {
+    public func addOperationRequirement(term: String, operation: UsergridQueryOperator, intValue: Int) -> Self {
         return self.addOperationRequirement(term,operation:operation,value:intValue)
     }
 
@@ -117,7 +117,7 @@ public class UsergridQuery : NSObject,NSCopying {
         return self
     }
 
-    private func addOperationRequirement(term: String, operation: QueryOperator, value: AnyObject) -> Self {
+    private func addOperationRequirement(term: String, operation: UsergridQueryOperator, value: AnyObject) -> Self {
         if value is String {
             return self.addRequirement(term + UsergridQuery.SPACE + operation.stringValue + UsergridQuery.SPACE + UsergridQuery.APOSTROPHE + value.description + UsergridQuery.APOSTROPHE )
         } else {
@@ -208,7 +208,7 @@ public class UsergridQuery : NSObject,NSCopying {
     private(set) var limit: Int = UsergridQuery.LIMIT_DEFAULT
 
     private(set) var requirementStrings: [String] = [UsergridQuery.EMPTY_STRING]
-    private(set) var orderClauses: [String:QuerySortOrder] = [:]
+    private(set) var orderClauses: [String:UsergridQuerySortOrder] = [:]
     private(set) var urlTerms: [String] = []
 
     private static let LIMIT_DEFAULT = 10
@@ -238,9 +238,9 @@ public class UsergridQuery : NSObject,NSCopying {
     private static let LESS_THAN = "<"
     private static let LESS_THAN_EQUAL_TO = "<="
 
-    @objc public enum QueryOperator: Int {
+    @objc public enum UsergridQueryOperator: Int {
         case Equal; case GreaterThan; case GreaterThanEqualTo; case LessThan; case LessThanEqualTo
-        static func fromString(stringValue: String) -> QueryOperator? {
+        public static func fromString(stringValue: String) -> UsergridQueryOperator? {
             switch stringValue.lowercaseString {
                 case UsergridQuery.EQUAL: return .Equal
                 case UsergridQuery.GREATER_THAN: return .GreaterThan
@@ -250,7 +250,7 @@ public class UsergridQuery : NSObject,NSCopying {
                 default: return nil
             }
         }
-        var stringValue: String {
+        public var stringValue: String {
             switch self {
                 case .Equal: return UsergridQuery.EQUAL
                 case .GreaterThan: return UsergridQuery.GREATER_THAN
@@ -261,17 +261,17 @@ public class UsergridQuery : NSObject,NSCopying {
         }
     }
 
-    @objc public enum QuerySortOrder: Int {
+    @objc public enum UsergridQuerySortOrder: Int {
         case Asc
         case Desc
-        static func fromString(stringValue: String) -> QuerySortOrder? {
+        public static func fromString(stringValue: String) -> UsergridQuerySortOrder? {
             switch stringValue.lowercaseString {
                 case UsergridQuery.ASC: return .Asc
                 case UsergridQuery.DESC: return .Desc
                 default: return nil
             }
         }
-        var stringValue: String {
+        public var stringValue: String {
             switch self {
                 case .Asc: return UsergridQuery.ASC
                 case .Desc: return UsergridQuery.DESC
