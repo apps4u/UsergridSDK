@@ -46,6 +46,8 @@ public class UsergridUser : UsergridEntity {
         get { return self.getUserSpecificProperty(.Picture) as? String }
     }
 
+    public var uuidOrUsername: String? { return self.uuid ?? self.username }
+
     public init(name:String? = nil) {
         super.init(type: UsergridUser.USER_ENTITY_TYPE, name:name, propertyDict:nil)
     }
@@ -74,14 +76,20 @@ public class UsergridUser : UsergridEntity {
         }
     }
 
-    public func logout() {
-        self.logout(Usergrid.sharedInstance)
+    public func logout(completion:UsergridResponseCompletion?) {
+        self.logout(Usergrid.sharedInstance,completion:completion)
     }
 
-    public func logout(client: UsergridClient) {
-        self.auth = nil
+    public func logout(client: UsergridClient, completion:UsergridResponseCompletion?) {
         if self === client.currentUser {
-            client.currentUser = nil
+            client.logoutCurrentUser(completion)
+        } else if let uuidOrUsername = self.uuidOrUsername, accessToken = self.auth?.accessToken {
+            client.logoutUser(uuidOrUsername, token: accessToken) { (response) in
+                self.auth = nil
+                completion?(response: response)
+            }
+        } else {
+            completion?(response: UsergridResponse(client:client, errorName:"Logout Failed.", errorDescription:"UUID or Access Token not found on UsergridUser object."))
         }
     }
 

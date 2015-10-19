@@ -18,7 +18,7 @@ public class UsergridClient: NSObject {
     public let orgID : String
 
     public let baseURL : String
-    public var clientAppURL : String { return "\(baseURL)\(UsergridRequestManager.FORWARD_SLASH)\(orgID)\(UsergridRequestManager.FORWARD_SLASH)\(appID)" }
+    public var clientAppURL : String { return "\(baseURL)/\(orgID)/\(appID)" }
 
     internal(set) public var currentUser: UsergridUser? = nil
 
@@ -86,13 +86,33 @@ extension UsergridClient {
         self.authenticateUser(userAuth, setAsCurrentUser:true, completion:completion)
     }
 
-    public func authenticateUser(userAuth: UsergridUserAuth, setAsCurrentUser:Bool, completion: UsergridUserAuthCompletionBlock?) {
+    public func authenticateUser(userAuth: UsergridUserAuth, setAsCurrentUser: Bool, completion: UsergridUserAuthCompletionBlock?) {
         self.requestManager.performAuthRequest(userAuth:userAuth, request: userAuth.buildAuthRequest(self.clientAppURL)) { [weak self] (auth,user,error) in
             if setAsCurrentUser {
                 self?.currentUser = user
             }
             completion?(auth: auth, user: user, error: error)
         }
+    }
+
+    public func logoutCurrentUser(completion:UsergridResponseCompletion?) {
+        if let user = self.currentUser, uuidOrUsername = user.uuidOrUsername, token = user.auth?.accessToken {
+            self.logoutUser(uuidOrUsername, token: token) { (response) -> Void in
+                self.currentUser?.auth = nil
+                self.currentUser = nil
+                completion?(response: response)
+            }
+        } else {
+            completion?(response:UsergridResponse(client: self, errorName: "Logout Failed.", errorDescription: "UsergridClient's currentUser is not valid."))
+        }
+    }
+
+    public func logoutUserAllTokens(uuidOrUsername:String, completion:UsergridResponseCompletion?) {
+        self.logoutUser(uuidOrUsername, token: nil, completion: completion)
+    }
+
+    public func logoutUser(uuidOrUsername:String, token:String?, completion:UsergridResponseCompletion?) {
+        self.requestManager.performLogoutUserRequest(uuidOrUsername: uuidOrUsername, token:token, completion: completion)
     }
 }
 

@@ -10,7 +10,7 @@ import Foundation
 
 public class Usergrid: NSObject {
 
-    private static var _sharedClient : UsergridClient!
+    internal static var _sharedClient : UsergridClient!
 
     public static var sharedInstance : UsergridClient {
         assert(Usergrid._sharedClient != nil, "Usergrid shared instance is not initalized!")
@@ -42,6 +42,10 @@ public class Usergrid: NSObject {
             print("The Usergrid shared instance was already initialized. All subsequent initialization attempts (including this) will be ignored.")
         }
         return Usergrid._sharedClient
+    }
+
+    public static func destroySharedClient() {
+        Usergrid._sharedClient = nil
     }
 
     public static func authenticateApp(completion: UsergridAppAuthCompletionBlock?) {

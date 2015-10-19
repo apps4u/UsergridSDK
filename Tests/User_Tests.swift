@@ -11,7 +11,7 @@ import XCTest
 
 class User_Tests: XCTestCase {
 
-    var client : UsergridClient = Usergrid.initSharedInstance(orgID:ClientCreationTests.orgID, appID: ClientCreationTests.appID)
+    var client = UsergridClient(orgID:ClientCreationTests.orgID, appID: ClientCreationTests.appID)
 
     let user = UsergridUser(name: User_Tests.name)
     let userWithNoName = UsergridUser()
@@ -76,7 +76,7 @@ class User_Tests: XCTestCase {
     func test_CREATE_AND_DELETE_USER() {
         let createUserExpect = self.expectationWithDescription("\(__FUNCTION__)")
 
-        user.create() { (createResponse) in
+        user.create(client) { (createResponse) in
             XCTAssertNotNil(createResponse)
             XCTAssertNotNil(createResponse.user)
             XCTAssertNotNil(createResponse.users)
@@ -90,12 +90,12 @@ class User_Tests: XCTestCase {
                 XCTAssertTrue(createdUser.activated)
                 XCTAssertFalse(createdUser.disabled)
 
-                createdUser.remove() { (removeResponse) in
+                createdUser.remove(self.client) { (removeResponse) in
                     XCTAssertNotNil(removeResponse)
                     XCTAssertNotNil(removeResponse.user)
                     XCTAssertNotNil(removeResponse.users)
 
-                    removeResponse.user!.reload() { (reloadResponse) in
+                    removeResponse.user!.reload(self.client) { (reloadResponse) in
                         XCTAssertNil(reloadResponse.entity)
                         XCTAssertNil(reloadResponse.user)
                         XCTAssertNotNil(reloadResponse.errorName)

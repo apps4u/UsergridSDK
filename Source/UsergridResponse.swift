@@ -16,7 +16,6 @@ public class UsergridResponse: NSObject {
 
     internal(set) public var responseJSON: [String:AnyObject]?
     
-    internal(set) public var type: String?
     internal(set) public var query: UsergridQuery?
     internal(set) public var cursor: String?
     internal(set) public var entities: [UsergridEntity]?
@@ -45,34 +44,49 @@ public class UsergridResponse: NSObject {
         self.errorDescription = errorDescription
     }
 
-    public init(client:UsergridClient?, type: String?, jsonDict:[String:AnyObject], query: UsergridQuery? = nil){
+    public init(client:UsergridClient?, data:NSData?, response:NSHTTPURLResponse?, error:NSError?, query:UsergridQuery? = nil) {
         self.client = client
-        self.type = type
-        self.responseJSON = jsonDict
 
-        if let errorName = jsonDict[UsergridResponse.ERROR] as? String {
-            self.errorName = errorName
-            self.errorDescription = jsonDict[UsergridResponse.ERROR_DESCRIPTION] as? String
-            self.exception = jsonDict[UsergridResponse.EXCEPTION] as? String
-        } else {
-            if let entitiesJSONArray = jsonDict[UsergridResponse.ENTITIES] as? [[String:AnyObject]] where entitiesJSONArray.count > 0 {
-                self.entities = UsergridEntity.entities(jsonArray: entitiesJSONArray)
-            }
-            if let responseQuery = query {
-                self.query = responseQuery.copy() as? UsergridQuery
-            }
-            if let cursor = jsonDict[UsergridResponse.CURSOR] as? String where !cursor.isEmpty {
-                self.cursor = cursor
+        self.statusCode = response?.statusCode
+        self.headers = response?.allHeaderFields as? [String:String]
+
+        self.errorName = error?.domain
+        self.errorDescription = error?.localizedDescription
+
+        if let responseQuery = query {
+            self.query = responseQuery.copy() as? UsergridQuery
+        }
+
+        if let jsonData = data {
+            do {
+                let dataAsJSON = try NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions.MutableContainers)
+                if let jsonDict = dataAsJSON as? [String:AnyObject] {
+                    self.responseJSON = jsonDict
+                    if let errorName = jsonDict[UsergridResponse.ERROR] as? String {
+                        self.errorName = errorName
+                        self.errorDescription = jsonDict[UsergridResponse.ERROR_DESCRIPTION] as? String
+                        self.exception = jsonDict[UsergridResponse.EXCEPTION] as? String
+                    } else {
+                        if let entitiesJSONArray = jsonDict[UsergridResponse.ENTITIES] as? [[String:AnyObject]] where entitiesJSONArray.count > 0 {
+                            self.entities = UsergridEntity.entities(jsonArray: entitiesJSONArray)
+                        }
+                        if let cursor = jsonDict[UsergridResponse.CURSOR] as? String where !cursor.isEmpty {
+                            self.cursor = cursor
+                        }
+                    }
+                }
+            } catch {
+                print(error)
             }
         }
     }
 
     public func loadNextPage(completion: UsergridResponseCompletion) {
-        if self.hasNextPage, let type = self.type {
+        if self.hasNextPage, let type = (self.responseJSON?["path"] as? NSString)?.lastPathComponent {
             if let query = self.query?.copy() as? UsergridQuery {
                 self.client?.GET(type, query: query.cursor(self.cursor), completion:completion)
             } else {
-                self.client?.GET(type, query: UsergridQuery(self.type).cursor(self.cursor), completion:completion)
+                self.client?.GET(type, query: UsergridQuery(type).cursor(self.cursor), completion:completion)
             }
         } else {
             completion(response: UsergridResponse(client: self.client, errorName: "", errorDescription: ""))

@@ -26,26 +26,30 @@ class ClientCreationTests: XCTestCase {
                                                          authFallback: .None,
                                                          appAuth: ClientCreationTests.otherAppAuth)
 
-    let sharedClient = Usergrid.initSharedInstance(orgID:ClientCreationTests.orgID, appID: ClientCreationTests.appID)
     let otherClient = UsergridClient(configuration: ClientCreationTests.otherConfiguration)
 
-    func test_INSTANCES_EXIST() {
-        XCTAssertNotNil(sharedClient)
-        XCTAssertNotNil(Usergrid.sharedInstance)
-        XCTAssertNotNil(otherClient)
+    override func setUp() {
+        super.setUp()
+        Usergrid.initSharedInstance(orgID:ClientCreationTests.orgID, appID: ClientCreationTests.appID)
     }
 
-    func test_GET_INSTANCES() {
-        XCTAssertTrue(sharedClient === Usergrid.sharedInstance)
-        XCTAssertFalse(otherClient === sharedClient)
+    override func tearDown() {
+        Usergrid._sharedClient = nil
+        super.tearDown()
+    }
+
+    func test_INSTANCE_POINTERS() {
+        XCTAssertNotNil(Usergrid.sharedInstance)
+        XCTAssertNotNil(otherClient)
+        XCTAssertFalse(otherClient === Usergrid.sharedInstance)
     }
 
     func test_CLIENT_PROPERTIES() {
-        XCTAssertEqual(sharedClient.appID, ClientCreationTests.appID)
-        XCTAssertEqual(sharedClient.orgID, ClientCreationTests.orgID)
-        XCTAssertEqual(sharedClient.authFallback, UsergridAuthFallback.App)
-        XCTAssertEqual(sharedClient.baseURL, UsergridClient.DEFAULT_BASE_URL)
-        XCTAssertNil(sharedClient.currentUser)
+        XCTAssertEqual(Usergrid.sharedInstance.appID, ClientCreationTests.appID)
+        XCTAssertEqual(Usergrid.sharedInstance.orgID, ClientCreationTests.orgID)
+        XCTAssertEqual(Usergrid.sharedInstance.authFallback, UsergridAuthFallback.App)
+        XCTAssertEqual(Usergrid.sharedInstance.baseURL, UsergridClient.DEFAULT_BASE_URL)
+        XCTAssertNil(Usergrid.sharedInstance.currentUser)
 
         XCTAssertEqual(otherClient.appID, ClientCreationTests.otherAppID)
         XCTAssertEqual(otherClient.orgID, ClientCreationTests.otherOrgID)

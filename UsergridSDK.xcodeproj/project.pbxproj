@@ -21,7 +21,6 @@
 		63AF0F501BBC4EF6009D4196 /* UsergridRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF0F451BBC4EF6009D4196 /* UsergridRequestManager.swift */; settings = {ASSET_TAGS = (); }; };
 		63AF0F511BBC4EF6009D4196 /* UsergridResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF0F461BBC4EF6009D4196 /* UsergridResponse.swift */; settings = {ASSET_TAGS = (); }; };
 		63AF0F531BBC4EF6009D4196 /* UsergridUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF0F481BBC4EF6009D4196 /* UsergridUser.swift */; settings = {ASSET_TAGS = (); }; };
-		63AF0F721BBC5314009D4196 /* ApigeeSDKTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF0F581BBC528E009D4196 /* ApigeeSDKTests.swift */; settings = {ASSET_TAGS = (); }; };
 		63AF0F731BBC5314009D4196 /* ASSET_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF0F591BBC528E009D4196 /* ASSET_Tests.swift */; settings = {ASSET_TAGS = (); }; };
 		63AF0F741BBC5314009D4196 /* AUTH_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF0F5A1BBC528E009D4196 /* AUTH_Tests.swift */; settings = {ASSET_TAGS = (); }; };
 		63AF0F751BBC5314009D4196 /* ClientCreationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF0F5B1BBC528E009D4196 /* ClientCreationTests.swift */; settings = {ASSET_TAGS = (); }; };
@@ -30,7 +29,6 @@
 		63AF0F791BBC5314009D4196 /* POST_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF0F5F1BBC528E009D4196 /* POST_Tests.swift */; settings = {ASSET_TAGS = (); }; };
 		63AF0F7A1BBC5314009D4196 /* PUT_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF0F601BBC528E009D4196 /* PUT_Tests.swift */; settings = {ASSET_TAGS = (); }; };
 		63AF0F7B1BBC5314009D4196 /* User_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF0F631BBC528E009D4196 /* User_Tests.swift */; settings = {ASSET_TAGS = (); }; };
-		63AF0F7C1BBC5314009D4196 /* UsergridSDKTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF0F641BBC528E009D4196 /* UsergridSDKTests.swift */; settings = {ASSET_TAGS = (); }; };
 		63AF0F7E1BBC5692009D4196 /* TestAssets in Resources */ = {isa = PBXBuildFile; fileRef = 63AF0F7D1BBC5692009D4196 /* TestAssets */; settings = {ASSET_TAGS = (); }; };
 		63AF0F801BBC7171009D4196 /* ObjCTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 63AF0F7F1BBC7171009D4196 /* ObjCTests.m */; settings = {ASSET_TAGS = (); }; };
 		63AF0F821BBC7778009D4196 /* UsergridSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF0F811BBC7778009D4196 /* UsergridSessionDelegate.swift */; settings = {ASSET_TAGS = (); }; };
@@ -65,7 +63,6 @@
 		63AF0F461BBC4EF6009D4196 /* UsergridResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsergridResponse.swift; sourceTree = "<group>"; };
 		63AF0F471BBC4EF6009D4196 /* UsergridSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UsergridSDK.h; sourceTree = "<group>"; };
 		63AF0F481BBC4EF6009D4196 /* UsergridUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsergridUser.swift; sourceTree = "<group>"; };
-		63AF0F581BBC528E009D4196 /* ApigeeSDKTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApigeeSDKTests.swift; sourceTree = "<group>"; };
 		63AF0F591BBC528E009D4196 /* ASSET_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ASSET_Tests.swift; sourceTree = "<group>"; };
 		63AF0F5A1BBC528E009D4196 /* AUTH_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AUTH_Tests.swift; sourceTree = "<group>"; };
 		63AF0F5B1BBC528E009D4196 /* ClientCreationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientCreationTests.swift; sourceTree = "<group>"; };
@@ -75,7 +72,6 @@
 		63AF0F5F1BBC528E009D4196 /* POST_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = POST_Tests.swift; sourceTree = "<group>"; };
 		63AF0F601BBC528E009D4196 /* PUT_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PUT_Tests.swift; sourceTree = "<group>"; };
 		63AF0F631BBC528E009D4196 /* User_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User_Tests.swift; sourceTree = "<group>"; };
-		63AF0F641BBC528E009D4196 /* UsergridSDKTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsergridSDKTests.swift; sourceTree = "<group>"; };
 		63AF0F7D1BBC5692009D4196 /* TestAssets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TestAssets; sourceTree = "<group>"; };
 		63AF0F7F1BBC7171009D4196 /* ObjCTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjCTests.m; sourceTree = "<group>"; };
 		63AF0F811BBC7778009D4196 /* UsergridSessionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsergridSessionDelegate.swift; sourceTree = "<group>"; };
@@ -104,8 +100,8 @@
 		63A7F2631BC4278C00596156 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				63A7F2611BC4278200596156 /* UsergridFileMetaData.swift */,
 				63A7F2641BC429DE00596156 /* UsergridExtensions.swift */,
+				63A7F2611BC4278200596156 /* UsergridFileMetaData.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -167,7 +163,6 @@
 		63AF0F571BBC528E009D4196 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				63AF0F581BBC528E009D4196 /* ApigeeSDKTests.swift */,
 				63AF0F591BBC528E009D4196 /* ASSET_Tests.swift */,
 				63AF0F5A1BBC528E009D4196 /* AUTH_Tests.swift */,
 				63AF0F5B1BBC528E009D4196 /* ClientCreationTests.swift */,
@@ -177,7 +172,6 @@
 				63AF0F5F1BBC528E009D4196 /* POST_Tests.swift */,
 				63AF0F601BBC528E009D4196 /* PUT_Tests.swift */,
 				63AF0F631BBC528E009D4196 /* User_Tests.swift */,
-				63AF0F641BBC528E009D4196 /* UsergridSDKTests.swift */,
 				63AF0F5E1BBC528E009D4196 /* Info.plist */,
 				63AF0F7D1BBC5692009D4196 /* TestAssets */,
 				63AF0F7F1BBC7171009D4196 /* ObjCTests.m */,
@@ -331,9 +325,7 @@
 				63AF0F731BBC5314009D4196 /* ASSET_Tests.swift in Sources */,
 				63AF0F7B1BBC5314009D4196 /* User_Tests.swift in Sources */,
 				63AF0F7A1BBC5314009D4196 /* PUT_Tests.swift in Sources */,
-				63AF0F7C1BBC5314009D4196 /* UsergridSDKTests.swift in Sources */,
 				63AF0F801BBC7171009D4196 /* ObjCTests.m in Sources */,
-				63AF0F721BBC5314009D4196 /* ApigeeSDKTests.swift in Sources */,
 				63AF0F751BBC5314009D4196 /* ClientCreationTests.swift in Sources */,
 				6343823E1BC2F042008624BE /* CONNECTION_Tests.swift in Sources */,
 			);

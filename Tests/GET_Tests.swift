@@ -11,7 +11,6 @@ import XCTest
 
 class GET_Tests: XCTestCase {
 
-    let sharedClient = Usergrid.initSharedInstance(orgID:ClientCreationTests.orgID, appID: ClientCreationTests.appID)
     let usergridClientInstance = UsergridClient(orgID:ClientCreationTests.orgID, appID: ClientCreationTests.appID)
 
     static let collectionName = "books"
@@ -26,18 +25,6 @@ class GET_Tests: XCTestCase {
     func test_GET_WITHOUT_QUERY() {
 
         let getExpect = self.expectationWithDescription("\(__FUNCTION__)")
-        Usergrid.GET(GET_Tests.collectionName) { (response) in
-            XCTAssertNotNil(response)
-            XCTAssertTrue(response.hasNextPage)
-            XCTAssertEqual(response.entities!.count, 10)
-            getExpect.fulfill()
-        }
-        self.waitForExpectationsWithTimeout(10, handler: nil)
-    }
-
-    func test_GET_WITHOUT_QUERY_INSTANCE() {
-
-        let getExpect = self.expectationWithDescription("\(__FUNCTION__)")
         usergridClientInstance.GET(GET_Tests.collectionName) { (response) in
             XCTAssertNotNil(response)
             XCTAssertTrue(response.hasNextPage)
@@ -50,17 +37,6 @@ class GET_Tests: XCTestCase {
     func test_GET_WITH_QUERY() {
 
         let getExpect = self.expectationWithDescription("\(__FUNCTION__)")
-        Usergrid.GET(GET_Tests.collectionName, query:self.query) { (response) in
-            XCTAssertNotNil(response)
-            XCTAssertEqual(response.entities!.count, 3)
-            getExpect.fulfill()
-        }
-        self.waitForExpectationsWithTimeout(10, handler: nil)
-    }
-
-    func test_GET_WITH_QUERY_INSTANCE() {
-
-        let getExpect = self.expectationWithDescription("\(__FUNCTION__)")
         usergridClientInstance.GET(GET_Tests.collectionName, query:self.query) { (response) in
             XCTAssertNotNil(response)
             XCTAssertEqual(response.entities!.count, 3)
@@ -70,19 +46,6 @@ class GET_Tests: XCTestCase {
     }
 
     func test_GET_WITH_UUID() {
-
-        let getExpect = self.expectationWithDescription("\(__FUNCTION__)")
-        Usergrid.GET(GET_Tests.collectionName, uuidOrName:GET_Tests.entityUUID) { (response) in
-            XCTAssertNotNil(response)
-            let entity = response.first!
-            XCTAssertNotNil(entity)
-            XCTAssertEqual(entity.uuid!, GET_Tests.entityUUID)
-            getExpect.fulfill()
-        }
-        self.waitForExpectationsWithTimeout(10, handler: nil)
-    }
-
-    func test_GET_WITH_UUID_INSTANCE() {
 
         let getExpect = self.expectationWithDescription("\(__FUNCTION__)")
         usergridClientInstance.GET(GET_Tests.collectionName, uuidOrName:GET_Tests.entityUUID) { (response) in
@@ -100,7 +63,7 @@ class GET_Tests: XCTestCase {
     func test_GET_NEXT_PAGE_WITH_NO_QUERY() {
 
         let getExpect = self.expectationWithDescription("\(__FUNCTION__)")
-        Usergrid.GET(GET_Tests.collectionName) { (response) in
+        usergridClientInstance.GET(GET_Tests.collectionName) { (response) in
             XCTAssertNotNil(response)
             XCTAssertTrue(response.hasNextPage)
             XCTAssertEqual(response.entities!.count, 10)

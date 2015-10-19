@@ -11,7 +11,7 @@ import XCTest
 
 class Entity_Tests: XCTestCase {
 
-    let entity = UsergridEntity(type: "", name:"")
+    let entity = UsergridEntity(type: "entityType", name:"entityName")
     let customArrayName = "customArray"
     let customArrayOriginalValue = [1,2,3,4,5]
     let customPropertyName = "customProperty"

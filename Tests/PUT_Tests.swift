@@ -11,7 +11,7 @@ import XCTest
 
 class PUT_Tests: XCTestCase {
 
-    let sharedClient = Usergrid.initSharedInstance(orgID:ClientCreationTests.orgID, appID: ClientCreationTests.appID)
+    let client = UsergridClient(orgID:ClientCreationTests.orgID, appID: ClientCreationTests.appID)
 
     let query = UsergridQuery(PUT_Tests.collectionName)
         .eq("title", value: "The Sun Also Rises")
@@ -27,7 +27,7 @@ class PUT_Tests: XCTestCase {
         let propertiesNewValue = "\(propertyNameToUpdate)_VALUE"
         let putExpect = self.expectationWithDescription(propertyNameToUpdate)
 
-        Usergrid.PUT(PUT_Tests.collectionName, uuidOrName: PUT_Tests.entityUUID, jsonBody:[propertyNameToUpdate : propertiesNewValue]) { (response) in
+        client.PUT(PUT_Tests.collectionName, uuidOrName: PUT_Tests.entityUUID, jsonBody:[propertyNameToUpdate : propertiesNewValue]) { (response) in
 
             XCTAssertNotNil(response)
             XCTAssertEqual(response.entities!.count, 1)
@@ -52,7 +52,7 @@ class PUT_Tests: XCTestCase {
 
         let jsonDictToPut = [UsergridEntity.UsergridEntityProperties.UUID.stringValue : PUT_Tests.entityUUID, propertyNameToUpdate : propertiesNewValue]
 
-        Usergrid.PUT(PUT_Tests.collectionName, jsonBody: jsonDictToPut) { (response) in
+        client.PUT(PUT_Tests.collectionName, jsonBody: jsonDictToPut) { (response) in
             XCTAssertNotNil(response)
             XCTAssertEqual(response.entities!.count, 1)
             let entity = response.first!
@@ -73,7 +73,7 @@ class PUT_Tests: XCTestCase {
         let propertiesNewValue = "\(propertyNameToUpdate)_VALUE"
         let putExpect = self.expectationWithDescription(propertyNameToUpdate)
 
-        Usergrid.GET(PUT_Tests.collectionName, uuidOrName: PUT_Tests.entityUUID) { (getResponse) in
+        client.GET(PUT_Tests.collectionName, uuidOrName: PUT_Tests.entityUUID) { (getResponse) in
             XCTAssertNotNil(getResponse)
             XCTAssertEqual(getResponse.entities!.count, 1)
 
@@ -84,7 +84,7 @@ class PUT_Tests: XCTestCase {
 
             responseEntity[propertyNameToUpdate] = propertiesNewValue
 
-            Usergrid.PUT(responseEntity) { (putResponse) in
+            self.client.PUT(responseEntity) { (putResponse) in
                 XCTAssertNotNil(putResponse)
                 XCTAssertEqual(putResponse.entities!.count, 1)
                 responseEntity = putResponse.first!
@@ -106,7 +106,7 @@ class PUT_Tests: XCTestCase {
         let propertiesNewValue = "\(propertyNameToUpdate)_VALUE"
         let putExpect = self.expectationWithDescription(propertyNameToUpdate)
 
-        Usergrid.PUT(self.query, jsonBody: [propertyNameToUpdate : propertiesNewValue]) { (putResponse) in
+        client.PUT(self.query, jsonBody: [propertyNameToUpdate : propertiesNewValue]) { (putResponse) in
             XCTAssertNotNil(putResponse)
             XCTAssertEqual(putResponse.entities!.count, 3)
 
