@@ -12,14 +12,17 @@ public class Usergrid: NSObject {
 
     internal static var _sharedClient : UsergridClient!
 
+    /// Used to determine if the shared instance of the `UsergridClient` has been initialized.
+    public static var isInitialized : Bool  { return Usergrid._sharedClient != nil }
+
     /**
-    A shared instance of `UsergridClient`, used by `Usergrid` static methods and acts as the default `UsergridClient`
+    A shared instance of `UsergridClient`, used by the `Usergrid` static methods and acts as the default `UsergridClient`
     within the UsergridSDK library.
 
-    You must call one of the `Usergrid.initSharedInstance` methods before this is valid.
+    You must call one of the `Usergrid.initSharedInstance` methods before this or any other `Usergrid` static methods are valid.
     */
     public static var sharedInstance : UsergridClient {
-        assert(Usergrid._sharedClient != nil, "Usergrid shared instance is not initalized!")
+        assert(Usergrid.isInitialized, "Usergrid shared instance is not initalized!")
         return Usergrid._sharedClient
     }
 
@@ -27,10 +30,10 @@ public class Usergrid: NSObject {
     Initializes the `Usergrid.sharedInstance` of `UsergridClient`.
     - parameter orgID: The organization identifier.
     - parameter appID: The application identifier.
-    - returns: The new shared instance of `UsergridClient`.
+    - returns: The shared instance of `UsergridClient`.
     */
     public static func initSharedInstance(orgID orgID : String, appID: String) -> UsergridClient {
-        if Usergrid._sharedClient == nil {
+        if !Usergrid.isInitialized {
             Usergrid._sharedClient = UsergridClient(orgID: orgID, appID: appID)
         } else {
             print("The Usergrid shared instance was already initialized. All subsequent initialization attempts (including this) will be ignored.")
@@ -43,10 +46,10 @@ public class Usergrid: NSObject {
     - parameter orgID: The organization identifier.
     - parameter appID: The application identifier.
     - parameter baseURL: The base URL that all calls will be made with.
-    - returns: The new shared instance of `UsergridClient`.
+    - returns: The shared instance of `UsergridClient`.
     */
     public static func initSharedInstance(orgID orgID : String, appID: String, baseURL: String) -> UsergridClient {
-        if Usergrid._sharedClient == nil {
+        if !Usergrid.isInitialized {
             Usergrid._sharedClient = UsergridClient(orgID: orgID, appID: appID, baseURL: baseURL)
         } else {
             print("The Usergrid shared instance was already initialized. All subsequent initialization attempts (including this) will be ignored.")
@@ -57,15 +60,57 @@ public class Usergrid: NSObject {
     /**
     Initializes the `Usergrid.sharedInstance` of `UsergridClient`.
     - parameter configuration: The configuration for the client to be set up with.
-    - returns: The new shared instance of `UsergridClient`.
+    - returns: The shared instance of `UsergridClient`.
     */
     public static func initSharedInstance(configuration configuration: UsergridClientConfig) -> UsergridClient {
-        if Usergrid._sharedClient == nil {
+        if !Usergrid.isInitialized {
             Usergrid._sharedClient = UsergridClient(configuration: configuration)
         }  else {
             print("The Usergrid shared instance was already initialized. All subsequent initialization attempts (including this) will be ignored.")
         }
         return Usergrid._sharedClient
+    }
+
+    /// The application identifier the shared instance of `UsergridClient`.
+    public static var appID : String { return Usergrid.sharedInstance.appID }
+
+    /// The organization identifier of the shared instance of `UsergridClient`.
+    public static var orgID : String { return Usergrid.sharedInstance.orgID }
+
+    /// The base URL that all calls will be made with of the shared instance of `UsergridClient`.
+    public static var baseURL : String { return Usergrid.sharedInstance.baseURL }
+
+    /// The constructed URL string based on the `UsergridClient`'s baseURL, orgID, and appID of the shared instance of `UsergridClient`.
+    public static var clientAppURL : String { return Usergrid.sharedInstance.clientAppURL }
+
+    /// The currently logged in `UsergridUser` of the shared instance of `UsergridClient`.
+    public static var currentUser: UsergridUser?  { return Usergrid.sharedInstance.currentUser }
+
+    /// The `UsergridUserAuth` which consists of the token information from the `currentUser` property of the shared instance of `UsergridClient`.
+    public static var userAuth: UsergridUserAuth?  { return Usergrid.sharedInstance.userAuth }
+
+    /// The application level `UsergridAppAuth` object of the shared instance of `UsergridClient`.
+    public static var appAuth: UsergridAppAuth?  {
+        get{ return Usergrid.sharedInstance.appAuth }
+        set{ Usergrid.sharedInstance.appAuth = appAuth }
+    }
+
+    /// The `UsergridAuthFallback` value used to determine what type of token will be sent of the shared instance of `UsergridClient`, if any.
+    public static var authFallback: UsergridAuthFallback {
+        get{ return Usergrid.sharedInstance.authFallback }
+        set { Usergrid.sharedInstance.authFallback = authFallback }
+    }
+
+    /**
+    Determines the `UsergridAuth` object that will be used for all outgoing requests made by the shared instance of `UsergridClient`.
+
+    If there is a `UsergridUser` logged in and the token of that user is valid then it will return that.
+
+    Otherwise, if the `authFallback` is `.App`, and the `UsergridAppAuth` of the client is set and the token is valid it will return that.
+    - returns: The `UsergridAuth` if one is found or nil if not.
+    */
+    public static func authForRequests() -> UsergridAuth? {
+        return Usergrid.sharedInstance.authForRequests()
     }
 
     /**
@@ -102,6 +147,21 @@ public class Usergrid: NSObject {
     */
     public static func authenticateUser(userAuth: UsergridUserAuth, setAsCurrentUser:Bool, completion: UsergridUserAuthCompletionBlock?) {
         Usergrid.sharedInstance.authenticateUser(userAuth, setAsCurrentUser: setAsCurrentUser, completion: completion)
+    }
+
+    // TODO: DOCUMENTATION
+    public static func logoutCurrentUser(completion:UsergridResponseCompletion?) {
+        Usergrid.sharedInstance.logoutCurrentUser(completion)
+    }
+
+    // TODO: DOCUMENTATION
+    public static func logoutUserAllTokens(uuidOrUsername:String, completion:UsergridResponseCompletion?) {
+        Usergrid.sharedInstance.logoutUserAllTokens(uuidOrUsername, completion: completion)
+    }
+
+    // TODO: DOCUMENTATION
+    public static func logoutUser(uuidOrUsername:String, token:String?, completion:UsergridResponseCompletion?) {
+        Usergrid.sharedInstance.logoutUser(uuidOrUsername, token: token, completion: completion)
     }
 
     /**
@@ -264,6 +324,11 @@ public class Usergrid: NSObject {
     */
     public static func DISCONNECT(entity:UsergridEntity, relationship:String, connectingEntity:UsergridEntity, completion: UsergridResponseCompletion?) {
         Usergrid.sharedInstance.DISCONNECT(entity, relationship: relationship, connectingEntity: connectingEntity, completion: completion)
+    }
+
+    // TODO: DOCUMENTATION
+    public static func getConnectedEntities(entity:UsergridEntity, relationship:String, completion:UsergridResponseCompletion?) {
+        Usergrid.sharedInstance.getConnectedEntities(entity, relationship: relationship, completion: completion)
     }
 
     /**

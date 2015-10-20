@@ -20,7 +20,6 @@ public class UsergridClientConfig : NSObject {
     public init(orgID: String, appID: String) {
         self.orgID = orgID
         self.appID = appID
-        super.init()
     }
 
     public convenience init(orgID: String, appID: String, baseURL:String) {

@@ -1,0 +1,193 @@
+UsergridClientConfig.swift
+	public class UsergridClientConfig : NSObject
+	public let orgID : String
+	public let appID : String
+	public var baseURL: String = UsergridClient.DEFAULT_BASE_URL
+	public var authFallback: UsergridAuthFallback = .None
+	public var appAuth: UsergridAppAuth?
+	public init(orgID: String, appID: String)
+	public convenience init(orgID: String, appID: String, baseURL:String)
+	public convenience init(orgID: String, appID: String, baseURL:String, authFallback:UsergridAuthFallback, appAuth:UsergridAppAuth? = nil)
+UsergridAuth.swift
+	@objc public enum UsergridAuthFallback : Int
+	case None
+	case App
+	public protocol UsergridAuth
+	var accessToken: String? { get set }
+	var expiresIn: Int?  { get set }
+	var hasToken: Bool { get }
+	var tokenIsValid: Bool { get }
+	var isExpired: Bool { get }
+	var jsonBodyDict: [String:AnyObject] { get }
+	func buildAuthRequest(requestURL:String) -> NSURLRequest
+	public protocol UsergridAuth
+	public var hasToken: Bool { return self.accessToken != nil }
+	public var tokenIsValid : Bool { return self.hasToken && !self.isExpired }
+	public var isExpired: Bool
+	public func buildAuthRequest(baseURL:String) -> NSURLRequest
+	public class UsergridUserAuth : NSObject, UsergridAuth
+	public var accessToken : String?
+	public var expiresIn : Int?
+	public let username: String
+	public let password: String
+	public var jsonBodyDict: [String:AnyObject]
+	public init(username:String, password: String)
+	public class func auth(username username:String, password: String) -> UsergridUserAuth
+	public class UsergridAppAuth : NSObject, UsergridAuth
+	public var accessToken : String?
+	public var expiresIn : Int?
+	public let clientID: String
+	public let clientSecret: String
+	public var jsonBodyDict: [String:AnyObject]
+	public init(clientID:String,clientSecret:String)
+	public class func auth(clientID clientID:String,clientSecret:String) -> UsergridAppAuth
+UsergridFileMetaData.swift
+	public class UsergridFileMetaData : NSObject
+	public let eTag: String?
+	public let checkSum: String?
+	public let contentType: String?
+	public let contentLength: Int
+	public let lastModifiedTimeStamp: Int
+	public let lastModifiedDate: NSDate?
+	public init(fileMetaDataJSON:[String:AnyObject])
+UsergridQuery.swift
+	public class UsergridQuery : NSObject,NSCopying
+	public init(_ collectionName: String? = nil)
+	public func copyWithZone(zone: NSZone) -> AnyObject
+	public func build(autoURLEncode: Bool = true) -> String
+	public func containsString(term: String, value: String) -> Self { return self.containsWord(term, value: value) }
+	public func containsWord(term: String, value: String) -> Self { return self.addRequirement(term + UsergridQuery.SPACE + UsergridQuery.CONTAINS + UsergridQuery.SPACE + UsergridQuery.APOSTROPHE + value + UsergridQuery.APOSTROPHE) }
+	public func ascending(term: String) -> Self { return self.asc(term) }
+	public func asc(term: String) -> Self { return self.sort(term, sortOrder: UsergridQuerySortOrder.Asc) }
+	public func descending(term: String) -> Self { return self.desc(term) }
+	public func desc(term: String) -> Self { return self.sort(term, sortOrder: UsergridQuerySortOrder.Desc) }
+	public func filter(term: String, value: AnyObject) -> Self { return self.eq(term, value: value) }
+	public func equals(term: String, value: AnyObject) -> Self { return self.eq(term, value: value) }
+	public func eq(term: String, value: AnyObject) -> Self { return self.addOperationRequirement(term, operation:.Equal, value: value) }
+	public func greaterThan(term: String, value: AnyObject) -> Self { return self.gt(term, value: value) }
+	public func gt(term: String, value: AnyObject) -> Self { return self.addOperationRequirement(term, operation:.GreaterThan, value: value) }
+	public func greaterThanOrEqual(term: String, value: AnyObject) -> Self { return self.gte(term, value: value) }
+	public func gte(term: String, value: AnyObject) -> Self { return self.addOperationRequirement(term, operation:.GreaterThanEqualTo, value: value) }
+	public func lessThan(term: String, value: AnyObject) -> Self { return self.lt(term, value: value) }
+	public func lt(term: String, value: AnyObject) -> Self { return self.addOperationRequirement(term, operation:.LessThan, value: value) }
+	public func lessThanOrEqual(term: String, value: AnyObject) -> Self { return self.lte(term, value: value) }
+	public func lte(term: String, value: AnyObject) -> Self { return self.addOperationRequirement(term, operation:.LessThanEqualTo, value: value) }
+	public func withinLocation(distance: Float, latitude: Float, longitude: Float) -> Self
+	public func or() -> Self
+	public func sort(term: String, sortOrder: UsergridQuerySortOrder) -> Self
+	public func collection(collectionName: String) -> Self
+	public func limit(limit: Int) -> Self
+	public func ql(value: String) -> Self
+	public func cursor(value: String?) -> Self
+	public func urlTerm(term: String, equalsValue: String) -> Self
+	public func addOperationRequirement(term: String, operation: UsergridQueryOperator, stringValue: String) -> Self
+	public func addOperationRequirement(term: String, operation: UsergridQueryOperator, intValue: Int) -> Self
+	@objc public enum UsergridQueryOperator: Int
+	case Equal; case GreaterThan; case GreaterThanEqualTo; case LessThan; case LessThanEqualTo
+	case Equal; case GreaterThan; case GreaterThanEqualTo; case LessThan; case LessThanEqualTo
+	case Equal; case GreaterThan; case GreaterThanEqualTo; case LessThan; case LessThanEqualTo
+	case Equal; case GreaterThan; case GreaterThanEqualTo; case LessThan; case LessThanEqualTo
+	case Equal; case GreaterThan; case GreaterThanEqualTo; case LessThan; case LessThanEqualTo
+	public static func fromString(stringValue: String) -> UsergridQueryOperator?
+	public var stringValue: String
+	@objc public enum UsergridQuerySortOrder: Int
+	case Asc
+	case Desc
+	public static func fromString(stringValue: String) -> UsergridQuerySortOrder?
+	public var stringValue: String
+UsergridEntity.swift
+	public class UsergridEntity: NSObject
+	public init(type:String, name:String? = nil, propertyDict:[String:AnyObject]? = nil)
+	public class func entity(jsonDict jsonDict: [String:AnyObject]) -> UsergridEntity?
+	case EntityType
+	case UUID
+	case Name
+	case Created
+	case Modified
+	case Location
+	public static func fromString(stringValue: String) -> UsergridEntityProperties?
+	public var stringValue: String
+	public func isMutableForEntity(entity:UsergridEntity) -> Bool
+UsergridUser.swift
+	public class UsergridUser : UsergridEntity
+	public var auth: UsergridUserAuth?
+	override public var name: String?
+	public var username: String?
+	public var password: String?
+	public var email: String?
+	public var age: NSNumber?
+	public var activated: Bool
+	public var disabled: Bool
+	public var picture: String?
+	public var uuidOrUsername: String? { return self.uuid ?? self.username }
+	public init(name:String? = nil)
+	public init(name:String,propertyDict:[String:AnyObject]? = nil)
+	public func create(completion: UsergridResponseCompletion)
+	public func create(client: UsergridClient, completion: UsergridResponseCompletion)
+	public func login(username:String, password:String, completion: UsergridUserAuthCompletionBlock)
+	public func login(client: UsergridClient, username:String, password:String, completion: UsergridUserAuthCompletionBlock)
+	public func logout(completion:UsergridResponseCompletion?)
+	public func logout(client: UsergridClient, completion:UsergridResponseCompletion?)
+	public func getUserSpecificProperty(userProperty: UsergridUserProperties) -> AnyObject?
+	@objc public enum UsergridUserProperties: Int
+	case Name; case Username; case Password; case Email; case Age; case Activated; case Disabled; case Picture
+	case Name; case Username; case Password; case Email; case Age; case Activated; case Disabled; case Picture
+	case Name; case Username; case Password; case Email; case Age; case Activated; case Disabled; case Picture
+	case Name; case Username; case Password; case Email; case Age; case Activated; case Disabled; case Picture
+	case Name; case Username; case Password; case Email; case Age; case Activated; case Disabled; case Picture
+	case Name; case Username; case Password; case Email; case Age; case Activated; case Disabled; case Picture
+	case Name; case Username; case Password; case Email; case Age; case Activated; case Disabled; case Picture
+	case Name; case Username; case Password; case Email; case Age; case Activated; case Disabled; case Picture
+	public static func fromString(stringValue: String) -> UsergridUserProperties?
+	public var stringValue: String
+Usergrid.swift
+	public class Usergrid: NSObject
+	public static func logoutCurrentUser(completion:UsergridResponseCompletion?)
+	public static func logoutUserAllTokens(uuidOrUsername:String, completion:UsergridResponseCompletion?)
+	public static func logoutUser(uuidOrUsername:String, token:String?, completion:UsergridResponseCompletion?)
+	public static func getConnectedEntities(entity:UsergridEntity, relationship:String, completion:UsergridResponseCompletion?)
+UsergridResponse.swift
+	public class UsergridResponse: NSObject
+	public weak var client: UsergridClient?
+	internal(set) public var responseJSON: [String:AnyObject]?
+	internal(set) public var query: UsergridQuery?
+	internal(set) public var cursor: String?
+	internal(set) public var entities: [UsergridEntity]?
+	internal(set) public var headers: [String:String]?
+	internal(set) public var statusCode: Int?
+	internal(set) public var errorName : String?
+	internal(set) public var errorDescription: String?
+	internal(set) public var exception: String?
+	public var count: Int { return self.entities?.count ?? 0 }
+	public var first: UsergridEntity? { return self.entities?.first }
+	public var last: UsergridEntity? { return self.entities?.last }
+	public var entity: UsergridEntity? { return self.first }
+	public var user: UsergridUser? { return self.entities?.first as? UsergridUser }
+	public var users: [UsergridUser]? { return self.entities as? [UsergridUser] }
+	public var hasNextPage: Bool { return self.cursor != nil }
+	public init(client: UsergridClient?, errorName: String? = nil, errorDescription: String? = nil)
+	public init(client:UsergridClient?, data:NSData?, response:NSHTTPURLResponse?, error:NSError?, query:UsergridQuery? = nil)
+	public func loadNextPage(completion: UsergridResponseCompletion)
+UsergridAsset.swift
+	@objc public enum UsergridImageContentType : Int
+	case Png
+	case Jpeg
+	public var stringValue: String
+	public class UsergridAsset: NSObject
+	public let fileName: String
+	public let assetData: NSData
+	public let originalLocation: String?
+	public var contentType: String
+	public var contentLength: Int { return self.assetData.length }
+	public init(fileName:String? = UsergridAsset.DEFAULT_FILE_NAME, data:NSData, originalLocation:String? = nil, contentType:String)
+	public convenience init?(fileName:String? = UsergridAsset.DEFAULT_FILE_NAME, image:UIImage, imageContentType:UsergridImageContentType = .Png)
+	public convenience init?(var fileName:String? = UsergridAsset.DEFAULT_FILE_NAME, fileURL:NSURL, var contentType:String? = nil)
+	public class UsergridAsset : NSObject
+	public var multiPartHTTPBody: NSData
+	public func multipartRequest(requestURL:NSURL) -> NSMutableURLRequest
+	public func multipartRequestAndBody(requestURL:NSURL) -> (request:NSMutableURLRequest,multipartData:NSData)
+UsergridClient.swift
+	public func logoutCurrentUser(completion:UsergridResponseCompletion?)
+	public func logoutUserAllTokens(uuidOrUsername:String, completion:UsergridResponseCompletion?)
+	public func logoutUser(uuidOrUsername:String, token:String?, completion:UsergridResponseCompletion?)
+	public func getConnectedEntities(entity:UsergridEntity, relationship:String, completion:UsergridResponseCompletion?)

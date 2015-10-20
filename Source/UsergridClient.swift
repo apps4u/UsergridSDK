@@ -8,22 +8,35 @@
 
 import Foundation
 
+/// Responsible for handling all network work by exposing helper methods that make it easier to interact with Usergrid's API.
 public class UsergridClient: NSObject {
 
     static let DEFAULT_BASE_URL = "https://api.usergrid.com"
 
-    lazy private(set) internal var requestManager: UsergridRequestManager = UsergridRequestManager(client: self)
+    lazy private var _requestManager: UsergridRequestManager = UsergridRequestManager(client: self)
 
+    /// The application identifier.
     public let appID : String
+
+    /// The organization identifier.
     public let orgID : String
 
+    /// The base URL that all calls will be made with.
     public let baseURL : String
+
+    /// The constructed URL string based on the `UsergridClient`'s baseURL, orgID, and appID.
     public var clientAppURL : String { return "\(baseURL)/\(orgID)/\(appID)" }
 
+    /// The currently logged in `UsergridUser`.
     internal(set) public var currentUser: UsergridUser? = nil
 
-    public var appAuth: UsergridAppAuth? = nil
+    /// The `UsergridUserAuth` which consists of the token information from the `currentUser` property.
     public var userAuth: UsergridUserAuth? { return currentUser?.auth }
+
+    /// The application level `UsergridAppAuth` object.  Can be set manually but must call `authenticateApp` to retrive token.
+    public var appAuth: UsergridAppAuth? = nil
+
+    /// The `UsergridAuthFallback` value used to determine what type of token will be sent, if any.
     public var authFallback: UsergridAuthFallback = .App
 
     // MARK: - Initialization -
@@ -38,7 +51,6 @@ public class UsergridClient: NSObject {
         self.orgID = orgID
         self.appID = appID
         self.baseURL = UsergridClient.DEFAULT_BASE_URL
-        super.init()
     }
 
     /**
@@ -52,7 +64,6 @@ public class UsergridClient: NSObject {
         self.orgID = orgID
         self.appID = appID
         self.baseURL = baseURL
-        super.init()
     }
 
     /**
@@ -69,10 +80,19 @@ public class UsergridClient: NSObject {
     }
 }
 
-// MARK: - Authorization -
 extension UsergridClient {
 
-    // TODO: DOCUMENTATION
+    // MARK: - Authorization -
+
+    /**
+    Determines the `UsergridAuth` object that will be used for all outgoing requests made.
+
+    If there is a `UsergridUser` logged in and the token of that user is valid then it will return that.
+
+    Otherwise, if the `authFallback` is `.App`, and the `UsergridAppAuth` of the client is set and the token is valid it will return that.
+
+    - returns: The `UsergridAuth` if one is found or nil if not.
+    */
     public func authForRequests() -> UsergridAuth? {
         var usergridAuth: UsergridAuth?
         if let userAuth = self.userAuth where userAuth.tokenIsValid {
@@ -85,11 +105,12 @@ extension UsergridClient {
 
     /**
     Authenticates with the `UsergridAppAuth` that is contained this instance of `UsergridCient`.
+
     - parameter completion: The completion block that will be called after authentication has completed.
     */
     public func authenticateApp(completion: UsergridAppAuthCompletionBlock?) {
         if let appAuth = self.appAuth {
-            self.requestManager.performAuthRequest(appAuth:appAuth, request: appAuth.buildAuthRequest(self.clientAppURL)) { [weak self] (auth,error) in
+            _requestManager.performAuthRequest(appAuth:appAuth, request: appAuth.buildAuthRequest(self.clientAppURL)) { [weak self] (auth,error) in
                 self?.appAuth = auth
                 completion?(auth: auth, error: error)
             }
@@ -100,11 +121,12 @@ extension UsergridClient {
 
     /**
     Authenticates with the `UsergridAppAuth` that is passed in.
+
     - parameter auth: The `UsergridAppAuth` that will be authenticated.
     - parameter completion: The completion block that will be called after authentication has completed.
     */
     public func authenticateApp(appAuth: UsergridAppAuth, completion: UsergridAppAuthCompletionBlock?) {
-        self.requestManager.performAuthRequest(appAuth:appAuth, request: appAuth.buildAuthRequest(self.clientAppURL)) { [weak self] (auth,error) in
+        _requestManager.performAuthRequest(appAuth:appAuth, request: appAuth.buildAuthRequest(self.clientAppURL)) { [weak self] (auth,error) in
             self?.appAuth = auth
             completion?(auth: auth, error: error)
         }
@@ -112,6 +134,7 @@ extension UsergridClient {
 
     /**
     Authenticates with the `UsergridUserAuth` that is passed in.
+
     - parameter auth: The `UsergridUserAuth` that will be authenticated.
     - parameter completion: The completion block that will be called after authentication has completed.
     */
@@ -121,12 +144,13 @@ extension UsergridClient {
 
     /**
     Authenticates with the `UsergridUserAuth` that is passed in.
+
     - parameter auth: The `UsergridUserAuth` that will be authenticated.
     - parameter setAsCurrentUser: If the authenticated user should be set as the `UsergridClient.currentUser`.
     - parameter completion: The completion block that will be called after authentication has completed.
     */
     public func authenticateUser(userAuth: UsergridUserAuth, setAsCurrentUser: Bool, completion: UsergridUserAuthCompletionBlock?) {
-        self.requestManager.performAuthRequest(userAuth:userAuth, request: userAuth.buildAuthRequest(self.clientAppURL)) { [weak self] (auth,user,error) in
+        _requestManager.performAuthRequest(userAuth:userAuth, request: userAuth.buildAuthRequest(self.clientAppURL)) { [weak self] (auth,user,error) in
             if setAsCurrentUser {
                 self?.currentUser = user
             }
@@ -154,39 +178,44 @@ extension UsergridClient {
 
     // TODO: DOCUMENTATION
     public func logoutUser(uuidOrUsername:String, token:String?, completion:UsergridResponseCompletion?) {
-        self.requestManager.performLogoutUserRequest(uuidOrUsername: uuidOrUsername, token:token, completion: completion)
+        _requestManager.performLogoutUserRequest(uuidOrUsername: uuidOrUsername, token:token, completion: completion)
     }
 }
 
-// MARK: - GET -
 extension UsergridClient {
+
+    // MARK: - GET -
 
     /**
     Gets a single `UsergridEntity` of a given type with a specific UUID/name.
+
     - parameter type: The `UsergridEntity` type.
     - parameter uuidOrName: The UUID or name of the `UsergridEntity`.
     - parameter completion: The completion block that will be called once the request has completed.
     */
     public func GET(type: String, uuidOrName: String, completion: UsergridResponseCompletion?) {
-        self.requestManager.performRequest(type, requestURL: UsergridRequestManager.buildRequestURL(self.clientAppURL,paths: [type,uuidOrName]), method: .GET, completion: completion)
+        _requestManager.performRequest(type, requestURL: UsergridRequestManager.buildRequestURL(self.clientAppURL,paths: [type,uuidOrName]), method: .GET, completion: completion)
     }
 
     /**
     Gets a group of `UsergridEntity` objects of a given type with an optional query.
+
     - parameter type: The `UsergridEntity` type.
     - parameter query: The optional query to use when gathering `UsergridEntity` objects.
     - parameter completion: The completion block that will be called once the request has completed.
     */
     public func GET(type: String, query: UsergridQuery? = nil, completion: UsergridResponseCompletion?) {
-        self.requestManager.performRequest(type, requestURL: UsergridRequestManager.buildRequestURL(self.clientAppURL,query: query, paths: [type]), method: .GET, completion: completion)
+        _requestManager.performRequest(type, requestURL: UsergridRequestManager.buildRequestURL(self.clientAppURL,query: query, paths: [type]), method: .GET, completion: completion)
     }
 }
 
-// MARK: - PUT -
 extension UsergridClient {
+
+    // MARK: - PUT -
 
     /**
     Updates an `UsergridEntity` with the given type and UUID/name specified using the passed in jsonBody.
+
     - parameter type: The `UsergridEntity` type.
     - parameter uuidOrName: The UUID or name of the `UsergridEntity`.
     - parameter jsonBody: The valid JSON body dictionary to update the `UsergridEntity` with.
@@ -198,6 +227,7 @@ extension UsergridClient {
 
     /**
     Updates the passed in `UsergridEntity`.
+
     - parameter entity: The `UsergridEntity` to update.
     - parameter completion: The completion block that will be called once the request has completed.
     */
@@ -207,12 +237,13 @@ extension UsergridClient {
 
     /**
     Updates an `UsergridEntity` with the given type using the jsonBody where the UUID/name is specified inside of the jsonBody.
-    - parameter type: The `UsergridEntity` type.
-    - parameter jsonBody: The valid JSON body dictionary to update the `UsergridEntity` with.
-    - parameter completion: The completion block that will be called once the request has completed.
+
+    - parameter type:       The `UsergridEntity` type.
+    - parameter jsonBody:   The valid JSON body dictionary to update the `UsergridEntity` with.
+    - parameter completion: The optional completion block that will be called once the request has completed.
     */
     public func PUT(type: String, jsonBody:[String:AnyObject], completion: UsergridResponseCompletion?) {
-        if let uuidOrName = jsonBody[UsergridEntity.UsergridEntityProperties.UUID.stringValue] as? String ?? jsonBody[UsergridEntity.UsergridEntityProperties.Name.stringValue] as? String {
+        if let uuidOrName = jsonBody[UsergridEntityProperties.UUID.stringValue] as? String ?? jsonBody[UsergridEntityProperties.Name.stringValue] as? String {
             PUT(type, requestURL: UsergridRequestManager.buildRequestURL(self.clientAppURL,paths: [type,uuidOrName]), jsonBody: jsonBody, completion: completion)
         } else {
             completion?(response: UsergridResponse(client:self, errorName: "", errorDescription: ""))
@@ -221,9 +252,10 @@ extension UsergridClient {
 
     /**
     Updates the entities that fit the given query using the passed in jsonBody.
-    - parameter query: The query to use when filtering what entities to update.
-    - parameter jsonBody: The valid JSON body dictionary to update with.
-    - parameter completion: The completion block that will be called once the request has completed.
+
+    - parameter query:           The query to use when filtering what entities to update.
+    - parameter jsonBody:        The valid JSON body dictionary to update with.
+    - parameter queryCompletion: The completion block that will be called once the request has completed.
     */
     public func PUT(query: UsergridQuery, jsonBody:[String:AnyObject], queryCompletion: UsergridResponseCompletion?) {
         if let type = query.collectionName {
@@ -236,7 +268,7 @@ extension UsergridClient {
     private func PUT(type: String, requestURL: String, jsonBody: [String:AnyObject], completion: UsergridResponseCompletion?) {
         do {
             let jsonData = try NSJSONSerialization.dataWithJSONObject(jsonBody, options: NSJSONWritingOptions.PrettyPrinted)
-            self.requestManager.performRequest(type,requestURL: requestURL,method: .PUT,headers:UsergridRequestManager.JSON_CONTENT_TYPE_HEADER,body: jsonData,completion: completion)
+            _requestManager.performRequest(type,requestURL: requestURL,method: .PUT,headers:UsergridRequestManager.JSON_CONTENT_TYPE_HEADER,body: jsonData,completion: completion)
         } catch let caught as NSError {
             print(caught)
             completion?(response: UsergridResponse(client:self, errorName: caught.domain, errorDescription: caught.localizedDescription))
@@ -244,8 +276,9 @@ extension UsergridClient {
     }
 }
 
-// MARK: - POST -
 extension UsergridClient {
+
+    // MARK: - POST -
 
     /**
     Creates and posts creates an `UsergridEntity`.
@@ -259,21 +292,22 @@ extension UsergridClient {
     /**
     Creates and posts an array of `UsergridEntity` objects.
 
-    Each `UsergridEntity` in the array much already have a type assinged and must be the same.
+    Each `UsergridEntity` in the array much already have a type assigned and must be the same.
 
     - parameter entities: The `UsergridEntity` objects to create.
-    - parameter completion: The completion block that will be called once the request has completed.
+    - parameter entitiesCompletion: The completion block that will be called once the request has completed.
     */
     public func POST(entities:[UsergridEntity], entitiesCompletion: UsergridResponseCompletion?) {
         if let entityType = entities.first?.type {
             POST(entityType, jsonBodies: entities.map { return ($0).jsonObjectValue }, completion: entitiesCompletion)
         } else {
-            entitiesCompletion?(response: UsergridResponse(client:self, errorName: "", errorDescription: ""))
+            entitiesCompletion?(response: UsergridResponse(client:self, errorName: "No type found.", errorDescription: "The first entity in the array had no type found."))
         }
     }
 
     /**
     Creates and posts an `UsergridEntity` of the given type with the given jsonBody.
+
     - parameter type: The `UsergridEntity` type.
     - parameter jsonBody: The valid JSON body dictionary to use when creating the `UsergridEntity`.
     - parameter completion: The completion block that will be called once the request has completed.
@@ -283,7 +317,8 @@ extension UsergridClient {
     }
 
     /**
-    Creates and posts an array of `Entity` objects while assinging the given type to them.
+    Creates and posts an array of `Entity` objects while assigning the given type to them.
+
     - parameter type: The `UsergridEntity` type.
     - parameter jsonBody: The valid JSON body dictionaries to use when creating the `UsergridEntity` objects.
     - parameter completion: The completion block that will be called once the request has completed.
@@ -294,6 +329,7 @@ extension UsergridClient {
 
     /**
     Creates and posts an `UsergridEntity` of the given type with a given name and the given jsonBody.
+
     - parameter type: The `UsergridEntity` type.
     - parameter name: The name of the `UsergridEntity`.
     - parameter jsonBody: The valid JSON body dictionary to use when creating the `UsergridEntity`.
@@ -301,14 +337,14 @@ extension UsergridClient {
     */
     public func POST(type: String, name: String, jsonBody:[String:AnyObject], completion: UsergridResponseCompletion?) {
         var jsonBodyWithName = jsonBody
-        jsonBodyWithName[UsergridEntity.UsergridEntityProperties.Name.stringValue] = name
+        jsonBodyWithName[UsergridEntityProperties.Name.stringValue] = name
         POST(type, jsonBody: jsonBodyWithName,completion: completion)
     }
 
     private func POST(type: String, requestURL: String, jsonBody: AnyObject, completion: UsergridResponseCompletion?) {
         do {
             let jsonData = try NSJSONSerialization.dataWithJSONObject(jsonBody, options: NSJSONWritingOptions.PrettyPrinted)
-            self.requestManager.performRequest(type,requestURL: requestURL, method: .POST, headers:UsergridRequestManager.JSON_CONTENT_TYPE_HEADER, body: jsonData,completion: completion)
+            _requestManager.performRequest(type,requestURL: requestURL, method: .POST, headers:UsergridRequestManager.JSON_CONTENT_TYPE_HEADER, body: jsonData,completion: completion)
         } catch let caught as NSError {
             print(caught)
             completion?(response: UsergridResponse(client:self, errorName: caught.domain, errorDescription: caught.localizedDescription))
@@ -316,12 +352,14 @@ extension UsergridClient {
     }
 }
 
-// MARK: - DELETE -
 extension UsergridClient {
+
+    // MARK: - DELETE -
 
     /**
     Destroys the passed `UsergridEntity`.
     - parameter entity: The `UsergridEntity` to delete.
+
     - parameter completion: The completion block that will be called once the request has completed.
     */
     public func DELETE(entity:UsergridEntity, completion: UsergridResponseCompletion?) {
@@ -334,8 +372,9 @@ extension UsergridClient {
 
     /**
     Destroys the `UsergridEntity` objects that fit the given `UsergridQuery`.
+
     - parameter query: The query to use when filtering what entities to delete.
-    - parameter completion: The completion block that will be called once the request has completed.
+    - parameter queryCompletion: The completion block that will be called once the request has completed.
     */
     public func DELETE(query:UsergridQuery, queryCompletion: UsergridResponseCompletion?) {
         if let type = query.collectionName {
@@ -356,12 +395,13 @@ extension UsergridClient {
     }
 
     private func DELETE(type: String, requestURL:String, completion:UsergridResponseCompletion?) {
-        self.requestManager.performRequest(type, requestURL: requestURL, method: .DELETE, headers:UsergridRequestManager.JSON_CONTENT_TYPE_HEADER, completion: completion)
+        _requestManager.performRequest(type, requestURL: requestURL, method: .DELETE, headers:UsergridRequestManager.JSON_CONTENT_TYPE_HEADER, completion: completion)
     }
 }
 
-// MARK: - Entity Connections -
 extension UsergridClient {
+
+    // MARK: - Entity Connections -
 
     /**
     Connects the `UsergridEntity` objects via the relationship.
@@ -371,7 +411,7 @@ extension UsergridClient {
     - parameter completion: The completion block that will be called once the request has completed.
     */
     public func CONNECT(entity:UsergridEntity, relationship:String, connectingEntity:UsergridEntity, completion: UsergridResponseCompletion?) {
-        requestManager.performConnect(entity, relationship: relationship, connectingEntity: connectingEntity, completion: completion)
+        _requestManager.performConnect(entity, relationship: relationship, connectingEntity: connectingEntity, completion: completion)
     }
 
     /**
@@ -382,12 +422,18 @@ extension UsergridClient {
     - parameter completion: The completion block that will be called once the request has completed.
     */
     public func DISCONNECT(entity:UsergridEntity, relationship:String, connectingEntity:UsergridEntity, completion: UsergridResponseCompletion?) {
-        requestManager.performDisconnect(entity, relationship: relationship, connectingEntity: connectingEntity, completion: completion)
+        _requestManager.performDisconnect(entity, relationship: relationship, connectingEntity: connectingEntity, completion: completion)
+    }
+
+    // TODO: DOCUMENTATION
+    public func getConnectedEntities(entity:UsergridEntity, relationship:String, completion:UsergridResponseCompletion?) {
+        _requestManager.getConnectedEntities(entity, relationship: relationship, completion: completion)
     }
 }
 
-// MARK: - Asset Management - 
 extension UsergridClient {
+
+    // MARK: - Asset Management -
 
     /**
     Uploads the asset and connects the data to the given `UsergridEntity`.
@@ -397,7 +443,7 @@ extension UsergridClient {
     - parameter completion: The completion block that will be called once the request has completed.
     */
     public func uploadAsset(entity:UsergridEntity, asset:UsergridAsset, progress:UsergridAssetRequestProgress? = nil, completion:UsergridAssetUploadCompletion?) {
-        self.requestManager.performUploadAsset(entity, asset: asset, progress:progress) { [weak entity] (response, asset, error) -> Void in
+        _requestManager.performUploadAsset(entity, asset: asset, progress:progress) { [weak entity] (response, asset, error) -> Void in
             entity?.asset = asset
             completion?(response: response, asset: asset, error: error)
         }
@@ -412,7 +458,7 @@ extension UsergridClient {
     */
     public func downloadAsset(entity:UsergridEntity, contentType:String, progress:UsergridAssetRequestProgress? = nil, completion:UsergridAssetDownloadCompletion?) {
         if entity.hasAsset {
-            self.requestManager.performGetAsset(entity, contentType: contentType, progress:progress) { (asset, error) -> Void in
+            _requestManager.performGetAsset(entity, contentType: contentType, progress:progress) { (asset, error) -> Void in
                 completion?(asset: asset, error: error)
             }
         } else {

@@ -11,38 +11,17 @@ import CoreLocation
 
 public class UsergridEntity: NSObject {
 
-    var properties: [String : AnyObject] {
-        didSet {
-            if let fileMetaData = properties.removeValueForKey(UsergridFileMetaData.FILE_METADATA) as? [String:AnyObject] {
-                self.fileMetaData = UsergridFileMetaData(fileMetaDataJSON: fileMetaData)
-            } else {
-                self.fileMetaData = nil
-            }
-        }
-    }
-
-    public var asset: UsergridAsset?
-    private(set) public var fileMetaData : UsergridFileMetaData?
-
-    public var type: String { return self.getEntitySpecificProperty(.EntityType) as! String }
-    public var uuid: String? { return self.getEntitySpecificProperty(.UUID) as? String }
-    public var name: String? { return self.getEntitySpecificProperty(.Name) as? String }
-    public var created: NSDate? { return self.getEntitySpecificProperty(.Created) as? NSDate }
-    public var modified: NSDate? { return self.getEntitySpecificProperty(.Modified) as? NSDate }
-    public var location: CLLocation? {
-        get { return self.getEntitySpecificProperty(.Location) as? CLLocation }
-        set { self[UsergridEntityProperties.Location.stringValue] = newValue }
-    }
-
-    public var uuidOrName: String? { return self.uuid ?? self.name }
-    public var isUser: Bool { return self is UsergridUser || self.type == UsergridUser.USER_ENTITY_TYPE }
-    public var hasAsset: Bool { return self.asset != nil || self.fileMetaData?.contentLength > 0 }
-
-    public var jsonObjectValue : [String:AnyObject] { return self.properties }
-    public var stringValue : String { return NSString(data: try! NSJSONSerialization.dataWithJSONObject(self.jsonObjectValue, options: NSJSONWritingOptions.PrettyPrinted), encoding: NSASCIIStringEncoding) as! String }
-
     // MARK: - Initialization -
 
+    /*!
+    Designated initializer for `UsergridEntity` objects
+
+    - parameter type:         The type associated with the `UsergridEntity` object.
+    - parameter name:         The optional name associated with the `UsergridEntity` object.
+    - parameter propertyDict: The optional property dictionary that the `UsergridEntity` object will start out with.
+
+    - returns: A new `UsergridEntity` object.
+    */
     public init(type:String, name:String? = nil, propertyDict:[String:AnyObject]? = nil) {
         self.properties = propertyDict ?? [:]
         super.init()
@@ -56,6 +35,13 @@ public class UsergridEntity: NSObject {
         }
     }
 
+    /*!
+    Class convenience constructor for creating `UsergridEntity` objects dynamically.
+
+    - parameter jsonDict: A valid JSON dictionary which must contain at the very least a value for the `type` key.
+
+    - returns: A `UsergridEntity` object provided that the `type` key within the dictionay exists. Otherwise nil.
+    */
     public class func entity(jsonDict jsonDict: [String:AnyObject]) -> UsergridEntity? {
         if let type = jsonDict[UsergridEntityProperties.EntityType.stringValue] as? String {
             if UsergridUser.USER_ENTITY_TYPE == type {
@@ -70,6 +56,13 @@ public class UsergridEntity: NSObject {
         }
     }
 
+    /**
+    Class convenience constructor for creating multiple `UsergridEntity` objects dynamically.
+
+    - parameter entitiesJSONArray: An array which contains dictionaries that are used to create the `UsergridEntity` objects.
+
+    - returns: An array of `UsergridEntity`.
+    */
     public class func entities(jsonArray entitiesJSONArray: [[String:AnyObject]]) -> [UsergridEntity] {
         var entityArray : [UsergridEntity] = []
         for entityJSONDict in entitiesJSONArray {
@@ -80,7 +73,62 @@ public class UsergridEntity: NSObject {
         return entityArray
     }
 
-    // MARK: - Subscript/Entity Properties -
+    // MARK: - Instance Properties -
+
+    /// The property dictionary that stores the properties values of the `UsergridEntity` object.
+    var properties: [String : AnyObject] {
+        didSet {
+            if let fileMetaData = properties.removeValueForKey(UsergridFileMetaData.FILE_METADATA) as? [String:AnyObject] {
+                self.fileMetaData = UsergridFileMetaData(fileMetaDataJSON: fileMetaData)
+            } else {
+                self.fileMetaData = nil
+            }
+        }
+    }
+
+    /// The `UsergridAsset` that contains the asset data.
+    public var asset: UsergridAsset?
+
+    /// The `UsergridFileMetaData` of this `UsergridEntity`.
+    private(set) public var fileMetaData : UsergridFileMetaData?
+
+    /// Property helper method for the `UsergridEntity` objects `UsergridEntityProperties.EntityType`.
+    public var type: String { return self.getEntitySpecificProperty(.EntityType) as! String }
+
+    /// Property helper method for the `UsergridEntity` objects `UsergridEntityProperties.UUID`.
+    public var uuid: String? { return self.getEntitySpecificProperty(.UUID) as? String }
+
+    /// Property helper method for the `UsergridEntity` objects `UsergridEntityProperties.Name`.
+    public var name: String? { return self.getEntitySpecificProperty(.Name) as? String }
+
+    /// Property helper method for the `UsergridEntity` objects `UsergridEntityProperties.Created`.
+    public var created: NSDate? { return self.getEntitySpecificProperty(.Created) as? NSDate }
+
+    /// Property helper method for the `UsergridEntity` objects `UsergridEntityProperties.Modified`.
+    public var modified: NSDate? { return self.getEntitySpecificProperty(.Modified) as? NSDate }
+
+    /// Property helper method for the `UsergridEntity` objects `UsergridEntityProperties.Location`.
+    public var location: CLLocation? {
+        get { return self.getEntitySpecificProperty(.Location) as? CLLocation }
+        set { self[UsergridEntityProperties.Location.stringValue] = newValue }
+    }
+
+    /// Property helper method to get the UUID or name of the `UsergridEntity`.
+    public var uuidOrName: String? { return self.uuid ?? self.name }
+
+    /// Tells you if this `UsergridEntity` has a type of `user`.
+    public var isUser: Bool { return self is UsergridUser || self.type == UsergridUser.USER_ENTITY_TYPE }
+
+    /// Tells you if there is an asset associated with this entity.
+    public var hasAsset: Bool { return self.asset != nil || self.fileMetaData?.contentLength > 0 }
+
+    /// The JSON object value.
+    public var jsonObjectValue : [String:AnyObject] { return self.properties }
+
+    /// The string value.
+    public var stringValue : String { return NSString(data: try! NSJSONSerialization.dataWithJSONObject(self.jsonObjectValue, options: NSJSONWritingOptions.PrettyPrinted), encoding: NSASCIIStringEncoding) as! String }
+
+    // MARK: - Property Manipulation -
 
     public subscript(propertyName: String) -> AnyObject? {
         get {
@@ -133,84 +181,85 @@ public class UsergridEntity: NSObject {
         }
     }
 
-    private static let TYPE = "type"
-    private static let NAME = "name"
-    private static let UUID = "uuid"
-    private static let CREATED = "created"
-    private static let MODIFIED = "modified"
-    private static let LOCATION = "location"
+    /**
+    Updates a properties value for the given property name.
 
-    // Sub properties of Location
-    private static let LATITUDE = "latitude"
-    private static let LONGITUDE = "longitude"
-
-    @objc public enum UsergridEntityProperties : Int {
-        case EntityType
-        case UUID
-        case Name
-        case Created
-        case Modified
-        case Location
-
-        public static func fromString(stringValue: String) -> UsergridEntityProperties? {
-            switch stringValue.lowercaseString {
-                case UsergridEntity.TYPE: return .EntityType
-                case UsergridEntity.UUID: return .UUID
-                case UsergridEntity.NAME: return .Name
-                case UsergridEntity.CREATED: return .Created
-                case UsergridEntity.MODIFIED: return .Modified
-                case UsergridEntity.LOCATION: return .Location
-                default: return nil
-            }
-        }
-        public var stringValue: String {
-            switch self {
-                case .EntityType: return UsergridEntity.TYPE
-                case .UUID: return UsergridEntity.UUID
-                case .Name: return UsergridEntity.NAME
-                case .Created: return UsergridEntity.CREATED
-                case .Modified: return UsergridEntity.MODIFIED
-                case .Location: return UsergridEntity.LOCATION
-            }
-        }
-        public func isMutableForEntity(entity:UsergridEntity) -> Bool {
-            switch self {
-                case .EntityType,.UUID,.Created,.Modified: return false
-                case .Location: return true
-                case .Name: return entity.isUser
-            }
-        }
-    }
-}
-
-// MARK: - Property Helpers -
-extension UsergridEntity {
-
-    public func putProperty(name:String,value:AnyObject) {
+    - parameter name:  The name of the property.
+    - parameter value: The value to update to.
+    */
+    public func putProperty(name:String,value:AnyObject?) {
         self[name] = value
     }
+
+    /**
+    Updates a set of properties that are within the given properties dictionary.
+
+    - parameter properties: The property dictionary containing the properties names and values.
+    */
     public func putProperties(properties:[String:AnyObject]) {
         for (name,value) in properties {
             self.putProperty(name, value: value)
         }
     }
+
+    /**
+    Removes the property for the given property name.
+
+    - parameter name: The name of the property.
+    */
     public func removeProperty(name:String) {
         self[name] = nil
     }
+
+    /**
+    Removes the properties with the names within the propertyNames array
+
+    - parameter propertyNames: An array of property names.
+    */
     public func removeProperties(propertyNames:[String]) {
         for name in propertyNames {
             self.removeProperty(name)
         }
     }
+
+    /**
+    Appends the given value to the end of the properties current value.
+
+    - parameter name:  The name of the property.
+    - parameter value: The value to append.
+    */
     public func push(name:String,value:AnyObject) {
         self.insertArray(name, index: Int.max, values:[value])
     }
+
+    /**
+    Appends the given values to the end of the properties current value.
+
+    - parameter name:  The name of the property.
+    - parameter values: The values to append.
+    */
     public func append(name:String,values:[AnyObject]) {
         self.insertArray(name, index: Int.max, values: values)
     }
+
+    /**
+    Inserts the given value at the given index within the properties current value.
+
+    - parameter name:  The name of the property.
+    - parameter index: The index to insert at.
+    - parameter value: The value to insert.
+    */
     public func insert(name:String,index:Int = 0,value:AnyObject) {
         self.insertArray(name, index: index, values: [value])
     }
+
+    /**
+    Inserts an array of property values at a given index within the properties current value.
+
+    - parameter name:   The name of the property
+    - parameter index:  The index to insert at.
+    - parameter values: The values to insert.
+    */
     public func insertArray(name:String,index:Int = 0,values:[AnyObject]) {
         if let propertyValue = self[name] {
             if var arrayValue = propertyValue as? [AnyObject] {
@@ -231,12 +280,24 @@ extension UsergridEntity {
             self[name] = values
         }
     }
+
+    /**
+    Removes the last value of the properties current value.
+
+    - parameter name: The name of the property.
+    */
     public func pop(name:String) {
         if var arrayValue = self[name] as? [AnyObject] where arrayValue.count > 0 {
             arrayValue.removeLast()
             self[name] = arrayValue
         }
     }
+
+    /**
+    Removes the first value of the properties current value.
+
+    - parameter name: The name of the property.
+    */
     public func shift(name:String) {
         if var arrayValue = self[name] as? [AnyObject] where arrayValue.count > 0 {
             arrayValue.removeFirst()
@@ -247,28 +308,37 @@ extension UsergridEntity {
     private func getEntitySpecificProperty(entityProperty: UsergridEntityProperties) -> AnyObject? {
         var propertyValue: AnyObject? = nil
         switch entityProperty {
-            case .UUID,.EntityType,.Name :
-                propertyValue = self.properties[entityProperty.stringValue]
-            case .Created,.Modified :
-                if let utcTimeStamp = self.properties[entityProperty.stringValue] as? Int {
-                    propertyValue = NSDate(utcTimeStamp: utcTimeStamp.description)
-                }
-            case .Location :
-                if let locationDict = self.properties[entityProperty.stringValue] as? [String:Double], lat = locationDict[UsergridEntity.LATITUDE], long = locationDict[UsergridEntity.LONGITUDE] {
-                    propertyValue = CLLocation(latitude: lat, longitude: long)
-                }
+        case .UUID,.EntityType,.Name :
+            propertyValue = self.properties[entityProperty.stringValue]
+        case .Created,.Modified :
+            if let utcTimeStamp = self.properties[entityProperty.stringValue] as? Int {
+                propertyValue = NSDate(utcTimeStamp: utcTimeStamp.description)
+            }
+        case .Location :
+            if let locationDict = self.properties[entityProperty.stringValue] as? [String:Double], lat = locationDict[UsergridEntity.LATITUDE], long = locationDict[UsergridEntity.LONGITUDE] {
+                propertyValue = CLLocation(latitude: lat, longitude: long)
+            }
         }
         return propertyValue
     }
-}
 
-// MARK: - CRUD Convenience Methods -
-extension UsergridEntity {
+    // MARK: - CRUD Convenience Methods -
 
+    /**
+    Performs a GET on the `UsergridEntity` using the shared instance of `UsergridClient`.
+
+    - parameter completion: An optional completion block that, if successful, will contain the reloaded `UsergridEntity` object.
+    */
     public func reload(completion: UsergridResponseCompletion?) {
         self.reload(Usergrid.sharedInstance, completion: completion)
     }
 
+    /**
+    Performs a GET on the `UsergridEntity` using the given instance of `UsergridClient`.
+
+    - parameter client:     The client to use when reloading.
+    - parameter completion: An optional completion block that, if successful, will contain the reloaded `UsergridEntity` object.
+    */
     public func reload(client:UsergridClient, completion: UsergridResponseCompletion?) {
         if let uuidOrName = self.uuidOrName {
             client.GET(self.type, uuidOrName: uuidOrName, completion: completion)
@@ -277,10 +347,21 @@ extension UsergridEntity {
         }
     }
 
+    /**
+    Performs a PUT (or POST if no UUID is found) on the `UsergridEntity` using the shared instance of `UsergridClient`.
+
+    - parameter completion: An optional completion block that, if successful, will contain the updated/saved `UsergridEntity` object.
+    */
     public func save(completion: UsergridResponseCompletion?) {
         self.save(Usergrid.sharedInstance, completion: completion)
     }
 
+    /**
+    Performs a PUT (or POST if no UUID is found) on the `UsergridEntity` using the given instance of `UsergridClient`.
+
+    - parameter client:     The client to use when saving.
+    - parameter completion: An optional completion block that, if successful, will contain the updated/saved `UsergridEntity` object.
+    */
     public func save(client:UsergridClient, completion: UsergridResponseCompletion?) {
         if let _ = self.uuid { // If UUID exists we PUT otherwise POST
             client.PUT(self, completion: completion)
@@ -289,59 +370,191 @@ extension UsergridEntity {
         }
     }
 
+    /**
+    Performs a DELETE on the `UsergridEntity` using the shared instance of the `UsergridClient`.
+
+    - parameter completion: An optional completion block.
+    */
     public func remove(completion: UsergridResponseCompletion?) {
         Usergrid.sharedInstance.DELETE(self, completion: completion)
     }
 
+    /**
+    Performs a DELETE on the `UsergridEntity` using the given instance of the `UsergridClient`.
+
+    - parameter client:     The client to use when removing.
+    - parameter completion: An optional completion block.
+    */
     public func remove(client:UsergridClient, completion: UsergridResponseCompletion?) {
         client.DELETE(self, completion: completion)
     }
-}
 
-// MARK: - Asset Management -
-extension UsergridEntity {
+    // MARK: - Asset Management -
 
+    /**
+    Uploads the given `UsergridAsset` and the data within it and creates an association between this `UsergridEntity` with the given `UsergridAsset` using the shared instance of `UsergridClient`.
+
+    - parameter asset:      The `UsergridAsset` object to upload.
+    - parameter progress:   An optional progress block to keep track of upload progress.
+    - parameter completion: An optional completion block.
+    */
     public func uploadAsset(asset:UsergridAsset, progress:UsergridAssetRequestProgress? = nil, completion:UsergridAssetUploadCompletion?) {
         Usergrid.sharedInstance.uploadAsset(self, asset: asset, progress:progress, completion:completion)
     }
 
+    /**
+    Uploads the given `UsergridAsset` and the data within it and creates an association between this `UsergridEntity` with the given `UsergridAsset` using the given instance of `UsergridClient`.
+
+    - parameter client:     The client to use when uploading.
+    - parameter asset:      The `UsergridAsset` object to upload.
+    - parameter progress:   An optional progress block to keep track of upload progress.
+    - parameter completion: An optional completion block.
+    */
     public func uploadAsset(client:UsergridClient, asset:UsergridAsset, progress:UsergridAssetRequestProgress? = nil, completion:UsergridAssetUploadCompletion?) {
         client.uploadAsset(self, asset: asset, progress:progress, completion:completion)
     }
 
+    /**
+    Downloads the `UsergridAsset` that is associated with this `UsergridEntity` using the shared instance of `UsergridClient`.
+
+    - parameter contentType: The content type of the data to load.
+    - parameter progress:    An optional progress block to keep track of download progress.
+    - parameter completion:  An optional completion block.
+    */
     public func downloadAsset(contentType:String, progress:UsergridAssetRequestProgress? = nil, completion:UsergridAssetDownloadCompletion?) {
         Usergrid.sharedInstance.downloadAsset(self, contentType: contentType, progress:progress, completion: completion)
     }
 
+    /**
+    Downloads the `UsergridAsset` that is associated with this `UsergridEntity` using the given instance of `UsergridClient`.
+
+    - parameter client:      The client to use when uploading.
+    - parameter contentType: The content type of the data to load.
+    - parameter progress:    An optional progress block to keep track of download progress.
+    - parameter completion:  An optional completion block.
+    */
     public func downloadAsset(client:UsergridClient, contentType:String, progress:UsergridAssetRequestProgress? = nil, completion:UsergridAssetDownloadCompletion?) {
         client.downloadAsset(self, contentType: contentType, progress:progress, completion: completion)
     }
-}
 
-// MARK: - Connection Management -
-extension UsergridEntity {
+    /**
+    Creates a relationship between this `UsergridEntity` and the given entity using the shared instance of `UsergridClient`.
 
+    - parameter relationship: The relationship type.
+    - parameter entity:       The entity to connect.
+    - parameter completion:   An optional completion block.
+    */
     public func connect(relationship:String, entity:UsergridEntity, completion: UsergridResponseCompletion?) {
         Usergrid.sharedInstance.CONNECT(self, relationship: relationship, connectingEntity: entity, completion: completion)
     }
 
+    // MARK: - Connection Management -
+
+    /**
+    Creates a relationship between this `UsergridEntity` and the given entity using the given instance of `UsergridClient`.
+
+    - parameter client:       The client to use when connecting.
+    - parameter relationship: The relationship type.
+    - parameter entity:       The entity to connect.
+    - parameter completion:   An optional completion block.
+    */
     public func connect(client:UsergridClient, relationship:String, entity:UsergridEntity, completion: UsergridResponseCompletion?) {
         client.CONNECT(self, relationship: relationship, connectingEntity: entity, completion: completion)
     }
 
+    /**
+    Removes a relationship between this `UsergridEntity` and the given entity using the shared instance of `UsergridClient`.
+
+    - parameter relationship: The relationship type.
+    - parameter entity:       The entity to disconnect.
+    - parameter completion:   An optional completion block.
+    */
     public func disconnect(relationship:String, entity:UsergridEntity, completion: UsergridResponseCompletion?) {
         Usergrid.sharedInstance.DISCONNECT(self, relationship: relationship, connectingEntity: entity, completion: completion)
     }
 
+    /**
+    Removes a relationship between this `UsergridEntity` and the given entity using the given instance of `UsergridClient`.
+
+    - parameter client:       The client to use when disconnecting.
+    - parameter relationship: The relationship type.
+    - parameter entity:       The entity to disconnect.
+    - parameter completion:   An optional completion block.
+    */
     public func disconnect(client:UsergridClient, relationship:String, entity:UsergridEntity, completion: UsergridResponseCompletion?) {
         client.DISCONNECT(self, relationship: relationship, connectingEntity: entity, completion: completion)
     }
 
+    /**
+    Gets the `UsergridEntity` objects, if any, which are connected via the relationship using the shared instance of `UsergridClient`.
+
+    - parameter relationship: The relationship type.
+    - parameter completion:   An optional completion block.
+    */
     public func getConnectedEntities(relationship:String, completion:UsergridResponseCompletion?) {
-        Usergrid.sharedInstance.requestManager.getConnectedEntities(self, relationship: relationship, completion: completion)
+        Usergrid.sharedInstance.getConnectedEntities(self, relationship: relationship, completion: completion)
     }
 
+    /**
+    Gets the `UsergridEntity` objects, if any, which are connected via the relationship using the given instance of `UsergridClient`.
+
+    - parameter client:       The client to use when getting the connected `UsergridEntity` objects.
+    - parameter relationship: The relationship type.
+    - parameter completion:   An optional completion block.
+    */
     public func getConnectedEntities(client:UsergridClient, relationship:String, completion:UsergridResponseCompletion?) {
-        client.requestManager.getConnectedEntities(self, relationship: relationship, completion: completion)
+        client.getConnectedEntities(self, relationship: relationship, completion: completion)
+    }
+
+    private static let TYPE = "type"
+    private static let NAME = "name"
+    private static let UUID = "uuid"
+    private static let CREATED = "created"
+    private static let MODIFIED = "modified"
+    private static let LOCATION = "location"
+
+    // Sub properties of Location
+    private static let LATITUDE = "latitude"
+    private static let LONGITUDE = "longitude"
+}
+
+/**
+`UsergridEntity` specific properties keys.  Note that trying to mutate the values of these properties will not be allowed in most cases.
+*/
+@objc public enum UsergridEntityProperties : Int {
+    case EntityType
+    case UUID
+    case Name
+    case Created
+    case Modified
+    case Location
+
+    public static func fromString(stringValue: String) -> UsergridEntityProperties? {
+        switch stringValue.lowercaseString {
+        case UsergridEntity.TYPE: return .EntityType
+        case UsergridEntity.UUID: return .UUID
+        case UsergridEntity.NAME: return .Name
+        case UsergridEntity.CREATED: return .Created
+        case UsergridEntity.MODIFIED: return .Modified
+        case UsergridEntity.LOCATION: return .Location
+        default: return nil
+        }
+    }
+    public var stringValue: String {
+        switch self {
+        case .EntityType: return UsergridEntity.TYPE
+        case .UUID: return UsergridEntity.UUID
+        case .Name: return UsergridEntity.NAME
+        case .Created: return UsergridEntity.CREATED
+        case .Modified: return UsergridEntity.MODIFIED
+        case .Location: return UsergridEntity.LOCATION
+        }
+    }
+    public func isMutableForEntity(entity:UsergridEntity) -> Bool {
+        switch self {
+        case .EntityType,.UUID,.Created,.Modified: return false
+        case .Location: return true
+        case .Name: return entity.isUser
+        }
     }
 }

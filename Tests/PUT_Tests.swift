@@ -50,7 +50,7 @@ class PUT_Tests: XCTestCase {
         let propertiesNewValue = "\(propertyNameToUpdate)_VALUE"
         let putExpect = self.expectationWithDescription(propertyNameToUpdate)
 
-        let jsonDictToPut = [UsergridEntity.UsergridEntityProperties.UUID.stringValue : PUT_Tests.entityUUID, propertyNameToUpdate : propertiesNewValue]
+        let jsonDictToPut = [UsergridEntityProperties.UUID.stringValue : PUT_Tests.entityUUID, propertyNameToUpdate : propertiesNewValue]
 
         client.PUT(PUT_Tests.collectionName, jsonBody: jsonDictToPut) { (response) in
             XCTAssertNotNil(response)
