@@ -8,28 +8,26 @@
 
 import Foundation
 
+/**
+The `Usergrid` class acts as a static shared instance manager for the `UsergridClient` class.
+
+The methods and variables in this class are all static and therefore you will never need or want to initialize an instance of the `Usergrid` class.
+
+Use of this class depends on initialization of the shared instance of the `UsergridClient` object.  Because of this, before using any of the static methods
+provided you will need to call one of the shared instance initialization methods.  Failure to do so will result in failure from all methods.
+*/
 public class Usergrid: NSObject {
 
     internal static var _sharedClient : UsergridClient!
 
-    /// Used to determine if the shared instance of the `UsergridClient` has been initialized.
-    public static var isInitialized : Bool  { return Usergrid._sharedClient != nil }
-
-    /**
-    A shared instance of `UsergridClient`, used by the `Usergrid` static methods and acts as the default `UsergridClient`
-    within the UsergridSDK library.
-
-    You must call one of the `Usergrid.initSharedInstance` methods before this or any other `Usergrid` static methods are valid.
-    */
-    public static var sharedInstance : UsergridClient {
-        assert(Usergrid.isInitialized, "Usergrid shared instance is not initalized!")
-        return Usergrid._sharedClient
-    }
+    // MARK: - Initialization -
 
     /**
     Initializes the `Usergrid.sharedInstance` of `UsergridClient`.
+
     - parameter orgID: The organization identifier.
     - parameter appID: The application identifier.
+
     - returns: The shared instance of `UsergridClient`.
     */
     public static func initSharedInstance(orgID orgID : String, appID: String) -> UsergridClient {
@@ -43,9 +41,11 @@ public class Usergrid: NSObject {
 
     /**
     Initializes the `Usergrid.sharedInstance` of `UsergridClient`.
+
     - parameter orgID: The organization identifier.
     - parameter appID: The application identifier.
     - parameter baseURL: The base URL that all calls will be made with.
+
     - returns: The shared instance of `UsergridClient`.
     */
     public static func initSharedInstance(orgID orgID : String, appID: String, baseURL: String) -> UsergridClient {
@@ -59,7 +59,9 @@ public class Usergrid: NSObject {
 
     /**
     Initializes the `Usergrid.sharedInstance` of `UsergridClient`.
+
     - parameter configuration: The configuration for the client to be set up with.
+    
     - returns: The shared instance of `UsergridClient`.
     */
     public static func initSharedInstance(configuration configuration: UsergridClientConfig) -> UsergridClient {
@@ -68,6 +70,22 @@ public class Usergrid: NSObject {
         }  else {
             print("The Usergrid shared instance was already initialized. All subsequent initialization attempts (including this) will be ignored.")
         }
+        return Usergrid._sharedClient
+    }
+
+    // MARK: - Static Variables -
+
+    /// Used to determine if the shared instance of the `UsergridClient` has been initialized.
+    public static var isInitialized : Bool  { return Usergrid._sharedClient != nil }
+
+    /**
+    A shared instance of `UsergridClient`, used by the `Usergrid` static methods and acts as the default `UsergridClient`
+    within the UsergridSDK library.
+
+    You must call one of the `Usergrid.initSharedInstance` methods before this or any other `Usergrid` static methods are valid.
+    */
+    public static var sharedInstance : UsergridClient {
+        assert(Usergrid.isInitialized, "Usergrid shared instance is not initalized!")
         return Usergrid._sharedClient
     }
 
@@ -94,6 +112,8 @@ public class Usergrid: NSObject {
         get{ return Usergrid.sharedInstance.appAuth }
         set{ Usergrid.sharedInstance.appAuth = appAuth }
     }
+
+    // MARK: - Authorization -
 
     /// The `UsergridAuthFallback` value used to determine what type of token will be sent of the shared instance of `UsergridClient`, if any.
     public static var authFallback: UsergridAuthFallback {
@@ -164,6 +184,8 @@ public class Usergrid: NSObject {
         Usergrid.sharedInstance.logoutUser(uuidOrUsername, token: token, completion: completion)
     }
 
+    // MARK: - GET -
+
     /**
     Gets a single `UsergridEntity` of a given type with a specific UUID/name using the shared instance of `UsergridCient`.
     - parameter type: The `UsergridEntity` type.
@@ -183,6 +205,8 @@ public class Usergrid: NSObject {
     public static func GET(type: String, query: UsergridQuery? = nil, completion: UsergridResponseCompletion?) {
         Usergrid.sharedInstance.GET(type,query:query,completion:completion)
     }
+
+    // MARK: - PUT -
 
     /**
     Updates an `UsergridEntity` with the given type and UUID/name specified using the passed in jsonBody using the shared instance of `UsergridCient`.
@@ -223,6 +247,8 @@ public class Usergrid: NSObject {
     public static func PUT(query: UsergridQuery, jsonBody:[String:AnyObject], queryCompletion: UsergridResponseCompletion?) {
         Usergrid.sharedInstance.PUT(query, jsonBody: jsonBody, queryCompletion: queryCompletion)
     }
+
+    // MARK: - POST -
 
     /**
     Creates and posts an `UsergridEntity` of the given type with a given name and the given jsonBody using the shared instance of `UsergridCient`.
@@ -276,6 +302,8 @@ public class Usergrid: NSObject {
         Usergrid.sharedInstance.POST(entities, entitiesCompletion: entitiesCompletion)
     }
 
+    // MARK: - DELETE -
+
     /**
     Destroys the `UsergridEntity` of a given type with a specific UUID/name using the shared instance of `UsergridCient`.
     - parameter type: The `UsergridEntity` type.
@@ -304,6 +332,8 @@ public class Usergrid: NSObject {
         Usergrid.sharedInstance.DELETE(query, queryCompletion:queryCompletion)
     }
 
+    // MARK: - Connection Management -
+
     /**
     Connects the `UsergridEntity` objects via the relationship using the shared instance of `UsergridCient`.
     - parameter entity: The entity that will contain the connection.
@@ -330,6 +360,8 @@ public class Usergrid: NSObject {
     public static func getConnectedEntities(entity:UsergridEntity, relationship:String, completion:UsergridResponseCompletion?) {
         Usergrid.sharedInstance.getConnectedEntities(entity, relationship: relationship, completion: completion)
     }
+
+    // MARK: - Asset Management -
 
     /**
     Uploads the asset and connects the data to the given `UsergridEntity` using the shared instance of `UsergridCient`.

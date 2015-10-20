@@ -11,7 +11,55 @@ import Foundation
 /// Responsible for handling all network work by exposing helper methods that make it easier to interact with Usergrid's API.
 public class UsergridClient: NSObject {
 
+    // MARK: - Initialization -
+
+    /**
+    Initializes instances of `UsergridClient`.
+
+    - parameter orgID: The organization identifier.
+    - parameter appID: The application identifier.
+
+    - returns: The new instance of `UsergridClient`.
+    */
+    public init(orgID: String, appID:String) {
+        self.orgID = orgID
+        self.appID = appID
+        self.baseURL = UsergridClient.DEFAULT_BASE_URL
+    }
+
+    /**
+    Initializes instances of `UsergridClient`.
+
+    - parameter orgID: The organization identifier.
+    - parameter appID: The application identifier.
+    - parameter baseURL: The base URL that all calls will be made with.
+
+    - returns: The new instance of `UsergridClient`.
+    */
+    public init(orgID: String, appID:String, baseURL:String) {
+        self.orgID = orgID
+        self.appID = appID
+        self.baseURL = baseURL
+    }
+
+    /**
+    Initializes instances of `UsergridClient`.
+
+    - parameter configuration: The configuration for the client to be set up with.
+
+    - returns: The new instance of `UsergridClient`.
+    */
+    public init(configuration:UsergridClientConfig) {
+        self.orgID = configuration.orgID
+        self.appID = configuration.appID
+        self.baseURL = configuration.baseURL
+        self.authFallback = configuration.authFallback
+        self.appAuth = configuration.appAuth
+    }
+
     static let DEFAULT_BASE_URL = "https://api.usergrid.com"
+
+    // MARK: - Instance Properties -
 
     lazy private var _requestManager: UsergridRequestManager = UsergridRequestManager(client: self)
 
@@ -24,7 +72,7 @@ public class UsergridClient: NSObject {
     /// The base URL that all calls will be made with.
     public let baseURL : String
 
-    /// The constructed URL string based on the `UsergridClient`'s baseURL, orgID, and appID.
+    /// The constructed URL string based on the `UsergridClient`'s `baseURL`, `orgID`, and `appID`.
     public var clientAppURL : String { return "\(baseURL)/\(orgID)/\(appID)" }
 
     /// The currently logged in `UsergridUser`.
@@ -38,46 +86,6 @@ public class UsergridClient: NSObject {
 
     /// The `UsergridAuthFallback` value used to determine what type of token will be sent, if any.
     public var authFallback: UsergridAuthFallback = .App
-
-    // MARK: - Initialization -
-
-    /**
-    Initializes instances of `UsergridClient`.
-    - parameter orgID: The organization identifier.
-    - parameter appID: The application identifier.
-    - returns: The new instance of `UsergridClient`.
-    */
-    public init(orgID: String, appID:String) {
-        self.orgID = orgID
-        self.appID = appID
-        self.baseURL = UsergridClient.DEFAULT_BASE_URL
-    }
-
-    /**
-    Initializes instances of `UsergridClient`.
-    - parameter orgID: The organization identifier.
-    - parameter appID: The application identifier.
-    - parameter baseURL: The base URL that all calls will be made with.
-    - returns: The new instance of `UsergridClient`.
-    */
-    public init(orgID: String, appID:String, baseURL:String) {
-        self.orgID = orgID
-        self.appID = appID
-        self.baseURL = baseURL
-    }
-
-    /**
-    Initializes instances of `UsergridClient`.
-    - parameter configuration: The configuration for the client to be set up with.
-    - returns: The new instance of `UsergridClient`.
-    */
-    public init(configuration:UsergridClientConfig) {
-        self.orgID = configuration.orgID
-        self.appID = configuration.appID
-        self.baseURL = configuration.baseURL
-        self.authFallback = configuration.authFallback
-        self.appAuth = configuration.appAuth
-    }
 }
 
 extension UsergridClient {

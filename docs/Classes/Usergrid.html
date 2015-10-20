@@ -13,7 +13,7 @@
     <a title="Usergrid Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (39% documented)</p>
+        <p><a href="../index.html"> Docs</a></p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -82,9 +82,6 @@
           <a href="../Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Extensions/UsergridAsset.html">UsergridAsset</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Extensions/UsergridAuth.html">UsergridAuth</a>
               </li>
               <li class="nav-group-task">
@@ -106,69 +103,30 @@
         <section>
           <section class="section">
             <h1>Usergrid</h1>
-            <p>Undocumented</p>
+              <div class="declaration">
+                <div class="Swift">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">class</span> <span class="kt">Usergrid</span><span class="p">:</span> <span class="kt">NSObject</span></code></pre>
+
+                </div>
+              </div>
+            <p>The <code>Usergrid</code> class acts as a static shared instance manager for the <code>UsergridClient</code> class.</p>
+
+<p>The methods and variables in this class are all static and therefore you will never need or want to initialize an instance of the <code>Usergrid</code> class.</p>
+
+<p>Use of this class depends on initialization of the shared instance of the <code>UsergridClient</code> object.  Because of this, before using any of the static methods
+provided you will need to call one of the shared instance initialization methods.  Failure to do so will result in failure from all methods.</p>
 
           </section>
           <section class="section task-group-section">
             <div class="task-group">
+                <div class="task-name-container">
+                  <a name="/Initialization"></a>
+                  <a name="//apple_ref/swift/Section/Initialization" class="dashAnchor"></a>
+                  <a href="#/Initialization">
+                    <h3 class="section-name">Initialization</h3>
+                  </a>
+                </div>
               <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:ZvC11UsergridSDK8Usergrid13isInitializedSb"></a>
-                    <a name="//apple_ref/swift/Variable/isInitialized" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZvC11UsergridSDK8Usergrid13isInitializedSb">isInitialized</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Used to determine if the shared instance of the <code>UsergridClient</code> has been initialized.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="Swift">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">isInitialized</span> <span class="p">:</span> <span class="kt">Bool</span>  <span class="p">{</span> <span class="k">return</span> <span class="kt">Usergrid</span><span class="o">.</span><span class="n">_sharedClient</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:ZvC11UsergridSDK8Usergrid14sharedInstanceCS_14UsergridClient"></a>
-                    <a name="//apple_ref/swift/Variable/sharedInstance" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZvC11UsergridSDK8Usergrid14sharedInstanceCS_14UsergridClient">sharedInstance</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>A shared instance of <code>UsergridClient</code>, used by the <code>Usergrid</code> static methods and acts as the default <code>UsergridClient</code>
-within the UsergridSDK library.</p>
-
-<p>You must call one of the <code>Usergrid.initSharedInstance</code> methods before this or any other <code>Usergrid</code> static methods are valid.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="Swift">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">sharedInstance</span> <span class="p">:</span> <span class="kt">UsergridClient</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
                 <li class="item">
                   <div>
                     <code>
@@ -182,10 +140,7 @@ within the UsergridSDK library.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Initializes the <code>Usergrid.sharedInstance</code> of <code>UsergridClient</code>.
-- parameter orgID: The organization identifier.
-- parameter appID: The application identifier.
-- returns: The shared instance of <code>UsergridClient</code>.</p>
+                        <p>Initializes the <code>Usergrid.sharedInstance</code> of <code>UsergridClient</code>.</p>
 
                       </div>
                       <div class="declaration">
@@ -250,11 +205,7 @@ within the UsergridSDK library.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Initializes the <code>Usergrid.sharedInstance</code> of <code>UsergridClient</code>.
-- parameter orgID: The organization identifier.
-- parameter appID: The application identifier.
-- parameter baseURL: The base URL that all calls will be made with.
-- returns: The shared instance of <code>UsergridClient</code>.</p>
+                        <p>Initializes the <code>Usergrid.sharedInstance</code> of <code>UsergridClient</code>.</p>
 
                       </div>
                       <div class="declaration">
@@ -332,9 +283,7 @@ within the UsergridSDK library.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Initializes the <code>Usergrid.sharedInstance</code> of <code>UsergridClient</code>.
-- parameter configuration: The configuration for the client to be set up with.
-- returns: The shared instance of <code>UsergridClient</code>.</p>
+                        <p>Initializes the <code>Usergrid.sharedInstance</code> of <code>UsergridClient</code>.</p>
 
                       </div>
                       <div class="declaration">
@@ -369,6 +318,74 @@ within the UsergridSDK library.</p>
                         <h4>Return Value</h4>
                         <p>The shared instance of <code>UsergridClient</code>.</p>
 
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+                <div class="task-name-container">
+                  <a name="/Static%20Variables"></a>
+                  <a name="//apple_ref/swift/Section/Static Variables" class="dashAnchor"></a>
+                  <a href="#/Static%20Variables">
+                    <h3 class="section-name">Static Variables</h3>
+                  </a>
+                </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvC11UsergridSDK8Usergrid13isInitializedSb"></a>
+                    <a name="//apple_ref/swift/Variable/isInitialized" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvC11UsergridSDK8Usergrid13isInitializedSb">isInitialized</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Used to determine if the shared instance of the <code>UsergridClient</code> has been initialized.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">isInitialized</span> <span class="p">:</span> <span class="kt">Bool</span>  <span class="p">{</span> <span class="k">return</span> <span class="kt">Usergrid</span><span class="o">.</span><span class="n">_sharedClient</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvC11UsergridSDK8Usergrid14sharedInstanceCS_14UsergridClient"></a>
+                    <a name="//apple_ref/swift/Variable/sharedInstance" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvC11UsergridSDK8Usergrid14sharedInstanceCS_14UsergridClient">sharedInstance</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A shared instance of <code>UsergridClient</code>, used by the <code>Usergrid</code> static methods and acts as the default <code>UsergridClient</code>
+within the UsergridSDK library.</p>
+
+<p>You must call one of the <code>Usergrid.initSharedInstance</code> methods before this or any other <code>Usergrid</code> static methods are valid.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">sharedInstance</span> <span class="p">:</span> <span class="kt">UsergridClient</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -562,6 +579,17 @@ within the UsergridSDK library.</p>
                     </section>
                   </div>
                 </li>
+              </ul>
+            </div>
+            <div class="task-group">
+                <div class="task-name-container">
+                  <a name="/Authorization"></a>
+                  <a name="//apple_ref/swift/Section/Authorization" class="dashAnchor"></a>
+                  <a href="#/Authorization">
+                    <h3 class="section-name">Authorization</h3>
+                  </a>
+                </div>
+              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -890,6 +918,14 @@ within the UsergridSDK library.</p>
                         <p>Undocumented</p>
 
                       </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">class</span> <span class="kt">Usergrid</span><span class="p">:</span> <span class="kt">NSObject</span></code></pre>
+
+                        </div>
+                      </div>
                     </section>
                   </div>
                 </li>
@@ -908,6 +944,14 @@ within the UsergridSDK library.</p>
                       <div class="abstract">
                         <p>Undocumented</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">class</span> <span class="kt">Usergrid</span><span class="p">:</span> <span class="kt">NSObject</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -928,9 +972,28 @@ within the UsergridSDK library.</p>
                         <p>Undocumented</p>
 
                       </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">class</span> <span class="kt">Usergrid</span><span class="p">:</span> <span class="kt">NSObject</span></code></pre>
+
+                        </div>
+                      </div>
                     </section>
                   </div>
                 </li>
+              </ul>
+            </div>
+            <div class="task-group">
+                <div class="task-name-container">
+                  <a name="/GET"></a>
+                  <a name="//apple_ref/swift/Section/GET" class="dashAnchor"></a>
+                  <a href="#/GET">
+                    <h3 class="section-name">GET</h3>
+                  </a>
+                </div>
+              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -1083,6 +1146,17 @@ within the UsergridSDK library.</p>
                     </section>
                   </div>
                 </li>
+              </ul>
+            </div>
+            <div class="task-group">
+                <div class="task-name-container">
+                  <a name="/PUT"></a>
+                  <a name="//apple_ref/swift/Section/PUT" class="dashAnchor"></a>
+                  <a href="#/PUT">
+                    <h3 class="section-name">PUT</h3>
+                  </a>
+                </div>
+              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -1387,6 +1461,17 @@ within the UsergridSDK library.</p>
                     </section>
                   </div>
                 </li>
+              </ul>
+            </div>
+            <div class="task-group">
+                <div class="task-name-container">
+                  <a name="/POST"></a>
+                  <a name="//apple_ref/swift/Section/POST" class="dashAnchor"></a>
+                  <a href="#/POST">
+                    <h3 class="section-name">POST</h3>
+                  </a>
+                </div>
+              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -1753,6 +1838,17 @@ within the UsergridSDK library.</p>
                     </section>
                   </div>
                 </li>
+              </ul>
+            </div>
+            <div class="task-group">
+                <div class="task-name-container">
+                  <a name="/DELETE"></a>
+                  <a name="//apple_ref/swift/Section/DELETE" class="dashAnchor"></a>
+                  <a href="#/DELETE">
+                    <h3 class="section-name">DELETE</h3>
+                  </a>
+                </div>
+              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -1953,6 +2049,17 @@ within the UsergridSDK library.</p>
                     </section>
                   </div>
                 </li>
+              </ul>
+            </div>
+            <div class="task-group">
+                <div class="task-name-container">
+                  <a name="/Connection%20Management"></a>
+                  <a name="//apple_ref/swift/Section/Connection Management" class="dashAnchor"></a>
+                  <a href="#/Connection%20Management">
+                    <h3 class="section-name">Connection Management</h3>
+                  </a>
+                </div>
+              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -2149,9 +2256,28 @@ within the UsergridSDK library.</p>
                         <p>Undocumented</p>
 
                       </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">class</span> <span class="kt">Usergrid</span><span class="p">:</span> <span class="kt">NSObject</span></code></pre>
+
+                        </div>
+                      </div>
                     </section>
                   </div>
                 </li>
+              </ul>
+            </div>
+            <div class="task-group">
+                <div class="task-name-container">
+                  <a name="/Asset%20Management"></a>
+                  <a name="//apple_ref/swift/Section/Asset Management" class="dashAnchor"></a>
+                  <a href="#/Asset%20Management">
+                    <h3 class="section-name">Asset Management</h3>
+                  </a>
+                </div>
+              <ul>
                 <li class="item">
                   <div>
                     <code>

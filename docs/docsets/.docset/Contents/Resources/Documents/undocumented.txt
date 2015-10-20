@@ -141,7 +141,6 @@ UsergridUser.swift
 	public static func fromString(stringValue: String) -> UsergridUserProperties?
 	public var stringValue: String
 Usergrid.swift
-	public class Usergrid: NSObject
 	public static func logoutCurrentUser(completion:UsergridResponseCompletion?)
 	public static func logoutUserAllTokens(uuidOrUsername:String, completion:UsergridResponseCompletion?)
 	public static func logoutUser(uuidOrUsername:String, token:String?, completion:UsergridResponseCompletion?)
@@ -173,19 +172,6 @@ UsergridAsset.swift
 	case Png
 	case Jpeg
 	public var stringValue: String
-	public class UsergridAsset: NSObject
-	public let fileName: String
-	public let assetData: NSData
-	public let originalLocation: String?
-	public var contentType: String
-	public var contentLength: Int { return self.assetData.length }
-	public init(fileName:String? = UsergridAsset.DEFAULT_FILE_NAME, data:NSData, originalLocation:String? = nil, contentType:String)
-	public convenience init?(fileName:String? = UsergridAsset.DEFAULT_FILE_NAME, image:UIImage, imageContentType:UsergridImageContentType = .Png)
-	public convenience init?(var fileName:String? = UsergridAsset.DEFAULT_FILE_NAME, fileURL:NSURL, var contentType:String? = nil)
-	public class UsergridAsset : NSObject
-	public var multiPartHTTPBody: NSData
-	public func multipartRequest(requestURL:NSURL) -> NSMutableURLRequest
-	public func multipartRequestAndBody(requestURL:NSURL) -> (request:NSMutableURLRequest,multipartData:NSData)
 UsergridClient.swift
 	public func logoutCurrentUser(completion:UsergridResponseCompletion?)
 	public func logoutUserAllTokens(uuidOrUsername:String, completion:UsergridResponseCompletion?)
