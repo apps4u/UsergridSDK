@@ -13,7 +13,7 @@
     <a title="UsergridFileMetaData Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (43% documented)</p>
+        <p><a href="../index.html"> Docs</a> (69% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -37,6 +37,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/UsergridAsset.html">UsergridAsset</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/UsergridAuth.html">UsergridAuth</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/UsergridClient.html">UsergridClient</a>
@@ -76,24 +79,22 @@
               <li class="nav-group-task">
                 <a href="../Enums/UsergridImageContentType.html">UsergridImageContentType</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Enums/UsergridQueryOperator.html">UsergridQueryOperator</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/UsergridQuerySortOrder.html">UsergridQuerySortOrder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/UsergridUserProperties.html">UsergridUserProperties</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
           <a href="../Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Extensions/UsergridAuth.html">UsergridAuth</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Extensions/UsergridClient.html">UsergridClient</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
-          <a href="../Protocols.html">Protocols</a>
-            <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a href="../Protocols/UsergridAuth.html">UsergridAuth</a>
               </li>
             </ul>
           </li>
@@ -103,11 +104,24 @@
         <section>
           <section class="section">
             <h1>UsergridFileMetaData</h1>
-            <p>Undocumented</p>
+              <div class="declaration">
+                <div class="Swift">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">UsergridFileMetaData</span> <span class="p">:</span> <span class="kt">NSObject</span></code></pre>
+
+                </div>
+              </div>
+            <p><code>UsergridFileMetaData</code> is a helper class for dealing with reading <code>UsergridEntity</code> file meta data.</p>
 
           </section>
           <section class="section task-group-section">
             <div class="task-group">
+                <div class="task-name-container">
+                  <a name="/Instance%20Properties"></a>
+                  <a name="//apple_ref/swift/Section/Instance Properties" class="dashAnchor"></a>
+                  <a href="#/Instance%20Properties">
+                    <h3 class="section-name">Instance Properties</h3>
+                  </a>
+                </div>
               <ul>
                 <li class="item">
                   <div>
@@ -122,8 +136,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The eTag.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">eTag</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -141,8 +163,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The checkSum.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">checkSum</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -160,8 +190,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The content type of associated with the file data.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">contentType</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -179,8 +217,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The content length of associated with the file data.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">contentLength</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -198,8 +244,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The time stamp for when the file information was last modified.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">lastModifiedTimeStamp</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -217,12 +271,31 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The <code>NSDate</code> for when the file information was last modified.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">lastModifiedDate</span><span class="p">:</span> <span class="kt">NSDate</span><span class="p">?</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
                 </li>
+              </ul>
+            </div>
+            <div class="task-group">
+                <div class="task-name-container">
+                  <a name="/Initialization"></a>
+                  <a name="//apple_ref/swift/Section/Initialization" class="dashAnchor"></a>
+                  <a href="#/Initialization">
+                    <h3 class="section-name">Initialization</h3>
+                  </a>
+                </div>
+              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -236,7 +309,40 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Designated initializer for <code>UsergridFileMetaData</code> objects.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">fileMetaDataJSON</span><span class="p">:[</span><span class="kt">String</span><span class="p">:</span><span class="kt">AnyObject</span><span class="p">])</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>fileMetaDataJSON</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The file meta data JSON dictionary.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A new instance of <code>UsergridFileMetaData</code>.</p>
 
                       </div>
                     </section>
@@ -247,7 +353,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2015 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2015-10-20)</p>
+          <p>&copy; 2015 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2015-10-21)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.3.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

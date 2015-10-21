@@ -25,9 +25,32 @@ public typealias UsergridAssetDownloadCompletion = (asset:UsergridAsset?, error:
     }
 }
 
-/// A container for assets which are connected to `UsergridEntity` objects.
+/**
+As Usergrid supports storing binary assets, the SDKs are designed to make uploading assets easier and more robust. Attaching, uploading, and downloading assets is handled by the `UsergridEntity` class.
+
+Unless defined, whenever possible, the content-type will be inferred from the data provided, and the attached file (if not already a byte-array representation) will be binary-encoded.
+*/
 public class UsergridAsset: NSObject {
 
+    private static let DEFAULT_FILE_NAME = "file"
+
+    // MARK: - Instance Properties -
+
+    /// The filename to be used in the multipart/form-data request.
+    public let fileName: String
+
+    /// Binary representation of asset data. If an image or image path was passed on initialization of the `UsergridAsset`.
+    public let assetData: NSData
+
+    /// A representation of the folder location the asset was loaded from, if it was provided in the initialization.
+    public let originalLocation: String?
+
+    /// The Content-type of the asset to be used when defining content-type inside the multipart/form-data request.
+    public var contentType: String
+
+    ///  The content length of the assets data.
+    public var contentLength: Int { return self.assetData.length }
+    
     // MARK: - Initialization -
 
     /**
@@ -97,24 +120,49 @@ public class UsergridAsset: NSObject {
         }
     }
 
-    private static let DEFAULT_FILE_NAME = "file"
+    //MARK: - MultiPart Creation -
 
-    // MARK: - Instance Properties -
+    /// A constructed multipart http body for requests to upload.
+    var multiPartHTTPBody: NSData {
+        let httpBodyString = UsergridAsset.MULTIPART_START +
+            "\(UsergridAsset.CONTENT_DISPOSITION):\(UsergridAsset.FORM_DATA); name=file; filename=\(self.fileName)\r\n" +
+            "\(UsergridRequestManager.CONTENT_TYPE): \(self.contentType)\r\n\r\n" as NSString
 
-    /// The assets file name.
-    public let fileName: String
+        let assetBodyData = self.assetData
 
-    /// The assets file data.
-    public let assetData: NSData
+        let httpBody = NSMutableData()
+        httpBody.appendData(httpBodyString.dataUsingEncoding(NSUTF8StringEncoding)!)
+        httpBody.appendData(assetBodyData)
+        httpBody.appendData(UsergridAsset.MULTIPART_END.dataUsingEncoding(NSUTF8StringEncoding)!)
 
-    /// The original location of the data.
-    public let originalLocation: String?
+        return httpBody
+    }
 
-    /// The content type of the asset.
-    public var contentType: String
+    /**
+    Generates a `NSMutableURLRequest` object based on the passed in requestURL and the assets current properties.
 
-    ///  The content length of the assets data.
-    public var contentLength: Int { return self.assetData.length }
+    - parameter requestURL: The requests URL.
+
+    - returns: The created `NSMutableURLRequest` object.
+    */
+    func multipartRequest(requestURL:NSURL) -> NSMutableURLRequest {
+        let request = NSMutableURLRequest(URL: requestURL)
+        request.HTTPMethod = UsergridHttpMethod.PUT.rawValue
+        request.setValue(UsergridAsset.ASSET_UPLOAD_CONTENT_HEADER, forHTTPHeaderField: UsergridRequestManager.CONTENT_TYPE)
+        request.setValue(String(format: "%lu", self.multiPartHTTPBody.length), forHTTPHeaderField: UsergridRequestManager.CONTENT_LENGTH)
+        return request
+    }
+
+    /**
+    Creates and returns both the `NSMutableURLRequest` object as well as the multiPartHTTPBody in a tuple.
+
+    - parameter requestURL: The requests URL.
+
+    - returns: The tuple containing the request and httpBody.
+    */
+    func multipartRequestAndBody(requestURL:NSURL) -> (request:NSMutableURLRequest,multipartData:NSData) {
+        return (self.multipartRequest(requestURL),self.multiPartHTTPBody)
+    }
 
     private static func MIMEType(fileURL: NSURL) -> String? {
         if let pathExtension = fileURL.pathExtension {
@@ -137,48 +185,4 @@ public class UsergridAsset: NSObject {
     private static let MULTIPART_START = "--\(UsergridAsset.ASSET_UPLOAD_BOUNDARY)\r\n"
     private static let MULTIPART_END = "\r\n--\(UsergridAsset.ASSET_UPLOAD_BOUNDARY)--\r\n" as NSString
     private static let FORM_DATA = "form-data"
-
-    //MARK: - MultiPart Creation -
-
-    /// A constructed multipart http body for requests to upload.
-    public var multiPartHTTPBody: NSData {
-        let httpBodyString = UsergridAsset.MULTIPART_START +
-            "\(UsergridAsset.CONTENT_DISPOSITION):\(UsergridAsset.FORM_DATA); name=file; filename=\(self.fileName)\r\n" +
-            "\(UsergridRequestManager.CONTENT_TYPE): \(self.contentType)\r\n\r\n" as NSString
-
-        let assetBodyData = self.assetData
-
-        let httpBody = NSMutableData()
-        httpBody.appendData(httpBodyString.dataUsingEncoding(NSUTF8StringEncoding)!)
-        httpBody.appendData(assetBodyData)
-        httpBody.appendData(UsergridAsset.MULTIPART_END.dataUsingEncoding(NSUTF8StringEncoding)!)
-
-        return httpBody
-    }
-
-    /**
-    Generates a `NSMutableURLRequest` object based on the passed in requestURL and the assets current properties.
-
-    - parameter requestURL: The requests URL.
-
-    - returns: The created `NSMutableURLRequest` object.
-    */
-    public func multipartRequest(requestURL:NSURL) -> NSMutableURLRequest {
-        let request = NSMutableURLRequest(URL: requestURL)
-        request.HTTPMethod = UsergridHttpMethod.PUT.rawValue
-        request.setValue(UsergridAsset.ASSET_UPLOAD_CONTENT_HEADER, forHTTPHeaderField: UsergridRequestManager.CONTENT_TYPE)
-        request.setValue(String(format: "%lu", self.multiPartHTTPBody.length), forHTTPHeaderField: UsergridRequestManager.CONTENT_LENGTH)
-        return request
-    }
-
-    /**
-    Creates and returns both the `NSMutableURLRequest` object as well as the multiPartHTTPBody in a tuple.
-
-    - parameter requestURL: The requests URL.
-
-    - returns: The tuple containing the request and httpBody.
-    */
-    public func multipartRequestAndBody(requestURL:NSURL) -> (request:NSMutableURLRequest,multipartData:NSData) {
-        return (self.multipartRequest(requestURL),self.multiPartHTTPBody)
-    }
 }

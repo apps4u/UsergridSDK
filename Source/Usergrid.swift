@@ -20,6 +20,46 @@ public class Usergrid: NSObject {
 
     internal static var _sharedClient : UsergridClient!
 
+    // MARK: - Static Variables -
+
+    /// Used to determine if the shared instance of the `UsergridClient` has been initialized.
+    public static var isInitialized : Bool  { return Usergrid._sharedClient != nil }
+
+    /**
+    A shared instance of `UsergridClient`, used by the `Usergrid` static methods and acts as the default `UsergridClient`
+    within the UsergridSDK library.
+
+    You must call one of the `Usergrid.initSharedInstance` methods before this or any other `Usergrid` static methods are valid.
+    */
+    public static var sharedInstance : UsergridClient {
+        assert(Usergrid.isInitialized, "Usergrid shared instance is not initalized!")
+        return Usergrid._sharedClient
+    }
+
+    /// The application identifier the shared instance of `UsergridClient`.
+    public static var appID : String { return Usergrid.sharedInstance.appID }
+
+    /// The organization identifier of the shared instance of `UsergridClient`.
+    public static var orgID : String { return Usergrid.sharedInstance.orgID }
+
+    /// The base URL that all calls will be made with of the shared instance of `UsergridClient`.
+    public static var baseURL : String { return Usergrid.sharedInstance.baseURL }
+
+    /// The constructed URL string based on the `UsergridClient`'s baseURL, orgID, and appID of the shared instance of `UsergridClient`.
+    public static var clientAppURL : String { return Usergrid.sharedInstance.clientAppURL }
+
+    /// The currently logged in `UsergridUser` of the shared instance of `UsergridClient`.
+    public static var currentUser: UsergridUser?  { return Usergrid.sharedInstance.currentUser }
+
+    /// The `UsergridUserAuth` which consists of the token information from the `currentUser` property of the shared instance of `UsergridClient`.
+    public static var userAuth: UsergridUserAuth?  { return Usergrid.sharedInstance.userAuth }
+
+    /// The application level `UsergridAppAuth` object of the shared instance of `UsergridClient`.
+    public static var appAuth: UsergridAppAuth?  {
+        get{ return Usergrid.sharedInstance.appAuth }
+        set{ Usergrid.sharedInstance.appAuth = appAuth }
+    }
+
     // MARK: - Initialization -
 
     /**
@@ -73,46 +113,6 @@ public class Usergrid: NSObject {
         return Usergrid._sharedClient
     }
 
-    // MARK: - Static Variables -
-
-    /// Used to determine if the shared instance of the `UsergridClient` has been initialized.
-    public static var isInitialized : Bool  { return Usergrid._sharedClient != nil }
-
-    /**
-    A shared instance of `UsergridClient`, used by the `Usergrid` static methods and acts as the default `UsergridClient`
-    within the UsergridSDK library.
-
-    You must call one of the `Usergrid.initSharedInstance` methods before this or any other `Usergrid` static methods are valid.
-    */
-    public static var sharedInstance : UsergridClient {
-        assert(Usergrid.isInitialized, "Usergrid shared instance is not initalized!")
-        return Usergrid._sharedClient
-    }
-
-    /// The application identifier the shared instance of `UsergridClient`.
-    public static var appID : String { return Usergrid.sharedInstance.appID }
-
-    /// The organization identifier of the shared instance of `UsergridClient`.
-    public static var orgID : String { return Usergrid.sharedInstance.orgID }
-
-    /// The base URL that all calls will be made with of the shared instance of `UsergridClient`.
-    public static var baseURL : String { return Usergrid.sharedInstance.baseURL }
-
-    /// The constructed URL string based on the `UsergridClient`'s baseURL, orgID, and appID of the shared instance of `UsergridClient`.
-    public static var clientAppURL : String { return Usergrid.sharedInstance.clientAppURL }
-
-    /// The currently logged in `UsergridUser` of the shared instance of `UsergridClient`.
-    public static var currentUser: UsergridUser?  { return Usergrid.sharedInstance.currentUser }
-
-    /// The `UsergridUserAuth` which consists of the token information from the `currentUser` property of the shared instance of `UsergridClient`.
-    public static var userAuth: UsergridUserAuth?  { return Usergrid.sharedInstance.userAuth }
-
-    /// The application level `UsergridAppAuth` object of the shared instance of `UsergridClient`.
-    public static var appAuth: UsergridAppAuth?  {
-        get{ return Usergrid.sharedInstance.appAuth }
-        set{ Usergrid.sharedInstance.appAuth = appAuth }
-    }
-
     // MARK: - Authorization -
 
     /// The `UsergridAuthFallback` value used to determine what type of token will be sent of the shared instance of `UsergridClient`, if any.
@@ -127,6 +127,7 @@ public class Usergrid: NSObject {
     If there is a `UsergridUser` logged in and the token of that user is valid then it will return that.
 
     Otherwise, if the `authFallback` is `.App`, and the `UsergridAppAuth` of the client is set and the token is valid it will return that.
+
     - returns: The `UsergridAuth` if one is found or nil if not.
     */
     public static func authForRequests() -> UsergridAuth? {
@@ -135,6 +136,7 @@ public class Usergrid: NSObject {
 
     /**
     Authenticates with the `UsergridAppAuth` that is contained within the shared instance of `UsergridCient`.
+
     - parameter completion: The completion block that will be called after authentication has completed.
     */
     public static func authenticateApp(completion: UsergridAppAuthCompletionBlock?) {
@@ -143,6 +145,7 @@ public class Usergrid: NSObject {
 
     /**
     Authenticates with the `UsergridAppAuth` that is passed in using the shared instance of `UsergridCient`.
+
     - parameter auth: The `UsergridAppAuth` that will be authenticated.
     - parameter completion: The completion block that will be called after authentication has completed.
     */
@@ -152,6 +155,7 @@ public class Usergrid: NSObject {
 
     /**
     Authenticates with the `UsergridUserAuth` that is passed in using the shared instance of `UsergridCient`.
+
     - parameter auth: The `UsergridUserAuth` that will be authenticated.
     - parameter completion: The completion block that will be called after authentication has completed.
     */
@@ -161,6 +165,7 @@ public class Usergrid: NSObject {
 
     /**
     Authenticates with the `UsergridUserAuth` that is passed in using the shared instance of `UsergridCient`.
+
     - parameter auth: The `UsergridUserAuth` that will be authenticated.
     - parameter setAsCurrentUser: If the authenticated user should be set as the `UsergridClient.currentUser`.
     - parameter completion: The completion block that will be called after authentication has completed.
@@ -188,6 +193,7 @@ public class Usergrid: NSObject {
 
     /**
     Gets a single `UsergridEntity` of a given type with a specific UUID/name using the shared instance of `UsergridCient`.
+
     - parameter type: The `UsergridEntity` type.
     - parameter uuidOrName: The UUID or name of the `UsergridEntity`.
     - parameter completion: The completion block that will be called once the request has completed.
@@ -198,6 +204,7 @@ public class Usergrid: NSObject {
 
     /**
     Gets a group of `UsergridEntity` objects of a given type with an optional query using the shared instance of `UsergridCient`.
+
     - parameter type: The `UsergridEntity` type.
     - parameter query: The optional query to use when gathering `UsergridEntity` objects.
     - parameter completion: The completion block that will be called once the request has completed.
@@ -210,6 +217,7 @@ public class Usergrid: NSObject {
 
     /**
     Updates an `UsergridEntity` with the given type and UUID/name specified using the passed in jsonBody using the shared instance of `UsergridCient`.
+
     - parameter type: The `UsergridEntity` type.
     - parameter uuidOrName: The UUID or name of the `UsergridEntity`.
     - parameter jsonBody: The valid JSON body dictionary to update the `UsergridEntity` with.
@@ -221,6 +229,7 @@ public class Usergrid: NSObject {
 
     /**
     Updates an `UsergridEntity` with the given type using the jsonBody where the UUID/name is specified inside of the jsonBody using the shared instance of `UsergridCient`.
+
     - parameter type: The `UsergridEntity` type.
     - parameter jsonBody: The valid JSON body dictionary to update the `UsergridEntity` with.
     - parameter completion: The completion block that will be called once the request has completed.
@@ -231,6 +240,7 @@ public class Usergrid: NSObject {
 
     /**
     Updates the passed in `UsergridEntity` using the shared instance of `UsergridCient`.
+
     - parameter entity: The `UsergridEntity` to update.
     - parameter completion: The completion block that will be called once the request has completed.
     */
@@ -240,9 +250,10 @@ public class Usergrid: NSObject {
 
     /**
     Updates the entities that fit the given query using the passed in jsonBody using the shared instance of `UsergridCient`.
+
     - parameter query: The query to use when filtering what entities to update.
     - parameter jsonBody: The valid JSON body dictionary to update with.
-    - parameter completion: The completion block that will be called once the request has completed.
+    - parameter queryCompletion: The completion block that will be called once the request has completed.
     */
     public static func PUT(query: UsergridQuery, jsonBody:[String:AnyObject], queryCompletion: UsergridResponseCompletion?) {
         Usergrid.sharedInstance.PUT(query, jsonBody: jsonBody, queryCompletion: queryCompletion)
@@ -252,6 +263,7 @@ public class Usergrid: NSObject {
 
     /**
     Creates and posts an `UsergridEntity` of the given type with a given name and the given jsonBody using the shared instance of `UsergridCient`.
+
     - parameter type: The `UsergridEntity` type.
     - parameter name: The name of the `UsergridEntity`.
     - parameter jsonBody: The valid JSON body dictionary to use when creating the `UsergridEntity`.
@@ -263,6 +275,7 @@ public class Usergrid: NSObject {
 
     /**
     Creates and posts an `UsergridEntity` of the given type with the given jsonBody using the shared instance of `UsergridCient`.
+
     - parameter type: The `UsergridEntity` type.
     - parameter jsonBody: The valid JSON body dictionary to use when creating the `UsergridEntity`.
     - parameter completion: The completion block that will be called once the request has completed.
@@ -273,6 +286,7 @@ public class Usergrid: NSObject {
 
     /**
     Creates and posts an array of `Entity` objects while assinging the given type to them using the shared instance of `UsergridCient`.
+
     - parameter type: The `UsergridEntity` type.
     - parameter jsonBody: The valid JSON body dictionaries to use when creating the `UsergridEntity` objects.
     - parameter completion: The completion block that will be called once the request has completed.
@@ -283,6 +297,7 @@ public class Usergrid: NSObject {
 
     /**
     Creates and posts creates an `UsergridEntity` using the shared instance of `UsergridCient`.
+
     - parameter entity: The `UsergridEntity` to create.
     - parameter completion: The completion block that will be called once the request has completed.
     */
@@ -296,7 +311,7 @@ public class Usergrid: NSObject {
     Each `UsergridEntity` in the array much already have a type assinged using the shared instance of `UsergridClient`.
     
     - parameter entities: The `UsergridEntity` objects to create.
-    - parameter completion: The completion block that will be called once the request has completed.
+    - parameter entitiesCompletion: The completion block that will be called once the request has completed.
     */
     public static func POST(entities:[UsergridEntity], entitiesCompletion: UsergridResponseCompletion?) {
         Usergrid.sharedInstance.POST(entities, entitiesCompletion: entitiesCompletion)
@@ -306,6 +321,7 @@ public class Usergrid: NSObject {
 
     /**
     Destroys the `UsergridEntity` of a given type with a specific UUID/name using the shared instance of `UsergridCient`.
+
     - parameter type: The `UsergridEntity` type.
     - parameter uuidOrName: The UUID or name of the `UsergridEntity`.
     - parameter completion: The completion block that will be called once the request has completed.
@@ -316,6 +332,7 @@ public class Usergrid: NSObject {
 
     /**
     Destroys the passed `UsergridEntity` using the shared instance of `UsergridCient`.
+
     - parameter entity: The `UsergridEntity` to delete.
     - parameter completion: The completion block that will be called once the request has completed.
     */
@@ -325,8 +342,9 @@ public class Usergrid: NSObject {
 
     /**
     Destroys the `UsergridEntity` objects that fit the given `UsergridQuery` using the shared instance of `UsergridCient`.
+
     - parameter query: The query to use when filtering what entities to delete.
-    - parameter completion: The completion block that will be called once the request has completed.
+    - parameter queryCompletion: The completion block that will be called once the request has completed.
     */
     public static func DELETE(query:UsergridQuery, queryCompletion: UsergridResponseCompletion?) {
         Usergrid.sharedInstance.DELETE(query, queryCompletion:queryCompletion)
@@ -336,6 +354,7 @@ public class Usergrid: NSObject {
 
     /**
     Connects the `UsergridEntity` objects via the relationship using the shared instance of `UsergridCient`.
+
     - parameter entity: The entity that will contain the connection.
     - parameter relationship: The relationship of the two entities.
     - parameter connectingEntity: The entity which is connected.
@@ -347,6 +366,7 @@ public class Usergrid: NSObject {
 
     /**
     Disconnects the `UsergridEntity` objects via the relationship using the shared instance of `UsergridCient`.
+
     - parameter entity: The entity that contains the connection.
     - parameter relationship: The relationship of the two entities.
     - parameter connectingEntity: The entity which is connected.
@@ -365,6 +385,7 @@ public class Usergrid: NSObject {
 
     /**
     Uploads the asset and connects the data to the given `UsergridEntity` using the shared instance of `UsergridCient`.
+
     - parameter entity: The entity to connect the asset to.
     - parameter asset: The asset to upload.
     - parameter progress: The progress block that will be called to update the progress of the upload.
@@ -376,6 +397,7 @@ public class Usergrid: NSObject {
 
     /**
     Downloads the asset from the given `UsergridEntity` using the shared instance of `UsergridCient`.
+
     - parameter entity: The entity to which the asset to.
     - parameter contentType: The content type of the asset's data.
     - parameter progress: The progress block that will be called to update the progress of the download.

@@ -97,15 +97,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		63A7F2631BC4278C00596156 /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				63A7F2641BC429DE00596156 /* UsergridExtensions.swift */,
-				63A7F2611BC4278200596156 /* UsergridFileMetaData.swift */,
-			);
-			name = Helpers;
-			sourceTree = "<group>";
-		};
 		63AF0E7E1BBC38FB009D4196 = {
 			isa = PBXGroup;
 			children = (
@@ -149,10 +140,11 @@
 		63AF0F551BBC4F67009D4196 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				63A7F2631BC4278C00596156 /* Helpers */,
 				63AF0F401BBC4EF6009D4196 /* UsergridAsset.swift */,
 				63AF0F411BBC4EF6009D4196 /* UsergridAuth.swift */,
 				63AF0F431BBC4EF6009D4196 /* UsergridEntity.swift */,
+				63A7F2641BC429DE00596156 /* UsergridExtensions.swift */,
+				63A7F2611BC4278200596156 /* UsergridFileMetaData.swift */,
 				63AF0F441BBC4EF6009D4196 /* UsergridQuery.swift */,
 				63AF0F461BBC4EF6009D4196 /* UsergridResponse.swift */,
 				63AF0F481BBC4EF6009D4196 /* UsergridUser.swift */,

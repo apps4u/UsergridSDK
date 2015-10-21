@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension NSDate {
+internal extension NSDate {
     convenience init(utcTimeStamp: String) {
         self.init(timeIntervalSince1970: (utcTimeStamp as NSString).doubleValue / 1000 )
     }

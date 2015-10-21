@@ -1,88 +1,4 @@
-UsergridClientConfig.swift
-	public class UsergridClientConfig : NSObject
-	public let orgID : String
-	public let appID : String
-	public var baseURL: String = UsergridClient.DEFAULT_BASE_URL
-	public var authFallback: UsergridAuthFallback = .None
-	public var appAuth: UsergridAppAuth?
-	public init(orgID: String, appID: String)
-	public convenience init(orgID: String, appID: String, baseURL:String)
-	public convenience init(orgID: String, appID: String, baseURL:String, authFallback:UsergridAuthFallback, appAuth:UsergridAppAuth? = nil)
-UsergridAuth.swift
-	@objc public enum UsergridAuthFallback : Int
-	case None
-	case App
-	public protocol UsergridAuth
-	var accessToken: String? { get set }
-	var expiresIn: Int?  { get set }
-	var hasToken: Bool { get }
-	var tokenIsValid: Bool { get }
-	var isExpired: Bool { get }
-	var jsonBodyDict: [String:AnyObject] { get }
-	func buildAuthRequest(requestURL:String) -> NSURLRequest
-	public protocol UsergridAuth
-	public var hasToken: Bool { return self.accessToken != nil }
-	public var tokenIsValid : Bool { return self.hasToken && !self.isExpired }
-	public var isExpired: Bool
-	public func buildAuthRequest(baseURL:String) -> NSURLRequest
-	public class UsergridUserAuth : NSObject, UsergridAuth
-	public var accessToken : String?
-	public var expiresIn : Int?
-	public let username: String
-	public let password: String
-	public var jsonBodyDict: [String:AnyObject]
-	public init(username:String, password: String)
-	public class func auth(username username:String, password: String) -> UsergridUserAuth
-	public class UsergridAppAuth : NSObject, UsergridAuth
-	public var accessToken : String?
-	public var expiresIn : Int?
-	public let clientID: String
-	public let clientSecret: String
-	public var jsonBodyDict: [String:AnyObject]
-	public init(clientID:String,clientSecret:String)
-	public class func auth(clientID clientID:String,clientSecret:String) -> UsergridAppAuth
-UsergridFileMetaData.swift
-	public class UsergridFileMetaData : NSObject
-	public let eTag: String?
-	public let checkSum: String?
-	public let contentType: String?
-	public let contentLength: Int
-	public let lastModifiedTimeStamp: Int
-	public let lastModifiedDate: NSDate?
-	public init(fileMetaDataJSON:[String:AnyObject])
 UsergridQuery.swift
-	public class UsergridQuery : NSObject,NSCopying
-	public init(_ collectionName: String? = nil)
-	public func copyWithZone(zone: NSZone) -> AnyObject
-	public func build(autoURLEncode: Bool = true) -> String
-	public func containsString(term: String, value: String) -> Self { return self.containsWord(term, value: value) }
-	public func containsWord(term: String, value: String) -> Self { return self.addRequirement(term + UsergridQuery.SPACE + UsergridQuery.CONTAINS + UsergridQuery.SPACE + UsergridQuery.APOSTROPHE + value + UsergridQuery.APOSTROPHE) }
-	public func ascending(term: String) -> Self { return self.asc(term) }
-	public func asc(term: String) -> Self { return self.sort(term, sortOrder: UsergridQuerySortOrder.Asc) }
-	public func descending(term: String) -> Self { return self.desc(term) }
-	public func desc(term: String) -> Self { return self.sort(term, sortOrder: UsergridQuerySortOrder.Desc) }
-	public func filter(term: String, value: AnyObject) -> Self { return self.eq(term, value: value) }
-	public func equals(term: String, value: AnyObject) -> Self { return self.eq(term, value: value) }
-	public func eq(term: String, value: AnyObject) -> Self { return self.addOperationRequirement(term, operation:.Equal, value: value) }
-	public func greaterThan(term: String, value: AnyObject) -> Self { return self.gt(term, value: value) }
-	public func gt(term: String, value: AnyObject) -> Self { return self.addOperationRequirement(term, operation:.GreaterThan, value: value) }
-	public func greaterThanOrEqual(term: String, value: AnyObject) -> Self { return self.gte(term, value: value) }
-	public func gte(term: String, value: AnyObject) -> Self { return self.addOperationRequirement(term, operation:.GreaterThanEqualTo, value: value) }
-	public func lessThan(term: String, value: AnyObject) -> Self { return self.lt(term, value: value) }
-	public func lt(term: String, value: AnyObject) -> Self { return self.addOperationRequirement(term, operation:.LessThan, value: value) }
-	public func lessThanOrEqual(term: String, value: AnyObject) -> Self { return self.lte(term, value: value) }
-	public func lte(term: String, value: AnyObject) -> Self { return self.addOperationRequirement(term, operation:.LessThanEqualTo, value: value) }
-	public func withinLocation(distance: Float, latitude: Float, longitude: Float) -> Self
-	public func or() -> Self
-	public func sort(term: String, sortOrder: UsergridQuerySortOrder) -> Self
-	public func collection(collectionName: String) -> Self
-	public func limit(limit: Int) -> Self
-	public func ql(value: String) -> Self
-	public func cursor(value: String?) -> Self
-	public func urlTerm(term: String, equalsValue: String) -> Self
-	public func addOperationRequirement(term: String, operation: UsergridQueryOperator, stringValue: String) -> Self
-	public func addOperationRequirement(term: String, operation: UsergridQueryOperator, intValue: Int) -> Self
-	@objc public enum UsergridQueryOperator: Int
 	case Equal; case GreaterThan; case GreaterThanEqualTo; case LessThan; case LessThanEqualTo
 	case Equal; case GreaterThan; case GreaterThanEqualTo; case LessThan; case LessThanEqualTo
 	case Equal; case GreaterThan; case GreaterThanEqualTo; case LessThan; case LessThanEqualTo
@@ -90,13 +6,11 @@ UsergridQuery.swift
 	case Equal; case GreaterThan; case GreaterThanEqualTo; case LessThan; case LessThanEqualTo
 	public static func fromString(stringValue: String) -> UsergridQueryOperator?
 	public var stringValue: String
-	@objc public enum UsergridQuerySortOrder: Int
 	case Asc
 	case Desc
 	public static func fromString(stringValue: String) -> UsergridQuerySortOrder?
 	public var stringValue: String
 UsergridEntity.swift
-	public class UsergridEntity: NSObject
 	public init(type:String, name:String? = nil, propertyDict:[String:AnyObject]? = nil)
 	public class func entity(jsonDict jsonDict: [String:AnyObject]) -> UsergridEntity?
 	case EntityType

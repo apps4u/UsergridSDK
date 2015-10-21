@@ -10,6 +10,8 @@ import Foundation
 
 public class UsergridUser : UsergridEntity {
 
+    static let USER_ENTITY_TYPE = "user"
+
     public var auth: UsergridUserAuth?
 
     // Users can change their name property, which is different from other entity types, which is why we provide a getter here.
@@ -119,44 +121,42 @@ public class UsergridUser : UsergridEntity {
             super[propertyName] = propertyValue
         }
     }
+}
 
-    static let USER_ENTITY_TYPE = "user"
-    
-    private static let NAME = "name"
-    private static let USERNAME = "username"
-    private static let PASSWORD = "password"
-    private static let EMAIL = "email"
-    private static let AGE = "age"
-    private static let ACTIVATED = "activated"
-    private static let DISABLED = "disabled"
-    private static let PICTURE = "picture"
+private let NAME = "name"
+private let USERNAME = "username"
+private let PASSWORD = "password"
+private let EMAIL = "email"
+private let AGE = "age"
+private let ACTIVATED = "activated"
+private let DISABLED = "disabled"
+private let PICTURE = "picture"
 
-    @objc public enum UsergridUserProperties: Int {
-        case Name; case Username; case Password; case Email; case Age; case Activated; case Disabled; case Picture
-        public static func fromString(stringValue: String) -> UsergridUserProperties? {
-            switch stringValue.lowercaseString {
-                case UsergridUser.NAME: return .Name
-                case UsergridUser.USERNAME: return .Username
-                case UsergridUser.PASSWORD: return .Password
-                case UsergridUser.EMAIL: return .Email
-                case UsergridUser.AGE: return .Age
-                case UsergridUser.ACTIVATED: return .Activated
-                case UsergridUser.DISABLED: return .Disabled
-                case UsergridUser.PICTURE: return .Picture
-                default: return nil
-            }
+@objc public enum UsergridUserProperties: Int {
+    case Name; case Username; case Password; case Email; case Age; case Activated; case Disabled; case Picture
+    public static func fromString(stringValue: String) -> UsergridUserProperties? {
+        switch stringValue.lowercaseString {
+        case NAME: return .Name
+        case USERNAME: return .Username
+        case PASSWORD: return .Password
+        case EMAIL: return .Email
+        case AGE: return .Age
+        case ACTIVATED: return .Activated
+        case DISABLED: return .Disabled
+        case PICTURE: return .Picture
+        default: return nil
         }
-        public var stringValue: String {
-            switch self {
-                case .Name: return UsergridUser.NAME
-                case .Username: return UsergridUser.USERNAME
-                case .Password: return UsergridUser.PASSWORD
-                case .Email: return UsergridUser.EMAIL
-                case .Age: return UsergridUser.AGE
-                case .Activated: return UsergridUser.ACTIVATED
-                case .Disabled: return UsergridUser.DISABLED
-                case .Picture: return UsergridUser.PICTURE
-            }
+    }
+    public var stringValue: String {
+        switch self {
+        case .Name: return NAME
+        case .Username: return USERNAME
+        case .Password: return PASSWORD
+        case .Email: return EMAIL
+        case .Age: return AGE
+        case .Activated: return ACTIVATED
+        case .Disabled: return DISABLED
+        case .Picture: return PICTURE
         }
     }
 }

@@ -8,8 +8,40 @@
 
 import Foundation
 
-/// Responsible for handling all network work by exposing helper methods that make it easier to interact with Usergrid's API.
+/**
+The `UsergridClient` class is the base handler for making client connections to and managing relationships with Usergrid's API.
+*/
 public class UsergridClient: NSObject {
+
+    static let DEFAULT_BASE_URL = "https://api.usergrid.com"
+
+    // MARK: - Instance Properties -
+
+    lazy private var _requestManager: UsergridRequestManager = UsergridRequestManager(client: self)
+
+    /// The application identifier.
+    public let appID : String
+
+    /// The organization identifier.
+    public let orgID : String
+
+    /// The base URL that all calls will be made with.
+    public let baseURL : String
+
+    /// The constructed URL string based on the `UsergridClient`'s `baseURL`, `orgID`, and `appID`.
+    public var clientAppURL : String { return "\(baseURL)/\(orgID)/\(appID)" }
+
+    /// The currently logged in `UsergridUser`.
+    internal(set) public var currentUser: UsergridUser? = nil
+
+    /// The `UsergridUserAuth` which consists of the token information from the `currentUser` property.
+    public var userAuth: UsergridUserAuth? { return currentUser?.auth }
+
+    /// The application level `UsergridAppAuth` object.  Can be set manually but must call `authenticateApp` to retrive token.
+    public var appAuth: UsergridAppAuth? = nil
+
+    /// The `UsergridAuthFallback` value used to determine what type of token will be sent, if any.
+    public var authFallback: UsergridAuthFallback = .App
 
     // MARK: - Initialization -
 
@@ -56,36 +88,6 @@ public class UsergridClient: NSObject {
         self.authFallback = configuration.authFallback
         self.appAuth = configuration.appAuth
     }
-
-    static let DEFAULT_BASE_URL = "https://api.usergrid.com"
-
-    // MARK: - Instance Properties -
-
-    lazy private var _requestManager: UsergridRequestManager = UsergridRequestManager(client: self)
-
-    /// The application identifier.
-    public let appID : String
-
-    /// The organization identifier.
-    public let orgID : String
-
-    /// The base URL that all calls will be made with.
-    public let baseURL : String
-
-    /// The constructed URL string based on the `UsergridClient`'s `baseURL`, `orgID`, and `appID`.
-    public var clientAppURL : String { return "\(baseURL)/\(orgID)/\(appID)" }
-
-    /// The currently logged in `UsergridUser`.
-    internal(set) public var currentUser: UsergridUser? = nil
-
-    /// The `UsergridUserAuth` which consists of the token information from the `currentUser` property.
-    public var userAuth: UsergridUserAuth? { return currentUser?.auth }
-
-    /// The application level `UsergridAppAuth` object.  Can be set manually but must call `authenticateApp` to retrive token.
-    public var appAuth: UsergridAppAuth? = nil
-
-    /// The `UsergridAuthFallback` value used to determine what type of token will be sent, if any.
-    public var authFallback: UsergridAuthFallback = .App
 }
 
 extension UsergridClient {

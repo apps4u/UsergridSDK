@@ -9,8 +9,68 @@
 import Foundation
 import CoreLocation
 
+/**
+`UsergridEntity` is the base class that contains a single Usergrid entity. 
+
+`UsergridEntity` maintains a set of accessor properties for standard Usergrid schema properties (e.g. name, uuid), and supports helper methods for accessing any custom properties that might exist.
+*/
 public class UsergridEntity: NSObject {
 
+    // MARK: - Instance Properties -
+
+    /// The property dictionary that stores the properties values of the `UsergridEntity` object.
+    var properties: [String : AnyObject] {
+        didSet {
+            if let fileMetaData = properties.removeValueForKey(UsergridFileMetaData.FILE_METADATA) as? [String:AnyObject] {
+                self.fileMetaData = UsergridFileMetaData(fileMetaDataJSON: fileMetaData)
+            } else {
+                self.fileMetaData = nil
+            }
+        }
+    }
+
+    /// The `UsergridAsset` that contains the asset data.
+    public var asset: UsergridAsset?
+
+    /// The `UsergridFileMetaData` of this `UsergridEntity`.
+    private(set) public var fileMetaData : UsergridFileMetaData?
+
+    /// Property helper method for the `UsergridEntity` objects `UsergridEntityProperties.EntityType`.
+    public var type: String { return self.getEntitySpecificProperty(.EntityType) as! String }
+
+    /// Property helper method for the `UsergridEntity` objects `UsergridEntityProperties.UUID`.
+    public var uuid: String? { return self.getEntitySpecificProperty(.UUID) as? String }
+
+    /// Property helper method for the `UsergridEntity` objects `UsergridEntityProperties.Name`.
+    public var name: String? { return self.getEntitySpecificProperty(.Name) as? String }
+
+    /// Property helper method for the `UsergridEntity` objects `UsergridEntityProperties.Created`.
+    public var created: NSDate? { return self.getEntitySpecificProperty(.Created) as? NSDate }
+
+    /// Property helper method for the `UsergridEntity` objects `UsergridEntityProperties.Modified`.
+    public var modified: NSDate? { return self.getEntitySpecificProperty(.Modified) as? NSDate }
+
+    /// Property helper method for the `UsergridEntity` objects `UsergridEntityProperties.Location`.
+    public var location: CLLocation? {
+        get { return self.getEntitySpecificProperty(.Location) as? CLLocation }
+        set { self[UsergridEntityProperties.Location.stringValue] = newValue }
+    }
+
+    /// Property helper method to get the UUID or name of the `UsergridEntity`.
+    public var uuidOrName: String? { return self.uuid ?? self.name }
+
+    /// Tells you if this `UsergridEntity` has a type of `user`.
+    public var isUser: Bool { return self is UsergridUser || self.type == UsergridUser.USER_ENTITY_TYPE }
+
+    /// Tells you if there is an asset associated with this entity.
+    public var hasAsset: Bool { return self.asset != nil || self.fileMetaData?.contentLength > 0 }
+
+    /// The JSON object value.
+    public var jsonObjectValue : [String:AnyObject] { return self.properties }
+
+    /// The string value.
+    public var stringValue : String { return NSString(data: try! NSJSONSerialization.dataWithJSONObject(self.jsonObjectValue, options: NSJSONWritingOptions.PrettyPrinted), encoding: NSASCIIStringEncoding) as! String }
+    
     // MARK: - Initialization -
 
     /*!
@@ -73,61 +133,6 @@ public class UsergridEntity: NSObject {
         return entityArray
     }
 
-    // MARK: - Instance Properties -
-
-    /// The property dictionary that stores the properties values of the `UsergridEntity` object.
-    var properties: [String : AnyObject] {
-        didSet {
-            if let fileMetaData = properties.removeValueForKey(UsergridFileMetaData.FILE_METADATA) as? [String:AnyObject] {
-                self.fileMetaData = UsergridFileMetaData(fileMetaDataJSON: fileMetaData)
-            } else {
-                self.fileMetaData = nil
-            }
-        }
-    }
-
-    /// The `UsergridAsset` that contains the asset data.
-    public var asset: UsergridAsset?
-
-    /// The `UsergridFileMetaData` of this `UsergridEntity`.
-    private(set) public var fileMetaData : UsergridFileMetaData?
-
-    /// Property helper method for the `UsergridEntity` objects `UsergridEntityProperties.EntityType`.
-    public var type: String { return self.getEntitySpecificProperty(.EntityType) as! String }
-
-    /// Property helper method for the `UsergridEntity` objects `UsergridEntityProperties.UUID`.
-    public var uuid: String? { return self.getEntitySpecificProperty(.UUID) as? String }
-
-    /// Property helper method for the `UsergridEntity` objects `UsergridEntityProperties.Name`.
-    public var name: String? { return self.getEntitySpecificProperty(.Name) as? String }
-
-    /// Property helper method for the `UsergridEntity` objects `UsergridEntityProperties.Created`.
-    public var created: NSDate? { return self.getEntitySpecificProperty(.Created) as? NSDate }
-
-    /// Property helper method for the `UsergridEntity` objects `UsergridEntityProperties.Modified`.
-    public var modified: NSDate? { return self.getEntitySpecificProperty(.Modified) as? NSDate }
-
-    /// Property helper method for the `UsergridEntity` objects `UsergridEntityProperties.Location`.
-    public var location: CLLocation? {
-        get { return self.getEntitySpecificProperty(.Location) as? CLLocation }
-        set { self[UsergridEntityProperties.Location.stringValue] = newValue }
-    }
-
-    /// Property helper method to get the UUID or name of the `UsergridEntity`.
-    public var uuidOrName: String? { return self.uuid ?? self.name }
-
-    /// Tells you if this `UsergridEntity` has a type of `user`.
-    public var isUser: Bool { return self is UsergridUser || self.type == UsergridUser.USER_ENTITY_TYPE }
-
-    /// Tells you if there is an asset associated with this entity.
-    public var hasAsset: Bool { return self.asset != nil || self.fileMetaData?.contentLength > 0 }
-
-    /// The JSON object value.
-    public var jsonObjectValue : [String:AnyObject] { return self.properties }
-
-    /// The string value.
-    public var stringValue : String { return NSString(data: try! NSJSONSerialization.dataWithJSONObject(self.jsonObjectValue, options: NSJSONWritingOptions.PrettyPrinted), encoding: NSASCIIStringEncoding) as! String }
-
     // MARK: - Property Manipulation -
 
     public subscript(propertyName: String) -> AnyObject? {
@@ -149,15 +154,15 @@ public class UsergridEntity: NSObject {
                     if entityProperty.isMutableForEntity(self) {
                         if entityProperty == .Location {
                             if let location = value as? CLLocation {
-                                properties[propertyName] = [UsergridEntity.LATITUDE:location.coordinate.latitude,
-                                                            UsergridEntity.LONGITUDE:location.coordinate.longitude]
+                                properties[propertyName] = [ENTITY_LATITUDE:location.coordinate.latitude,
+                                                            ENTITY_LONGITUDE:location.coordinate.longitude]
                             } else if let location = value as? CLLocationCoordinate2D {
-                                properties[propertyName] = [UsergridEntity.LATITUDE:location.latitude,
-                                                            UsergridEntity.LONGITUDE:location.longitude]
+                                properties[propertyName] = [ENTITY_LATITUDE:location.latitude,
+                                                            ENTITY_LONGITUDE:location.longitude]
                             } else if let location = value as? [String:Double] {
-                                if let lat = location[UsergridEntity.LATITUDE], long = location[UsergridEntity.LONGITUDE] {
-                                    properties[propertyName] = [UsergridEntity.LATITUDE:lat,
-                                                                UsergridEntity.LONGITUDE:long]
+                                if let lat = location[ENTITY_LATITUDE], long = location[ENTITY_LONGITUDE] {
+                                    properties[propertyName] = [ENTITY_LATITUDE:lat,
+                                                                ENTITY_LONGITUDE:long]
                                 }
                             }
                         } else {
@@ -315,7 +320,7 @@ public class UsergridEntity: NSObject {
                 propertyValue = NSDate(utcTimeStamp: utcTimeStamp.description)
             }
         case .Location :
-            if let locationDict = self.properties[entityProperty.stringValue] as? [String:Double], lat = locationDict[UsergridEntity.LATITUDE], long = locationDict[UsergridEntity.LONGITUDE] {
+            if let locationDict = self.properties[entityProperty.stringValue] as? [String:Double], lat = locationDict[ENTITY_LATITUDE], long = locationDict[ENTITY_LONGITUDE] {
                 propertyValue = CLLocation(latitude: lat, longitude: long)
             }
         }
@@ -505,18 +510,18 @@ public class UsergridEntity: NSObject {
     public func getConnectedEntities(client:UsergridClient, relationship:String, completion:UsergridResponseCompletion?) {
         client.getConnectedEntities(self, relationship: relationship, completion: completion)
     }
-
-    private static let TYPE = "type"
-    private static let NAME = "name"
-    private static let UUID = "uuid"
-    private static let CREATED = "created"
-    private static let MODIFIED = "modified"
-    private static let LOCATION = "location"
-
-    // Sub properties of Location
-    private static let LATITUDE = "latitude"
-    private static let LONGITUDE = "longitude"
 }
+
+private let ENTITY_TYPE = "type"
+private let ENTITY_NAME = "name"
+private let ENTITY_UUID = "uuid"
+private let ENTITY_CREATED = "created"
+private let ENTITY_MODIFIED = "modified"
+private let ENTITY_LOCATION = "location"
+
+// Sub properties of Location
+private let ENTITY_LATITUDE = "latitude"
+private let ENTITY_LONGITUDE = "longitude"
 
 /**
 `UsergridEntity` specific properties keys.  Note that trying to mutate the values of these properties will not be allowed in most cases.
@@ -531,30 +536,30 @@ public class UsergridEntity: NSObject {
 
     public static func fromString(stringValue: String) -> UsergridEntityProperties? {
         switch stringValue.lowercaseString {
-        case UsergridEntity.TYPE: return .EntityType
-        case UsergridEntity.UUID: return .UUID
-        case UsergridEntity.NAME: return .Name
-        case UsergridEntity.CREATED: return .Created
-        case UsergridEntity.MODIFIED: return .Modified
-        case UsergridEntity.LOCATION: return .Location
-        default: return nil
+            case ENTITY_TYPE: return .EntityType
+            case ENTITY_UUID: return .UUID
+            case ENTITY_NAME: return .Name
+            case ENTITY_CREATED: return .Created
+            case ENTITY_MODIFIED: return .Modified
+            case ENTITY_LOCATION: return .Location
+            default: return nil
         }
     }
     public var stringValue: String {
         switch self {
-        case .EntityType: return UsergridEntity.TYPE
-        case .UUID: return UsergridEntity.UUID
-        case .Name: return UsergridEntity.NAME
-        case .Created: return UsergridEntity.CREATED
-        case .Modified: return UsergridEntity.MODIFIED
-        case .Location: return UsergridEntity.LOCATION
+            case .EntityType: return ENTITY_TYPE
+            case .UUID: return ENTITY_UUID
+            case .Name: return ENTITY_NAME
+            case .Created: return ENTITY_CREATED
+            case .Modified: return ENTITY_MODIFIED
+            case .Location: return ENTITY_LOCATION
         }
     }
     public func isMutableForEntity(entity:UsergridEntity) -> Bool {
         switch self {
-        case .EntityType,.UUID,.Created,.Modified: return false
-        case .Location: return true
-        case .Name: return entity.isUser
+            case .EntityType,.UUID,.Created,.Modified: return false
+            case .Location: return true
+            case .Name: return entity.isUser
         }
     }
 }

@@ -13,7 +13,7 @@
     <a title="UsergridEntity Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (43% documented)</p>
+        <p><a href="../index.html"> Docs</a> (69% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -37,6 +37,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/UsergridAsset.html">UsergridAsset</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/UsergridAuth.html">UsergridAuth</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/UsergridClient.html">UsergridClient</a>
@@ -76,24 +79,22 @@
               <li class="nav-group-task">
                 <a href="../Enums/UsergridImageContentType.html">UsergridImageContentType</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Enums/UsergridQueryOperator.html">UsergridQueryOperator</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/UsergridQuerySortOrder.html">UsergridQuerySortOrder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/UsergridUserProperties.html">UsergridUserProperties</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
           <a href="../Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Extensions/UsergridAuth.html">UsergridAuth</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Extensions/UsergridClient.html">UsergridClient</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
-          <a href="../Protocols.html">Protocols</a>
-            <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a href="../Protocols/UsergridAuth.html">UsergridAuth</a>
               </li>
             </ul>
           </li>
@@ -103,111 +104,18 @@
         <section>
           <section class="section">
             <h1>UsergridEntity</h1>
-            <p>Undocumented</p>
+              <div class="declaration">
+                <div class="Swift">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">UsergridEntity</span><span class="p">:</span> <span class="kt">NSObject</span></code></pre>
+
+                </div>
+              </div>
+            <p><code>UsergridEntity</code> is the base class that contains a single Usergrid entity. </p>
+
+<p><code>UsergridEntity</code> maintains a set of accessor properties for standard Usergrid schema properties (e.g. name, uuid), and supports helper methods for accessing any custom properties that might exist.</p>
 
           </section>
           <section class="section task-group-section">
-            <div class="task-group">
-                <div class="task-name-container">
-                  <a name="/Initialization"></a>
-                  <a name="//apple_ref/swift/Section/Initialization" class="dashAnchor"></a>
-                  <a href="#/Initialization">
-                    <h3 class="section-name">Initialization</h3>
-                  </a>
-                </div>
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FC11UsergridSDK14UsergridEntitycFMS0_FT4typeSS4nameGSqSS_12propertyDictGSqGVSs10DictionarySSPSs9AnyObject____S0_"></a>
-                    <a name="//apple_ref/swift/Method/init(type:name:propertyDict:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC11UsergridSDK14UsergridEntitycFMS0_FT4typeSS4nameGSqSS_12propertyDictGSqGVSs10DictionarySSPSs9AnyObject____S0_">init(type:name:propertyDict:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:ZFC11UsergridSDK14UsergridEntity6entityFMS0_FT8jsonDictGVSs10DictionarySSPSs9AnyObject___GSqS0__"></a>
-                    <a name="//apple_ref/swift/Method/entity(jsonDict:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZFC11UsergridSDK14UsergridEntity6entityFMS0_FT8jsonDictGVSs10DictionarySSPSs9AnyObject___GSqS0__">entity(jsonDict:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:ZFC11UsergridSDK14UsergridEntity8entitiesFMS0_FT9jsonArrayGSaGVSs10DictionarySSPSs9AnyObject____GSaS0__"></a>
-                    <a name="//apple_ref/swift/Method/entities(jsonArray:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZFC11UsergridSDK14UsergridEntity8entitiesFMS0_FT9jsonArrayGSaGVSs10DictionarySSPSs9AnyObject____GSaS0__">entities(jsonArray:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Class convenience constructor for creating multiple <code>UsergridEntity</code> objects dynamically.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="Swift">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">entities</span><span class="p">(</span><span class="n">jsonArray</span> <span class="nv">entitiesJSONArray</span><span class="p">:</span> <span class="p">[[</span><span class="kt">String</span><span class="p">:</span><span class="kt">AnyObject</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">UsergridEntity</span><span class="p">]</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>entitiesJSONArray</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>An array which contains dictionaries that are used to create the <code>UsergridEntity</code> objects.</p>
-
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>An array of <code>UsergridEntity</code>.</p>
-
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
             <div class="task-group">
                 <div class="task-name-container">
                   <a name="/Instance%20Properties"></a>
@@ -564,6 +472,123 @@
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">stringValue</span> <span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">return</span> <span class="kt">NSString</span><span class="p">(</span><span class="nv">data</span><span class="p">:</span> <span class="k">try!</span> <span class="kt">NSJSONSerialization</span><span class="o">.</span><span class="nf">dataWithJSONObject</span><span class="p">(</span><span class="k">self</span><span class="o">.</span><span class="n">jsonObjectValue</span><span class="p">,</span> <span class="nv">options</span><span class="p">:</span> <span class="kt">NSJSONWritingOptions</span><span class="o">.</span><span class="kt">PrettyPrinted</span><span class="p">),</span> <span class="nv">encoding</span><span class="p">:</span> <span class="kt">NSASCIIStringEncoding</span><span class="p">)</span> <span class="k">as!</span> <span class="kt">String</span> <span class="p">}</span></code></pre>
 
                         </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+                <div class="task-name-container">
+                  <a name="/Initialization"></a>
+                  <a name="//apple_ref/swift/Section/Initialization" class="dashAnchor"></a>
+                  <a href="#/Initialization">
+                    <h3 class="section-name">Initialization</h3>
+                  </a>
+                </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC11UsergridSDK14UsergridEntitycFMS0_FT4typeSS4nameGSqSS_12propertyDictGSqGVSs10DictionarySSPSs9AnyObject____S0_"></a>
+                    <a name="//apple_ref/swift/Method/init(type:name:propertyDict:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC11UsergridSDK14UsergridEntitycFMS0_FT4typeSS4nameGSqSS_12propertyDictGSqGVSs10DictionarySSPSs9AnyObject____S0_">init(type:name:propertyDict:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">UsergridEntity</span><span class="p">:</span> <span class="kt">NSObject</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC11UsergridSDK14UsergridEntity6entityFMS0_FT8jsonDictGVSs10DictionarySSPSs9AnyObject___GSqS0__"></a>
+                    <a name="//apple_ref/swift/Method/entity(jsonDict:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC11UsergridSDK14UsergridEntity6entityFMS0_FT8jsonDictGVSs10DictionarySSPSs9AnyObject___GSqS0__">entity(jsonDict:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">UsergridEntity</span><span class="p">:</span> <span class="kt">NSObject</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC11UsergridSDK14UsergridEntity8entitiesFMS0_FT9jsonArrayGSaGVSs10DictionarySSPSs9AnyObject____GSaS0__"></a>
+                    <a name="//apple_ref/swift/Method/entities(jsonArray:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC11UsergridSDK14UsergridEntity8entitiesFMS0_FT9jsonArrayGSaGVSs10DictionarySSPSs9AnyObject____GSaS0__">entities(jsonArray:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Class convenience constructor for creating multiple <code>UsergridEntity</code> objects dynamically.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">entities</span><span class="p">(</span><span class="n">jsonArray</span> <span class="nv">entitiesJSONArray</span><span class="p">:</span> <span class="p">[[</span><span class="kt">String</span><span class="p">:</span><span class="kt">AnyObject</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">UsergridEntity</span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>entitiesJSONArray</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An array which contains dictionaries that are used to create the <code>UsergridEntity</code> objects.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>An array of <code>UsergridEntity</code>.</p>
+
                       </div>
                     </section>
                   </div>
@@ -2268,7 +2293,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2015 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2015-10-20)</p>
+          <p>&copy; 2015 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2015-10-21)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.3.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
