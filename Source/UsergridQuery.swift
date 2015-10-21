@@ -481,58 +481,11 @@ public class UsergridQuery : NSObject,NSCopying {
     private static let SPACE = " "
     private static let WITHIN = "within"
 
-    private static let ASC = "asc"
-    private static let DESC = "desc"
-    private static let EQUAL = "="
-    private static let GREATER_THAN = ">"
-    private static let GREATER_THAN_EQUAL_TO = ">="
-    private static let LESS_THAN = "<"
-    private static let LESS_THAN_EQUAL_TO = "<="
-}
-
-/**
-`UsergridQuery` specific operators.
-*/
-@objc public enum UsergridQueryOperator: Int {
-    case Equal; case GreaterThan; case GreaterThanEqualTo; case LessThan; case LessThanEqualTo
-    public static func fromString(stringValue: String) -> UsergridQueryOperator? {
-        switch stringValue.lowercaseString {
-        case UsergridQuery.EQUAL: return .Equal
-        case UsergridQuery.GREATER_THAN: return .GreaterThan
-        case UsergridQuery.GREATER_THAN_EQUAL_TO: return .GreaterThanEqualTo
-        case UsergridQuery.LESS_THAN: return .LessThan
-        case UsergridQuery.LESS_THAN_EQUAL_TO: return .LessThanEqualTo
-        default: return nil
-        }
-    }
-    public var stringValue: String {
-        switch self {
-        case .Equal: return UsergridQuery.EQUAL
-        case .GreaterThan: return UsergridQuery.GREATER_THAN
-        case .GreaterThanEqualTo: return UsergridQuery.GREATER_THAN_EQUAL_TO
-        case .LessThan: return UsergridQuery.LESS_THAN
-        case .LessThanEqualTo: return UsergridQuery.LESS_THAN_EQUAL_TO
-        }
-    }
-}
-
-/**
-`UsergridQuery` specific sort orders.
-*/
-@objc public enum UsergridQuerySortOrder: Int {
-    case Asc
-    case Desc
-    public static func fromString(stringValue: String) -> UsergridQuerySortOrder? {
-        switch stringValue.lowercaseString {
-        case UsergridQuery.ASC: return .Asc
-        case UsergridQuery.DESC: return .Desc
-        default: return nil
-        }
-    }
-    public var stringValue: String {
-        switch self {
-        case .Asc: return UsergridQuery.ASC
-        case .Desc: return UsergridQuery.DESC
-        }
-    }
+    internal static let ASC = "asc"
+    internal static let DESC = "desc"
+    internal static let EQUAL = "="
+    internal static let GREATER_THAN = ">"
+    internal static let GREATER_THAN_EQUAL_TO = ">="
+    internal static let LESS_THAN = "<"
+    internal static let LESS_THAN_EQUAL_TO = "<="
 }

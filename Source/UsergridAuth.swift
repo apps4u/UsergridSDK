@@ -8,42 +8,11 @@
 
 import Foundation
 
+/// The completion block used in `UsergridAppAuth` authentication methods.
 public typealias UsergridAppAuthCompletionBlock = (auth:UsergridAppAuth?, error: String?) -> Void
+
+/// The completion block used in `UsergridUserAuth` authentication methods.
 public typealias UsergridUserAuthCompletionBlock = (auth:UsergridUserAuth?, user:UsergridUser?, error: String?) -> Void
-
-struct UsergridAuthConstants {
-    static let CLIENT_CREDENTIALS = "client_credentials"
-    static let CLIENT_ID = "client_id"
-    static let CLIENT_SECRET = "client_secret"
-
-    static let PASSWORD = "password"
-    static let TOKEN = "token"
-
-    static let GRANT_TYPE = "grant_type"
-    static let USERNAME = "username"
-}
-
-/**
-A enumeration that is used to determine what the `UsergridClient` will fallback to depending on certain authorization conditions.
-*/
-@objc public enum UsergridAuthFallback : Int {
-    /**
-    If a non-expired user auth token exists in `UsergridClient.currentUser`, this token is used to authenticate all API calls. 
-    
-    If the API call fails, the activity is treated as a failure with an appropriate HTTP status code.  
-    
-    If a non-expired user auth token does not exist, all API calls will be made unauthenticated.
-    */
-    case None
-    /**
-    If a non-expired user auth token exists in `UsergridClient.currentUser`, this token is used to authenticate all API calls. 
-    
-    If the API call fails, the activity is treated as a failure with an appropriate HTTP status code (This behavior is identical to authFallback=.None).
-    
-    If a non-expired user auth does not exist, all API calls will be made using stored app auth.
-    */
-    case App
-}
 
 /** 
 The base class for `UsergridAppAuth` and `UsergridUserAuth` classes.
@@ -87,7 +56,7 @@ public class UsergridAuth : NSObject {
     - returns: A `NSURLRequest` object.
     */
     func buildAuthRequest(baseURL:String) -> NSURLRequest {
-        let requestURL = UsergridRequestManager.buildRequestURL(baseURL,paths:[UsergridAuthConstants.TOKEN])
+        let requestURL = UsergridRequestManager.buildRequestURL(baseURL,paths:["token"])
         let request = NSMutableURLRequest(URL: NSURL(string:requestURL)!)
         request.HTTPMethod = UsergridHttpMethod.POST.rawValue
 
@@ -112,9 +81,9 @@ public class UsergridUserAuth : UsergridAuth {
 
     /// The credentials dictionary constructed with the `UsergridUserAuth`'s `username` and `password`.
     override var credentialsJSONDict: [String:AnyObject] {
-        return [UsergridAuthConstants.GRANT_TYPE:UsergridAuthConstants.PASSWORD,
-                UsergridAuthConstants.USERNAME:self.username,
-                UsergridAuthConstants.PASSWORD:self.password]
+        return ["grant_type":"password",
+                "username":self.username,
+                "password":self.password]
     }
 
     // MARK: - Initialization -
@@ -146,9 +115,9 @@ public class UsergridAppAuth : UsergridAuth {
 
     /// The credentials dictionary constructed with the `UsergridAppAuth`'s `clientID` and `clientSecret`.
     override var credentialsJSONDict: [String:AnyObject] {
-        return [UsergridAuthConstants.GRANT_TYPE:UsergridAuthConstants.CLIENT_CREDENTIALS,
-                UsergridAuthConstants.CLIENT_ID:self.clientID,
-                UsergridAuthConstants.CLIENT_SECRET:self.clientSecret]
+        return ["grant_type":"client_credentials",
+                "client_id":self.clientID,
+                "client_secret":self.clientSecret]
     }
 
     // MARK: - Initialization -

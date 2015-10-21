@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Enums  Reference</title>
+    <title>Typealiases  Reference</title>
     <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="css/highlight.css" />
     <meta charset='utf-8'>
@@ -9,7 +9,7 @@
     <script src="js/jazzy.js" defer></script>
   </head>
   <body>
-    <a title="Enums  Reference"></a>
+    <a title="Typealiases  Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="index.html"> Docs</a> (80% documented)</p>
@@ -19,7 +19,7 @@
       <p id="breadcrumbs">
         <a href="index.html"> Reference</a>
         <img id="carat" src="img/carat.png" />
-        Enums  Reference
+        Typealiases  Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -125,8 +125,8 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>Enums</h1>
-            <p>The following enums are available globally.</p>
+            <h1>Typealiases</h1>
+            <p>The following typealiases are available globally.</p>
 
           </section>
           <section class="section task-group-section">
@@ -135,9 +135,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:O11UsergridSDK20UsergridAuthFallback"></a>
-                    <a name="//apple_ref/swift/Enum/UsergridAuthFallback" class="dashAnchor"></a>
-                    <a class="token" href="#/s:O11UsergridSDK20UsergridAuthFallback">UsergridAuthFallback</a>
+                    <a name="/s:11UsergridSDK31UsergridUserAuthCompletionBlock"></a>
+                    <a name="//apple_ref/swift/Alias/UsergridUserAuthCompletionBlock" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11UsergridSDK31UsergridUserAuthCompletionBlock">UsergridUserAuthCompletionBlock</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -145,15 +145,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>A enumeration that is used to determine what the <code>UsergridClient</code> will fallback to depending on certain authorization conditions.</p>
+                        <p>The completion block used in <code>UsergridUserAuth</code> authentication methods.</p>
 
-                        <a href="Enums/UsergridAuthFallback.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="Swift">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="kd">enum</span> <span class="kt">UsergridAuthFallback</span> <span class="p">:</span> <span class="kt">Int</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">UsergridUserAuthCompletionBlock</span> <span class="o">=</span> <span class="p">(</span><span class="nv">auth</span><span class="p">:</span><span class="kt">UsergridUserAuth</span><span class="p">?,</span> <span class="nv">user</span><span class="p">:</span><span class="kt">UsergridUser</span><span class="p">?,</span> <span class="nv">error</span><span class="p">:</span> <span class="kt">String</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span></code></pre>
 
                         </div>
                       </div>
@@ -163,9 +162,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:O11UsergridSDK24UsergridEntityProperties"></a>
-                    <a name="//apple_ref/swift/Enum/UsergridEntityProperties" class="dashAnchor"></a>
-                    <a class="token" href="#/s:O11UsergridSDK24UsergridEntityProperties">UsergridEntityProperties</a>
+                    <a name="/s:11UsergridSDK30UsergridAppAuthCompletionBlock"></a>
+                    <a name="//apple_ref/swift/Alias/UsergridAppAuthCompletionBlock" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11UsergridSDK30UsergridAppAuthCompletionBlock">UsergridAppAuthCompletionBlock</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -173,15 +172,76 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p><code>UsergridEntity</code> specific properties keys.  Note that trying to mutate the values of these properties will not be allowed in most cases.</p>
+                        <p>The completion block used in <code>UsergridAppAuth</code> authentication methods.</p>
 
-                        <a href="Enums/UsergridEntityProperties.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="Swift">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="kd">enum</span> <span class="kt">UsergridEntityProperties</span> <span class="p">:</span> <span class="kt">Int</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">UsergridAppAuthCompletionBlock</span> <span class="o">=</span> <span class="p">(</span><span class="nv">auth</span><span class="p">:</span><span class="kt">UsergridAppAuth</span><span class="p">?,</span> <span class="nv">error</span><span class="p">:</span> <span class="kt">String</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:11UsergridSDK26UsergridResponseCompletion"></a>
+                    <a name="//apple_ref/swift/Alias/UsergridResponseCompletion" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11UsergridSDK26UsergridResponseCompletion">UsergridResponseCompletion</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The completion block used in for most <code>UsergridClient</code> requests.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">UsergridResponseCompletion</span> <span class="o">=</span> <span class="p">(</span><span class="nv">response</span><span class="p">:</span> <span class="kt">UsergridResponse</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:11UsergridSDK31UsergridAssetDownloadCompletion"></a>
+                    <a name="//apple_ref/swift/Alias/UsergridAssetDownloadCompletion" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11UsergridSDK31UsergridAssetDownloadCompletion">UsergridAssetDownloadCompletion</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The completion block used in <code>UsergridAsset</code> are finished downloading.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">UsergridAssetDownloadCompletion</span> <span class="o">=</span> <span class="p">(</span><span class="k">as</span><span class="nv">set</span><span class="p">:</span><span class="kt">UsergridAsset</span><span class="p">?,</span> <span class="nv">error</span><span class="p">:</span> <span class="kt">String</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span></code></pre>
 
                         </div>
                       </div>
@@ -191,9 +251,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:O11UsergridSDK22UsergridUserProperties"></a>
-                    <a name="//apple_ref/swift/Enum/UsergridUserProperties" class="dashAnchor"></a>
-                    <a class="token" href="#/s:O11UsergridSDK22UsergridUserProperties">UsergridUserProperties</a>
+                    <a name="/s:11UsergridSDK29UsergridAssetUploadCompletion"></a>
+                    <a name="//apple_ref/swift/Alias/UsergridAssetUploadCompletion" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11UsergridSDK29UsergridAssetUploadCompletion">UsergridAssetUploadCompletion</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -201,35 +261,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The completion block used in <code>UsergridAsset</code> are finished uploading.</p>
 
-                        <a href="Enums/UsergridUserProperties.html" class="slightly-smaller">See more</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:O11UsergridSDK21UsergridQueryOperator"></a>
-                    <a name="//apple_ref/swift/Enum/UsergridQueryOperator" class="dashAnchor"></a>
-                    <a class="token" href="#/s:O11UsergridSDK21UsergridQueryOperator">UsergridQueryOperator</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p><code>UsergridQuery</code> specific operators.</p>
-
-                        <a href="Enums/UsergridQueryOperator.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="Swift">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="kd">enum</span> <span class="kt">UsergridQueryOperator</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">UsergridAssetUploadCompletion</span> <span class="o">=</span> <span class="p">(</span><span class="nv">response</span><span class="p">:</span><span class="kt">UsergridResponse</span><span class="p">,</span><span class="k">as</span><span class="nv">set</span><span class="p">:</span><span class="kt">UsergridAsset</span><span class="p">?,</span> <span class="nv">error</span><span class="p">:</span> <span class="kt">String</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span></code></pre>
 
                         </div>
                       </div>
@@ -239,9 +278,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:O11UsergridSDK22UsergridQuerySortOrder"></a>
-                    <a name="//apple_ref/swift/Enum/UsergridQuerySortOrder" class="dashAnchor"></a>
-                    <a class="token" href="#/s:O11UsergridSDK22UsergridQuerySortOrder">UsergridQuerySortOrder</a>
+                    <a name="/s:11UsergridSDK28UsergridAssetRequestProgress"></a>
+                    <a name="//apple_ref/swift/Alias/UsergridAssetRequestProgress" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11UsergridSDK28UsergridAssetRequestProgress">UsergridAssetRequestProgress</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -249,43 +288,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p><code>UsergridQuery</code> specific sort orders.</p>
+                        <p>The progress block used in <code>UsergridAsset</code> are being uploaded or downloaded.</p>
 
-                        <a href="Enums/UsergridQuerySortOrder.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="Swift">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="kd">enum</span> <span class="kt">UsergridQuerySortOrder</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:O11UsergridSDK24UsergridImageContentType"></a>
-                    <a name="//apple_ref/swift/Enum/UsergridImageContentType" class="dashAnchor"></a>
-                    <a class="token" href="#/s:O11UsergridSDK24UsergridImageContentType">UsergridImageContentType</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p><code>UsergridAsset</code> image specific content types.</p>
-
-                        <a href="Enums/UsergridImageContentType.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="Swift">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="kd">enum</span> <span class="kt">UsergridImageContentType</span> <span class="p">:</span> <span class="kt">Int</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">UsergridAssetRequestProgress</span> <span class="o">=</span> <span class="p">(</span><span class="nv">bytesFinished</span><span class="p">:</span><span class="kt">Int64</span><span class="p">,</span> <span class="nv">bytesExpected</span><span class="p">:</span> <span class="kt">Int64</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span></code></pre>
 
                         </div>
                       </div>

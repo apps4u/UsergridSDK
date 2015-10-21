@@ -70,7 +70,7 @@ public class UsergridEntity: NSObject {
 
     /// The string value.
     public var stringValue : String { return NSString(data: try! NSJSONSerialization.dataWithJSONObject(self.jsonObjectValue, options: NSJSONWritingOptions.PrettyPrinted), encoding: NSASCIIStringEncoding) as! String }
-    
+
     // MARK: - Initialization -
 
     /*!
@@ -509,57 +509,5 @@ public class UsergridEntity: NSObject {
     */
     public func getConnectedEntities(client:UsergridClient, relationship:String, completion:UsergridResponseCompletion?) {
         client.getConnectedEntities(self, relationship: relationship, completion: completion)
-    }
-}
-
-private let ENTITY_TYPE = "type"
-private let ENTITY_NAME = "name"
-private let ENTITY_UUID = "uuid"
-private let ENTITY_CREATED = "created"
-private let ENTITY_MODIFIED = "modified"
-private let ENTITY_LOCATION = "location"
-
-// Sub properties of Location
-private let ENTITY_LATITUDE = "latitude"
-private let ENTITY_LONGITUDE = "longitude"
-
-/**
-`UsergridEntity` specific properties keys.  Note that trying to mutate the values of these properties will not be allowed in most cases.
-*/
-@objc public enum UsergridEntityProperties : Int {
-    case EntityType
-    case UUID
-    case Name
-    case Created
-    case Modified
-    case Location
-
-    public static func fromString(stringValue: String) -> UsergridEntityProperties? {
-        switch stringValue.lowercaseString {
-            case ENTITY_TYPE: return .EntityType
-            case ENTITY_UUID: return .UUID
-            case ENTITY_NAME: return .Name
-            case ENTITY_CREATED: return .Created
-            case ENTITY_MODIFIED: return .Modified
-            case ENTITY_LOCATION: return .Location
-            default: return nil
-        }
-    }
-    public var stringValue: String {
-        switch self {
-            case .EntityType: return ENTITY_TYPE
-            case .UUID: return ENTITY_UUID
-            case .Name: return ENTITY_NAME
-            case .Created: return ENTITY_CREATED
-            case .Modified: return ENTITY_MODIFIED
-            case .Location: return ENTITY_LOCATION
-        }
-    }
-    public func isMutableForEntity(entity:UsergridEntity) -> Bool {
-        switch self {
-            case .EntityType,.UUID,.Created,.Modified: return false
-            case .Location: return true
-            case .Name: return entity.isUser
-        }
     }
 }

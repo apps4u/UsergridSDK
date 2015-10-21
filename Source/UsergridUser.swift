@@ -95,7 +95,7 @@ public class UsergridUser : UsergridEntity {
         }
     }
 
-    public func getUserSpecificProperty(userProperty: UsergridUserProperties) -> AnyObject? {
+    private func getUserSpecificProperty(userProperty: UsergridUserProperties) -> AnyObject? {
         var propertyValue: AnyObject? = super[userProperty.stringValue]
         NSJSONReadingOptions.AllowFragments
         switch userProperty {
@@ -119,44 +119,6 @@ public class UsergridUser : UsergridEntity {
         }
         set(propertyValue) {
             super[propertyName] = propertyValue
-        }
-    }
-}
-
-private let NAME = "name"
-private let USERNAME = "username"
-private let PASSWORD = "password"
-private let EMAIL = "email"
-private let AGE = "age"
-private let ACTIVATED = "activated"
-private let DISABLED = "disabled"
-private let PICTURE = "picture"
-
-@objc public enum UsergridUserProperties: Int {
-    case Name; case Username; case Password; case Email; case Age; case Activated; case Disabled; case Picture
-    public static func fromString(stringValue: String) -> UsergridUserProperties? {
-        switch stringValue.lowercaseString {
-        case NAME: return .Name
-        case USERNAME: return .Username
-        case PASSWORD: return .Password
-        case EMAIL: return .Email
-        case AGE: return .Age
-        case ACTIVATED: return .Activated
-        case DISABLED: return .Disabled
-        case PICTURE: return .Picture
-        default: return nil
-        }
-    }
-    public var stringValue: String {
-        switch self {
-        case .Name: return NAME
-        case .Username: return USERNAME
-        case .Password: return PASSWORD
-        case .Email: return EMAIL
-        case .Age: return AGE
-        case .Activated: return ACTIVATED
-        case .Disabled: return DISABLED
-        case .Picture: return PICTURE
         }
     }
 }

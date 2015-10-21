@@ -20,19 +20,19 @@ public class UsergridFileMetaData : NSObject {
     /// The eTag.
     public let eTag: String?
 
-    /// The checkSum.
+    /// The check sum.
     public let checkSum: String?
 
-    /// The content type of associated with the file data.
+    /// The content type associated with the file data.
     public let contentType: String?
 
-    /// The content length of associated with the file data.
+    /// The content length of the file data.
     public let contentLength: Int
 
-    /// The time stamp for when the file information was last modified.
+    /// The last modified time stamp.
     public let lastModifiedTimeStamp: Int
 
-    /// The `NSDate` for when the file information was last modified.
+    /// The `NSDate` object corresponding to the last modified time stamp.
     public let lastModifiedDate: NSDate?
 
     // MARK: - Initialization -

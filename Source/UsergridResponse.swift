@@ -8,36 +8,73 @@
 
 import Foundation
 
+/// The completion block used in for most `UsergridClient` requests.
 public typealias UsergridResponseCompletion = (response: UsergridResponse) -> Void
 
+/**
+
+*/
 public class UsergridResponse: NSObject {
 
     public weak var client: UsergridClient?
 
+    ///
     internal(set) public var responseJSON: [String:AnyObject]?
-    
+
+    ///
     internal(set) public var query: UsergridQuery?
+
+    ///
     internal(set) public var cursor: String?
+
+    ///
     internal(set) public var entities: [UsergridEntity]?
 
+    ///
     internal(set) public var headers: [String:String]?
+
+    ///
     internal(set) public var statusCode: Int?
 
+    ///
     internal(set) public var errorName : String?
+
+    ///
     internal(set) public var errorDescription: String?
+
+    ///
     internal(set) public var exception: String?
 
+    ///
     public var count: Int { return self.entities?.count ?? 0 }
 
+    ///
     public var first: UsergridEntity? { return self.entities?.first }
+
+    ///
     public var last: UsergridEntity? { return self.entities?.last }
+
+    ///
     public var entity: UsergridEntity? { return self.first }
 
+    ///
     public var user: UsergridUser? { return self.entities?.first as? UsergridUser }
+
+    ///
     public var users: [UsergridUser]? { return self.entities as? [UsergridUser] }
 
+    ///
     public var hasNextPage: Bool { return self.cursor != nil }
 
+    /**
+
+
+    - parameter client:           The client.
+    - parameter errorName:        The error name.
+    - parameter errorDescription: The error description.
+
+    - returns: A new instance of `UsergridResponse`.
+    */
     public init(client: UsergridClient?, errorName: String? = nil, errorDescription: String? = nil) {
         self.client = client
         self.errorName = errorName
