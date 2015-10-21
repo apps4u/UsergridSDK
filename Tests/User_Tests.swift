@@ -63,14 +63,14 @@ class User_Tests: XCTestCase {
     }
 
     func test_USER_PROPERTIES_WITHOUT_HELPERS() {
-        XCTAssertEqual(user[UsergridUser.UsergridUserProperties.Name.stringValue]! as? String, User_Tests.name)
-        XCTAssertEqual(user[UsergridUser.UsergridUserProperties.Age.stringValue]! as? Int, User_Tests.age)
-        XCTAssertEqual(user[UsergridUser.UsergridUserProperties.Username.stringValue]! as? String, User_Tests.username)
-        XCTAssertEqual(user[UsergridUser.UsergridUserProperties.Email.stringValue]! as? String, User_Tests.email)
-        XCTAssertEqual(user[UsergridUser.UsergridUserProperties.Password.stringValue]! as? String, User_Tests.password)
-        XCTAssertEqual(user[UsergridUser.UsergridUserProperties.Picture.stringValue]! as? String, User_Tests.picture)
-        XCTAssertTrue(user[UsergridUser.UsergridUserProperties.Activated.stringValue]! as! Bool)
-        XCTAssertFalse(user[UsergridUser.UsergridUserProperties.Disabled.stringValue]! as! Bool)
+        XCTAssertEqual(user[UsergridUserProperties.Name.stringValue]! as? String, User_Tests.name)
+        XCTAssertEqual(user[UsergridUserProperties.Age.stringValue]! as? Int, User_Tests.age)
+        XCTAssertEqual(user[UsergridUserProperties.Username.stringValue]! as? String, User_Tests.username)
+        XCTAssertEqual(user[UsergridUserProperties.Email.stringValue]! as? String, User_Tests.email)
+        XCTAssertEqual(user[UsergridUserProperties.Password.stringValue]! as? String, User_Tests.password)
+        XCTAssertEqual(user[UsergridUserProperties.Picture.stringValue]! as? String, User_Tests.picture)
+        XCTAssertTrue(user[UsergridUserProperties.Activated.stringValue]! as! Bool)
+        XCTAssertFalse(user[UsergridUserProperties.Disabled.stringValue]! as! Bool)
     }
 
     func test_CREATE_AND_DELETE_USER() {
