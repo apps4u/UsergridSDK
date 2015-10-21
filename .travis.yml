@@ -1,6 +1,6 @@
 language: objective-c
 osx_image: xcode7
+before_install:
+  - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
 script:
-    - brew update && brew uninstall xctool && brew install xctool --build-from-source
-    - xctool -project ./UsergridSDK.xcodeproj -scheme UsergridSDK -sdk iphonesimulator -configuration Debug
-    - xctool -project ./UsergridSDK.xcodeproj -scheme UsergridSDK -sdk iphonesimulator -configuration Debug test -parallelize
+  - xcodebuild -project ./UsergridSDK.xcodeproj -scheme UsergridSDK -sdk iphonesimulator -configuration Debug test | xcpretty -c
