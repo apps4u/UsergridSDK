@@ -1,0 +1,5 @@
+language: objective-c
+script:
+    - brew update && brew uninstall xctool && brew install xctool --build-from-source
+    - xctool -project ./UsergridSDK.xcodeproj -scheme UsergridSDK -sdk iphonesimulator -configuration Debug
+    - xctool -project ./source/ApigeeiOSSDK.xcodeproj -scheme ApigeeiOSSDK -sdk iphonesimulator -configuration Debug test -parallelize

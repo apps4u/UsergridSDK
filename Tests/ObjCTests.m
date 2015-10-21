@@ -22,7 +22,7 @@
 - (void)tearDown {
     // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];
-    UsergridAsset* asset = [[UsergridAsset alloc] initWithFileName:nil data:[[NSData alloc] init] originalLocation:nil contentType:@""];
+//    UsergridAsset* asset = [[UsergridAsset alloc] initWithFileName:nil data:[[NSData alloc] init] originalLocation:nil contentType:@""];
 
     UsergridEntity* entity = [[UsergridEntity alloc] initWithType:@"" name:@"" propertyDict:nil];
     entity[@""] = @1;

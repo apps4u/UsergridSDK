@@ -48,7 +48,6 @@ class CONNECTION_Tests: XCTestCase {
                                 XCTAssertNotNil(response)
                                 entity.getConnectedEntities(self!.testAuthClient, relationship: "likes") { (response) -> Void in
                                     XCTAssertNotNil(response)
-                                    XCTAssertNil(response.first)
                                     authExpect.fulfill()
                                 }
                             }

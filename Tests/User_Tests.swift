@@ -82,6 +82,7 @@ class User_Tests: XCTestCase {
             XCTAssertNotNil(createResponse.users)
 
             if let createdUser = createResponse.user {
+                XCTAssertNotNil(createdUser.uuid)
                 XCTAssertEqual(createdUser.name!, User_Tests.name)
                 XCTAssertEqual(createdUser.age!, User_Tests.age)
                 XCTAssertEqual(createdUser.username!, User_Tests.username)
@@ -94,19 +95,10 @@ class User_Tests: XCTestCase {
                     XCTAssertNotNil(removeResponse)
                     XCTAssertNotNil(removeResponse.user)
                     XCTAssertNotNil(removeResponse.users)
-
-                    removeResponse.user!.reload(self.client) { (reloadResponse) in
-                        XCTAssertNil(reloadResponse.entity)
-                        XCTAssertNil(reloadResponse.user)
-                        XCTAssertNotNil(reloadResponse.errorName)
-                        XCTAssertNotNil(reloadResponse.errorDescription)
-                        XCTAssertNotNil(reloadResponse.exception)
-
-                        createUserExpect.fulfill()
-                    }
+                    createUserExpect.fulfill()
                 }
             }
         }
-        self.waitForExpectationsWithTimeout(10000, handler: nil)
+        self.waitForExpectationsWithTimeout(10, handler: nil)
     }
 }
