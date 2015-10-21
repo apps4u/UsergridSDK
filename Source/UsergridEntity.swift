@@ -135,6 +135,17 @@ public class UsergridEntity: NSObject {
 
     // MARK: - Property Manipulation -
 
+    /**
+    Subscript for the `UsergridEntity` class.
+    
+    - Example usage:
+   
+    ```
+    let propertyValue = usergridEntity["propertyName"]
+
+    usergridEntity["propertyName"] = propertyValue
+    ```
+    */
     public subscript(propertyName: String) -> AnyObject? {
         get {
             if let entityProperty = UsergridEntityProperties.fromString(propertyName) {

@@ -181,7 +181,7 @@ extension UsergridRequestManager {
                 completion?(response:UsergridResponse(client:self?.client, data:data, response:response as? NSHTTPURLResponse, error: error, query: nil))
             }.resume()
         } else {
-            completion?(response: UsergridResponse(client: self.client, errorName: "", errorDescription: ""))
+            completion?(response: UsergridResponse(client: self.client, errorName: "Invalid Entity Disconnect Attempt.", errorDescription: "The connecting and connected entities must have a `uuid` or `name` assigned."))
         }
     }
 

@@ -8,23 +8,6 @@
 
 import Foundation
 
-let ENTITY_TYPE = "type"
-let ENTITY_UUID = "uuid"
-let ENTITY_NAME = "name"
-let ENTITY_CREATED = "created"
-let ENTITY_MODIFIED = "modified"
-let ENTITY_LOCATION = "location"
-let ENTITY_LATITUDE = "latitude"
-let ENTITY_LONGITUDE = "longitude"
-
-let USER_USERNAME = "username"
-let USER_PASSWORD = "password"
-let USER_EMAIL = "email"
-let USER_AGE = "age"
-let USER_ACTIVATED = "activated"
-let USER_DISABLED = "disabled"
-let USER_PICTURE = "picture"
-
 /**
 A enumeration that is used to determine what the `UsergridClient` will fallback to depending on certain authorization conditions.
 */
@@ -57,11 +40,17 @@ A enumeration that is used to determine what the `UsergridClient` will fallback 
 
     // MARK: - Values -
 
+    /// Corresponds to the property 'type'
     case EntityType
+    /// Corresponds to the property 'uuid'
     case UUID
+    /// Corresponds to the property 'name'
     case Name
+    /// Corresponds to the property 'created'
     case Created
+    /// Corresponds to the property 'modified'
     case Modified
+    /// Corresponds to the property 'location'
     case Location
 
     // MARK: - Methods -
@@ -113,17 +102,28 @@ A enumeration that is used to determine what the `UsergridClient` will fallback 
     }
 }
 
+/**
+`UsergridUser` specific properties keys.
+*/
 @objc public enum UsergridUserProperties: Int {
 
     // MARK: - Values -
 
+    /// Corresponds to the property 'name'
     case Name
+    /// Corresponds to the property 'username'
     case Username
+    /// Corresponds to the property 'password'
     case Password
+    /// Corresponds to the property 'email'
     case Email
+    /// Corresponds to the property 'age'
     case Age
+    /// Corresponds to the property 'activated'
     case Activated
+    /// Corresponds to the property 'disabled'
     case Disabled
+    /// Corresponds to the property 'picture'
     case Picture
 
     // MARK: - Methods -
@@ -171,10 +171,15 @@ A enumeration that is used to determine what the `UsergridClient` will fallback 
 
     // MARK: - Values -
 
+    /// '='
     case Equal
+    /// '>'
     case GreaterThan
+    /// '>='
     case GreaterThanEqualTo
+    /// '<'
     case LessThan
+    /// '<='
     case LessThanEqualTo
 
     // MARK: - Methods -
@@ -216,7 +221,9 @@ A enumeration that is used to determine what the `UsergridClient` will fallback 
 
     // MARK: - Values -
 
+    /// Sort order is ascending.
     case Asc
+    /// Sort order is descending.
     case Desc
 
     // MARK: - Methods -
@@ -252,7 +259,9 @@ A enumeration that is used to determine what the `UsergridClient` will fallback 
 
     // MARK: - Values -
 
+    // Content type: 'image/png'
     case Png
+    // Content type: 'image/jpeg'
     case Jpeg
 
     // MARK: - Methods -
@@ -260,8 +269,28 @@ A enumeration that is used to determine what the `UsergridClient` will fallback 
     /// Returns the string value.
     public var stringValue: String {
         switch self {
-        case .Png: return "image/png"
-        case .Jpeg: return "image/jpeg"
+            case .Png: return ASSET_IMAGE_PNG
+            case .Jpeg: return ASSET_IMAGE_JPEG
         }
     }
 }
+
+let ENTITY_TYPE = "type"
+let ENTITY_UUID = "uuid"
+let ENTITY_NAME = "name"
+let ENTITY_CREATED = "created"
+let ENTITY_MODIFIED = "modified"
+let ENTITY_LOCATION = "location"
+let ENTITY_LATITUDE = "latitude"
+let ENTITY_LONGITUDE = "longitude"
+
+let USER_USERNAME = "username"
+let USER_PASSWORD = "password"
+let USER_EMAIL = "email"
+let USER_AGE = "age"
+let USER_ACTIVATED = "activated"
+let USER_DISABLED = "disabled"
+let USER_PICTURE = "picture"
+
+let ASSET_IMAGE_PNG = "image/png"
+let ASSET_IMAGE_JPEG = "image/jpeg"

@@ -44,6 +44,7 @@ public class UsergridAuth : NSObject {
         return isExpired
     }
 
+    /// The credentials dictionary. Subclasses must override this method and provide an actual dictionary containing the credentials to send with requests.
     var credentialsJSONDict: [String:AnyObject] {
         return [:]
     }

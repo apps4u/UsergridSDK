@@ -18,9 +18,9 @@ provided you will need to call one of the shared instance initialization methods
 */
 public class Usergrid: NSObject {
 
-    internal static var _sharedClient : UsergridClient!
-
     // MARK: - Static Variables -
+
+    internal static var _sharedClient : UsergridClient!
 
     /// Used to determine if the shared instance of the `UsergridClient` has been initialized.
     public static var isInitialized : Bool  { return Usergrid._sharedClient != nil }
@@ -29,7 +29,7 @@ public class Usergrid: NSObject {
     A shared instance of `UsergridClient`, used by the `Usergrid` static methods and acts as the default `UsergridClient`
     within the UsergridSDK library.
 
-    You must call one of the `Usergrid.initSharedInstance` methods before this or any other `Usergrid` static methods are valid.
+    - Warning: You must call one of the `Usergrid.initSharedInstance` methods before this or any other `Usergrid` static methods are valid.
     */
     public static var sharedInstance : UsergridClient {
         assert(Usergrid.isInitialized, "Usergrid shared instance is not initalized!")
@@ -174,17 +174,31 @@ public class Usergrid: NSObject {
         Usergrid.sharedInstance.authenticateUser(userAuth, setAsCurrentUser: setAsCurrentUser, completion: completion)
     }
 
-    // TODO: DOCUMENTATION
+    /**
+    Logs out the current user of the shared instance locally and remotely.
+
+    - parameter completion: The completion block that will be called after logout has completed.
+    */
     public static func logoutCurrentUser(completion:UsergridResponseCompletion?) {
         Usergrid.sharedInstance.logoutCurrentUser(completion)
     }
 
-    // TODO: DOCUMENTATION
+    /**
+    Logs out the user remotely with the given tokens using the shared instance of `UsergridCient`.
+
+    - parameter completion: The completion block that will be called after logout has completed.
+    */
     public static func logoutUserAllTokens(uuidOrUsername:String, completion:UsergridResponseCompletion?) {
         Usergrid.sharedInstance.logoutUserAllTokens(uuidOrUsername, completion: completion)
     }
 
-    // TODO: DOCUMENTATION
+    /**
+    Logs out a user with the give UUID or username using the shared instance of `UsergridCient`.
+    
+    Passing in a token will log out the user for just that token.  Passing in nil for the token will logout the user for all tokens.
+
+    - parameter completion: The completion block that will be called after logout has completed.
+    */
     public static func logoutUser(uuidOrUsername:String, token:String?, completion:UsergridResponseCompletion?) {
         Usergrid.sharedInstance.logoutUser(uuidOrUsername, token: token, completion: completion)
     }
@@ -230,6 +244,8 @@ public class Usergrid: NSObject {
     /**
     Updates an `UsergridEntity` with the given type using the jsonBody where the UUID/name is specified inside of the jsonBody using the shared instance of `UsergridCient`.
 
+    - Note: The `jsonBody` must contain a valid value for either `uuid` or `name`.
+
     - parameter type: The `UsergridEntity` type.
     - parameter jsonBody: The valid JSON body dictionary to update the `UsergridEntity` with.
     - parameter completion: The completion block that will be called once the request has completed.
@@ -250,6 +266,8 @@ public class Usergrid: NSObject {
 
     /**
     Updates the entities that fit the given query using the passed in jsonBody using the shared instance of `UsergridCient`.
+
+    - Note: The query parameter must have a valid `collectionName` before calling this method.
 
     - parameter query: The query to use when filtering what entities to update.
     - parameter jsonBody: The valid JSON body dictionary to update with.
@@ -306,10 +324,10 @@ public class Usergrid: NSObject {
     }
 
     /**
-    Creates and posts an array of `UsergridEntity` objects.
+    Creates and posts an array of `UsergridEntity` objects using the shared instance of `UsergridCient`.
     
-    Each `UsergridEntity` in the array much already have a type assinged using the shared instance of `UsergridClient`.
-    
+    - Note: Each `UsergridEntity` in the array much already have a type assigned and must be the same.
+
     - parameter entities: The `UsergridEntity` objects to create.
     - parameter entitiesCompletion: The completion block that will be called once the request has completed.
     */
@@ -333,6 +351,8 @@ public class Usergrid: NSObject {
     /**
     Destroys the passed `UsergridEntity` using the shared instance of `UsergridCient`.
 
+    - Note: The entity object must have a `uuid` or `name` assigned.
+
     - parameter entity: The `UsergridEntity` to delete.
     - parameter completion: The completion block that will be called once the request has completed.
     */
@@ -342,6 +362,8 @@ public class Usergrid: NSObject {
 
     /**
     Destroys the `UsergridEntity` objects that fit the given `UsergridQuery` using the shared instance of `UsergridCient`.
+
+    - Note: The query parameter must have a valid `collectionName` before calling this method.
 
     - parameter query: The query to use when filtering what entities to delete.
     - parameter queryCompletion: The completion block that will be called once the request has completed.
@@ -376,7 +398,13 @@ public class Usergrid: NSObject {
         Usergrid.sharedInstance.DISCONNECT(entity, relationship: relationship, connectingEntity: connectingEntity, completion: completion)
     }
 
-    // TODO: DOCUMENTATION
+    /**
+    Gets the connected entities for the given relationship using the shared instance of `UsergridCient`.
+
+    - parameter entity:       The entity that contains the connection.
+    - parameter relationship: The relationship.
+    - parameter completion:   The completion block that will be called once the request has completed.
+    */
     public static func getConnectedEntities(entity:UsergridEntity, relationship:String, completion:UsergridResponseCompletion?) {
         Usergrid.sharedInstance.getConnectedEntities(entity, relationship: relationship, completion: completion)
     }

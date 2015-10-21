@@ -88,9 +88,6 @@ public class UsergridClient: NSObject {
         self.authFallback = configuration.authFallback
         self.appAuth = configuration.appAuth
     }
-}
-
-extension UsergridClient {
 
     // MARK: - Authorization -
 
@@ -168,7 +165,11 @@ extension UsergridClient {
         }
     }
 
-    // TODO: DOCUMENTATION
+    /**
+    Logs out the current user locally and remotely.
+
+    - parameter completion: The completion block that will be called after logout has completed.
+    */
     public func logoutCurrentUser(completion:UsergridResponseCompletion?) {
         if let user = self.currentUser, uuidOrUsername = user.uuidOrUsername, token = user.auth?.accessToken {
             self.logoutUser(uuidOrUsername, token: token) { (response) -> Void in
@@ -181,18 +182,25 @@ extension UsergridClient {
         }
     }
 
-    // TODO: DOCUMENTATION
+    /**
+    Logs out the user remotely with the given tokens.
+
+    - parameter completion: The completion block that will be called after logout has completed.
+    */
     public func logoutUserAllTokens(uuidOrUsername:String, completion:UsergridResponseCompletion?) {
         self.logoutUser(uuidOrUsername, token: nil, completion: completion)
     }
 
-    // TODO: DOCUMENTATION
+    /**
+    Logs out a user with the give UUID or username using the shared instance of `UsergridCient`.
+
+    Passing in a token will log out the user for just that token.  Passing in nil for the token will logout the user for all tokens.
+
+    - parameter completion: The completion block that will be called after logout has completed.
+    */
     public func logoutUser(uuidOrUsername:String, token:String?, completion:UsergridResponseCompletion?) {
         _requestManager.performLogoutUserRequest(uuidOrUsername: uuidOrUsername, token:token, completion: completion)
     }
-}
-
-extension UsergridClient {
 
     // MARK: - GET -
 
@@ -217,9 +225,6 @@ extension UsergridClient {
     public func GET(type: String, query: UsergridQuery? = nil, completion: UsergridResponseCompletion?) {
         _requestManager.performRequest(type, requestURL: UsergridRequestManager.buildRequestURL(self.clientAppURL,query: query, paths: [type]), method: .GET, completion: completion)
     }
-}
-
-extension UsergridClient {
 
     // MARK: - PUT -
 
@@ -248,6 +253,8 @@ extension UsergridClient {
     /**
     Updates an `UsergridEntity` with the given type using the jsonBody where the UUID/name is specified inside of the jsonBody.
 
+    - Note: The `jsonBody` must contain a valid value for either `uuid` or `name` keys.
+
     - parameter type:       The `UsergridEntity` type.
     - parameter jsonBody:   The valid JSON body dictionary to update the `UsergridEntity` with.
     - parameter completion: The optional completion block that will be called once the request has completed.
@@ -256,12 +263,14 @@ extension UsergridClient {
         if let uuidOrName = jsonBody[UsergridEntityProperties.UUID.stringValue] as? String ?? jsonBody[UsergridEntityProperties.Name.stringValue] as? String {
             PUT(type, requestURL: UsergridRequestManager.buildRequestURL(self.clientAppURL,paths: [type,uuidOrName]), jsonBody: jsonBody, completion: completion)
         } else {
-            completion?(response: UsergridResponse(client:self, errorName: "", errorDescription: ""))
+            completion?(response: UsergridResponse(client:self, errorName: "jsonBody not valid.", errorDescription: "The `jsonBody` must contain a valid value for either `uuid` or `name`."))
         }
     }
 
     /**
     Updates the entities that fit the given query using the passed in jsonBody.
+
+    - Note: The query parameter must have a valid `collectionName` before calling this method.
 
     - parameter query:           The query to use when filtering what entities to update.
     - parameter jsonBody:        The valid JSON body dictionary to update with.
@@ -271,7 +280,7 @@ extension UsergridClient {
         if let type = query.collectionName {
             PUT(type, requestURL: UsergridRequestManager.buildRequestURL(self.clientAppURL,query: query, paths: [type]), jsonBody: jsonBody, completion: queryCompletion)
         } else {
-            queryCompletion?(response: UsergridResponse(client:self, errorName: "", errorDescription: ""))
+            queryCompletion?(response: UsergridResponse(client:self, errorName: "Query collection name invalid.", errorDescription: "Query is missing a collection name."))
         }
     }
 
@@ -284,9 +293,6 @@ extension UsergridClient {
             completion?(response: UsergridResponse(client:self, errorName: caught.domain, errorDescription: caught.localizedDescription))
         }
     }
-}
-
-extension UsergridClient {
 
     // MARK: - POST -
 
@@ -302,7 +308,7 @@ extension UsergridClient {
     /**
     Creates and posts an array of `UsergridEntity` objects.
 
-    Each `UsergridEntity` in the array much already have a type assigned and must be the same.
+    - Note: Each `UsergridEntity` in the array much already have a type assigned and must be the same.
 
     - parameter entities: The `UsergridEntity` objects to create.
     - parameter entitiesCompletion: The completion block that will be called once the request has completed.
@@ -360,28 +366,29 @@ extension UsergridClient {
             completion?(response: UsergridResponse(client:self, errorName: caught.domain, errorDescription: caught.localizedDescription))
         }
     }
-}
-
-extension UsergridClient {
 
     // MARK: - DELETE -
 
     /**
     Destroys the passed `UsergridEntity`.
-    - parameter entity: The `UsergridEntity` to delete.
 
+    - Note: The entity object must have a `uuid` or `name` assigned.
+
+    - parameter entity: The `UsergridEntity` to delete.
     - parameter completion: The completion block that will be called once the request has completed.
     */
     public func DELETE(entity:UsergridEntity, completion: UsergridResponseCompletion?) {
         if let uuidOrName = entity.uuid ?? entity.name?.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLPathAllowedCharacterSet()) {
             DELETE(entity.type, uuidOrName: uuidOrName, completion: completion)
         } else {
-            completion?(response: UsergridResponse(client:self, errorName: "", errorDescription: ""))
+            completion?(response: UsergridResponse(client:self, errorName: "No UUID or name found.", errorDescription: "The entity object must have a `uuid` or `name` assigned."))
         }
     }
 
     /**
     Destroys the `UsergridEntity` objects that fit the given `UsergridQuery`.
+
+    - Note: The query parameter must have a valid `collectionName` before calling this method.
 
     - parameter query: The query to use when filtering what entities to delete.
     - parameter queryCompletion: The completion block that will be called once the request has completed.
@@ -390,12 +397,13 @@ extension UsergridClient {
         if let type = query.collectionName {
             DELETE(type, requestURL: UsergridRequestManager.buildRequestURL(self.clientAppURL,query: query, paths: [type]), completion: queryCompletion)
         } else {
-            queryCompletion?(response: UsergridResponse(client:self, errorName: "", errorDescription: ""))
+            queryCompletion?(response: UsergridResponse(client:self, errorName: "Query collection name invalid.", errorDescription: "Query is missing a collection name."))
         }
     }
 
     /**
     Destroys the `UsergridEntity` of a given type with a specific UUID/name.
+
     - parameter type: The `UsergridEntity` type.
     - parameter uuidOrName: The UUID or name of the `UsergridEntity`.
     - parameter completion: The completion block that will be called once the request has completed.
@@ -407,14 +415,12 @@ extension UsergridClient {
     private func DELETE(type: String, requestURL:String, completion:UsergridResponseCompletion?) {
         _requestManager.performRequest(type, requestURL: requestURL, method: .DELETE, headers:UsergridRequestManager.JSON_CONTENT_TYPE_HEADER, completion: completion)
     }
-}
 
-extension UsergridClient {
-
-    // MARK: - Entity Connections -
+    // MARK: - Connection Management -
 
     /**
     Connects the `UsergridEntity` objects via the relationship.
+
     - parameter entity: The `UsergridEntity` that will contain the connection.
     - parameter relationship: The relationship of the two entities.
     - parameter connectingEntity: The `UsergridEntity` which is connected.
@@ -426,6 +432,7 @@ extension UsergridClient {
 
     /**
     Disconnects the `UsergridEntity` objects via the relationship.
+
     - parameter entity: The `UsergridEntity` that contains the connection.
     - parameter relationship: The relationship of the two entities.
     - parameter connectingEntity: The `UsergridEntity` which is connected.
@@ -435,18 +442,22 @@ extension UsergridClient {
         _requestManager.performDisconnect(entity, relationship: relationship, connectingEntity: connectingEntity, completion: completion)
     }
 
-    // TODO: DOCUMENTATION
+    /**
+    Gets the connected entities for the given relationship.
+
+    - parameter entity:       The entity that contains the connection.
+    - parameter relationship: The relationship.
+    - parameter completion:   The completion block that will be called once the request has completed.
+    */
     public func getConnectedEntities(entity:UsergridEntity, relationship:String, completion:UsergridResponseCompletion?) {
         _requestManager.getConnectedEntities(entity, relationship: relationship, completion: completion)
     }
-}
-
-extension UsergridClient {
 
     // MARK: - Asset Management -
 
     /**
     Uploads the asset and connects the data to the given `UsergridEntity`.
+
     - parameter entity: The `UsergridEntity` to connect the asset to.
     - parameter asset: The `UsergridAsset` to upload.
     - parameter progress: The progress block that will be called to update the progress of the upload.
@@ -461,6 +472,7 @@ extension UsergridClient {
 
     /**
     Downloads the asset from the given `UsergridEntity`.
+
     - parameter entity: The `UsergridEntity` to which the asset to.
     - parameter contentType: The content type of the asset's data.
     - parameter progress: The optional progress block that will be called to update the progress of the download.

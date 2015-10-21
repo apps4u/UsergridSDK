@@ -1,62 +1,6 @@
 UsergridEntity.swift
 	public init(type:String, name:String? = nil, propertyDict:[String:AnyObject]? = nil)
 	public class func entity(jsonDict jsonDict: [String:AnyObject]) -> UsergridEntity?
-UsergridUser.swift
-	public class UsergridUser : UsergridEntity
-	public var auth: UsergridUserAuth?
-	override public var name: String?
-	public var username: String?
-	public var password: String?
-	public var email: String?
-	public var age: NSNumber?
-	public var activated: Bool
-	public var disabled: Bool
-	public var picture: String?
-	public var uuidOrUsername: String? { return self.uuid ?? self.username }
-	public init(name:String? = nil)
-	public init(name:String,propertyDict:[String:AnyObject]? = nil)
-	public func create(completion: UsergridResponseCompletion)
-	public func create(client: UsergridClient, completion: UsergridResponseCompletion)
-	public func login(username:String, password:String, completion: UsergridUserAuthCompletionBlock)
-	public func login(client: UsergridClient, username:String, password:String, completion: UsergridUserAuthCompletionBlock)
-	public func logout(completion:UsergridResponseCompletion?)
-	public func logout(client: UsergridClient, completion:UsergridResponseCompletion?)
-Usergrid.swift
-	public static func logoutCurrentUser(completion:UsergridResponseCompletion?)
-	public static func logoutUserAllTokens(uuidOrUsername:String, completion:UsergridResponseCompletion?)
-	public static func logoutUser(uuidOrUsername:String, token:String?, completion:UsergridResponseCompletion?)
-	public static func getConnectedEntities(entity:UsergridEntity, relationship:String, completion:UsergridResponseCompletion?)
-UsergridResponse.swift
-	public weak var client: UsergridClient?
-	public init(client:UsergridClient?, data:NSData?, response:NSHTTPURLResponse?, error:NSError?, query:UsergridQuery? = nil)
-	public func loadNextPage(completion: UsergridResponseCompletion)
 UsergridEnums.swift
-	case EntityType
-	case UUID
-	case Name
-	case Created
-	case Modified
-	case Location
-	@objc public enum UsergridUserProperties: Int
-	case Name
-	case Username
-	case Password
-	case Email
-	case Age
-	case Activated
-	case Disabled
-	case Picture
-	case Equal
-	case GreaterThan
-	case GreaterThanEqualTo
-	case LessThan
-	case LessThanEqualTo
-	case Asc
-	case Desc
 	case Png
 	case Jpeg
-UsergridClient.swift
-	public func logoutCurrentUser(completion:UsergridResponseCompletion?)
-	public func logoutUserAllTokens(uuidOrUsername:String, completion:UsergridResponseCompletion?)
-	public func logoutUser(uuidOrUsername:String, token:String?, completion:UsergridResponseCompletion?)
-	public func getConnectedEntities(entity:UsergridEntity, relationship:String, completion:UsergridResponseCompletion?)
