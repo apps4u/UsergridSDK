@@ -1,4 +1,5 @@
 language: objective-c
+osx_image: xcode7
 script:
     - brew update && brew uninstall xctool && brew install xctool --build-from-source
     - xctool -project ./UsergridSDK.xcodeproj -scheme UsergridSDK -sdk iphonesimulator -configuration Debug
