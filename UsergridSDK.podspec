@@ -9,6 +9,6 @@ Pod::Spec.new do |s|
   s.platform = :ios, '8.0'
   s.requires_arc = true
 
-  s.source = { :git => 'https://github.com/RobertWalsh/UsergridSDK.git', :branch => 'master', :tag => '0.0.1' }
+  s.source = { :git => 'https://github.com/RobertWalsh/UsergridSDK.git', :branch => 'master', :tag => 'v0.0.1' }
   s.source_files  = 'Source/*.swift','Source/Internal/*.swift'
 end
