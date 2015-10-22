@@ -205,6 +205,8 @@ public class UsergridUser : UsergridEntity {
     /**
     Subscript for the `UsergridUser` class.
 
+    - Warning: When setting a properties value must be a valid JSON object.
+
     - Example usage:
     ```
     let someName = usergridUser["name"]
