@@ -116,7 +116,7 @@ public class Usergrid: NSObject {
     // MARK: - Push Notifications -
 
     /**
-    Sets the push token for the given notifier ID and performs a PUT request to update the device using the shared instance of `UsergridCient`.
+    Sets the push token for the given notifier ID and performs a PUT request to update the shared `UsergridDevice` instance using the shared instance of `UsergridCient`.
 
     - parameter pushToken:  The push token from Apple.
     - parameter notifierID: The Usergrid notifier ID.
@@ -125,6 +125,19 @@ public class Usergrid: NSObject {
     public static func applyPushToken(pushToken: NSData, notifierID: String, completion: UsergridResponseCompletion?) {
         Usergrid.sharedInstance.applyPushToken(pushToken, notifierID: notifierID, completion: completion)
     }
+
+    /**
+    Sets the push token for the given notifier ID and performs a PUT request to update the given `UsergridDevice` instance using the shared instance of `UsergridCient`.
+
+    - parameter device:     The `UsergridDevice` object.
+    - parameter pushToken:  The push token from Apple.
+    - parameter notifierID: The Usergrid notifier ID.
+    - parameter completion: The completion block.
+    */
+    public static func applyPushToken(device: UsergridDevice, pushToken: NSData, notifierID: String, completion: UsergridResponseCompletion?) {
+        Usergrid.sharedInstance.applyPushToken(device, pushToken: pushToken, notifierID: notifierID, completion: completion)
+    }
+
 
     // MARK: - Authorization -
 

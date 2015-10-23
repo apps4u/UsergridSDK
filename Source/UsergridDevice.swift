@@ -12,6 +12,8 @@ import Security
 
 /**
 `UsergridDevice` encapsulates information about the current device as well as stores information about push tokens and Usergrid notifiers.
+
+To apply push tokens for Usergrid notifiers use the `UsergridClient.applyPushToken` method.
 */
 public class UsergridDevice : NSObject {
 
@@ -55,8 +57,6 @@ public class UsergridDevice : NSObject {
         deviceEntityDict[USERGRID_DEVICE_OSVERSION] = UIDevice.currentDevice().systemVersion
     }
 
-    // MARK: - Instance Methods -
-
     /**
     Sets the push token for the given notifier ID.
     
@@ -67,7 +67,7 @@ public class UsergridDevice : NSObject {
     - parameter pushToken:  The push token from Apple.
     - parameter notifierID: The notifier ID.
     */
-    public func applyPushToken(pushToken: NSData, notifierID: String) {
+    internal func applyPushToken(pushToken: NSData, notifierID: String) {
         deviceEntityDict[notifierID + USERGRID_NOTIFIER_ID_SUFFIX] = pushToken.description.stringByTrimmingCharactersInSet(NSCharacterSet(charactersInString: "<>")).stringByReplacingOccurrencesOfString(" ", withString: "")
     }
 

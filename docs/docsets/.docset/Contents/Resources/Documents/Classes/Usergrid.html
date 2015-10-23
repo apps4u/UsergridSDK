@@ -620,7 +620,7 @@ within the UsergridSDK library.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Sets the push token for the given notifier ID and performs a PUT request to update the device using the shared instance of <code>UsergridCient</code>.</p>
+                        <p>Sets the push token for the given notifier ID and performs a PUT request to update the shared <code>UsergridDevice</code> instance using the shared instance of <code>UsergridCient</code>.</p>
 
                       </div>
                       <div class="declaration">
@@ -635,6 +635,92 @@ within the UsergridSDK library.</p>
                         <h4>Parameters</h4>
                         <table class="graybox">
                           <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>pushToken</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The push token from Apple.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>notifierID</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The Usergrid notifier ID.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completion</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The completion block.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC11UsergridSDK8Usergrid14applyPushTokenFMS0_FTCS_14UsergridDevice9pushTokenCSo6NSData10notifierIDSS10completionGSqFT8responseCS_16UsergridResponse_T___T_"></a>
+                    <a name="//apple_ref/swift/Method/applyPushToken(_:pushToken:notifierID:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC11UsergridSDK8Usergrid14applyPushTokenFMS0_FTCS_14UsergridDevice9pushTokenCSo6NSData10notifierIDSS10completionGSqFT8responseCS_16UsergridResponse_T___T_">applyPushToken(_:pushToken:notifierID:completion:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sets the push token for the given notifier ID and performs a PUT request to update the given <code>UsergridDevice</code> instance using the shared instance of <code>UsergridCient</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">applyPushToken</span><span class="p">(</span><span class="nv">device</span><span class="p">:</span> <span class="kt">UsergridDevice</span><span class="p">,</span> <span class="nv">pushToken</span><span class="p">:</span> <span class="kt">NSData</span><span class="p">,</span> <span class="nv">notifierID</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kt">UsergridResponseCompletion</span><span class="p">?)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>device</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The <code>UsergridDevice</code> object.</p>
+
+                                </div>
+                              </td>
+                            </tr>
                             <tr>
                               <td>
                                 <code>
