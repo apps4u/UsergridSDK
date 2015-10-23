@@ -70,11 +70,11 @@ final class UsergridRequestManager {
         return request
     }
 
-    func performRequest(type:String, requestURL:String, method:UsergridHttpMethod, headers: [String:String]? = nil, body: NSData? = nil, completion: UsergridResponseCompletion?) {
-        performRequest(type, request: UsergridRequestManager.buildRequest(requestURL, method, client.authForRequests(), headers, body), completion: completion)
+    func performRequest(requestURL:String, method:UsergridHttpMethod, headers: [String:String]? = nil, body: NSData? = nil, completion: UsergridResponseCompletion?) {
+        performRequest(UsergridRequestManager.buildRequest(requestURL, method, client.authForRequests(), headers, body), completion: completion)
     }
 
-    func performRequest(type: String, request: NSURLRequest, completion: UsergridResponseCompletion?) {
+    func performRequest(request: NSURLRequest, completion: UsergridResponseCompletion?) {
         session.dataTaskWithRequest(request) { [weak self] (data, response, error) -> Void in
             completion?(response: UsergridResponse(client:self?.client, data: data, response: response as? NSHTTPURLResponse, error: error))
         }.resume()

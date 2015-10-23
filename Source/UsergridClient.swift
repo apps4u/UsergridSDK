@@ -89,6 +89,20 @@ public class UsergridClient: NSObject {
         self.appAuth = configuration.appAuth
     }
 
+    // MARK: - Push Notifications -
+
+    /**
+    Sets the push token for the given notifier ID and performs a PUT request to update the device entity.
+
+    - parameter pushToken:  The push token from Apple.
+    - parameter notifierID: The Usergrid notifier ID.
+    - parameter completion: The completion block.
+    */
+    public func applyPushToken(pushToken: NSData, notifierID: String, completion: UsergridResponseCompletion?) {
+        UsergridDevice.sharedDevice.applyPushToken(pushToken, notifierID: notifierID)
+        PUT(UsergridDevice.USERGRID_DEVICE_TYPE, jsonBody: UsergridDevice.sharedDevice.deviceEntityDict, completion: completion)
+    }
+
     // MARK: - Authorization -
 
     /**
@@ -212,7 +226,7 @@ public class UsergridClient: NSObject {
     - parameter completion: The completion block that will be called once the request has completed.
     */
     public func GET(type: String, uuidOrName: String, completion: UsergridResponseCompletion?) {
-        _requestManager.performRequest(type, requestURL: UsergridRequestManager.buildRequestURL(self.clientAppURL,paths: [type,uuidOrName]), method: .GET, completion: completion)
+        _requestManager.performRequest(UsergridRequestManager.buildRequestURL(self.clientAppURL,paths: [type,uuidOrName]), method: .GET, completion: completion)
     }
 
     /**
@@ -223,7 +237,7 @@ public class UsergridClient: NSObject {
     - parameter completion: The completion block that will be called once the request has completed.
     */
     public func GET(type: String, query: UsergridQuery? = nil, completion: UsergridResponseCompletion?) {
-        _requestManager.performRequest(type, requestURL: UsergridRequestManager.buildRequestURL(self.clientAppURL,query: query, paths: [type]), method: .GET, completion: completion)
+        _requestManager.performRequest(UsergridRequestManager.buildRequestURL(self.clientAppURL,query: query, paths: [type]), method: .GET, completion: completion)
     }
 
     // MARK: - PUT -
@@ -237,7 +251,7 @@ public class UsergridClient: NSObject {
     - parameter completion: The completion block that will be called once the request has completed.
     */
     public func PUT(type: String, uuidOrName: String, jsonBody:[String:AnyObject], completion: UsergridResponseCompletion?) {
-        PUT(type, requestURL: UsergridRequestManager.buildRequestURL(self.clientAppURL,paths: [type,uuidOrName]), jsonBody: jsonBody, completion: completion)
+        PUT(requestURL: UsergridRequestManager.buildRequestURL(self.clientAppURL,paths: [type,uuidOrName]), jsonBody: jsonBody, completion: completion)
     }
 
     /**
@@ -261,7 +275,7 @@ public class UsergridClient: NSObject {
     */
     public func PUT(type: String, jsonBody:[String:AnyObject], completion: UsergridResponseCompletion?) {
         if let uuidOrName = jsonBody[UsergridEntityProperties.UUID.stringValue] as? String ?? jsonBody[UsergridEntityProperties.Name.stringValue] as? String {
-            PUT(type, requestURL: UsergridRequestManager.buildRequestURL(self.clientAppURL,paths: [type,uuidOrName]), jsonBody: jsonBody, completion: completion)
+            PUT(requestURL: UsergridRequestManager.buildRequestURL(self.clientAppURL,paths: [type,uuidOrName]), jsonBody: jsonBody, completion: completion)
         } else {
             completion?(response: UsergridResponse(client:self, errorName: "jsonBody not valid.", errorDescription: "The `jsonBody` must contain a valid value for either `uuid` or `name`."))
         }
@@ -278,16 +292,16 @@ public class UsergridClient: NSObject {
     */
     public func PUT(query: UsergridQuery, jsonBody:[String:AnyObject], queryCompletion: UsergridResponseCompletion?) {
         if let type = query.collectionName {
-            PUT(type, requestURL: UsergridRequestManager.buildRequestURL(self.clientAppURL,query: query, paths: [type]), jsonBody: jsonBody, completion: queryCompletion)
+            PUT(requestURL: UsergridRequestManager.buildRequestURL(self.clientAppURL,query: query, paths: [type]), jsonBody: jsonBody, completion: queryCompletion)
         } else {
             queryCompletion?(response: UsergridResponse(client:self, errorName: "Query collection name invalid.", errorDescription: "Query is missing a collection name."))
         }
     }
 
-    private func PUT(type: String, requestURL: String, jsonBody: [String:AnyObject], completion: UsergridResponseCompletion?) {
+    private func PUT(requestURL requestURL: String, jsonBody: [String:AnyObject], completion: UsergridResponseCompletion?) {
         do {
             let jsonData = try NSJSONSerialization.dataWithJSONObject(jsonBody, options: NSJSONWritingOptions.PrettyPrinted)
-            _requestManager.performRequest(type,requestURL: requestURL,method: .PUT,headers:UsergridRequestManager.JSON_CONTENT_TYPE_HEADER,body: jsonData,completion: completion)
+            _requestManager.performRequest(requestURL,method: .PUT,headers:UsergridRequestManager.JSON_CONTENT_TYPE_HEADER,body: jsonData,completion: completion)
         } catch let caught as NSError {
             print(caught)
             completion?(response: UsergridResponse(client:self, errorName: caught.domain, errorDescription: caught.localizedDescription))
@@ -302,7 +316,7 @@ public class UsergridClient: NSObject {
     - parameter completion: The completion block that will be called once the request has completed.
     */
     public func POST(entity:UsergridEntity, completion: UsergridResponseCompletion?) {
-        POST(entity.type, requestURL: UsergridRequestManager.buildRequestURL(self.clientAppURL,paths: [entity.type]), jsonBody: entity.jsonObjectValue, completion: completion)
+        POST(requestURL:UsergridRequestManager.buildRequestURL(self.clientAppURL,paths: [entity.type]), jsonBody: entity.jsonObjectValue, completion: completion)
     }
 
     /**
@@ -329,7 +343,7 @@ public class UsergridClient: NSObject {
     - parameter completion: The completion block that will be called once the request has completed.
     */
     public func POST(type: String, jsonBody:[String:AnyObject], completion: UsergridResponseCompletion?) {
-        POST(type, requestURL: UsergridRequestManager.buildRequestURL(self.clientAppURL,paths: [type]), jsonBody: jsonBody, completion: completion)
+        POST(requestURL:UsergridRequestManager.buildRequestURL(self.clientAppURL,paths: [type]), jsonBody: jsonBody, completion: completion)
     }
 
     /**
@@ -340,7 +354,7 @@ public class UsergridClient: NSObject {
     - parameter completion: The completion block that will be called once the request has completed.
     */
     public func POST(type: String, jsonBodies:[[String:AnyObject]], completion: UsergridResponseCompletion?) {
-        POST(type, requestURL: UsergridRequestManager.buildRequestURL(self.clientAppURL,paths: [type]), jsonBody: jsonBodies, completion:completion)
+        POST(requestURL:UsergridRequestManager.buildRequestURL(self.clientAppURL,paths: [type]), jsonBody: jsonBodies, completion:completion)
     }
 
     /**
@@ -357,10 +371,10 @@ public class UsergridClient: NSObject {
         POST(type, jsonBody: jsonBodyWithName,completion: completion)
     }
 
-    private func POST(type: String, requestURL: String, jsonBody: AnyObject, completion: UsergridResponseCompletion?) {
+    private func POST(requestURL requestURL: String, jsonBody: AnyObject, completion: UsergridResponseCompletion?) {
         do {
             let jsonData = try NSJSONSerialization.dataWithJSONObject(jsonBody, options: NSJSONWritingOptions.PrettyPrinted)
-            _requestManager.performRequest(type,requestURL: requestURL, method: .POST, headers:UsergridRequestManager.JSON_CONTENT_TYPE_HEADER, body: jsonData,completion: completion)
+            _requestManager.performRequest(requestURL, method: .POST, headers:UsergridRequestManager.JSON_CONTENT_TYPE_HEADER, body: jsonData,completion: completion)
         } catch let caught as NSError {
             print(caught)
             completion?(response: UsergridResponse(client:self, errorName: caught.domain, errorDescription: caught.localizedDescription))
@@ -395,7 +409,7 @@ public class UsergridClient: NSObject {
     */
     public func DELETE(query:UsergridQuery, queryCompletion: UsergridResponseCompletion?) {
         if let type = query.collectionName {
-            DELETE(type, requestURL: UsergridRequestManager.buildRequestURL(self.clientAppURL,query: query, paths: [type]), completion: queryCompletion)
+            DELETE(requestURL: UsergridRequestManager.buildRequestURL(self.clientAppURL,query: query, paths: [type]), completion: queryCompletion)
         } else {
             queryCompletion?(response: UsergridResponse(client:self, errorName: "Query collection name invalid.", errorDescription: "Query is missing a collection name."))
         }
@@ -409,11 +423,11 @@ public class UsergridClient: NSObject {
     - parameter completion: The completion block that will be called once the request has completed.
     */
     public func DELETE(type:String, uuidOrName: String, completion: UsergridResponseCompletion?) {
-        DELETE(type, requestURL: UsergridRequestManager.buildRequestURL(self.clientAppURL, paths: [type,uuidOrName]), completion: completion)
+        DELETE(requestURL: UsergridRequestManager.buildRequestURL(self.clientAppURL, paths: [type,uuidOrName]), completion: completion)
     }
 
-    private func DELETE(type: String, requestURL:String, completion:UsergridResponseCompletion?) {
-        _requestManager.performRequest(type, requestURL: requestURL, method: .DELETE, headers:UsergridRequestManager.JSON_CONTENT_TYPE_HEADER, completion: completion)
+    private func DELETE(requestURL requestURL:String, completion:UsergridResponseCompletion?) {
+        _requestManager.performRequest(requestURL, method: .DELETE, headers:UsergridRequestManager.JSON_CONTENT_TYPE_HEADER, completion: completion)
     }
 
     // MARK: - Connection Management -

@@ -113,6 +113,19 @@ public class Usergrid: NSObject {
         return Usergrid._sharedClient
     }
 
+    // MARK: - Push Notifications -
+
+    /**
+    Sets the push token for the given notifier ID and performs a PUT request to update the device using the shared instance of `UsergridCient`.
+
+    - parameter pushToken:  The push token from Apple.
+    - parameter notifierID: The Usergrid notifier ID.
+    - parameter completion: The completion block.
+    */
+    public static func applyPushToken(pushToken: NSData, notifierID: String, completion: UsergridResponseCompletion?) {
+        Usergrid.sharedInstance.applyPushToken(pushToken, notifierID: notifierID, completion: completion)
+    }
+
     // MARK: - Authorization -
 
     /// The `UsergridAuthFallback` value used to determine what type of token will be sent of the shared instance of `UsergridClient`, if any.
