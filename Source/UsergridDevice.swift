@@ -16,10 +16,9 @@ import Security
 public class UsergridDevice : NSObject {
 
     /// The `UsergridDevice` type.
-    public static let USERGRID_DEVICE_TYPE = "device"
+    static let USERGRID_DEVICE_TYPE = "device"
 
-    /// The shared instance of `UsergridDevice`.
-    public static var sharedDevice: UsergridDevice = UsergridDevice()
+    // MARK: - Instance Properties -
 
     private(set) var deviceEntityDict: [String:AnyObject] = [:]
 
@@ -34,6 +33,11 @@ public class UsergridDevice : NSObject {
 
     /// The device operating system version.
     public var osVersion: String { return deviceEntityDict[USERGRID_DEVICE_OSVERSION] as! String }
+
+    // MARK: - Initialization -
+
+    /// The shared instance of `UsergridDevice`.
+    public static var sharedDevice: UsergridDevice = UsergridDevice()
 
     /**
     Designated Initializer for `UsergridDevice` objects
@@ -50,6 +54,8 @@ public class UsergridDevice : NSObject {
         deviceEntityDict[USERGRID_DEVICE_PLATFORM] = UIDevice.currentDevice().systemName
         deviceEntityDict[USERGRID_DEVICE_OSVERSION] = UIDevice.currentDevice().systemVersion
     }
+
+    // MARK: - Instance Methods -
 
     /**
     Sets the push token for the given notifier ID.

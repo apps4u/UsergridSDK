@@ -48,6 +48,9 @@
                 <a href="../Classes/UsergridClientConfig.html">UsergridClientConfig</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/UsergridDevice.html">UsergridDevice</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/UsergridEntity.html">UsergridEntity</a>
               </li>
               <li class="nav-group-task">
@@ -556,6 +559,90 @@
                         <h4>Return Value</h4>
                         <p>The new instance of <code>UsergridClient</code>.</p>
 
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+                <div class="task-name-container">
+                  <a name="/Push%20Notifications"></a>
+                  <a name="//apple_ref/swift/Section/Push Notifications" class="dashAnchor"></a>
+                  <a href="#/Push%20Notifications">
+                    <h3 class="section-name">Push Notifications</h3>
+                  </a>
+                </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC11UsergridSDK14UsergridClient14applyPushTokenFS0_FTCSo6NSData10notifierIDSS10completionGSqFT8responseCS_16UsergridResponse_T___T_"></a>
+                    <a name="//apple_ref/swift/Method/applyPushToken(_:notifierID:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC11UsergridSDK14UsergridClient14applyPushTokenFS0_FTCSo6NSData10notifierIDSS10completionGSqFT8responseCS_16UsergridResponse_T___T_">applyPushToken(_:notifierID:completion:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sets the push token for the given notifier ID and performs a PUT request to update the device entity.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">applyPushToken</span><span class="p">(</span><span class="nv">pushToken</span><span class="p">:</span> <span class="kt">NSData</span><span class="p">,</span> <span class="nv">notifierID</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kt">UsergridResponseCompletion</span><span class="p">?)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>pushToken</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The push token from Apple.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>notifierID</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The Usergrid notifier ID.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completion</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The completion block.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>
@@ -2463,7 +2550,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2015 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2015-10-21)</p>
+          <p>&copy; 2015 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2015-10-23)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.3.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
