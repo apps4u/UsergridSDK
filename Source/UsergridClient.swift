@@ -62,9 +62,9 @@ public class UsergridClient: NSObject {
     /**
     Initializes instances of `UsergridClient`.
 
-    - parameter orgID: The organization identifier.
-    - parameter appID: The application identifier.
-    - parameter baseURL: The base URL that all calls will be made with.
+    - parameter orgID:      The organization identifier.
+    - parameter appID:      The application identifier.
+    - parameter baseURL:    The base URL that all calls will be made with.
 
     - returns: The new instance of `UsergridClient`.
     */
@@ -89,7 +89,7 @@ public class UsergridClient: NSObject {
         self.appAuth = configuration.appAuth
     }
 
-    // MARK: - Push Notifications -
+    // MARK: - Device Registration/Push Notifications -
 
     /**
     Sets the push token for the given notifier ID and performs a PUT request to update the shared `UsergridDevice` instance.
@@ -112,7 +112,7 @@ public class UsergridClient: NSObject {
     */
     public func applyPushToken(device: UsergridDevice, pushToken: NSData, notifierID: String, completion: UsergridResponseCompletion?) {
         device.applyPushToken(pushToken, notifierID: notifierID)
-        PUT(UsergridDevice.USERGRID_DEVICE_TYPE, jsonBody: device.deviceEntityDict, completion: completion)
+        PUT(UsergridDevice.DEVICE_ENTITY_TYPE, jsonBody: device.jsonObjectValue, completion: completion)
     }
 
     // MARK: - Authorization -
@@ -155,7 +155,7 @@ public class UsergridClient: NSObject {
     /**
     Authenticates with the `UsergridAppAuth` that is passed in.
 
-    - parameter auth: The `UsergridAppAuth` that will be authenticated.
+    - parameter auth:       The `UsergridAppAuth` that will be authenticated.
     - parameter completion: The completion block that will be called after authentication has completed.
     */
     public func authenticateApp(appAuth: UsergridAppAuth, completion: UsergridAppAuthCompletionBlock?) {
@@ -168,7 +168,7 @@ public class UsergridClient: NSObject {
     /**
     Authenticates with the `UsergridUserAuth` that is passed in.
 
-    - parameter auth: The `UsergridUserAuth` that will be authenticated.
+    - parameter auth:       The `UsergridUserAuth` that will be authenticated.
     - parameter completion: The completion block that will be called after authentication has completed.
     */
     public func authenticateUser(userAuth: UsergridUserAuth, completion: UsergridUserAuthCompletionBlock?) {
@@ -178,9 +178,9 @@ public class UsergridClient: NSObject {
     /**
     Authenticates with the `UsergridUserAuth` that is passed in.
 
-    - parameter auth: The `UsergridUserAuth` that will be authenticated.
-    - parameter setAsCurrentUser: If the authenticated user should be set as the `UsergridClient.currentUser`.
-    - parameter completion: The completion block that will be called after authentication has completed.
+    - parameter auth:               The `UsergridUserAuth` that will be authenticated.
+    - parameter setAsCurrentUser:   If the authenticated user should be set as the `UsergridClient.currentUser`.
+    - parameter completion:         The completion block that will be called after authentication has completed.
     */
     public func authenticateUser(userAuth: UsergridUserAuth, setAsCurrentUser: Bool, completion: UsergridUserAuthCompletionBlock?) {
         _requestManager.performAuthRequest(userAuth:userAuth, request: userAuth.buildAuthRequest(self.clientAppURL)) { [weak self] (auth,user,error) in
@@ -233,7 +233,7 @@ public class UsergridClient: NSObject {
     /**
     Gets a single `UsergridEntity` of a given type with a specific UUID/name.
 
-    - parameter type: The `UsergridEntity` type.
+    - parameter type:       The `UsergridEntity` type.
     - parameter uuidOrName: The UUID or name of the `UsergridEntity`.
     - parameter completion: The completion block that will be called once the request has completed.
     */
@@ -244,8 +244,8 @@ public class UsergridClient: NSObject {
     /**
     Gets a group of `UsergridEntity` objects of a given type with an optional query.
 
-    - parameter type: The `UsergridEntity` type.
-    - parameter query: The optional query to use when gathering `UsergridEntity` objects.
+    - parameter type:       The `UsergridEntity` type.
+    - parameter query:      The optional query to use when gathering `UsergridEntity` objects.
     - parameter completion: The completion block that will be called once the request has completed.
     */
     public func GET(type: String, query: UsergridQuery? = nil, completion: UsergridResponseCompletion?) {
@@ -257,9 +257,9 @@ public class UsergridClient: NSObject {
     /**
     Updates an `UsergridEntity` with the given type and UUID/name specified using the passed in jsonBody.
 
-    - parameter type: The `UsergridEntity` type.
+    - parameter type:       The `UsergridEntity` type.
     - parameter uuidOrName: The UUID or name of the `UsergridEntity`.
-    - parameter jsonBody: The valid JSON body dictionary to update the `UsergridEntity` with.
+    - parameter jsonBody:   The valid JSON body dictionary to update the `UsergridEntity` with.
     - parameter completion: The completion block that will be called once the request has completed.
     */
     public func PUT(type: String, uuidOrName: String, jsonBody:[String:AnyObject], completion: UsergridResponseCompletion?) {
@@ -269,7 +269,7 @@ public class UsergridClient: NSObject {
     /**
     Updates the passed in `UsergridEntity`.
 
-    - parameter entity: The `UsergridEntity` to update.
+    - parameter entity:     The `UsergridEntity` to update.
     - parameter completion: The completion block that will be called once the request has completed.
     */
     public func PUT(entity: UsergridEntity, completion: UsergridResponseCompletion?) {
@@ -324,7 +324,7 @@ public class UsergridClient: NSObject {
 
     /**
     Creates and posts creates an `UsergridEntity`.
-    - parameter entity: The `UsergridEntity` to create.
+    - parameter entity:     The `UsergridEntity` to create.
     - parameter completion: The completion block that will be called once the request has completed.
     */
     public func POST(entity:UsergridEntity, completion: UsergridResponseCompletion?) {
@@ -336,7 +336,7 @@ public class UsergridClient: NSObject {
 
     - Note: Each `UsergridEntity` in the array much already have a type assigned and must be the same.
 
-    - parameter entities: The `UsergridEntity` objects to create.
+    - parameter entities:           The `UsergridEntity` objects to create.
     - parameter entitiesCompletion: The completion block that will be called once the request has completed.
     */
     public func POST(entities:[UsergridEntity], entitiesCompletion: UsergridResponseCompletion?) {
@@ -350,8 +350,8 @@ public class UsergridClient: NSObject {
     /**
     Creates and posts an `UsergridEntity` of the given type with the given jsonBody.
 
-    - parameter type: The `UsergridEntity` type.
-    - parameter jsonBody: The valid JSON body dictionary to use when creating the `UsergridEntity`.
+    - parameter type:       The `UsergridEntity` type.
+    - parameter jsonBody:   The valid JSON body dictionary to use when creating the `UsergridEntity`.
     - parameter completion: The completion block that will be called once the request has completed.
     */
     public func POST(type: String, jsonBody:[String:AnyObject], completion: UsergridResponseCompletion?) {
@@ -361,8 +361,8 @@ public class UsergridClient: NSObject {
     /**
     Creates and posts an array of `Entity` objects while assigning the given type to them.
 
-    - parameter type: The `UsergridEntity` type.
-    - parameter jsonBody: The valid JSON body dictionaries to use when creating the `UsergridEntity` objects.
+    - parameter type:       The `UsergridEntity` type.
+    - parameter jsonBody:   The valid JSON body dictionaries to use when creating the `UsergridEntity` objects.
     - parameter completion: The completion block that will be called once the request has completed.
     */
     public func POST(type: String, jsonBodies:[[String:AnyObject]], completion: UsergridResponseCompletion?) {
@@ -372,9 +372,9 @@ public class UsergridClient: NSObject {
     /**
     Creates and posts an `UsergridEntity` of the given type with a given name and the given jsonBody.
 
-    - parameter type: The `UsergridEntity` type.
-    - parameter name: The name of the `UsergridEntity`.
-    - parameter jsonBody: The valid JSON body dictionary to use when creating the `UsergridEntity`.
+    - parameter type:       The `UsergridEntity` type.
+    - parameter name:       The name of the `UsergridEntity`.
+    - parameter jsonBody:   The valid JSON body dictionary to use when creating the `UsergridEntity`.
     - parameter completion: The completion block that will be called once the request has completed.
     */
     public func POST(type: String, name: String, jsonBody:[String:AnyObject], completion: UsergridResponseCompletion?) {
@@ -400,7 +400,7 @@ public class UsergridClient: NSObject {
 
     - Note: The entity object must have a `uuid` or `name` assigned.
 
-    - parameter entity: The `UsergridEntity` to delete.
+    - parameter entity:     The `UsergridEntity` to delete.
     - parameter completion: The completion block that will be called once the request has completed.
     */
     public func DELETE(entity:UsergridEntity, completion: UsergridResponseCompletion?) {
@@ -416,8 +416,8 @@ public class UsergridClient: NSObject {
 
     - Note: The query parameter must have a valid `collectionName` before calling this method.
 
-    - parameter query: The query to use when filtering what entities to delete.
-    - parameter queryCompletion: The completion block that will be called once the request has completed.
+    - parameter query:              The query to use when filtering what entities to delete.
+    - parameter queryCompletion:    The completion block that will be called once the request has completed.
     */
     public func DELETE(query:UsergridQuery, queryCompletion: UsergridResponseCompletion?) {
         if let type = query.collectionName {
@@ -430,7 +430,7 @@ public class UsergridClient: NSObject {
     /**
     Destroys the `UsergridEntity` of a given type with a specific UUID/name.
 
-    - parameter type: The `UsergridEntity` type.
+    - parameter type:       The `UsergridEntity` type.
     - parameter uuidOrName: The UUID or name of the `UsergridEntity`.
     - parameter completion: The completion block that will be called once the request has completed.
     */
@@ -447,10 +447,10 @@ public class UsergridClient: NSObject {
     /**
     Connects the `UsergridEntity` objects via the relationship.
 
-    - parameter entity: The `UsergridEntity` that will contain the connection.
-    - parameter relationship: The relationship of the two entities.
-    - parameter connectingEntity: The `UsergridEntity` which is connected.
-    - parameter completion: The completion block that will be called once the request has completed.
+    - parameter entity:             The `UsergridEntity` that will contain the connection.
+    - parameter relationship:       The relationship of the two entities.
+    - parameter connectingEntity:   The `UsergridEntity` which is connected.
+    - parameter completion:         The completion block that will be called once the request has completed.
     */
     public func CONNECT(entity:UsergridEntity, relationship:String, connectingEntity:UsergridEntity, completion: UsergridResponseCompletion?) {
         _requestManager.performConnect(entity, relationship: relationship, connectingEntity: connectingEntity, completion: completion)
@@ -459,10 +459,10 @@ public class UsergridClient: NSObject {
     /**
     Disconnects the `UsergridEntity` objects via the relationship.
 
-    - parameter entity: The `UsergridEntity` that contains the connection.
-    - parameter relationship: The relationship of the two entities.
-    - parameter connectingEntity: The `UsergridEntity` which is connected.
-    - parameter completion: The completion block that will be called once the request has completed.
+    - parameter entity:             The `UsergridEntity` that contains the connection.
+    - parameter relationship:       The relationship of the two entities.
+    - parameter connectingEntity:   The `UsergridEntity` which is connected.
+    - parameter completion:         The completion block that will be called once the request has completed.
     */
     public func DISCONNECT(entity:UsergridEntity, relationship:String, connectingEntity:UsergridEntity, completion: UsergridResponseCompletion?) {
         _requestManager.performDisconnect(entity, relationship: relationship, connectingEntity: connectingEntity, completion: completion)
@@ -484,9 +484,9 @@ public class UsergridClient: NSObject {
     /**
     Uploads the asset and connects the data to the given `UsergridEntity`.
 
-    - parameter entity: The `UsergridEntity` to connect the asset to.
-    - parameter asset: The `UsergridAsset` to upload.
-    - parameter progress: The progress block that will be called to update the progress of the upload.
+    - parameter entity:     The `UsergridEntity` to connect the asset to.
+    - parameter asset:      The `UsergridAsset` to upload.
+    - parameter progress:   The progress block that will be called to update the progress of the upload.
     - parameter completion: The completion block that will be called once the request has completed.
     */
     public func uploadAsset(entity:UsergridEntity, asset:UsergridAsset, progress:UsergridAssetRequestProgress? = nil, completion:UsergridAssetUploadCompletion?) {
@@ -499,10 +499,10 @@ public class UsergridClient: NSObject {
     /**
     Downloads the asset from the given `UsergridEntity`.
 
-    - parameter entity: The `UsergridEntity` to which the asset to.
-    - parameter contentType: The content type of the asset's data.
-    - parameter progress: The optional progress block that will be called to update the progress of the download.
-    - parameter completion: The optional completion block that will be called once the request has completed.
+    - parameter entity:         The `UsergridEntity` to which the asset to.
+    - parameter contentType:    The content type of the asset's data.
+    - parameter progress:       The optional progress block that will be called to update the progress of the download.
+    - parameter completion:     The optional completion block that will be called once the request has completed.
     */
     public func downloadAsset(entity:UsergridEntity, contentType:String, progress:UsergridAssetRequestProgress? = nil, completion:UsergridAssetDownloadCompletion?) {
         if entity.hasAsset {

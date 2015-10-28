@@ -87,6 +87,8 @@ public class UsergridEntity: NSObject {
         super.init()
         if self is UsergridUser {
             self.properties[UsergridEntityProperties.EntityType.stringValue] = UsergridUser.USER_ENTITY_TYPE
+        } else if self is UsergridDevice {
+            self.properties[UsergridEntityProperties.EntityType.stringValue] = UsergridDevice.DEVICE_ENTITY_TYPE
         } else {
             self.properties[UsergridEntityProperties.EntityType.stringValue] = type
         }
@@ -139,12 +141,10 @@ public class UsergridEntity: NSObject {
     Subscript for the `UsergridEntity` class.
     
     - Example usage:
-   
-    ```
-    let propertyValue = usergridEntity["propertyName"]
-
-    usergridEntity["propertyName"] = propertyValue
-    ```
+        ```
+        let propertyValue = usergridEntity["propertyName"]
+        usergridEntity["propertyName"] = propertyValue
+        ```
     */
     public subscript(propertyName: String) -> AnyObject? {
         get {

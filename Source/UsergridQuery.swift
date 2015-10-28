@@ -258,8 +258,8 @@ public class UsergridQuery : NSObject,NSCopying {
     /**
     Sort. Query: order by term `sortOrder`
 
-    - parameter term: The term.
-    - parameter sortOrder: The order.
+    - parameter term:       The term.
+    - parameter sortOrder:  The order.
 
     - returns: `Self`
     */

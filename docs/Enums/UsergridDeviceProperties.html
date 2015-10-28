@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>UsergridUserProperties Enum Reference</title>
+    <title>UsergridDeviceProperties Enum Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -9,8 +9,8 @@
     <script src="../js/jazzy.js" defer></script>
   </head>
   <body>
-    <a name="//apple_ref/swift/Enum/UsergridUserProperties" class="dashAnchor"></a>
-    <a title="UsergridUserProperties Enum Reference"></a>
+    <a name="//apple_ref/swift/Enum/UsergridDeviceProperties" class="dashAnchor"></a>
+    <a title="UsergridDeviceProperties Enum Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html"> Docs</a> (98% documented)</p>
@@ -20,7 +20,7 @@
       <p id="breadcrumbs">
         <a href="../index.html"> Reference</a>
         <img id="carat" src="../img/carat.png" />
-        UsergridUserProperties Enum Reference
+        UsergridDeviceProperties Enum Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -124,14 +124,14 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>UsergridUserProperties</h1>
+            <h1>UsergridDeviceProperties</h1>
               <div class="declaration">
                 <div class="Swift">
-                  <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="kd">enum</span> <span class="kt">UsergridUserProperties</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+                  <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="kd">enum</span> <span class="kt">UsergridDeviceProperties</span> <span class="p">:</span> <span class="kt">Int</span></code></pre>
 
                 </div>
               </div>
-            <p><code>UsergridUser</code> specific properties keys.</p>
+            <p><code>UsergridDeviceProperties</code> specific properties keys.  Note that trying to mutate the values of these properties will not be allowed in most cases.</p>
 
           </section>
           <section class="section task-group-section">
@@ -140,9 +140,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO11UsergridSDK22UsergridUserProperties4NameFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/Name" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO11UsergridSDK22UsergridUserProperties4NameFMS0_S0_">Name</a>
+                    <a name="/s:FO11UsergridSDK24UsergridDeviceProperties5ModelFMS0_S0_"></a>
+                    <a name="//apple_ref/swift/Element/Model" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO11UsergridSDK24UsergridDeviceProperties5ModelFMS0_S0_">Model</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -150,14 +150,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Corresponds to the property &lsquo;name&rsquo;</p>
+                        <p>Corresponds to the property &lsquo;deviceModel&rsquo;</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="Swift">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="kt">Name</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="kt">Model</span></code></pre>
 
                         </div>
                       </div>
@@ -171,9 +171,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO11UsergridSDK22UsergridUserProperties8UsernameFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/Username" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO11UsergridSDK22UsergridUserProperties8UsernameFMS0_S0_">Username</a>
+                    <a name="/s:FO11UsergridSDK24UsergridDeviceProperties8PlatformFMS0_S0_"></a>
+                    <a name="//apple_ref/swift/Element/Platform" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO11UsergridSDK24UsergridDeviceProperties8PlatformFMS0_S0_">Platform</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -181,14 +181,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Corresponds to the property &lsquo;username&rsquo;</p>
+                        <p>Corresponds to the property &lsquo;devicePlatform&rsquo;</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="Swift">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="kt">Username</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="kt">Platform</span></code></pre>
 
                         </div>
                       </div>
@@ -202,9 +202,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO11UsergridSDK22UsergridUserProperties8PasswordFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/Password" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO11UsergridSDK22UsergridUserProperties8PasswordFMS0_S0_">Password</a>
+                    <a name="/s:FO11UsergridSDK24UsergridDeviceProperties9OSVersionFMS0_S0_"></a>
+                    <a name="//apple_ref/swift/Element/OSVersion" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO11UsergridSDK24UsergridDeviceProperties9OSVersionFMS0_S0_">OSVersion</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -212,169 +212,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Corresponds to the property &lsquo;password&rsquo;</p>
+                        <p>Corresponds to the property &lsquo;deviceOSVersion&rsquo;</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="Swift">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="kt">Password</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FO11UsergridSDK22UsergridUserProperties5EmailFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/Email" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO11UsergridSDK22UsergridUserProperties5EmailFMS0_S0_">Email</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Corresponds to the property &lsquo;email&rsquo;</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="Swift">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="kt">Email</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FO11UsergridSDK22UsergridUserProperties3AgeFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/Age" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO11UsergridSDK22UsergridUserProperties3AgeFMS0_S0_">Age</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Corresponds to the property &lsquo;age&rsquo;</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="Swift">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="kt">Age</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FO11UsergridSDK22UsergridUserProperties9ActivatedFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/Activated" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO11UsergridSDK22UsergridUserProperties9ActivatedFMS0_S0_">Activated</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Corresponds to the property &lsquo;activated&rsquo;</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="Swift">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="kt">Activated</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FO11UsergridSDK22UsergridUserProperties8DisabledFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/Disabled" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO11UsergridSDK22UsergridUserProperties8DisabledFMS0_S0_">Disabled</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Corresponds to the property &lsquo;disabled&rsquo;</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="Swift">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="kt">Disabled</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FO11UsergridSDK22UsergridUserProperties7PictureFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/Picture" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO11UsergridSDK22UsergridUserProperties7PictureFMS0_S0_">Picture</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Corresponds to the property &lsquo;picture&rsquo;</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="Swift">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="kt">Picture</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="kt">OSVersion</span></code></pre>
 
                         </div>
                       </div>
@@ -395,9 +240,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZFO11UsergridSDK22UsergridUserProperties10fromStringFMS0_FSSGSqS0__"></a>
+                    <a name="/s:ZFO11UsergridSDK24UsergridDeviceProperties10fromStringFMS0_FSSGSqS0__"></a>
                     <a name="//apple_ref/swift/Method/fromString(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZFO11UsergridSDK22UsergridUserProperties10fromStringFMS0_FSSGSqS0__">fromString(_:)</a>
+                    <a class="token" href="#/s:ZFO11UsergridSDK24UsergridDeviceProperties10fromStringFMS0_FSSGSqS0__">fromString(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -405,14 +250,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Gets the corresponding <code>UsergridUserProperties</code> from a string if it&rsquo;s valid.</p>
+                        <p>Gets the corresponding <code>UsergridDeviceProperties</code> from a string if it&rsquo;s valid.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="Swift">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">fromString</span><span class="p">(</span><span class="nv">stringValue</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UsergridUserProperties</span><span class="p">?</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">fromString</span><span class="p">(</span><span class="nv">stringValue</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UsergridDeviceProperties</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -438,7 +283,7 @@
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>The corresponding <code>UsergridUserProperties</code> or nil.</p>
+                        <p>The corresponding <code>UsergridDeviceProperties</code> or nil.</p>
 
                       </div>
                     </section>
@@ -447,9 +292,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vO11UsergridSDK22UsergridUserProperties11stringValueSS"></a>
+                    <a name="/s:vO11UsergridSDK24UsergridDeviceProperties11stringValueSS"></a>
                     <a name="//apple_ref/swift/Property/stringValue" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vO11UsergridSDK22UsergridUserProperties11stringValueSS">stringValue</a>
+                    <a class="token" href="#/s:vO11UsergridSDK24UsergridDeviceProperties11stringValueSS">stringValue</a>
                     </code>
                   </div>
                   <div class="height-container">

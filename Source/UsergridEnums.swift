@@ -103,6 +103,48 @@ A enumeration that is used to determine what the `UsergridClient` will fallback 
 }
 
 /**
+`UsergridDeviceProperties` specific properties keys.  Note that trying to mutate the values of these properties will not be allowed in most cases.
+*/
+@objc public enum UsergridDeviceProperties : Int {
+
+    // MARK: - Values -
+
+    /// Corresponds to the property 'deviceModel'
+    case Model
+    /// Corresponds to the property 'devicePlatform'
+    case Platform
+    /// Corresponds to the property 'deviceOSVersion'
+    case OSVersion
+
+    // MARK: - Methods -
+
+    /**
+    Gets the corresponding `UsergridDeviceProperties` from a string if it's valid.
+
+    - parameter stringValue: The string value to convert.
+
+    - returns: The corresponding `UsergridDeviceProperties` or nil.
+    */
+    public static func fromString(stringValue: String) -> UsergridDeviceProperties? {
+        switch stringValue.lowercaseString {
+            case DEVICE_MODEL: return .Model
+            case DEVICE_PLATFORM: return .Platform
+            case DEVICE_OSVERSION: return .OSVersion
+            default: return nil
+        }
+    }
+
+    /// Returns the string value.
+    public var stringValue: String {
+        switch self {
+            case .Model: return DEVICE_MODEL
+            case .Platform: return DEVICE_PLATFORM
+            case .OSVersion: return DEVICE_OSVERSION
+        }
+    }
+}
+
+/**
 `UsergridUser` specific properties keys.
 */
 @objc public enum UsergridUserProperties: Int {
@@ -291,6 +333,10 @@ let USER_AGE = "age"
 let USER_ACTIVATED = "activated"
 let USER_DISABLED = "disabled"
 let USER_PICTURE = "picture"
+
+let DEVICE_MODEL = "deviceModel"
+let DEVICE_PLATFORM = "devicePlatform"
+let DEVICE_OSVERSION = "devicePlatform"
 
 let ASSET_IMAGE_PNG = "image/png"
 let ASSET_IMAGE_JPEG = "image/jpeg"

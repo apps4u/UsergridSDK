@@ -11,30 +11,28 @@ import UIKit
 import Security
 
 /**
-`UsergridDevice` encapsulates information about the current device as well as stores information about push tokens and Usergrid notifiers.
+`UsergridDevice` is an `UsergridEntity` subclass that encapsulates information about the current device as well as stores information about push tokens and Usergrid notifiers.
 
 To apply push tokens for Usergrid notifiers use the `UsergridClient.applyPushToken` method.
 */
-public class UsergridDevice : NSObject {
+public class UsergridDevice : UsergridEntity {
 
     /// The `UsergridDevice` type.
-    static let USERGRID_DEVICE_TYPE = "device"
+    static let DEVICE_ENTITY_TYPE = "device"
 
     // MARK: - Instance Properties -
 
-    private(set) var deviceEntityDict: [String:AnyObject] = [:]
+    /// Property helper method for the `UsergridDevice` objects `uuid`.
+    override public var uuid: String { return super[UsergridEntityProperties.UUID.stringValue] as! String }
 
-    /// The device UUID.
-    public var UUID: String { return deviceEntityDict[UsergridEntityProperties.UUID.stringValue] as! String }
+    /// Property helper method for the `UsergridDevice` objects device model.
+    public var model: String { return super[UsergridDeviceProperties.Model.stringValue] as! String }
 
-    /// The device model.
-    public var model: String { return deviceEntityDict[USERGRID_DEVICE_MODEL] as! String }
+    /// Property helper method for the `UsergridDevice` objects device platform.
+    public var platform: String { return super[UsergridDeviceProperties.Platform.stringValue] as! String }
 
-    /// The device platform.
-    public var platform: String { return deviceEntityDict[USERGRID_DEVICE_PLATFORM] as! String }
-
-    /// The device operating system version.
-    public var osVersion: String { return deviceEntityDict[USERGRID_DEVICE_OSVERSION] as! String }
+    /// Property helper method for the `UsergridDevice` objects device operating system version.
+    public var osVersion: String { return super[UsergridDeviceProperties.OSVersion.stringValue] as! String }
 
     // MARK: - Initialization -
 
@@ -48,27 +46,50 @@ public class UsergridDevice : NSObject {
 
     - returns: A new instance of `UsergridDevice`.
     */
-    override public init() {
-        super.init()
-        deviceEntityDict[UsergridEntityProperties.EntityType.stringValue] = UsergridDevice.USERGRID_DEVICE_TYPE
+    public init() {
+        var deviceEntityDict: [String:AnyObject] = [:]
+        deviceEntityDict[UsergridEntityProperties.EntityType.stringValue] = UsergridDevice.DEVICE_ENTITY_TYPE
         deviceEntityDict[UsergridEntityProperties.UUID.stringValue] = UsergridDevice.usergridDeviceUUID()
-        deviceEntityDict[USERGRID_DEVICE_MODEL] = UIDevice.currentDevice().model
-        deviceEntityDict[USERGRID_DEVICE_PLATFORM] = UIDevice.currentDevice().systemName
-        deviceEntityDict[USERGRID_DEVICE_OSVERSION] = UIDevice.currentDevice().systemVersion
+        deviceEntityDict[UsergridDeviceProperties.Model.stringValue] = UIDevice.currentDevice().model
+        deviceEntityDict[UsergridDeviceProperties.Platform.stringValue] = UIDevice.currentDevice().systemName
+        deviceEntityDict[UsergridDeviceProperties.OSVersion.stringValue] = UIDevice.currentDevice().systemVersion
+        super.init(type: UsergridDevice.DEVICE_ENTITY_TYPE, name: nil, propertyDict: deviceEntityDict)
+        self.uuid
+    }
+
+    /**
+    Subscript for the `UsergridDevice` class. Note that all of the `UsergridDeviceProperties` are immutable.
+
+    - Warning: When setting a properties value must be a valid JSON object.
+
+    - Example usage:
+        ```
+        let uuid = usergridDevice["uuid"]
+        ```
+    */
+    override public subscript(propertyName: String) -> AnyObject? {
+        get {
+            return super[propertyName]
+        }
+        set(propertyValue) {
+            if UsergridDeviceProperties.fromString(propertyName) == nil {
+                super[propertyName] = propertyValue
+            }
+        }
     }
 
     /**
     Sets the push token for the given notifier ID.
-    
+
     This does not perform any API requests to update on Usergrid, rather it will just set the information in the `UsergridDevice` instance.
-    
+
     In order to set the push token and perform an API request, use `UsergridClient.applyPushToken`.
 
     - parameter pushToken:  The push token from Apple.
     - parameter notifierID: The notifier ID.
     */
     internal func applyPushToken(pushToken: NSData, notifierID: String) {
-        deviceEntityDict[notifierID + USERGRID_NOTIFIER_ID_SUFFIX] = pushToken.description.stringByTrimmingCharactersInSet(NSCharacterSet(charactersInString: "<>")).stringByReplacingOccurrencesOfString(" ", withString: "")
+        self[notifierID + USERGRID_NOTIFIER_ID_SUFFIX] = pushToken.description.stringByTrimmingCharactersInSet(NSCharacterSet(charactersInString: "<>")).stringByReplacingOccurrencesOfString(" ", withString: "")
     }
 
     private static func keychainItem() -> [String:AnyObject] {
@@ -109,9 +130,4 @@ public class UsergridDevice : NSObject {
 
 private let USERGRID_KEYCHAIN_NAME = "Usergrid"
 private let USERGRID_KEYCHAIN_SERVICE = "DeviceUUID"
-
-private let USERGRID_DEVICE_MODEL = "deviceModel"
-private let USERGRID_DEVICE_PLATFORM = "devicePlatform"
-private let USERGRID_DEVICE_OSVERSION = "devicePlatform"
-
 private let USERGRID_NOTIFIER_ID_SUFFIX = ".notifier.id"
