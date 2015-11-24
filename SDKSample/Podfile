@@ -1,0 +1,5 @@
+use_frameworks!
+inhibit_all_warnings!
+
+pod 'UsergridSDK',:git => 'https://github.com/RobertWalsh/UsergridSDK'
+pod 'SlackTextViewController'
