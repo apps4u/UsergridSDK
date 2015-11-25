@@ -208,7 +208,9 @@ class MessageViewController : SLKTextViewController {
         let messageEntity = UsergridEntity(type: MessageViewController.MESSAGE_ENTITY_TYPE, propertyDict: [MessageViewController.MESSAGE_ENTITY_CREATOR:Usergrid.currentUser!.username!,MessageViewController.MESSAGE_ENTITY_TEXT:self.textView.text,
             MessageViewController.MESSAGE_ENTITY_CREATOR_THUMBNAIL:Usergrid.currentUser!["picture"]!])
         messageEntity.save { (response) -> Void in
-            print(response.errorDescription)
+            if let errorDescription = response.errorDescription {
+                print("Uploading message error: \(errorDescription)")
+            }
         }
 
         let indexPath = NSIndexPath(forRow: 0, inSection: 0)
