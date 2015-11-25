@@ -155,6 +155,7 @@ class MessageViewController : SLKTextViewController {
     static let MESSAGE_ENTITY_TYPE = "sdkmessage"
     static let MESSAGE_ENTITY_CREATOR = "creator"
     static let MESSAGE_ENTITY_TEXT = "text"
+    static let MESSAGE_ENTITY_CREATOR_THUMBNAIL = "creatorThumb"
     static let MESSAGE_CELL_IDENTIFIER = "MessengerCell"
 
     var messageEntities: [UsergridEntity] = []
@@ -204,7 +205,8 @@ class MessageViewController : SLKTextViewController {
     override func didPressRightButton(sender: AnyObject!) {
         self.textView.refreshFirstResponder()
 
-        let messageEntity = UsergridEntity(type: MessageViewController.MESSAGE_ENTITY_TYPE, propertyDict: [MessageViewController.MESSAGE_ENTITY_CREATOR:Usergrid.currentUser!.username!,MessageViewController.MESSAGE_ENTITY_TEXT:self.textView.text])
+        let messageEntity = UsergridEntity(type: MessageViewController.MESSAGE_ENTITY_TYPE, propertyDict: [MessageViewController.MESSAGE_ENTITY_CREATOR:Usergrid.currentUser!.username!,MessageViewController.MESSAGE_ENTITY_TEXT:self.textView.text,
+            MessageViewController.MESSAGE_ENTITY_CREATOR_THUMBNAIL:Usergrid.currentUser!["picture"]!])
         messageEntity.save { (response) -> Void in
             print(response.errorDescription)
         }
@@ -244,6 +246,22 @@ class MessageViewController : SLKTextViewController {
         let cell = self.tableView.dequeueReusableCellWithIdentifier(MessageViewController.MESSAGE_CELL_IDENTIFIER) as! MessageTableViewCell
 
         let messageEntity = self.messageEntities[indexPath.row]
+        cell.thumbnailView.image = nil
+        if let profileImage = messageEntity[MessageViewController.MESSAGE_ENTITY_CREATOR_THUMBNAIL] as? String {
+            if let imageURL = NSURL(string: profileImage) {
+                NSURLSession.sharedSession().dataTaskWithURL(imageURL) { (data, response, error) in
+                    if let imageData = data {
+                        if let image = UIImage(data: imageData) {
+                            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                                cell.thumbnailView.image = image
+                            })
+                        }
+                    } else {
+                        cell.thumbnailView.image = nil
+                    }
+                }.resume()
+            }
+        }
         cell.titleLabel.text = messageEntity[MessageViewController.MESSAGE_ENTITY_CREATOR] as? String
         cell.bodyLabel.text = messageEntity[MessageViewController.MESSAGE_ENTITY_TEXT] as? String
         cell.indexPath = indexPath
