@@ -68,7 +68,7 @@ The documentation for this library is available [here](http://cocoadocs.org/docs
 
 The `Usergrid` class acts as a static shared instance manager for the `UsergridClient` class.
 
-    > While it is possible to create mutliple instances of the `UsergridClient` class, we recomend using the shared instance where possible.
+> While it is possible to create mutliple instances of the `UsergridClient` class, we recomend using the shared instance where possible.
 
 To initialize the shared instance of you will want to call the following code.  This code usually goes best in the AppDelegate's life cycle functions.
 
