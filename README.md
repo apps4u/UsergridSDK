@@ -8,22 +8,16 @@ Usergrid SDK written in Swift
 
 ## Requirements
 
+> **Embedded frameworks require a minimum deployment target of iOS 8.**
+
 - iOS 8.0+
 - Xcode 7.1+
 
 ## Installation
 
-> **Embedded frameworks require a minimum deployment target of iOS 8.**
-
 ### CocoaPods
 
-[CocoaPods](http://cocoapods.org) is a dependency manager for Cocoa projects. You can install it with the following command:
-
-```bash
-$ sudo gem install cocoapods
-```
-
-CocoaPods 0.39.0+ is required to build the UsergridSDK library.
+> **CocoaPods 0.39.0+ is required to build the UsergridSDK library.**
 
 To integrate the UsergridSDK into your Xcode project using CocoaPods, specify it in your `Podfile`:
 
