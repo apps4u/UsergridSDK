@@ -73,11 +73,11 @@ public class MessageTableViewCell : UITableViewCell {
         self.contentView.addSubview(self.bodyLabel)
 
         let views = ["thumbnailView":self.thumbnailView, "titleLabel":self.titleLabel, "bodyLabel":self.bodyLabel]
-        let metrics = ["tumbSize":MessageTableViewCell.kMessageTableViewCellAvatarHeight, "padding":15, "right":10, "left":5, "attchSize":80]
+        let metrics = ["thumbSize":MessageTableViewCell.kMessageTableViewCellAvatarHeight, "padding":15, "right":10, "left":5]
 
-        self.contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-left-[thumbnailView(tumbSize)]-right-[titleLabel(>=0)]-right-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
-        self.contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-left-[thumbnailView(tumbSize)]-right-[bodyLabel(>=0)]-right-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
+        self.contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-left-[thumbnailView(thumbSize)]-right-[titleLabel(>=0)]-right-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
+        self.contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-left-[thumbnailView(thumbSize)]-right-[bodyLabel(>=0)]-right-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
         self.contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-right-[titleLabel(20)]-left-[bodyLabel(>=0@999)]-left-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
-        self.contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-right-[thumbnailView(tumbSize)]-(>=0)-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
+        self.contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-right-[thumbnailView(thumbSize)]-(>=0)-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
     }
 }
