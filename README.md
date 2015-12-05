@@ -60,4 +60,29 @@ $ git submodule add https://github.com/RobertWalsh/UsergridSDK.git
 
 > The `UsergridSDK.framework` is automatically added as a target dependency, linked framework and embedded framework in a copy files build phase which is all you need to build on the simulator and a device.
 
+## Documentation
 
+The documentation for this library is available [here](http://cocoadocs.org/docsets/UsergridSDK).
+
+## Initialization
+
+The `Usergrid` class acts as a static shared instance manager for the `UsergridClient` class.
+
+    > While it is possible to create mutliple instances of the `UsergridClient` class, we recomend using the shared instance where possible.
+
+To initialize the shared instance of you will want to call the following code.  This code usually goes best in the AppDelegate's life cycle functions.
+
+```swift
+import UsergridSDK
+
+func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool
+    Usergrid.initSharedInstance(orgID: "orgID", appID: "appID")
+    return true
+}
+```
+
+## Communication
+
+- If you **found a bug**, open an issue.
+- If you **have a feature request**, open an issue.
+- If you **want to contribute**, submit a pull request.
