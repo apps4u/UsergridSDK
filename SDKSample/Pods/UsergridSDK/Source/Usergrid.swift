@@ -122,7 +122,7 @@ public class Usergrid: NSObject {
     - parameter notifierID: The Usergrid notifier ID.
     - parameter completion: The completion block.
     */
-    public static func applyPushToken(pushToken: NSData, notifierID: String, completion: UsergridResponseCompletion?) {
+    public static func applyPushToken(pushToken: NSData, notifierID: String, completion: UsergridResponseCompletion? = nil) {
         Usergrid.sharedInstance.applyPushToken(pushToken, notifierID: notifierID, completion: completion)
     }
 
@@ -134,7 +134,7 @@ public class Usergrid: NSObject {
     - parameter notifierID: The Usergrid notifier ID.
     - parameter completion: The completion block.
     */
-    public static func applyPushToken(device: UsergridDevice, pushToken: NSData, notifierID: String, completion: UsergridResponseCompletion?) {
+    public static func applyPushToken(device: UsergridDevice, pushToken: NSData, notifierID: String, completion: UsergridResponseCompletion? = nil) {
         Usergrid.sharedInstance.applyPushToken(device, pushToken: pushToken, notifierID: notifierID, completion: completion)
     }
 
@@ -165,7 +165,7 @@ public class Usergrid: NSObject {
 
     - parameter completion: The completion block that will be called after authentication has completed.
     */
-    public static func authenticateApp(completion: UsergridAppAuthCompletionBlock?) {
+    public static func authenticateApp(completion: UsergridAppAuthCompletionBlock? = nil) {
         Usergrid.sharedInstance.authenticateApp(completion)
     }
 
@@ -175,7 +175,7 @@ public class Usergrid: NSObject {
     - parameter auth:       The `UsergridAppAuth` that will be authenticated.
     - parameter completion: The completion block that will be called after authentication has completed.
     */
-    public static func authenticateApp(auth: UsergridAppAuth, completion: UsergridAppAuthCompletionBlock?) {
+    public static func authenticateApp(auth: UsergridAppAuth, completion: UsergridAppAuthCompletionBlock? = nil) {
         Usergrid.sharedInstance.authenticateApp(auth, completion: completion)
     }
 
@@ -185,7 +185,7 @@ public class Usergrid: NSObject {
     - parameter auth:       The `UsergridUserAuth` that will be authenticated.
     - parameter completion: The completion block that will be called after authentication has completed.
     */
-    public static func authenticateUser(auth: UsergridUserAuth, completion: UsergridUserAuthCompletionBlock?) {
+    public static func authenticateUser(auth: UsergridUserAuth, completion: UsergridUserAuthCompletionBlock? = nil) {
         Usergrid.sharedInstance.authenticateUser(auth, completion: completion)
     }
 
@@ -196,7 +196,7 @@ public class Usergrid: NSObject {
     - parameter setAsCurrentUser:   If the authenticated user should be set as the `UsergridClient.currentUser`.
     - parameter completion:         The completion block that will be called after authentication has completed.
     */
-    public static func authenticateUser(userAuth: UsergridUserAuth, setAsCurrentUser:Bool, completion: UsergridUserAuthCompletionBlock?) {
+    public static func authenticateUser(userAuth: UsergridUserAuth, setAsCurrentUser:Bool, completion: UsergridUserAuthCompletionBlock? = nil) {
         Usergrid.sharedInstance.authenticateUser(userAuth, setAsCurrentUser: setAsCurrentUser, completion: completion)
     }
 
@@ -205,7 +205,7 @@ public class Usergrid: NSObject {
 
     - parameter completion: The completion block that will be called after logout has completed.
     */
-    public static func logoutCurrentUser(completion:UsergridResponseCompletion?) {
+    public static func logoutCurrentUser(completion:UsergridResponseCompletion? = nil) {
         Usergrid.sharedInstance.logoutCurrentUser(completion)
     }
 
@@ -214,7 +214,7 @@ public class Usergrid: NSObject {
 
     - parameter completion: The completion block that will be called after logout has completed.
     */
-    public static func logoutUserAllTokens(uuidOrUsername:String, completion:UsergridResponseCompletion?) {
+    public static func logoutUserAllTokens(uuidOrUsername:String, completion:UsergridResponseCompletion? = nil) {
         Usergrid.sharedInstance.logoutUserAllTokens(uuidOrUsername, completion: completion)
     }
 
@@ -225,7 +225,7 @@ public class Usergrid: NSObject {
 
     - parameter completion: The completion block that will be called after logout has completed.
     */
-    public static func logoutUser(uuidOrUsername:String, token:String?, completion:UsergridResponseCompletion?) {
+    public static func logoutUser(uuidOrUsername:String, token:String?, completion:UsergridResponseCompletion? = nil) {
         Usergrid.sharedInstance.logoutUser(uuidOrUsername, token: token, completion: completion)
     }
 
@@ -238,7 +238,7 @@ public class Usergrid: NSObject {
     - parameter uuidOrName: The UUID or name of the `UsergridEntity`.
     - parameter completion: The completion block that will be called once the request has completed.
     */
-    public static func GET(type: String, uuidOrName: String, completion: UsergridResponseCompletion?) {
+    public static func GET(type: String, uuidOrName: String, completion: UsergridResponseCompletion? = nil) {
         Usergrid.sharedInstance.GET(type,uuidOrName:uuidOrName,completion:completion)
     }
 
@@ -249,7 +249,7 @@ public class Usergrid: NSObject {
     - parameter query:      The optional query to use when gathering `UsergridEntity` objects.
     - parameter completion: The completion block that will be called once the request has completed.
     */
-    public static func GET(type: String, query: UsergridQuery? = nil, completion: UsergridResponseCompletion?) {
+    public static func GET(type: String, query: UsergridQuery? = nil, completion: UsergridResponseCompletion? = nil) {
         Usergrid.sharedInstance.GET(type,query:query,completion:completion)
     }
 
@@ -263,7 +263,7 @@ public class Usergrid: NSObject {
     - parameter jsonBody:   The valid JSON body dictionary to update the `UsergridEntity` with.
     - parameter completion: The completion block that will be called once the request has completed.
     */
-    public static func PUT(type: String, uuidOrName: String, jsonBody:[String:AnyObject], completion: UsergridResponseCompletion?) {
+    public static func PUT(type: String, uuidOrName: String, jsonBody:[String:AnyObject], completion: UsergridResponseCompletion? = nil) {
         Usergrid.sharedInstance.PUT(type, uuidOrName: uuidOrName, jsonBody: jsonBody, completion: completion)
     }
 
@@ -276,7 +276,7 @@ public class Usergrid: NSObject {
     - parameter jsonBody:   The valid JSON body dictionary to update the `UsergridEntity` with.
     - parameter completion: The completion block that will be called once the request has completed.
     */
-    public static func PUT(type: String, jsonBody:[String:AnyObject], completion: UsergridResponseCompletion?) {
+    public static func PUT(type: String, jsonBody:[String:AnyObject], completion: UsergridResponseCompletion? = nil) {
         Usergrid.sharedInstance.PUT(type, jsonBody: jsonBody, completion: completion)
     }
 
@@ -286,7 +286,7 @@ public class Usergrid: NSObject {
     - parameter entity:     The `UsergridEntity` to update.
     - parameter completion: The completion block that will be called once the request has completed.
     */
-    public static func PUT(entity: UsergridEntity, completion: UsergridResponseCompletion?) {
+    public static func PUT(entity: UsergridEntity, completion: UsergridResponseCompletion? = nil) {
         Usergrid.sharedInstance.PUT(entity, completion: completion)
     }
 
@@ -299,7 +299,7 @@ public class Usergrid: NSObject {
     - parameter jsonBody:           The valid JSON body dictionary to update with.
     - parameter queryCompletion:    The completion block that will be called once the request has completed.
     */
-    public static func PUT(query: UsergridQuery, jsonBody:[String:AnyObject], queryCompletion: UsergridResponseCompletion?) {
+    public static func PUT(query: UsergridQuery, jsonBody:[String:AnyObject], queryCompletion: UsergridResponseCompletion? = nil) {
         Usergrid.sharedInstance.PUT(query, jsonBody: jsonBody, queryCompletion: queryCompletion)
     }
 
@@ -313,7 +313,7 @@ public class Usergrid: NSObject {
     - parameter jsonBody:   The valid JSON body dictionary to use when creating the `UsergridEntity`.
     - parameter completion: The completion block that will be called once the request has completed.
     */
-    public static func POST(type: String, name: String, jsonBody:[String:AnyObject], completion: UsergridResponseCompletion?) {
+    public static func POST(type: String, name: String, jsonBody:[String:AnyObject], completion: UsergridResponseCompletion? = nil) {
         Usergrid.sharedInstance.POST(type, name: name, jsonBody: jsonBody, completion: completion)
     }
 
@@ -324,7 +324,7 @@ public class Usergrid: NSObject {
     - parameter jsonBody:   The valid JSON body dictionary to use when creating the `UsergridEntity`.
     - parameter completion: The completion block that will be called once the request has completed.
     */
-    public static func POST(type: String, jsonBody:[String:AnyObject], completion: UsergridResponseCompletion?) {
+    public static func POST(type: String, jsonBody:[String:AnyObject], completion: UsergridResponseCompletion? = nil) {
         Usergrid.sharedInstance.POST(type, jsonBody: jsonBody, completion: completion)
     }
 
@@ -335,7 +335,7 @@ public class Usergrid: NSObject {
     - parameter jsonBody:   The valid JSON body dictionaries to use when creating the `UsergridEntity` objects.
     - parameter completion: The completion block that will be called once the request has completed.
     */
-    public static func POST(type: String, jsonBodies:[[String:AnyObject]], completion: UsergridResponseCompletion?) {
+    public static func POST(type: String, jsonBodies:[[String:AnyObject]], completion: UsergridResponseCompletion? = nil) {
         Usergrid.sharedInstance.POST(type, jsonBodies: jsonBodies, completion: completion)
     }
 
@@ -345,7 +345,7 @@ public class Usergrid: NSObject {
     - parameter entity:     The `UsergridEntity` to create.
     - parameter completion: The completion block that will be called once the request has completed.
     */
-    public static func POST(entity:UsergridEntity, completion: UsergridResponseCompletion?) {
+    public static func POST(entity:UsergridEntity, completion: UsergridResponseCompletion? = nil) {
         Usergrid.sharedInstance.POST(entity, completion: completion)
     }
 
@@ -357,7 +357,7 @@ public class Usergrid: NSObject {
     - parameter entities:           The `UsergridEntity` objects to create.
     - parameter entitiesCompletion: The completion block that will be called once the request has completed.
     */
-    public static func POST(entities:[UsergridEntity], entitiesCompletion: UsergridResponseCompletion?) {
+    public static func POST(entities:[UsergridEntity], entitiesCompletion: UsergridResponseCompletion? = nil) {
         Usergrid.sharedInstance.POST(entities, entitiesCompletion: entitiesCompletion)
     }
 
@@ -370,7 +370,7 @@ public class Usergrid: NSObject {
     - parameter uuidOrName: The UUID or name of the `UsergridEntity`.
     - parameter completion: The completion block that will be called once the request has completed.
     */
-    public static func DELETE(type:String, uuidOrName: String, completion: UsergridResponseCompletion?) {
+    public static func DELETE(type:String, uuidOrName: String, completion: UsergridResponseCompletion? = nil) {
         Usergrid.sharedInstance.DELETE(type, uuidOrName: uuidOrName, completion: completion)
     }
 
@@ -382,7 +382,7 @@ public class Usergrid: NSObject {
     - parameter entity:     The `UsergridEntity` to delete.
     - parameter completion: The completion block that will be called once the request has completed.
     */
-    public static func DELETE(entity:UsergridEntity, completion: UsergridResponseCompletion?) {
+    public static func DELETE(entity:UsergridEntity, completion: UsergridResponseCompletion? = nil) {
         Usergrid.sharedInstance.DELETE(entity, completion:completion)
     }
 
@@ -394,7 +394,7 @@ public class Usergrid: NSObject {
     - parameter query:              The query to use when filtering what entities to delete.
     - parameter queryCompletion:    The completion block that will be called once the request has completed.
     */
-    public static func DELETE(query:UsergridQuery, queryCompletion: UsergridResponseCompletion?) {
+    public static func DELETE(query:UsergridQuery, queryCompletion: UsergridResponseCompletion? = nil) {
         Usergrid.sharedInstance.DELETE(query, queryCompletion:queryCompletion)
     }
 
@@ -405,12 +405,41 @@ public class Usergrid: NSObject {
 
     - parameter entity:             The entity that will contain the connection.
     - parameter relationship:       The relationship of the two entities.
-    - parameter connectingEntity:   The entity which is connected.
+    - parameter to:                 The entity which is connected.
     - parameter completion:         The completion block that will be called once the request has completed.
     */
-    public static func CONNECT(entity:UsergridEntity, relationship:String, connectingEntity:UsergridEntity, completion: UsergridResponseCompletion?) {
-        Usergrid.sharedInstance.CONNECT(entity, relationship: relationship, connectingEntity: connectingEntity, completion: completion)
+    public static func connect(entity:UsergridEntity, relationship:String, to:UsergridEntity, completion: UsergridResponseCompletion? = nil) {
+        Usergrid.sharedInstance.connect(entity, relationship: relationship, to: to, completion: completion)
     }
+
+    /**
+     Connects the entity objects via the relationship using the shared instance of `UsergridCient`.
+
+     - parameter entityType:       The entity type.
+     - parameter entityID:         The entity UUID or name.
+     - parameter relationship:     The relationship of the connection.
+     - parameter toType:           The optional type of the entity you are connecting to.
+     - parameter toID:             The UUID of the entity you are connecting to.
+     - parameter completion:       The completion block that will be called once the request has completed.
+     */
+    public static func connect(entityType:String, entityID:String, relationship:String, toType:String?, toID: String, completion: UsergridResponseCompletion? = nil) {
+        Usergrid.sharedInstance.connect(entityType, entityID: entityID, relationship: relationship, toType: toType, toID: toID, completion: completion)
+    }
+
+    /**
+     Connects the entity objects via the relationship using the shared instance of `UsergridCient`.
+
+     - parameter entityType:       The entity type.
+     - parameter entityID:         The entity UUID or name.
+     - parameter relationship:     The relationship of the connection.
+     - parameter toType:           The type of the entity you are connecting to.
+     - parameter toName:           The name of the entity you are connecting to.
+     - parameter completion:       The completion block that will be called once the request has completed.
+     */
+    public static func connect(entityType:String, entityID:String, relationship:String, toType:String, toName: String, completion: UsergridResponseCompletion? = nil) {
+        Usergrid.sharedInstance.connect(entityType, entityID: entityID, relationship: relationship, toType: toType, toName: toName, completion: completion)
+    }
+
 
     /**
     Disconnects the `UsergridEntity` objects via the relationship using the shared instance of `UsergridCient`.
@@ -420,19 +449,61 @@ public class Usergrid: NSObject {
     - parameter connectingEntity:   The entity which is connected.
     - parameter completion:         The completion block that will be called once the request has completed.
     */
-    public static func DISCONNECT(entity:UsergridEntity, relationship:String, connectingEntity:UsergridEntity, completion: UsergridResponseCompletion?) {
-        Usergrid.sharedInstance.DISCONNECT(entity, relationship: relationship, connectingEntity: connectingEntity, completion: completion)
+    public static func disconnect(entity:UsergridEntity, relationship:String, from:UsergridEntity, completion: UsergridResponseCompletion? = nil) {
+        Usergrid.sharedInstance.disconnect(entity, relationship: relationship, from: from, completion: completion)
+    }
+
+    /**
+     Disconnects the entity objects via the relationship using the shared instance of `UsergridCient`.
+
+     - parameter entityType:       The entity type.
+     - parameter entityID:         The entity UUID or name.
+     - parameter relationship:     The relationship of the connection.
+     - parameter fromType:         The optional type of the entity you are disconnecting from.
+     - parameter toID:             The UUID of the entity you are disconnecting from.
+     - parameter completion:       The completion block that will be called once the request has completed.
+     */
+    public static func disconnect(entityType:String, entityID:String, relationship:String, fromType:String?, fromID: String, completion: UsergridResponseCompletion? = nil) {
+        Usergrid.sharedInstance.disconnect(entityType, entityID: entityID, relationship: relationship, fromType: fromType, fromID: fromID, completion: completion)
+    }
+
+    /**
+     Disconnects the entity objects via the relationship using the shared instance of `UsergridCient`.
+
+     - parameter entityType:       The entity type.
+     - parameter entityID:         The entity UUID or name.
+     - parameter relationship:     The relationship of the connection.
+     - parameter fromType:         The type of the entity you are disconnecting from.
+     - parameter fromName:         The name of the entity you are disconnecting from.
+     - parameter completion:       The completion block that will be called once the request has completed.
+     */
+    public static func disconnect(entityType:String, entityID:String, relationship:String, fromType:String, fromName: String, completion: UsergridResponseCompletion? = nil) {
+        Usergrid.sharedInstance.disconnect(entityType, entityID: entityID, relationship: relationship, fromType: fromType, fromName: fromName, completion: completion)
     }
 
     /**
     Gets the connected entities for the given relationship using the shared instance of `UsergridCient`.
 
+    - parameter direction:    The direction of the connection.
     - parameter entity:       The entity that contains the connection.
     - parameter relationship: The relationship.
     - parameter completion:   The completion block that will be called once the request has completed.
     */
-    public static func getConnectedEntities(entity:UsergridEntity, relationship:String, completion:UsergridResponseCompletion?) {
-        Usergrid.sharedInstance.getConnectedEntities(entity, relationship: relationship, completion: completion)
+    public static func getConnections(direction:UsergridDirection, entity:UsergridEntity, relationship:String, completion:UsergridResponseCompletion? = nil) {
+        Usergrid.sharedInstance.getConnections(direction, entity: entity, relationship: relationship, completion: completion)
+    }
+
+    /**
+     Gets the connected entities for the given relationship using the shared instance of `UsergridCient`.
+
+     - parameter direction:        The direction of the connection.
+     - parameter entityType:       The entity type.
+     - parameter entityID:         The entity UUID or name.
+     - parameter relationship:     The relationship of the connection.
+     - parameter completion:       The completion block that will be called once the request has completed.
+     */
+    public static func getConnections(direction:UsergridDirection, entityType:String, entityID:String, relationship:String, completion:UsergridResponseCompletion? = nil) {
+        Usergrid.sharedInstance.getConnections(direction, entityType: entityType, entityID: entityID, relationship: relationship, completion: completion)
     }
 
     // MARK: - Asset Management -
@@ -445,7 +516,7 @@ public class Usergrid: NSObject {
     - parameter progress:   The progress block that will be called to update the progress of the upload.
     - parameter completion: The completion block that will be called once the request has completed.
     */
-    public static func uploadAsset(entity:UsergridEntity, asset:UsergridAsset, progress:UsergridAssetRequestProgress? = nil, completion:UsergridAssetUploadCompletion?) {
+    public static func uploadAsset(entity:UsergridEntity, asset:UsergridAsset, progress:UsergridAssetRequestProgress? = nil, completion:UsergridAssetUploadCompletion? = nil) {
         Usergrid.sharedInstance.uploadAsset(entity, asset: asset, progress: progress, completion: completion)
     }
 
@@ -457,7 +528,7 @@ public class Usergrid: NSObject {
     - parameter progress:       The progress block that will be called to update the progress of the download.
     - parameter completion:     The completion block that will be called once the request has completed.
     */
-    public static func downloadAsset(entity:UsergridEntity, contentType:String, progress:UsergridAssetRequestProgress? = nil, completion:UsergridAssetDownloadCompletion?) {
+    public static func downloadAsset(entity:UsergridEntity, contentType:String, progress:UsergridAssetRequestProgress? = nil, completion:UsergridAssetDownloadCompletion? = nil) {
         Usergrid.sharedInstance.downloadAsset(entity, contentType: contentType, progress: progress, completion: completion)
     }
 }

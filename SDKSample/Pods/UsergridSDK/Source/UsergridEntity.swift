@@ -345,17 +345,17 @@ public class UsergridEntity: NSObject {
 
     - parameter completion: An optional completion block that, if successful, will contain the reloaded `UsergridEntity` object.
     */
-    public func reload(completion: UsergridResponseCompletion?) {
+    public func reload(completion: UsergridResponseCompletion? = nil) {
         self.reload(Usergrid.sharedInstance, completion: completion)
     }
 
     /**
-    Performs a GET on the `UsergridEntity` using the given instance of `UsergridClient`.
+    Performs a GET on the `UsergridEntity`.
 
     - parameter client:     The client to use when reloading.
     - parameter completion: An optional completion block that, if successful, will contain the reloaded `UsergridEntity` object.
     */
-    public func reload(client:UsergridClient, completion: UsergridResponseCompletion?) {
+    public func reload(client:UsergridClient, completion: UsergridResponseCompletion? = nil) {
         if let uuidOrName = self.uuidOrName {
             client.GET(self.type, uuidOrName: uuidOrName, completion: completion)
         } else {
@@ -368,17 +368,17 @@ public class UsergridEntity: NSObject {
 
     - parameter completion: An optional completion block that, if successful, will contain the updated/saved `UsergridEntity` object.
     */
-    public func save(completion: UsergridResponseCompletion?) {
+    public func save(completion: UsergridResponseCompletion? = nil) {
         self.save(Usergrid.sharedInstance, completion: completion)
     }
 
     /**
-    Performs a PUT (or POST if no UUID is found) on the `UsergridEntity` using the given instance of `UsergridClient`.
+    Performs a PUT (or POST if no UUID is found) on the `UsergridEntity`.
 
     - parameter client:     The client to use when saving.
     - parameter completion: An optional completion block that, if successful, will contain the updated/saved `UsergridEntity` object.
     */
-    public func save(client:UsergridClient, completion: UsergridResponseCompletion?) {
+    public func save(client:UsergridClient, completion: UsergridResponseCompletion? = nil) {
         if let _ = self.uuid { // If UUID exists we PUT otherwise POST
             client.PUT(self, completion: completion)
         } else {
@@ -391,17 +391,17 @@ public class UsergridEntity: NSObject {
 
     - parameter completion: An optional completion block.
     */
-    public func remove(completion: UsergridResponseCompletion?) {
+    public func remove(completion: UsergridResponseCompletion? = nil) {
         Usergrid.sharedInstance.DELETE(self, completion: completion)
     }
 
     /**
-    Performs a DELETE on the `UsergridEntity` using the given instance of the `UsergridClient`.
+    Performs a DELETE on the `UsergridEntity`.
 
     - parameter client:     The client to use when removing.
     - parameter completion: An optional completion block.
     */
-    public func remove(client:UsergridClient, completion: UsergridResponseCompletion?) {
+    public func remove(client:UsergridClient, completion: UsergridResponseCompletion? = nil) {
         client.DELETE(self, completion: completion)
     }
 
@@ -414,19 +414,19 @@ public class UsergridEntity: NSObject {
     - parameter progress:   An optional progress block to keep track of upload progress.
     - parameter completion: An optional completion block.
     */
-    public func uploadAsset(asset:UsergridAsset, progress:UsergridAssetRequestProgress? = nil, completion:UsergridAssetUploadCompletion?) {
+    public func uploadAsset(asset:UsergridAsset, progress:UsergridAssetRequestProgress? = nil, completion:UsergridAssetUploadCompletion? = nil) {
         Usergrid.sharedInstance.uploadAsset(self, asset: asset, progress:progress, completion:completion)
     }
 
     /**
-    Uploads the given `UsergridAsset` and the data within it and creates an association between this `UsergridEntity` with the given `UsergridAsset` using the given instance of `UsergridClient`.
+    Uploads the given `UsergridAsset` and the data within it and creates an association between this `UsergridEntity` with the given `UsergridAsset`.
 
     - parameter client:     The client to use when uploading.
     - parameter asset:      The `UsergridAsset` object to upload.
     - parameter progress:   An optional progress block to keep track of upload progress.
     - parameter completion: An optional completion block.
     */
-    public func uploadAsset(client:UsergridClient, asset:UsergridAsset, progress:UsergridAssetRequestProgress? = nil, completion:UsergridAssetUploadCompletion?) {
+    public func uploadAsset(client:UsergridClient, asset:UsergridAsset, progress:UsergridAssetRequestProgress? = nil, completion:UsergridAssetUploadCompletion? = nil) {
         client.uploadAsset(self, asset: asset, progress:progress, completion:completion)
     }
 
@@ -437,88 +437,90 @@ public class UsergridEntity: NSObject {
     - parameter progress:    An optional progress block to keep track of download progress.
     - parameter completion:  An optional completion block.
     */
-    public func downloadAsset(contentType:String, progress:UsergridAssetRequestProgress? = nil, completion:UsergridAssetDownloadCompletion?) {
+    public func downloadAsset(contentType:String, progress:UsergridAssetRequestProgress? = nil, completion:UsergridAssetDownloadCompletion? = nil) {
         Usergrid.sharedInstance.downloadAsset(self, contentType: contentType, progress:progress, completion: completion)
     }
 
     /**
-    Downloads the `UsergridAsset` that is associated with this `UsergridEntity` using the given instance of `UsergridClient`.
+    Downloads the `UsergridAsset` that is associated with this `UsergridEntity`.
 
     - parameter client:      The client to use when uploading.
     - parameter contentType: The content type of the data to load.
     - parameter progress:    An optional progress block to keep track of download progress.
     - parameter completion:  An optional completion block.
     */
-    public func downloadAsset(client:UsergridClient, contentType:String, progress:UsergridAssetRequestProgress? = nil, completion:UsergridAssetDownloadCompletion?) {
+    public func downloadAsset(client:UsergridClient, contentType:String, progress:UsergridAssetRequestProgress? = nil, completion:UsergridAssetDownloadCompletion? = nil) {
         client.downloadAsset(self, contentType: contentType, progress:progress, completion: completion)
-    }
-
-    /**
-    Creates a relationship between this `UsergridEntity` and the given entity using the shared instance of `UsergridClient`.
-
-    - parameter relationship: The relationship type.
-    - parameter entity:       The entity to connect.
-    - parameter completion:   An optional completion block.
-    */
-    public func connect(relationship:String, entity:UsergridEntity, completion: UsergridResponseCompletion?) {
-        Usergrid.sharedInstance.CONNECT(self, relationship: relationship, connectingEntity: entity, completion: completion)
     }
 
     // MARK: - Connection Management -
 
     /**
-    Creates a relationship between this `UsergridEntity` and the given entity using the given instance of `UsergridClient`.
+    Creates a relationship between this `UsergridEntity` and the given entity using the shared instance of `UsergridClient`.
+
+    - parameter relationship: The relationship type.
+    - parameter toEntity:     The entity to connect.
+    - parameter completion:   An optional completion block.
+    */
+    public func connect(relationship:String, toEntity:UsergridEntity, completion: UsergridResponseCompletion? = nil) {
+        Usergrid.sharedInstance.connect(self, relationship: relationship, to: toEntity, completion: completion)
+    }
+
+    /**
+    Creates a relationship between this `UsergridEntity` and the given entity.
 
     - parameter client:       The client to use when connecting.
     - parameter relationship: The relationship type.
-    - parameter entity:       The entity to connect.
+    - parameter toEntity:     The entity to connect.
     - parameter completion:   An optional completion block.
     */
-    public func connect(client:UsergridClient, relationship:String, entity:UsergridEntity, completion: UsergridResponseCompletion?) {
-        client.CONNECT(self, relationship: relationship, connectingEntity: entity, completion: completion)
+    public func connect(client:UsergridClient, relationship:String, toEntity:UsergridEntity, completion: UsergridResponseCompletion? = nil) {
+        client.connect(self, relationship: relationship, to: toEntity, completion: completion)
     }
 
     /**
     Removes a relationship between this `UsergridEntity` and the given entity using the shared instance of `UsergridClient`.
 
     - parameter relationship: The relationship type.
-    - parameter entity:       The entity to disconnect.
+    - parameter fromEntity:   The entity to disconnect.
     - parameter completion:   An optional completion block.
     */
-    public func disconnect(relationship:String, entity:UsergridEntity, completion: UsergridResponseCompletion?) {
-        Usergrid.sharedInstance.DISCONNECT(self, relationship: relationship, connectingEntity: entity, completion: completion)
+    public func disconnect(relationship:String, fromEntity:UsergridEntity, completion: UsergridResponseCompletion? = nil) {
+        Usergrid.sharedInstance.disconnect(self, relationship: relationship, from: fromEntity, completion: completion)
     }
 
     /**
-    Removes a relationship between this `UsergridEntity` and the given entity using the given instance of `UsergridClient`.
+    Removes a relationship between this `UsergridEntity` and the given entity.
 
     - parameter client:       The client to use when disconnecting.
     - parameter relationship: The relationship type.
-    - parameter entity:       The entity to disconnect.
+    - parameter fromEntity:   The entity to disconnect.
     - parameter completion:   An optional completion block.
     */
-    public func disconnect(client:UsergridClient, relationship:String, entity:UsergridEntity, completion: UsergridResponseCompletion?) {
-        client.DISCONNECT(self, relationship: relationship, connectingEntity: entity, completion: completion)
+    public func disconnect(client:UsergridClient, relationship:String, fromEntity:UsergridEntity, completion: UsergridResponseCompletion? = nil) {
+        client.disconnect(self, relationship: relationship, from: fromEntity, completion: completion)
     }
 
     /**
     Gets the `UsergridEntity` objects, if any, which are connected via the relationship using the shared instance of `UsergridClient`.
 
-    - parameter relationship: The relationship type.
-    - parameter completion:   An optional completion block.
+    - parameter direction:      The direction of the connection.
+    - parameter relationship:   The relationship type.
+    - parameter completion:     An optional completion block.
     */
-    public func getConnectedEntities(relationship:String, completion:UsergridResponseCompletion?) {
-        Usergrid.sharedInstance.getConnectedEntities(self, relationship: relationship, completion: completion)
+    public func getConnections(direction:UsergridDirection, relationship:String, completion:UsergridResponseCompletion? = nil) {
+        Usergrid.sharedInstance.getConnections(direction, entity: self, relationship: relationship, completion: completion)
     }
 
     /**
-    Gets the `UsergridEntity` objects, if any, which are connected via the relationship using the given instance of `UsergridClient`.
+    Gets the `UsergridEntity` objects, if any, which are connected via the relationship.
 
     - parameter client:       The client to use when getting the connected `UsergridEntity` objects.
+    - parameter direction:    The direction of the connection.
     - parameter relationship: The relationship type.
     - parameter completion:   An optional completion block.
     */
-    public func getConnectedEntities(client:UsergridClient, relationship:String, completion:UsergridResponseCompletion?) {
-        client.getConnectedEntities(self, relationship: relationship, completion: completion)
+    public func getConnections(client:UsergridClient, direction:UsergridDirection, relationship:String, completion:UsergridResponseCompletion? = nil) {
+        client.getConnections(direction, entity: self, relationship: relationship, completion: completion)
     }
 }

@@ -70,10 +70,16 @@ class LoginViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 
-        // self.usernameTextField.text = nil
-        // self.passwordTextField.text = nil
+        self.usernameTextField.text = nil
+        self.passwordTextField.text = nil
 
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action:nil)
+    }
+
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        self.view.endEditing(true)
     }
 
     @IBAction func loginButtonTouched(sender: AnyObject) {
@@ -118,8 +124,8 @@ class RegisterViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 
-        // self.usernameTextField.text = nil
-        // self.passwordTextField.text = nil
+        self.usernameTextField.text = nil
+        self.passwordTextField.text = nil
     }
 
     @IBAction func registerButtonTouched(sender: AnyObject) {
@@ -180,8 +186,12 @@ class MessageViewController : SLKTextViewController {
         self.keyboardPanningEnabled = true
         self.shouldScrollToBottomAfterKeyboardShows = true
         self.inverted = true
-        self.registerClassForTextView(MessageTextView)
 
+        self.registerClassForTextView(MessageTextView)
+        self.reloadMessages()
+    }
+
+    func reloadMessages() {
         let sortByCreatedDateQuery = UsergridQuery().desc("created")
         Usergrid.GET(MessageViewController.MESSAGE_ENTITY_TYPE, query:sortByCreatedDateQuery) { (response) -> Void in
             self.messageEntities = response.entities ?? []

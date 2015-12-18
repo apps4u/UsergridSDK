@@ -30,9 +30,9 @@ extension UsergridSessionDelegate : NSURLSessionTaskDelegate {
     }
 
     func URLSession(session: NSURLSession, task: NSURLSessionTask, didCompleteWithError error: NSError?) {
-        if let request = requestDelegates[task.taskIdentifier] {
-            request.error = error
-            request.completion(requestWrapper: request)
+        if let requestWrapper = requestDelegates[task.taskIdentifier] {
+            requestWrapper.error = error
+            requestWrapper.completion(requestWrapper: requestWrapper)
         }
         self.removeRequestDelegate(task)
     }
@@ -41,17 +41,17 @@ extension UsergridSessionDelegate : NSURLSessionTaskDelegate {
 extension UsergridSessionDelegate : NSURLSessionDataDelegate {
 
     func URLSession(session: NSURLSession, dataTask: NSURLSessionDataTask, didReceiveResponse response: NSURLResponse, completionHandler: (NSURLSessionResponseDisposition) -> Void) {
-        if let request = requestDelegates[dataTask.taskIdentifier] {
-            request.response = response
+        if let requestWrapper = requestDelegates[dataTask.taskIdentifier] {
+            requestWrapper.response = response
         }
         completionHandler(NSURLSessionResponseDisposition.Allow)
     }
 
     func URLSession(session: NSURLSession, dataTask: NSURLSessionDataTask, didReceiveData data: NSData) {
-        if let request = requestDelegates[dataTask.taskIdentifier] {
-            let mutableData = request.responseData != nil ? NSMutableData(data: request.responseData!) : NSMutableData()
+        if let requestWrapper = requestDelegates[dataTask.taskIdentifier] {
+            let mutableData = requestWrapper.responseData != nil ? NSMutableData(data: requestWrapper.responseData!) : NSMutableData()
             mutableData.appendData(data)
-            request.responseData = mutableData
+            requestWrapper.responseData = mutableData
         }
     }
 }
@@ -65,8 +65,8 @@ extension UsergridSessionDelegate : NSURLSessionDownloadDelegate {
     }
 
     func URLSession(session: NSURLSession, downloadTask: NSURLSessionDownloadTask, didFinishDownloadingToURL location: NSURL) {
-        if let request = requestDelegates[downloadTask.taskIdentifier] {
-            request.responseData = NSData(contentsOfURL: location)!
+        if let requestWrapper = requestDelegates[downloadTask.taskIdentifier] {
+            requestWrapper.responseData = NSData(contentsOfURL: location)!
         }
     }
 }

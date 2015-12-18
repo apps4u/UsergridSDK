@@ -9,7 +9,7 @@
 import Foundation
 
 /**
-A enumeration that is used to determine what the `UsergridClient` will fallback to depending on certain authorization conditions.
+An enumeration that is used to determine what the `UsergridClient` will fallback to depending on certain authorization conditions.
 */
 @objc public enum UsergridAuthFallback : Int {
 
@@ -301,9 +301,9 @@ A enumeration that is used to determine what the `UsergridClient` will fallback 
 
     // MARK: - Values -
 
-    // Content type: 'image/png'
+    /// Content type: 'image/png'
     case Png
-    // Content type: 'image/jpeg'
+    /// Content type: 'image/jpeg'
     case Jpeg
 
     // MARK: - Methods -
@@ -313,6 +313,30 @@ A enumeration that is used to determine what the `UsergridClient` will fallback 
         switch self {
             case .Png: return ASSET_IMAGE_PNG
             case .Jpeg: return ASSET_IMAGE_JPEG
+        }
+    }
+}
+
+/**
+ An enumeration that is used when getting connections to entity objects. Used to determine which the direction of the connection is wanted.
+ */
+@objc public enum UsergridDirection : Int {
+
+    // MARK: - Values -
+
+    /// To get the entities that have created a connection to an entity. aka `connecting`
+    case In
+
+    /// To get the entities an entity has connected to. aka `connections`
+    case Out
+
+    // MARK: - Methods -
+
+    /// Returns the connection value.
+    public var connectionValue: String {
+        switch self {
+            case .In: return CONNECTION_TYPE_IN
+            case .Out: return CONNECTION_TYPE_OUT
         }
     }
 }
@@ -340,3 +364,6 @@ let DEVICE_OSVERSION = "devicePlatform"
 
 let ASSET_IMAGE_PNG = "image/png"
 let ASSET_IMAGE_JPEG = "image/jpeg"
+
+let CONNECTION_TYPE_IN = "connecting"
+let CONNECTION_TYPE_OUT = "connections"

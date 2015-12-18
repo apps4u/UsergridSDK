@@ -165,38 +165,108 @@ extension UsergridRequestManager {
 // MARK: - Entity Connections -
 extension UsergridRequestManager {
 
-    func performConnect(connectedEntity:UsergridEntity, relationship:String, connectingEntity:UsergridEntity, completion: UsergridResponseCompletion?) {
-        if let connectedID = connectedEntity.uuidOrName, connectingID = connectingEntity.uuidOrName {
-            let requestURL = UsergridRequestManager.buildRequestURL(self.client.clientAppURL, paths: [connectedEntity.type,connectedID,relationship,connectingEntity.type,connectingID])
-            let request = UsergridRequestManager.buildRequest(requestURL, .POST, self.client.authForRequests())
-            session.dataTaskWithRequest(request) { [weak self] (data, response, error) -> Void in
-                completion?(response:UsergridResponse(client:self?.client, data:data, response:response as? NSHTTPURLResponse, error: error, query: nil))
-            }.resume()
+    func performConnect(entity:         UsergridEntity,
+                        relationship:   String,
+                        to:             UsergridEntity,
+                        completion:     UsergridResponseCompletion? = nil) {
+
+        if let entityID = entity.uuidOrName, toID = to.uuidOrName {
+            self.performConnect(entity.type, entityID: entityID, relationship: relationship, toType: to.type, toID: toID, completion: completion)
         } else {
             completion?(response: UsergridResponse(client: self.client, errorName: "Invalid Entity Connection Attempt.", errorDescription: "One or both entities that are attempting to be connected do not contain a valid UUID or Name property."))
         }
     }
 
-    func performDisconnect(connectedEntity:UsergridEntity, relationship:String, connectingEntity:UsergridEntity,completion: UsergridResponseCompletion?) {
-        if let connectedID = connectedEntity.uuidOrName, connectingID = connectingEntity.uuidOrName {
-            let requestURL = UsergridRequestManager.buildRequestURL(self.client.clientAppURL, paths: [connectedEntity.type,connectedID,relationship,connectingEntity.type,connectingID])
-            let request = UsergridRequestManager.buildRequest(requestURL, .DELETE, self.client.authForRequests())
-            session.dataTaskWithRequest(request) { [weak self] (data, response, error) -> Void in
-                completion?(response:UsergridResponse(client:self?.client, data:data, response:response as? NSHTTPURLResponse, error: error, query: nil))
-            }.resume()
+    func performConnect(entityType:         String,
+                        entityID:           String,
+                        relationship:       String,
+                        toType:             String,
+                        toName:             String,
+                        completion:         UsergridResponseCompletion? = nil) {
+            self.performConnect(entityType, entityID: entityID, relationship: relationship, toType: toType, toID: toName, completion: completion)
+    }
+
+    func performConnect(entityType:         String,
+                        entityID:           String,
+                        relationship:       String,
+                        toType:             String?,
+                        toID:               String,
+                        completion:         UsergridResponseCompletion? = nil) {
+
+        var paths = [entityType,entityID,relationship]
+        if let toType = toType {
+            paths.append(toType)
+        }
+        paths.append(toID)
+
+        let requestURL = UsergridRequestManager.buildRequestURL(self.client.clientAppURL, paths:paths)
+        let request = UsergridRequestManager.buildRequest(requestURL, .POST, self.client.authForRequests())
+
+        session.dataTaskWithRequest(request) { [weak self] (data, response, error) -> Void in
+            completion?(response:UsergridResponse(client:self?.client, data:data, response:response as? NSHTTPURLResponse, error: error, query: nil))
+        }.resume()
+    }
+
+    func performDisconnect(entity:          UsergridEntity,
+                           relationship:    String,
+                           from:            UsergridEntity,
+                           completion:      UsergridResponseCompletion?) {
+
+        if let entityID = entity.uuidOrName, fromID = from.uuidOrName {
+            self.performDisconnect(entity.type, entityID: entityID, relationship: relationship, fromType: from.type, fromID: fromID, completion: completion)
         } else {
             completion?(response: UsergridResponse(client: self.client, errorName: "Invalid Entity Disconnect Attempt.", errorDescription: "The connecting and connected entities must have a `uuid` or `name` assigned."))
         }
     }
 
-    func getConnectedEntities(entity:UsergridEntity, relationship:String, completion:UsergridResponseCompletion?) {
-        if let entityID = entity.uuidOrName {
-            let requestURL = UsergridRequestManager.buildRequestURL(self.client.clientAppURL, paths: [entity.type,entityID,relationship])
+    func performDisconnect(entityType:     String,
+                           entityID:       String,
+                           relationship:   String,
+                           fromType:       String,
+                           fromName:       String,
+                           completion:     UsergridResponseCompletion? = nil) {
+        self.performDisconnect(entityType, entityID: entityID, relationship: relationship, fromType: fromType, fromID: fromName, completion: completion)
+    }
+
+    func performDisconnect(entityType:     String,
+                           entityID:       String,
+                           relationship:   String,
+                           fromType:       String?,
+                           fromID:         String,
+                           completion:     UsergridResponseCompletion? = nil) {
+
+            var paths = [entityType,entityID,relationship]
+            if let fromType = fromType {
+                paths.append(fromType)
+            }
+            paths.append(fromID)
+
+            let requestURL = UsergridRequestManager.buildRequestURL(self.client.clientAppURL, paths: paths)
             let request = UsergridRequestManager.buildRequest(requestURL, .DELETE, self.client.authForRequests())
-            session.dataTaskWithRequest(request) { [weak self] (data,response,error) in
+
+            session.dataTaskWithRequest(request) { [weak self] (data, response, error) -> Void in
                 completion?(response:UsergridResponse(client:self?.client, data:data, response:response as? NSHTTPURLResponse, error: error, query: nil))
             }.resume()
+
+    }
+
+    func getConnections(direction:UsergridDirection, entity:UsergridEntity, relationship:String, completion:UsergridResponseCompletion? = nil) {
+        if let entityID = entity.uuidOrName {
+            self.getConnections(direction, entityType: entity.type, entityID: entityID, relationship: relationship, completion: completion)
+        } else {
+            completion?(response: UsergridResponse(client: self.client, errorName: "Invalid Entity Get Connections Attempt.", errorDescription: "The entity must have a `uuid` or `name` assigned."))
         }
+    }
+
+    func getConnections(direction:UsergridDirection, entityType:String, entityID:String, relationship:String, completion:UsergridResponseCompletion? = nil) {
+
+        let paths = [entityType, entityID, direction.connectionValue, relationship]
+        let requestURL = UsergridRequestManager.buildRequestURL(self.client.clientAppURL, paths: paths)
+        let request = UsergridRequestManager.buildRequest(requestURL, .DELETE, self.client.authForRequests())
+
+        session.dataTaskWithRequest(request) { [weak self] (data,response,error) in
+            completion?(response:UsergridResponse(client:self?.client, data:data, response:response as? NSHTTPURLResponse, error: error, query: nil))
+        }.resume()
     }
 }
 

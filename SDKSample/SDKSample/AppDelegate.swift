@@ -14,7 +14,7 @@ import UsergridSDK
 
 let ORG_ID = "rwalsh"
 let APP_ID = "sandbox"
-let NOTIFIER_ID = "SDKSample"
+let NOTIFIER_ID = "usergridsample"
 
 @UIApplicationMain class AppDelegate: UIResponder, UIApplicationDelegate {
 
