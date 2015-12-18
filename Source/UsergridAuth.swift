@@ -19,7 +19,7 @@ The base class for `UsergridAppAuth` and `UsergridUserAuth` classes.
 
 This class should never be initialized on its own.  The use of the `UsergridAppAuth` and `UsergridUserAuth` subclasses should be used.
 */
-public class UsergridAuth : NSObject {
+public class UsergridAuth : NSObject, NSCoding {
 
     // MARK: - Instance Properties -
 
@@ -47,6 +47,22 @@ public class UsergridAuth : NSObject {
     /// The credentials dictionary. Subclasses must override this method and provide an actual dictionary containing the credentials to send with requests.
     var credentialsJSONDict: [String:AnyObject] {
         return [:]
+    }
+
+    override public init() { }
+
+    required public init?(coder aDecoder: NSCoder) {
+        self.accessToken = aDecoder.decodeObjectForKey("accessToken") as? String
+        self.expiresIn = aDecoder.decodeIntegerForKey("expiresIn")
+    }
+
+    public func encodeWithCoder(aCoder: NSCoder) {
+        if let accessToken = self.accessToken {
+            aCoder.encodeObject(accessToken, forKey: "accessToken")
+        }
+        if let expiresIn = self.expiresIn {
+            aCoder.encodeInteger(expiresIn, forKey: "expiresIn")
+        }
     }
 
     /**
@@ -78,7 +94,7 @@ public class UsergridUserAuth : UsergridAuth {
     public let username: String
 
     /// The password associated with the User.
-    public let password: String
+    private let password: String
 
     /// The credentials dictionary constructed with the `UsergridUserAuth`'s `username` and `password`.
     override var credentialsJSONDict: [String:AnyObject] {
@@ -100,6 +116,28 @@ public class UsergridUserAuth : UsergridAuth {
     public init(username:String, password: String){
         self.username = username
         self.password = password
+        super.init()
+    }
+
+    required public init?(coder aDecoder: NSCoder) {
+        guard let username = aDecoder.decodeObjectForKey("username") as? String,
+                  password = aDecoder.decodeObjectForKey("password") as? String
+        else {
+            self.username = ""
+            self.password = ""
+            super.init()
+            return nil
+        }
+
+        self.username = username
+        self.password = password
+        super.init(coder: aDecoder)
+    }
+
+    override public func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeObject(self.username, forKey: "username")
+        aCoder.encodeObject(self.password, forKey: "password")
+        super.encodeWithCoder(aCoder)
     }
 }
 
@@ -112,7 +150,7 @@ public class UsergridAppAuth : UsergridAuth {
     public let clientID: String
 
     /// The client secret associated with the application.
-    public let clientSecret: String
+    private let clientSecret: String
 
     /// The credentials dictionary constructed with the `UsergridAppAuth`'s `clientID` and `clientSecret`.
     override var credentialsJSONDict: [String:AnyObject] {
@@ -134,5 +172,25 @@ public class UsergridAppAuth : UsergridAuth {
     public init(clientID:String,clientSecret:String){
         self.clientID = clientID
         self.clientSecret = clientSecret
+        super.init()
+    }
+
+    required public init?(coder aDecoder: NSCoder) {
+        if let clientID = aDecoder.decodeObjectForKey("clientID") as? String, clientSecret = aDecoder.decodeObjectForKey("clientSecret") as? String {
+            self.clientID = clientID
+            self.clientSecret = clientSecret
+            super.init(coder: aDecoder)
+        } else {
+            self.clientID = ""
+            self.clientSecret = ""
+            super.init(coder: aDecoder)
+            return nil
+        }
+    }
+
+    override public func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeObject(self.clientID, forKey: "clientID")
+        aCoder.encodeObject(self.clientSecret, forKey: "clientSecret")
+        super.encodeWithCoder(aCoder)
     }
 }

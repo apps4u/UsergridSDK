@@ -37,16 +37,16 @@ class CONNECTION_Tests: XCTestCase {
                     let entityToConnect = response.entities![1]
                     XCTAssertEqual(entity.type, CONNECTION_Tests.collectionName)
 
-                    entity.connect(self!.testAuthClient,relationship:"likes", entity: entityToConnect) { (response) -> Void in
+                    entity.connect(self!.testAuthClient,relationship:"likes", toEntity: entityToConnect) { (response) -> Void in
                         XCTAssertNotNil(response)
-                        entity.getConnectedEntities(self!.testAuthClient, relationship: "likes") { (response) -> Void in
+                        entity.getConnections(self!.testAuthClient, direction:.Out, relationship: "likes") { (response) -> Void in
                             XCTAssertNotNil(response)
                             let connectedEntity = response.first!
                             XCTAssertNotNil(connectedEntity)
                             XCTAssertEqual(connectedEntity.uuidOrName, entityToConnect.uuidOrName)
-                            entity.disconnect(self!.testAuthClient, relationship: "likes", entity: connectedEntity) { (response) -> Void in
+                            entity.disconnect(self!.testAuthClient, relationship: "likes", fromEntity: connectedEntity) { (response) -> Void in
                                 XCTAssertNotNil(response)
-                                entity.getConnectedEntities(self!.testAuthClient, relationship: "likes") { (response) -> Void in
+                                entity.getConnections(self!.testAuthClient, direction:.Out, relationship: "likes") { (response) -> Void in
                                     XCTAssertNotNil(response)
                                     authExpect.fulfill()
                                 }
