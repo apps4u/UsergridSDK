@@ -14,7 +14,7 @@ import CoreLocation
 
 `UsergridEntity` maintains a set of accessor properties for standard Usergrid schema properties (e.g. name, uuid), and supports helper methods for accessing any custom properties that might exist.
 */
-public class UsergridEntity: NSObject {
+public class UsergridEntity: NSObject, NSCoding {
 
     // MARK: - Instance Properties -
 
@@ -69,7 +69,7 @@ public class UsergridEntity: NSObject {
     public var jsonObjectValue : [String:AnyObject] { return self.properties }
 
     /// The string value.
-    public var stringValue : String { return NSString(data: try! NSJSONSerialization.dataWithJSONObject(self.jsonObjectValue, options: NSJSONWritingOptions.PrettyPrinted), encoding: NSASCIIStringEncoding) as! String }
+    public var stringValue : String { return NSString(data: try! NSJSONSerialization.dataWithJSONObject(self.jsonObjectValue, options: .PrettyPrinted), encoding: NSASCIIStringEncoding) as! String }
 
     // MARK: - Initialization -
 
@@ -133,6 +133,25 @@ public class UsergridEntity: NSObject {
             }
         }
         return entityArray
+    }
+
+    // MARK: - NSCoding -
+
+    required public init?(coder aDecoder: NSCoder) {
+        guard let properties = aDecoder.decodeObjectForKey("properties") as? [String:AnyObject]
+            else {
+                self.properties = [:]
+                super.init()
+                return nil
+        }
+        self.properties = properties
+        self.fileMetaData = aDecoder.decodeObjectForKey("fileMetaData") as? UsergridFileMetaData
+        super.init()
+    }
+
+    public func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeObject(self.properties, forKey: "properties")
+        aCoder.encodeObject(self.fileMetaData, forKey: "fileMetaData")
     }
 
     // MARK: - Property Manipulation -

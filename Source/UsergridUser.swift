@@ -108,6 +108,18 @@ public class UsergridUser : UsergridEntity {
         super.init(type: UsergridUser.USER_ENTITY_TYPE, name:name, propertyDict:propertyDict)
     }
 
+    // MARK: - NSCoding -
+
+    required public init?(coder aDecoder: NSCoder) {
+        self.auth = aDecoder.decodeObjectForKey("auth") as? UsergridUserAuth
+        super.init(coder: aDecoder)
+    }
+
+    public override func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeObject(self.auth, forKey: "auth")
+        super.encodeWithCoder(aCoder)
+    }
+
     // MARK: - Instance Methods -
 
     /**

@@ -27,7 +27,7 @@ class AUTH_Tests: XCTestCase {
             if let appAuth = self?.testAuthClient.appAuth {
 
                 XCTAssertNotNil(appAuth.accessToken)
-                XCTAssertNotNil(appAuth.expiresIn)
+                XCTAssertNotNil(appAuth.expiresAt)
 
                 self?.testAuthClient.GET(AUTH_Tests.collectionName) { (response) in
 
