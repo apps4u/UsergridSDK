@@ -32,7 +32,15 @@ public class UsergridClient: NSObject {
     public var clientAppURL : String { return "\(baseURL)/\(orgID)/\(appID)" }
 
     /// The currently logged in `UsergridUser`.
-    internal(set) public var currentUser: UsergridUser? = nil
+    internal(set) public var currentUser: UsergridUser? = nil {
+        didSet {
+            if let newUser = self.currentUser {
+                UsergridUser.saveCurrentUserKeychainItem(self,currentUser:newUser)
+            } else if oldValue != nil {
+                UsergridUser.deleteCurrentUserKeychainItem(self)
+            }
+        }
+    }
 
     /// The `UsergridUserAuth` which consists of the token information from the `currentUser` property.
     public var userAuth: UsergridUserAuth? { return currentUser?.auth }
@@ -57,6 +65,8 @@ public class UsergridClient: NSObject {
         self.orgID = orgID
         self.appID = appID
         self.baseURL = UsergridClient.DEFAULT_BASE_URL
+        super.init()
+        self.internalInitialization()
     }
 
     /**
@@ -72,6 +82,8 @@ public class UsergridClient: NSObject {
         self.orgID = orgID
         self.appID = appID
         self.baseURL = baseURL
+        super.init()
+        self.internalInitialization()
     }
 
     /**
@@ -87,6 +99,12 @@ public class UsergridClient: NSObject {
         self.baseURL = configuration.baseURL
         self.authFallback = configuration.authFallback
         self.appAuth = configuration.appAuth
+        super.init()
+        self.internalInitialization()
+    }
+
+    private func internalInitialization() {
+        self.currentUser = UsergridUser.getCurrentUserFromKeychain(self)
     }
 
     // MARK: - Device Registration/Push Notifications -

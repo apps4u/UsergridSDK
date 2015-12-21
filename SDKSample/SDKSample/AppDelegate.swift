@@ -22,13 +22,22 @@ let NOTIFIER_ID = "usergridsample"
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
-        // Initialize the Usergrid shared instance.
-        Usergrid.initSharedInstance(configuration: UsergridClientConfig(orgID: ORG_ID, appID: APP_ID))
-
+        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
         application.registerUserNotificationSettings(UIUserNotificationSettings( forTypes: [.Alert, .Badge, .Sound], categories: nil))
         application.registerForRemoteNotifications()
 
-        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+
+        // Initialize the Usergrid shared instance.
+
+        Usergrid.initSharedInstance(configuration: UsergridClientConfig(orgID: ORG_ID, appID: APP_ID))
+
+        // If there is a current user already logged in from the keychain we will skip the login page and go right to the chat screen
+
+        if Usergrid.currentUser != nil {
+            let rootViewController = self.window!.rootViewController as! UINavigationController
+            let loginViewController = rootViewController.viewControllers.first!
+            loginViewController.performSegueWithIdentifier("loginSuccessNonAnimatedSegue", sender: loginViewController)
+        }
 
         return true
     }

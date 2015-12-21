@@ -26,8 +26,8 @@ public class UsergridAuth : NSObject, NSCoding {
     /// The access token, if this `UsergridAuth` was authorized successfully.
     public var accessToken : String?
 
-    /// The expires in time stamp, if this `UsergridAuth` was authorized successfully and their was a expires in time stamp within the token response.
-    public var expiresIn : Int?
+    /// The expires at date, if this `UsergridAuth` was authorized successfully and their was a expires in time stamp within the token response.
+    public var expiresAt : NSDate?
 
     /// Determines if an access token exists.
     public var hasToken: Bool { return self.accessToken != nil }
@@ -38,8 +38,8 @@ public class UsergridAuth : NSObject, NSCoding {
     /// Determines if the access token, if one exists, is expired.
     public var isExpired: Bool {
         var isExpired = true
-        if let expires = self.expiresIn {
-            isExpired = NSDate().compare(NSDate(utcTimeStamp: expires.description)) != NSComparisonResult.OrderedDescending
+        if let expires = self.expiresAt {
+            isExpired = expires.timeIntervalSinceNow < 0.0
         }
         return isExpired
     }
@@ -49,19 +49,25 @@ public class UsergridAuth : NSObject, NSCoding {
         return [:]
     }
 
-    override public init() { }
+    // MARK: - Initialization -
+
+    override internal init() {
+        super.init()
+    }
+
+    // MARK: - NSCoding -
 
     required public init?(coder aDecoder: NSCoder) {
         self.accessToken = aDecoder.decodeObjectForKey("accessToken") as? String
-        self.expiresIn = aDecoder.decodeIntegerForKey("expiresIn")
+        self.expiresAt = aDecoder.decodeObjectForKey("expiresAt") as? NSDate
     }
 
     public func encodeWithCoder(aCoder: NSCoder) {
         if let accessToken = self.accessToken {
             aCoder.encodeObject(accessToken, forKey: "accessToken")
         }
-        if let expiresIn = self.expiresIn {
-            aCoder.encodeInteger(expiresIn, forKey: "expiresIn")
+        if let expiresAt = self.expiresAt {
+            aCoder.encodeObject(expiresAt, forKey: "expiresAt")
         }
     }
 
@@ -119,13 +125,15 @@ public class UsergridUserAuth : UsergridAuth {
         super.init()
     }
 
+    // MARK: - NSCoding -
+
     required public init?(coder aDecoder: NSCoder) {
         guard let username = aDecoder.decodeObjectForKey("username") as? String,
                   password = aDecoder.decodeObjectForKey("password") as? String
         else {
             self.username = ""
             self.password = ""
-            super.init()
+            super.init(coder: aDecoder)
             return nil
         }
 
@@ -174,6 +182,8 @@ public class UsergridAppAuth : UsergridAuth {
         self.clientSecret = clientSecret
         super.init()
     }
+
+    // MARK: - NSCoding -
 
     required public init?(coder aDecoder: NSCoder) {
         if let clientID = aDecoder.decodeObjectForKey("clientID") as? String, clientSecret = aDecoder.decodeObjectForKey("clientSecret") as? String {

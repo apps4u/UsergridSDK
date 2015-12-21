@@ -1,6 +1,6 @@
 {
   "name": "UsergridSDK",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "summary": "Usergrid SDK for iOS written in Swift",
   "homepage": "https://github.com/RobertWalsh/UsergridSDK",
   "license": "MIT",
@@ -15,7 +15,7 @@
   "source": {
     "git": "https://github.com/RobertWalsh/UsergridSDK.git",
     "branch": "master",
-    "tag": "v0.0.1"
+    "tag": "v0.0.2"
   },
   "source_files": [
     "Source/*.swift",

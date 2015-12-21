@@ -11,7 +11,7 @@ import Foundation
 /**
 `UsergridFileMetaData` is a helper class for dealing with reading `UsergridEntity` file meta data.
 */
-public class UsergridFileMetaData : NSObject {
+public class UsergridFileMetaData : NSObject,NSCoding {
 
     internal static let FILE_METADATA = "file-metadata"
 
@@ -50,10 +50,35 @@ public class UsergridFileMetaData : NSObject {
         self.contentType = fileMetaDataJSON["content-type"] as? String
         self.contentLength = fileMetaDataJSON["content-length"] as? Int ?? 0
         self.lastModifiedTimeStamp = fileMetaDataJSON["last-modified"] as? Int ?? 0
+
         if self.lastModifiedTimeStamp > 0 {
             self.lastModifiedDate = NSDate(utcTimeStamp: self.lastModifiedTimeStamp.description)
         } else {
             self.lastModifiedDate = nil
         }
+    }
+
+    // MARK: - NSCoding -
+
+    required public init?(coder aDecoder: NSCoder) {
+        self.eTag = aDecoder.decodeObjectForKey("etag") as? String
+        self.checkSum = aDecoder.decodeObjectForKey("checksum") as? String
+        self.contentType = aDecoder.decodeObjectForKey("content-type") as? String
+        self.contentLength = aDecoder.decodeIntegerForKey("content-length") ?? 0
+        self.lastModifiedTimeStamp = aDecoder.decodeIntegerForKey("last-modified") ?? 0
+
+        if self.lastModifiedTimeStamp > 0 {
+            self.lastModifiedDate = NSDate(utcTimeStamp: self.lastModifiedTimeStamp.description)
+        } else {
+            self.lastModifiedDate = nil
+        }
+    }
+
+    public func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeObject(self.eTag, forKey: "etag")
+        aCoder.encodeObject(self.checkSum, forKey: "checksum")
+        aCoder.encodeObject(self.contentType, forKey: "content-type")
+        aCoder.encodeInteger(self.contentLength, forKey: "content-length")
+        aCoder.encodeInteger(self.lastModifiedTimeStamp, forKey: "last-modified")
     }
 }

@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import Security
 
 /**
 `UsergridDevice` is an `UsergridEntity` subclass that encapsulates information about the current device as well as stores information about push tokens and Usergrid notifiers.
@@ -56,6 +55,16 @@ public class UsergridDevice : UsergridEntity {
         super.init(type: UsergridDevice.DEVICE_ENTITY_TYPE, name: nil, propertyDict: deviceEntityDict)
     }
 
+    // MARK: - NSCoding -
+
+    required public init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+
+    public override func encodeWithCoder(aCoder: NSCoder) {
+        super.encodeWithCoder(aCoder)
+    }
+
     /**
     Subscript for the `UsergridDevice` class. Note that all of the `UsergridDeviceProperties` are immutable.
 
@@ -77,6 +86,8 @@ public class UsergridDevice : UsergridEntity {
         }
     }
 
+    // MARK: - Push Token Handling -
+
     /**
     Sets the push token for the given notifier ID.
 
@@ -90,43 +101,6 @@ public class UsergridDevice : UsergridEntity {
     internal func applyPushToken(pushToken: NSData, notifierID: String) {
         self[notifierID + USERGRID_NOTIFIER_ID_SUFFIX] = pushToken.description.stringByTrimmingCharactersInSet(NSCharacterSet(charactersInString: "<>")).stringByReplacingOccurrencesOfString(" ", withString: "")
     }
-
-    private static func keychainItem() -> [String:AnyObject] {
-        var keychainItem: [String:AnyObject] = [:]
-        keychainItem[kSecClass as String] = kSecClassGenericPassword as String
-        keychainItem[kSecAttrAccessible as String] = kSecAttrAccessibleAlways as String
-        keychainItem[kSecAttrAccount as String] = USERGRID_KEYCHAIN_NAME
-        keychainItem[kSecAttrService as String] = USERGRID_KEYCHAIN_SERVICE
-        return keychainItem
-    }
-
-    private static func createNewUsergridKeychainUUID() -> String {
-        let usergridUUID = UIDevice.currentDevice().identifierForVendor?.UUIDString ?? NSUUID().UUIDString
-        var keychainItem = UsergridDevice.keychainItem()
-        keychainItem[kSecValueData as String] = (usergridUUID as NSString).dataUsingEncoding(NSUTF8StringEncoding)
-        SecItemAdd(keychainItem, nil)
-        return usergridUUID
-    }
-
-    private static func usergridDeviceUUID() -> String {
-        var queryAttributes = UsergridDevice.keychainItem()
-        queryAttributes[kSecReturnData as String] = kCFBooleanTrue as Bool
-        queryAttributes[kSecReturnAttributes as String] = kCFBooleanTrue as Bool
-        var result: AnyObject?
-        let status = withUnsafeMutablePointer(&result) { SecItemCopyMatching(queryAttributes, UnsafeMutablePointer($0)) }
-        if status == errSecSuccess {
-            if let resultDictionary = result as? NSDictionary {
-                if let resultData = resultDictionary[kSecValueData as String] as? NSData {
-                    if let keychainUUID = String(data: resultData, encoding: NSUTF8StringEncoding) {
-                        return keychainUUID
-                    }
-                }
-            }
-        }
-        return UsergridDevice.createNewUsergridKeychainUUID()
-    }
 }
 
-private let USERGRID_KEYCHAIN_NAME = "Usergrid"
-private let USERGRID_KEYCHAIN_SERVICE = "DeviceUUID"
 private let USERGRID_NOTIFIER_ID_SUFFIX = ".notifier.id"

@@ -1,11 +1,21 @@
 UsergridAuth.swift
-	override public init() { }
 	required public init?(coder aDecoder: NSCoder)
 	public func encodeWithCoder(aCoder: NSCoder)
 	required public init?(coder aDecoder: NSCoder)
 	override public func encodeWithCoder(aCoder: NSCoder)
 	required public init?(coder aDecoder: NSCoder)
 	override public func encodeWithCoder(aCoder: NSCoder)
+UsergridFileMetaData.swift
+	required public init?(coder aDecoder: NSCoder)
+	public func encodeWithCoder(aCoder: NSCoder)
+UsergridDevice.swift
+	required public init?(coder aDecoder: NSCoder)
+	public override func encodeWithCoder(aCoder: NSCoder)
 UsergridEntity.swift
 	public init(type:String, name:String? = nil, propertyDict:[String:AnyObject]? = nil)
 	public class func entity(jsonDict jsonDict: [String:AnyObject]) -> UsergridEntity?
+	required public init?(coder aDecoder: NSCoder)
+	public func encodeWithCoder(aCoder: NSCoder)
+UsergridUser.swift
+	required public init?(coder aDecoder: NSCoder)
+	public override func encodeWithCoder(aCoder: NSCoder)

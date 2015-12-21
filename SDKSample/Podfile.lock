@@ -1,6 +1,6 @@
 PODS:
-  - SlackTextViewController (1.7.2)
-  - UsergridSDK (0.0.1)
+  - SlackTextViewController (1.8)
+  - UsergridSDK (0.0.2)
 
 DEPENDENCIES:
   - SlackTextViewController
@@ -12,11 +12,11 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   UsergridSDK:
-    :commit: b0091088f6c605f0e86fabb4faf8ef5170b3ee7b
+    :commit: 4e6c4cec0c0e16ae9866664bb74189fe0c6ca5e5
     :git: https://github.com/RobertWalsh/UsergridSDK
 
 SPEC CHECKSUMS:
-  SlackTextViewController: 1f4e8f68c156ef93de73fd422db2b8d5d5b0f4e7
-  UsergridSDK: e58182d83914f4a6fe35f19b47c12ca2c09b1756
+  SlackTextViewController: 0300adee2931fdbe72488990336f0937dbed048e
+  UsergridSDK: ec1a17b24129d95e63ef39e51fc4e00091a43b57
 
 COCOAPODS: 0.39.0
