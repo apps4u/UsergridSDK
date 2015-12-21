@@ -76,6 +76,11 @@ class LoginViewController: UIViewController {
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action:nil)
     }
 
+    override func viewDidAppear(animated: Bool) {
+        Usergrid.logoutCurrentUser()
+        super.viewDidAppear(animated)
+    }
+
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         
