@@ -129,9 +129,9 @@ public class UsergridAsset: NSObject, NSCoding {
                 let contentType = aDecoder.decodeObjectForKey("contentType") as? String
         else {
             self.fileName = ""
-            self.assetData = NSData()
             self.contentType = ""
             self.originalLocation = nil
+            self.assetData = NSData()
             super.init()
             return nil
         }
