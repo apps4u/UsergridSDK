@@ -11,7 +11,7 @@ import Foundation
 /**
 The `UsergridClient` class is the base handler for making client connections to and managing relationships with Usergrid's API.
 */
-public class UsergridClient: NSObject {
+public class UsergridClient: NSObject, NSCoding {
 
     static let DEFAULT_BASE_URL = "https://api.usergrid.com"
 
@@ -97,11 +97,45 @@ public class UsergridClient: NSObject {
     public init(configuration:UsergridClientConfig) {
         self.config = configuration
         super.init()
-        self.internalInitialization()
+        self.currentUser = UsergridUser.getCurrentUserFromKeychain(self) // Attempt to get the current user from the saved keychain data.
     }
 
-    private func internalInitialization() {
-        self.currentUser = UsergridUser.getCurrentUserFromKeychain(self)
+    // MARK: - NSCoding -
+
+    /**
+    NSCoding protocol initializer.
+
+    - parameter aDecoder: The decoder.
+
+    - returns: A decoded `UsergridUser` object.
+    */
+    public required init?(coder aDecoder: NSCoder) {
+        guard let config = aDecoder.decodeObjectForKey("config") as? UsergridClientConfig
+        else {
+            self.config = UsergridClientConfig(orgID: "", appID: "")
+            super.init()
+            return nil
+        }
+
+        self.config = config
+        super.init()
+
+        self.currentUser = aDecoder.decodeObjectForKey("currentUser") as? UsergridUser
+
+        if self.currentUser == nil {
+            // If we didnt decode a current user attempt to get the current user from the saved keychain data.
+            self.currentUser = UsergridUser.getCurrentUserFromKeychain(self)
+        }
+    }
+
+    /**
+     NSCoding protocol encoder.
+
+     - parameter aCoder: The encoder.
+     */
+    public func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeObject(self.config, forKey: "config")
+        aCoder.encodeObject(self.currentUser, forKey: "currentUser")
     }
 
     // MARK: - Device Registration/Push Notifications -

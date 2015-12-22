@@ -153,6 +153,7 @@ public class UsergridEntity: NSObject, NSCoding {
         }
         self.properties = properties
         self.fileMetaData = aDecoder.decodeObjectForKey("fileMetaData") as? UsergridFileMetaData
+        self.asset = aDecoder.decodeObjectForKey("asset") as? UsergridAsset
         super.init()
     }
 
@@ -164,6 +165,7 @@ public class UsergridEntity: NSObject, NSCoding {
     public func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(self.properties, forKey: "properties")
         aCoder.encodeObject(self.fileMetaData, forKey: "fileMetaData")
+        aCoder.encodeObject(self.asset, forKey: "asset")
     }
 
     // MARK: - Property Manipulation -

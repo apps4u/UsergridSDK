@@ -57,4 +57,18 @@ class ClientCreationTests: XCTestCase {
         XCTAssertEqual(otherClient.baseURL, ClientCreationTests.otherBaseURL)
         XCTAssertNil(otherClient.currentUser)
     }
+
+    func test_CLIENT_NSCODING() {
+        let sharedInstanceAsData = NSKeyedArchiver.archivedDataWithRootObject(Usergrid.sharedInstance)
+        let newInstanceFromData = NSKeyedUnarchiver.unarchiveObjectWithData(sharedInstanceAsData) as? UsergridClient
+
+        XCTAssertNotNil(newInstanceFromData)
+
+        if let newInstance = newInstanceFromData {
+            XCTAssertEqual(Usergrid.sharedInstance.appID, newInstance.appID)
+            XCTAssertEqual(Usergrid.sharedInstance.orgID, newInstance.orgID)
+            XCTAssertEqual(Usergrid.sharedInstance.authFallback, newInstance.authFallback)
+            XCTAssertEqual(Usergrid.sharedInstance.baseURL, newInstance.baseURL)
+        }
+    }
 }

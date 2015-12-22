@@ -13,7 +13,7 @@ import Foundation
 
 The `UsergridClientConfig` is meant for further customization of `UsergridClient` objects when needed.
 */
-public class UsergridClientConfig : NSObject {
+public class UsergridClientConfig : NSObject, NSCoding {
 
     // MARK: - Instance Properties -
 
@@ -80,5 +80,45 @@ public class UsergridClientConfig : NSObject {
         self.init(orgID:orgID,appID:appID,baseURL:baseURL)
         self.authFallback = authFallback
         self.appAuth = appAuth
+    }
+
+    // MARK: - NSCoding -
+
+    /**
+    NSCoding protocol initializer.
+
+    - parameter aDecoder: The decoder.
+
+    - returns: A decoded `UsergridUser` object.
+    */
+    public required init?(coder aDecoder: NSCoder) {
+        guard   let appID = aDecoder.decodeObjectForKey("appID") as? String,
+                let orgID = aDecoder.decodeObjectForKey("orgID") as? String,
+                let baseURL = aDecoder.decodeObjectForKey("baseURL") as? String
+        else {
+            self.appID = ""
+            self.orgID = ""
+            super.init()
+            return nil
+        }
+        self.appID = appID
+        self.orgID = orgID
+        self.baseURL = baseURL
+        self.appAuth = aDecoder.decodeObjectForKey("appAuth") as? UsergridAppAuth
+        self.authFallback = UsergridAuthFallback(rawValue:aDecoder.decodeIntegerForKey("authFallback")) ?? .App
+        super.init()
+    }
+
+    /**
+     NSCoding protocol encoder.
+
+     - parameter aCoder: The encoder.
+     */
+    public func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeObject(self.appID, forKey: "appID")
+        aCoder.encodeObject(self.orgID, forKey: "orgID")
+        aCoder.encodeObject(self.baseURL, forKey: "baseURL")
+        aCoder.encodeObject(self.appAuth, forKey: "appAuth")
+        aCoder.encodeInteger(self.authFallback.rawValue, forKey: "authFallback")
     }
 }
