@@ -27,7 +27,7 @@ public class UsergridClientConfig : NSObject {
     public var baseURL: String = UsergridClient.DEFAULT_BASE_URL
 
     /// The `UsergridAuthFallback` value used to determine what type of token will be sent, if any.
-    public var authFallback: UsergridAuthFallback = .None
+    public var authFallback: UsergridAuthFallback = .App
 
     /** 
     The application level `UsergridAppAuth` object.

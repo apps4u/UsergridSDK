@@ -110,11 +110,23 @@ public class UsergridUser : UsergridEntity {
 
     // MARK: - NSCoding -
 
+    /**
+    NSCoding protocol initializer.
+
+    - parameter aDecoder: The decoder.
+
+    - returns: A decoded `UsergridUser` object.
+    */
     required public init?(coder aDecoder: NSCoder) {
         self.auth = aDecoder.decodeObjectForKey("auth") as? UsergridUserAuth
         super.init(coder: aDecoder)
     }
 
+    /**
+     NSCoding protocol encoder.
+
+     - parameter aCoder: The encoder.
+     */
     public override func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(self.auth, forKey: "auth")
         super.encodeWithCoder(aCoder)
@@ -155,7 +167,7 @@ public class UsergridUser : UsergridEntity {
     }
 
     /**
-    Authenticates the specified user using the provided username and password with the shared instance of `UsergridClient`.
+    Authenticates the specified user using the provided username and password.
 
     While functionally similar to `UsergridClient.authenticateUser(auth)`, this method does not automatically assign this user to `UsergridClient.currentUser`:
 
@@ -169,6 +181,29 @@ public class UsergridUser : UsergridEntity {
         client.authenticateUser(userAuth,setAsCurrentUser:false) { [weak self] (auth, user, error) -> Void in
             self?.auth = userAuth
             completion?(auth: userAuth, user: user, error: error)
+        }
+    }
+
+    /**
+     Attmepts to reauthenticate using the user's `UsergridUserAuth` instance property with the shared instance of `UsergridClient`.
+
+     - parameter completion: The optional completion block.
+     */
+    public func reauthenticate(completion: UsergridUserAuthCompletionBlock? = nil) {
+        self.reauthenticate(Usergrid.sharedInstance, completion: completion)
+    }
+
+    /**
+     Attmepts to reauthenticate using the user's `UsergridUserAuth` instance property.
+
+     - parameter client:     The client to use for reauthentication.
+     - parameter completion: The optional completion block.
+     */
+    public func reauthenticate(client: UsergridClient, completion: UsergridUserAuthCompletionBlock? = nil) {
+        if let userAuth = self.auth {
+            client.authenticateUser(userAuth, completion: completion)
+        } else {
+            completion?(auth: nil, user: self, error: "No UsergridUserAuth found on the UsergridUser.")
         }
     }
 

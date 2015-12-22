@@ -19,14 +19,17 @@ public class UsergridClient: NSObject {
 
     lazy private var _requestManager: UsergridRequestManager = UsergridRequestManager(client: self)
 
+    /// The configuration object used by the client.
+    public let config: UsergridClientConfig
+
     /// The application identifier.
-    public let appID : String
+    public var appID : String { return config.appID }
 
     /// The organization identifier.
-    public let orgID : String
+    public var orgID : String { return config.orgID }
 
     /// The base URL that all calls will be made with.
-    public let baseURL : String
+    public var baseURL : String { return config.baseURL }
 
     /// The constructed URL string based on the `UsergridClient`'s `baseURL`, `orgID`, and `appID`.
     public var clientAppURL : String { return "\(baseURL)/\(orgID)/\(appID)" }
@@ -46,10 +49,16 @@ public class UsergridClient: NSObject {
     public var userAuth: UsergridUserAuth? { return currentUser?.auth }
 
     /// The application level `UsergridAppAuth` object.  Can be set manually but must call `authenticateApp` to retrive token.
-    public var appAuth: UsergridAppAuth? = nil
+    public var appAuth: UsergridAppAuth? {
+        set { config.appAuth = newValue }
+        get { return config.appAuth }
+    }
 
     /// The `UsergridAuthFallback` value used to determine what type of token will be sent, if any.
-    public var authFallback: UsergridAuthFallback = .App
+    public var authFallback: UsergridAuthFallback {
+        set { config.authFallback = newValue }
+        get { return config.authFallback }
+    }
 
     // MARK: - Initialization -
 
@@ -61,12 +70,8 @@ public class UsergridClient: NSObject {
 
     - returns: The new instance of `UsergridClient`.
     */
-    public init(orgID: String, appID:String) {
-        self.orgID = orgID
-        self.appID = appID
-        self.baseURL = UsergridClient.DEFAULT_BASE_URL
-        super.init()
-        self.internalInitialization()
+    public convenience init(orgID: String, appID:String) {
+        self.init(configuration:UsergridClientConfig(orgID: orgID, appID: appID))
     }
 
     /**
@@ -78,12 +83,8 @@ public class UsergridClient: NSObject {
 
     - returns: The new instance of `UsergridClient`.
     */
-    public init(orgID: String, appID:String, baseURL:String) {
-        self.orgID = orgID
-        self.appID = appID
-        self.baseURL = baseURL
-        super.init()
-        self.internalInitialization()
+    public convenience init(orgID: String, appID:String, baseURL:String) {
+        self.init(configuration:UsergridClientConfig(orgID: orgID, appID: appID, baseURL:baseURL))
     }
 
     /**
@@ -94,11 +95,7 @@ public class UsergridClient: NSObject {
     - returns: The new instance of `UsergridClient`.
     */
     public init(configuration:UsergridClientConfig) {
-        self.orgID = configuration.orgID
-        self.appID = configuration.appID
-        self.baseURL = configuration.baseURL
-        self.authFallback = configuration.authFallback
-        self.appAuth = configuration.appAuth
+        self.config = configuration
         super.init()
         self.internalInitialization()
     }
