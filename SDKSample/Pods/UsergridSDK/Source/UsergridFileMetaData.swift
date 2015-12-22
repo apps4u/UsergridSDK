@@ -60,6 +60,13 @@ public class UsergridFileMetaData : NSObject,NSCoding {
 
     // MARK: - NSCoding -
 
+    /**
+    NSCoding protocol initializer.
+
+    - parameter aDecoder: The decoder.
+
+    - returns: A decoded `UsergridUser` object.
+    */
     required public init?(coder aDecoder: NSCoder) {
         self.eTag = aDecoder.decodeObjectForKey("etag") as? String
         self.checkSum = aDecoder.decodeObjectForKey("checksum") as? String
@@ -74,6 +81,11 @@ public class UsergridFileMetaData : NSObject,NSCoding {
         }
     }
 
+    /**
+     NSCoding protocol encoder.
+
+     - parameter aCoder: The encoder.
+     */
     public func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(self.eTag, forKey: "etag")
         aCoder.encodeObject(self.checkSum, forKey: "checksum")

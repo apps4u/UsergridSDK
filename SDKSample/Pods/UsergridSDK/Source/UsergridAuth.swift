@@ -51,17 +51,34 @@ public class UsergridAuth : NSObject, NSCoding {
 
     // MARK: - Initialization -
 
+    /**
+    Internal initialization method.  Note this should never be used outside of internal methods.
+
+    - returns: A new instance of `UsergridAuth`.
+    */
     override internal init() {
         super.init()
     }
 
     // MARK: - NSCoding -
 
+    /**
+    NSCoding protocol initializer.
+
+    - parameter aDecoder: The decoder.
+
+    - returns: A decoded `UsergridUser` object.
+    */
     required public init?(coder aDecoder: NSCoder) {
         self.accessToken = aDecoder.decodeObjectForKey("accessToken") as? String
         self.expiresAt = aDecoder.decodeObjectForKey("expiresAt") as? NSDate
     }
 
+    /**
+     NSCoding protocol encoder.
+
+     - parameter aCoder: The encoder.
+     */
     public func encodeWithCoder(aCoder: NSCoder) {
         if let accessToken = self.accessToken {
             aCoder.encodeObject(accessToken, forKey: "accessToken")
@@ -127,6 +144,13 @@ public class UsergridUserAuth : UsergridAuth {
 
     // MARK: - NSCoding -
 
+    /**
+    NSCoding protocol initializer.
+
+    - parameter aDecoder: The decoder.
+
+    - returns: A decoded `UsergridUser` object.
+    */
     required public init?(coder aDecoder: NSCoder) {
         guard let username = aDecoder.decodeObjectForKey("username") as? String,
                   password = aDecoder.decodeObjectForKey("password") as? String
@@ -142,6 +166,11 @@ public class UsergridUserAuth : UsergridAuth {
         super.init(coder: aDecoder)
     }
 
+    /**
+     NSCoding protocol encoder.
+
+     - parameter aCoder: The encoder.
+     */
     override public func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(self.username, forKey: "username")
         aCoder.encodeObject(self.password, forKey: "password")
@@ -185,6 +214,13 @@ public class UsergridAppAuth : UsergridAuth {
 
     // MARK: - NSCoding -
 
+    /**
+    NSCoding protocol initializer.
+
+    - parameter aDecoder: The decoder.
+
+    - returns: A decoded `UsergridUser` object.
+    */
     required public init?(coder aDecoder: NSCoder) {
         if let clientID = aDecoder.decodeObjectForKey("clientID") as? String, clientSecret = aDecoder.decodeObjectForKey("clientSecret") as? String {
             self.clientID = clientID
@@ -198,6 +234,11 @@ public class UsergridAppAuth : UsergridAuth {
         }
     }
 
+    /**
+     NSCoding protocol encoder.
+
+     - parameter aCoder: The encoder.
+     */
     override public func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(self.clientID, forKey: "clientID")
         aCoder.encodeObject(self.clientSecret, forKey: "clientSecret")

@@ -57,7 +57,7 @@ public class Usergrid: NSObject {
     /// The application level `UsergridAppAuth` object of the shared instance of `UsergridClient`.
     public static var appAuth: UsergridAppAuth?  {
         get{ return Usergrid.sharedInstance.appAuth }
-        set{ Usergrid.sharedInstance.appAuth = appAuth }
+        set{ Usergrid.sharedInstance.appAuth = newValue }
     }
 
     // MARK: - Initialization -
@@ -144,7 +144,7 @@ public class Usergrid: NSObject {
     /// The `UsergridAuthFallback` value used to determine what type of token will be sent of the shared instance of `UsergridClient`, if any.
     public static var authFallback: UsergridAuthFallback {
         get{ return Usergrid.sharedInstance.authFallback }
-        set { Usergrid.sharedInstance.authFallback = authFallback }
+        set { Usergrid.sharedInstance.authFallback = newValue }
     }
 
     /**

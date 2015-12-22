@@ -137,6 +137,13 @@ public class UsergridEntity: NSObject, NSCoding {
 
     // MARK: - NSCoding -
 
+    /**
+    NSCoding protocol initializer.
+
+    - parameter aDecoder: The decoder.
+
+    - returns: A decoded `UsergridUser` object.
+    */
     required public init?(coder aDecoder: NSCoder) {
         guard let properties = aDecoder.decodeObjectForKey("properties") as? [String:AnyObject]
             else {
@@ -149,6 +156,11 @@ public class UsergridEntity: NSObject, NSCoding {
         super.init()
     }
 
+    /**
+     NSCoding protocol encoder.
+
+     - parameter aCoder: The encoder.
+     */
     public func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(self.properties, forKey: "properties")
         aCoder.encodeObject(self.fileMetaData, forKey: "fileMetaData")

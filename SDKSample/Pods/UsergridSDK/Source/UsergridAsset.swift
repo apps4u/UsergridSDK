@@ -24,7 +24,7 @@ As Usergrid supports storing binary assets, the SDKs are designed to make upload
 
 Unless defined, whenever possible, the content-type will be inferred from the data provided, and the attached file (if not already a byte-array representation) will be binary-encoded.
 */
-public class UsergridAsset: NSObject {
+public class UsergridAsset: NSObject, NSCoding {
 
     private static let DEFAULT_FILE_NAME = "file"
 
@@ -113,6 +113,47 @@ public class UsergridAsset: NSObject {
             return nil
         }
     }
+
+    // MARK: - NSCoding -
+
+    /**
+    NSCoding protocol initializer.
+
+    - parameter aDecoder: The decoder.
+
+    - returns: A decoded `UsergridUser` object.
+    */
+    required public init?(coder aDecoder: NSCoder) {
+        guard   let fileName = aDecoder.decodeObjectForKey("fileName") as? String,
+                let assetData = aDecoder.decodeObjectForKey("assetData") as? NSData,
+                let contentType = aDecoder.decodeObjectForKey("contentType") as? String
+        else {
+            self.fileName = ""
+            self.assetData = NSData()
+            self.contentType = ""
+            self.originalLocation = nil
+            super.init()
+            return nil
+        }
+        self.fileName = fileName
+        self.assetData = assetData
+        self.contentType = contentType
+        self.originalLocation = aDecoder.decodeObjectForKey("originalLocation") as? String
+        super.init()
+    }
+
+    /**
+     NSCoding protocol encoder.
+
+     - parameter aCoder: The encoder.
+     */
+    public func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeObject(self.fileName, forKey: "fileName")
+        aCoder.encodeObject(self.assetData, forKey: "assetData")
+        aCoder.encodeObject(self.contentType, forKey: "contentType")
+        aCoder.encodeObject(self.originalLocation, forKey: "originalLocation")
+    }
+
 
     //MARK: - MultiPart Creation -
 

@@ -57,10 +57,22 @@ public class UsergridDevice : UsergridEntity {
 
     // MARK: - NSCoding -
 
+    /**
+    NSCoding protocol initializer.
+
+    - parameter aDecoder: The decoder.
+
+    - returns: A decoded `UsergridUser` object.
+    */
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 
+    /**
+     NSCoding protocol encoder.
+
+     - parameter aCoder: The encoder.
+     */
     public override func encodeWithCoder(aCoder: NSCoder) {
         super.encodeWithCoder(aCoder)
     }
