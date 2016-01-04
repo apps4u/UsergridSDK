@@ -123,8 +123,9 @@ extension UsergridRequestManager {
                 if let accessToken = jsonDict[UsergridRequestManager.ACCESS_TOKEN] as? String {
                     userAuth.accessToken = accessToken
                 }
-                if let expiresIn = jsonDict[UsergridRequestManager.EXPIRES_IN] as? Int {
-                    userAuth.expiresAt = NSDate(timeIntervalSinceNow: Double(expiresIn))
+                if var expiresIn = jsonDict[UsergridRequestManager.EXPIRES_IN] as? Int {
+                    expiresIn -= 5000
+                    userAuth.expiry = NSDate(timeIntervalSinceNow: Double(expiresIn))
                 }
                 var user: UsergridUser?
                 if let userDict = jsonDict[UsergridUser.USER_ENTITY_TYPE] as? [String:AnyObject] {
@@ -151,8 +152,9 @@ extension UsergridRequestManager {
                 if let accessToken = jsonDict[UsergridRequestManager.ACCESS_TOKEN] as? String {
                     appAuth.accessToken = accessToken
                 }
-                if let expiresIn = jsonDict[UsergridRequestManager.EXPIRES_IN] as? Int {
-                    appAuth.expiresAt = NSDate(timeIntervalSinceNow: Double(expiresIn))
+                if var expiresIn = jsonDict[UsergridRequestManager.EXPIRES_IN] as? Int {
+                    expiresIn -= 5000
+                    appAuth.expiry = NSDate(timeIntervalSinceNow: Double(expiresIn))
                 }
                 completion?(auth: appAuth, error: nil)
             } else {

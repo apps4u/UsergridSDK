@@ -27,7 +27,7 @@ public class UsergridAuth : NSObject, NSCoding {
     public var accessToken : String?
 
     /// The expires at date, if this `UsergridAuth` was authorized successfully and their was a expires in time stamp within the token response.
-    public var expiresAt : NSDate?
+    public var expiry : NSDate?
 
     /// Determines if an access token exists.
     public var hasToken: Bool { return self.accessToken != nil }
@@ -38,7 +38,7 @@ public class UsergridAuth : NSObject, NSCoding {
     /// Determines if the access token, if one exists, is expired.
     public var isExpired: Bool {
         var isExpired = true
-        if let expires = self.expiresAt {
+        if let expires = self.expiry {
             isExpired = expires.timeIntervalSinceNow < 0.0
         }
         return isExpired
@@ -71,7 +71,7 @@ public class UsergridAuth : NSObject, NSCoding {
     */
     required public init?(coder aDecoder: NSCoder) {
         self.accessToken = aDecoder.decodeObjectForKey("accessToken") as? String
-        self.expiresAt = aDecoder.decodeObjectForKey("expiresAt") as? NSDate
+        self.expiry = aDecoder.decodeObjectForKey("expiry") as? NSDate
     }
 
     /**
@@ -83,8 +83,8 @@ public class UsergridAuth : NSObject, NSCoding {
         if let accessToken = self.accessToken {
             aCoder.encodeObject(accessToken, forKey: "accessToken")
         }
-        if let expiresAt = self.expiresAt {
-            aCoder.encodeObject(expiresAt, forKey: "expiresAt")
+        if let expiresAt = self.expiry {
+            aCoder.encodeObject(expiresAt, forKey: "expiry")
         }
     }
 
