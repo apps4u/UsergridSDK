@@ -23,16 +23,16 @@ public class UsergridClient: NSObject, NSCoding {
     public let config: UsergridClientConfig
 
     /// The application identifier.
-    public var appID : String { return config.appID }
+    public var appId : String { return config.appId }
 
     /// The organization identifier.
-    public var orgID : String { return config.orgID }
+    public var orgId : String { return config.orgId }
 
     /// The base URL that all calls will be made with.
-    public var baseURL : String { return config.baseURL }
+    public var baseUrl : String { return config.baseUrl }
 
-    /// The constructed URL string based on the `UsergridClient`'s `baseURL`, `orgID`, and `appID`.
-    public var clientAppURL : String { return "\(baseURL)/\(orgID)/\(appID)" }
+    /// The constructed URL string based on the `UsergridClient`'s `baseUrl`, `orgId`, and `appId`.
+    internal var clientAppURL : String { return "\(baseUrl)/\(orgId)/\(appId)" }
 
     /// The currently logged in `UsergridUser`.
     internal(set) public var currentUser: UsergridUser? = nil {
@@ -65,26 +65,26 @@ public class UsergridClient: NSObject, NSCoding {
     /**
     Initializes instances of `UsergridClient`.
 
-    - parameter orgID: The organization identifier.
-    - parameter appID: The application identifier.
+    - parameter orgId: The organization identifier.
+    - parameter appId: The application identifier.
 
     - returns: The new instance of `UsergridClient`.
     */
-    public convenience init(orgID: String, appID:String) {
-        self.init(configuration:UsergridClientConfig(orgID: orgID, appID: appID))
+    public convenience init(orgId: String, appId:String) {
+        self.init(configuration:UsergridClientConfig(orgId: orgId, appId: appId))
     }
 
     /**
     Initializes instances of `UsergridClient`.
 
-    - parameter orgID:      The organization identifier.
-    - parameter appID:      The application identifier.
-    - parameter baseURL:    The base URL that all calls will be made with.
+    - parameter orgId:      The organization identifier.
+    - parameter appId:      The application identifier.
+    - parameter baseUrl:    The base URL that all calls will be made with.
 
     - returns: The new instance of `UsergridClient`.
     */
-    public convenience init(orgID: String, appID:String, baseURL:String) {
-        self.init(configuration:UsergridClientConfig(orgID: orgID, appID: appID, baseURL:baseURL))
+    public convenience init(orgId: String, appId:String, baseUrl:String) {
+        self.init(configuration:UsergridClientConfig(orgId: orgId, appId: appId, baseUrl:baseUrl))
     }
 
     /**
@@ -112,7 +112,7 @@ public class UsergridClient: NSObject, NSCoding {
     public required init?(coder aDecoder: NSCoder) {
         guard let config = aDecoder.decodeObjectForKey("config") as? UsergridClientConfig
         else {
-            self.config = UsergridClientConfig(orgID: "", appID: "")
+            self.config = UsergridClientConfig(orgId: "", appId: "")
             super.init()
             return nil
         }
@@ -177,9 +177,9 @@ public class UsergridClient: NSObject, NSCoding {
     */
     public func authForRequests() -> UsergridAuth? {
         var usergridAuth: UsergridAuth?
-        if let userAuth = self.userAuth where userAuth.tokenIsValid {
+        if let userAuth = self.userAuth where userAuth.isValid {
             usergridAuth = userAuth
-        } else if self.authFallback == .App, let appAuth = self.appAuth where appAuth.tokenIsValid {
+        } else if self.authFallback == .App, let appAuth = self.appAuth where appAuth.isValid {
             usergridAuth = appAuth
         }
         return usergridAuth

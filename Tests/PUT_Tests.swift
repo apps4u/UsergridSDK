@@ -11,7 +11,7 @@ import XCTest
 
 class PUT_Tests: XCTestCase {
 
-    let client = UsergridClient(orgID:ClientCreationTests.orgID, appID: ClientCreationTests.appID)
+    let client = UsergridClient(orgId:ClientCreationTests.orgId, appId: ClientCreationTests.appId)
 
     let query = UsergridQuery(PUT_Tests.collectionName)
         .eq("title", value: "The Sun Also Rises")

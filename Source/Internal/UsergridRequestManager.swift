@@ -35,8 +35,8 @@ final class UsergridRequestManager {
         session.invalidateAndCancel()
     }
 
-    static func buildRequestURL(baseURL: String, query: UsergridQuery? = nil, paths: [String]? = nil) -> String {
-        var constructedURLString = baseURL
+    static func buildRequestURL(baseUrl: String, query: UsergridQuery? = nil, paths: [String]? = nil) -> String {
+        var constructedURLString = baseUrl
         if let appendingPaths = paths {
             for pathToAppend in appendingPaths {
                 constructedURLString = "\(constructedURLString)\(UsergridRequestManager.FORWARD_SLASH)\(pathToAppend)"
@@ -97,7 +97,7 @@ final class UsergridRequestManager {
 extension UsergridRequestManager {
 
     static func applyAuth(auth:UsergridAuth,request:NSMutableURLRequest) {
-        if auth.tokenIsValid, let accessToken = auth.accessToken {
+        if auth.isValid, let accessToken = auth.accessToken {
             request.setValue("\(UsergridRequestManager.BEARER) \(accessToken)", forHTTPHeaderField: UsergridRequestManager.AUTHORIZATION)
         }
     }

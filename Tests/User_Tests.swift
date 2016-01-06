@@ -11,7 +11,7 @@ import XCTest
 
 class User_Tests: XCTestCase {
 
-    var client = UsergridClient(orgID:ClientCreationTests.orgID, appID: ClientCreationTests.appID)
+    var client = UsergridClient(orgId:ClientCreationTests.orgId, appId: ClientCreationTests.appId)
 
     let user = UsergridUser(name: User_Tests.name)
     let userWithNoName = UsergridUser()
@@ -30,7 +30,7 @@ class User_Tests: XCTestCase {
         user.age = User_Tests.age
         user.username = User_Tests.username
         user.email = User_Tests.email
-        user.password = User_Tests.password
+//        user.password = User_Tests.password
         user.picture = User_Tests.picture
         user.activated = User_Tests.activated
         user.disabled = User_Tests.disabled
@@ -42,7 +42,7 @@ class User_Tests: XCTestCase {
         XCTAssertNotNil(user.age)
         XCTAssertNotNil(user.username)
         XCTAssertNotNil(user.email)
-        XCTAssertNotNil(user.password)
+//        XCTAssertNotNil(user.password)
         XCTAssertNotNil(user.picture)
         XCTAssertNotNil(user.activated)
         XCTAssertNotNil(user.disabled)
@@ -56,7 +56,7 @@ class User_Tests: XCTestCase {
         XCTAssertEqual(user.age!, User_Tests.age)
         XCTAssertEqual(user.username!, User_Tests.username)
         XCTAssertEqual(user.email!, User_Tests.email)
-        XCTAssertEqual(user.password!, User_Tests.password)
+//        XCTAssertEqual(user.password!, User_Tests.password)
         XCTAssertEqual(user.picture!, User_Tests.picture)
         XCTAssertTrue(user.activated)
         XCTAssertFalse(user.disabled)
@@ -67,7 +67,7 @@ class User_Tests: XCTestCase {
         XCTAssertEqual(user[UsergridUserProperties.Age.stringValue]! as? Int, User_Tests.age)
         XCTAssertEqual(user[UsergridUserProperties.Username.stringValue]! as? String, User_Tests.username)
         XCTAssertEqual(user[UsergridUserProperties.Email.stringValue]! as? String, User_Tests.email)
-        XCTAssertEqual(user[UsergridUserProperties.Password.stringValue]! as? String, User_Tests.password)
+//        XCTAssertEqual(user[UsergridUserProperties.Password.stringValue]! as? String, User_Tests.password)
         XCTAssertEqual(user[UsergridUserProperties.Picture.stringValue]! as? String, User_Tests.picture)
         XCTAssertTrue(user[UsergridUserProperties.Activated.stringValue]! as! Bool)
         XCTAssertFalse(user[UsergridUserProperties.Disabled.stringValue]! as! Bool)

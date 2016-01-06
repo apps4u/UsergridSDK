@@ -11,8 +11,8 @@ import XCTest
 
 class CONNECTION_Tests: XCTestCase {
 
-    let testAuthClient = UsergridClient(orgID:ClientCreationTests.orgID, appID: "sdk.demo")
-    let clientAuth = UsergridAppAuth(clientID: "b3U6THNcevskEeOQZLcUROUUVA", clientSecret: "b3U6RZHYznP28xieBzQPackFPmmnevU")
+    let testAuthClient = UsergridClient(orgId:ClientCreationTests.orgId, appId: "sdk.demo")
+    let clientAuth = UsergridAppAuth(clientId: "b3U6THNcevskEeOQZLcUROUUVA", clientSecret: "b3U6RZHYznP28xieBzQPackFPmmnevU")
     private static let collectionName = "publicevent"
 
     func test_CLIENT_AUTH() {
@@ -25,7 +25,7 @@ class CONNECTION_Tests: XCTestCase {
             if let appAuth = self?.testAuthClient.appAuth {
 
                 XCTAssertNotNil(appAuth.accessToken)
-                XCTAssertNotNil(appAuth.expiresAt)
+                XCTAssertNotNil(appAuth.expiry)
 
                 self?.testAuthClient.GET(CONNECTION_Tests.collectionName) { (response) in
 

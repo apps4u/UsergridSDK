@@ -60,7 +60,7 @@ internal extension UsergridUser {
 
     static func userKeychainItem(client:UsergridClient) -> [String:AnyObject] {
         var keychainItem = usergridGenericKeychainItem()
-        keychainItem[kSecAttrService as String] = USERGRID_CURRENT_USER_KEYCHAIN_SERVICE + "." + client.appID + "." + client.orgID
+        keychainItem[kSecAttrService as String] = USERGRID_CURRENT_USER_KEYCHAIN_SERVICE + "." + client.appId + "." + client.orgId
         return keychainItem
     }
 

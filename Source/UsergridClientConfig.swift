@@ -18,13 +18,13 @@ public class UsergridClientConfig : NSObject, NSCoding {
     // MARK: - Instance Properties -
 
     /// The organization identifier.
-    public var orgID : String
+    public var orgId : String
 
     /// The application identifier.
-    public var appID : String
+    public var appId : String
 
     /// The base URL that all calls will be made with.
-    public var baseURL: String = UsergridClient.DEFAULT_BASE_URL
+    public var baseUrl: String = UsergridClient.DEFAULT_BASE_URL
 
     /// The `UsergridAuthFallback` value used to determine what type of token will be sent, if any.
     public var authFallback: UsergridAuthFallback = .App
@@ -41,43 +41,43 @@ public class UsergridClientConfig : NSObject, NSCoding {
     /**
     Designated initializer for `UsergridClientConfig` objects.
 
-    - parameter orgID: The organization identifier.
-    - parameter appID: The application identifier.
+    - parameter orgId: The organization identifier.
+    - parameter appId: The application identifier.
 
     - returns: A new instance of `UsergridClientConfig`.
     */
-    public init(orgID: String, appID: String) {
-        self.orgID = orgID
-        self.appID = appID
+    public init(orgId: String, appId: String) {
+        self.orgId = orgId
+        self.appId = appId
     }
 
     /**
     Convenience initializer for `UsergridClientConfig`.
 
-    - parameter orgID:   The organization identifier.
-    - parameter appID:   The application identifier.
-    - parameter baseURL: The base URL that all calls will be made with.
+    - parameter orgId:   The organization identifier.
+    - parameter appId:   The application identifier.
+    - parameter baseUrl: The base URL that all calls will be made with.
 
     - returns: A new instance of `UsergridClientConfig`.
     */
-    public convenience init(orgID: String, appID: String, baseURL:String) {
-        self.init(orgID:orgID,appID:appID)
-        self.baseURL = baseURL
+    public convenience init(orgId: String, appId: String, baseUrl:String) {
+        self.init(orgId:orgId,appId:appId)
+        self.baseUrl = baseUrl
     }
 
     /**
     Convenience initializer for `UsergridClientConfig`.
 
-    - parameter orgID:        The organization identifier.
-    - parameter appID:        The application identifier.
-    - parameter baseURL:      The base URL that all calls will be made with.
+    - parameter orgId:        The organization identifier.
+    - parameter appId:        The application identifier.
+    - parameter baseUrl:      The base URL that all calls will be made with.
     - parameter authFallback: The `UsergridAuthFallback` value used to determine what type of token will be sent, if any.
     - parameter appAuth:      The application level `UsergridAppAuth` object.
 
     - returns: A new instance of `UsergridClientConfig`.
     */
-    public convenience init(orgID: String, appID: String, baseURL:String, authFallback:UsergridAuthFallback, appAuth:UsergridAppAuth? = nil) {
-        self.init(orgID:orgID,appID:appID,baseURL:baseURL)
+    public convenience init(orgId: String, appId: String, baseUrl:String, authFallback:UsergridAuthFallback, appAuth:UsergridAppAuth? = nil) {
+        self.init(orgId:orgId,appId:appId,baseUrl:baseUrl)
         self.authFallback = authFallback
         self.appAuth = appAuth
     }
@@ -92,18 +92,18 @@ public class UsergridClientConfig : NSObject, NSCoding {
     - returns: A decoded `UsergridUser` object.
     */
     public required init?(coder aDecoder: NSCoder) {
-        guard   let appID = aDecoder.decodeObjectForKey("appID") as? String,
-                let orgID = aDecoder.decodeObjectForKey("orgID") as? String,
-                let baseURL = aDecoder.decodeObjectForKey("baseURL") as? String
+        guard   let appId = aDecoder.decodeObjectForKey("appId") as? String,
+                let orgId = aDecoder.decodeObjectForKey("orgId") as? String,
+                let baseUrl = aDecoder.decodeObjectForKey("baseUrl") as? String
         else {
-            self.appID = ""
-            self.orgID = ""
+            self.appId = ""
+            self.orgId = ""
             super.init()
             return nil
         }
-        self.appID = appID
-        self.orgID = orgID
-        self.baseURL = baseURL
+        self.appId = appId
+        self.orgId = orgId
+        self.baseUrl = baseUrl
         self.appAuth = aDecoder.decodeObjectForKey("appAuth") as? UsergridAppAuth
         self.authFallback = UsergridAuthFallback(rawValue:aDecoder.decodeIntegerForKey("authFallback")) ?? .App
         super.init()
@@ -115,9 +115,9 @@ public class UsergridClientConfig : NSObject, NSCoding {
      - parameter aCoder: The encoder.
      */
     public func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(self.appID, forKey: "appID")
-        aCoder.encodeObject(self.orgID, forKey: "orgID")
-        aCoder.encodeObject(self.baseURL, forKey: "baseURL")
+        aCoder.encodeObject(self.appId, forKey: "appId")
+        aCoder.encodeObject(self.orgId, forKey: "orgId")
+        aCoder.encodeObject(self.baseUrl, forKey: "baseUrl")
         aCoder.encodeObject(self.appAuth, forKey: "appAuth")
         aCoder.encodeInteger(self.authFallback.rawValue, forKey: "authFallback")
     }

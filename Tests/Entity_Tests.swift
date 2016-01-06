@@ -54,7 +54,7 @@ class Entity_Tests: XCTestCase {
     func test_PUSH() {
         entity[customArrayName] = customArrayOriginalValue
 
-        entity.push(customArrayName,value:6)
+        entity.append(customArrayName,value:6)
 
         let newValue = entity[customArrayName] as? [Int]
         XCTAssertNotNil(newValue)
@@ -63,7 +63,7 @@ class Entity_Tests: XCTestCase {
     func test_APPEND() {
         entity[customArrayName] = customArrayOriginalValue
 
-        entity.append(customArrayName,values:[6,7])
+        entity.append(customArrayName,value:[6,7])
 
         let newValue = entity[customArrayName] as? [Int]
         XCTAssertNotNil(newValue)
@@ -81,7 +81,7 @@ class Entity_Tests: XCTestCase {
     func test_INSERT_WITH_INDEX() {
         entity[customArrayName] = customArrayOriginalValue
 
-        entity.insert(customArrayName,index:1,value:6)
+        entity.insert(customArrayName,value:6,index:1)
 
         let newValue = entity[customArrayName] as? [Int]
         XCTAssertNotNil(newValue)
@@ -90,41 +90,45 @@ class Entity_Tests: XCTestCase {
     func test_INSERT_ARRAY_WITHOUT_INDEX() {
         entity[customArrayName] = customArrayOriginalValue
 
-        entity.insertArray(customArrayName,values:[6,7])
+        entity.insert(customArrayName,value:[6,7])
 
         let newValue = entity[customArrayName] as? [Int]
         XCTAssertNotNil(newValue)
         XCTAssertEqual(newValue!, [6,7,1,2,3,4,5])
     }
+
     func test_INSERT_ARRAY_WITH_INDEX() {
         entity[customArrayName] = customArrayOriginalValue
 
-        entity.insertArray(customArrayName,index:1,values:[6,7])
+        entity.insert(customArrayName,value:[6,7],index:1)
 
         let newValue = entity[customArrayName] as? [Int]
         XCTAssertNotNil(newValue)
         XCTAssertEqual(newValue!, [1,6,7,2,3,4,5])
     }
+
     func test_INSERT_ARRAY_TO_NON_EXISTENT_PROPERTY() {
-        entity.insertArray(customArrayName,values:customArrayOriginalValue)
+        entity.insert(customArrayName,value:customArrayOriginalValue)
 
         let newValue = entity[customArrayName] as? [Int]
         XCTAssertNotNil(newValue)
         XCTAssertEqual(newValue!, [1,2,3,4,5])
     }
+
     func test_INSERT_ARRAY_TO_NON_ARRAY_PROPERTY_WITHOUT_INDEX() {
         entity[customPropertyName] = customPropertyValue
 
-        entity.insertArray(customPropertyName,values:customArrayOriginalValue)
+        entity.insert(customPropertyName,value:customArrayOriginalValue)
 
         let newValue = entity[customPropertyName] as? [Int]
         XCTAssertNotNil(newValue)
         XCTAssertEqual(newValue!, [1,2,3,4,5,99])
     }
+
     func test_INSERT_ARRAY_TO_NON_ARRAY_PROPERTY_WITH_INDEX() {
         entity[customPropertyName] = customPropertyValue
 
-        entity.insertArray(customPropertyName,index:1,values:customArrayOriginalValue)
+        entity.insert(customPropertyName,value:customArrayOriginalValue,index:1)
 
         let newValue = entity[customPropertyName] as? [Int]
         XCTAssertNotNil(newValue)

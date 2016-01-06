@@ -37,15 +37,15 @@ public class Usergrid: NSObject {
     }
 
     /// The application identifier the shared instance of `UsergridClient`.
-    public static var appID : String { return Usergrid.sharedInstance.appID }
+    public static var appId : String { return Usergrid.sharedInstance.appId }
 
     /// The organization identifier of the shared instance of `UsergridClient`.
-    public static var orgID : String { return Usergrid.sharedInstance.orgID }
+    public static var orgId : String { return Usergrid.sharedInstance.orgId }
 
     /// The base URL that all calls will be made with of the shared instance of `UsergridClient`.
-    public static var baseURL : String { return Usergrid.sharedInstance.baseURL }
+    public static var baseUrl : String { return Usergrid.sharedInstance.baseUrl }
 
-    /// The constructed URL string based on the `UsergridClient`'s baseURL, orgID, and appID of the shared instance of `UsergridClient`.
+    /// The constructed URL string based on the `UsergridClient`'s baseUrl, orgId, and appId of the shared instance of `UsergridClient`.
     public static var clientAppURL : String { return Usergrid.sharedInstance.clientAppURL }
 
     /// The currently logged in `UsergridUser` of the shared instance of `UsergridClient`.
@@ -65,14 +65,14 @@ public class Usergrid: NSObject {
     /**
     Initializes the `Usergrid.sharedInstance` of `UsergridClient`.
 
-    - parameter orgID: The organization identifier.
-    - parameter appID: The application identifier.
+    - parameter orgId: The organization identifier.
+    - parameter appId: The application identifier.
 
     - returns: The shared instance of `UsergridClient`.
     */
-    public static func initSharedInstance(orgID orgID : String, appID: String) -> UsergridClient {
+    public static func initSharedInstance(orgId orgId : String, appId: String) -> UsergridClient {
         if !Usergrid.isInitialized {
-            Usergrid._sharedClient = UsergridClient(orgID: orgID, appID: appID)
+            Usergrid._sharedClient = UsergridClient(orgId: orgId, appId: appId)
         } else {
             print("The Usergrid shared instance was already initialized. All subsequent initialization attempts (including this) will be ignored.")
         }
@@ -82,15 +82,15 @@ public class Usergrid: NSObject {
     /**
     Initializes the `Usergrid.sharedInstance` of `UsergridClient`.
 
-    - parameter orgID:      The organization identifier.
-    - parameter appID:      The application identifier.
-    - parameter baseURL:    The base URL that all calls will be made with.
+    - parameter orgId:      The organization identifier.
+    - parameter appId:      The application identifier.
+    - parameter baseUrl:    The base URL that all calls will be made with.
 
     - returns: The shared instance of `UsergridClient`.
     */
-    public static func initSharedInstance(orgID orgID : String, appID: String, baseURL: String) -> UsergridClient {
+    public static func initSharedInstance(orgId orgId : String, appId: String, baseUrl: String) -> UsergridClient {
         if !Usergrid.isInitialized {
-            Usergrid._sharedClient = UsergridClient(orgID: orgID, appID: appID, baseURL: baseURL)
+            Usergrid._sharedClient = UsergridClient(orgId: orgId, appId: appId, baseUrl: baseUrl)
         } else {
             print("The Usergrid shared instance was already initialized. All subsequent initialization attempts (including this) will be ignored.")
         }

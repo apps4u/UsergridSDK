@@ -33,7 +33,7 @@ public class UsergridAuth : NSObject, NSCoding {
     public var hasToken: Bool { return self.accessToken != nil }
 
     /// Determines if an access token exists and if the token is not expired.
-    public var tokenIsValid : Bool { return self.hasToken && !self.isExpired }
+    public var isValid : Bool { return self.hasToken && !self.isExpired }
 
     /// Determines if the access token, if one exists, is expired.
     public var isExpired: Bool {
@@ -91,12 +91,12 @@ public class UsergridAuth : NSObject, NSCoding {
     /**
     Builds an authorization request which is can be used to retrieve the access token.
 
-    - parameter baseURL: The base URL of the access token request.
+    - parameter baseUrl: The base URL of the access token request.
 
     - returns: A `NSURLRequest` object.
     */
-    func buildAuthRequest(baseURL:String) -> NSURLRequest {
-        let requestURL = UsergridRequestManager.buildRequestURL(baseURL,paths:["token"])
+    func buildAuthRequest(baseUrl:String) -> NSURLRequest {
+        let requestURL = UsergridRequestManager.buildRequestURL(baseUrl,paths:["token"])
         let request = NSMutableURLRequest(URL: NSURL(string:requestURL)!)
         request.HTTPMethod = UsergridHttpMethod.POST.rawValue
 
@@ -184,15 +184,15 @@ public class UsergridAppAuth : UsergridAuth {
     // MARK: - Instance Properties -
 
     /// The client identifier associated with the application.
-    public let clientID: String
+    public let clientId: String
 
     /// The client secret associated with the application.
     private let clientSecret: String
 
-    /// The credentials dictionary constructed with the `UsergridAppAuth`'s `clientID` and `clientSecret`.
+    /// The credentials dictionary constructed with the `UsergridAppAuth`'s `clientId` and `clientSecret`.
     override var credentialsJSONDict: [String:AnyObject] {
         return ["grant_type":"client_credentials",
-                "client_id":self.clientID,
+                "client_id":self.clientId,
                 "client_secret":self.clientSecret]
     }
 
@@ -201,13 +201,13 @@ public class UsergridAppAuth : UsergridAuth {
     /**
     Designated initializer for `UsergridAppAuth` objects.
 
-    - parameter clientID:     The client identifier associated with the application.
+    - parameter clientId:     The client identifier associated with the application.
     - parameter clientSecret: The client secret associated with the application.
 
     - returns: A new instance of `UsergridAppAuth`.
     */
-    public init(clientID:String,clientSecret:String){
-        self.clientID = clientID
+    public init(clientId:String,clientSecret:String){
+        self.clientId = clientId
         self.clientSecret = clientSecret
         super.init()
     }
@@ -222,12 +222,12 @@ public class UsergridAppAuth : UsergridAuth {
     - returns: A decoded `UsergridUser` object.
     */
     required public init?(coder aDecoder: NSCoder) {
-        if let clientID = aDecoder.decodeObjectForKey("clientID") as? String, clientSecret = aDecoder.decodeObjectForKey("clientSecret") as? String {
-            self.clientID = clientID
+        if let clientId = aDecoder.decodeObjectForKey("clientId") as? String, clientSecret = aDecoder.decodeObjectForKey("clientSecret") as? String {
+            self.clientId = clientId
             self.clientSecret = clientSecret
             super.init(coder: aDecoder)
         } else {
-            self.clientID = ""
+            self.clientId = ""
             self.clientSecret = ""
             super.init(coder: aDecoder)
             return nil
@@ -240,7 +240,7 @@ public class UsergridAppAuth : UsergridAuth {
      - parameter aCoder: The encoder.
      */
     override public func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(self.clientID, forKey: "clientID")
+        aCoder.encodeObject(self.clientId, forKey: "clientId")
         aCoder.encodeObject(self.clientSecret, forKey: "clientSecret")
         super.encodeWithCoder(aCoder)
     }
