@@ -16,6 +16,9 @@ The methods and variables in this class are all static and therefore you will ne
 Use of this class depends on initialization of the shared instance of the `UsergridClient` object.  Because of this, before using any of the static methods
 provided you will need to call one of the shared instance initialization methods.  Failure to do so will result in failure from all methods.
 */
+
+public let UsergridSDKVersion = "0.0.3"
+
 public class Usergrid: NSObject {
 
     // MARK: - Static Variables -

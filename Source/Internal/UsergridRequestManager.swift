@@ -19,9 +19,7 @@ final class UsergridRequestManager {
 
     unowned let client: UsergridClient
 
-    let session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration(),
-                                delegate:UsergridSessionDelegate(),
-                                delegateQueue:NSOperationQueue.mainQueue())
+    let session: NSURLSession
 
     var sessionDelegate : UsergridSessionDelegate {
         return session.delegate as! UsergridSessionDelegate
@@ -29,6 +27,13 @@ final class UsergridRequestManager {
 
     init(client:UsergridClient) {
         self.client = client
+
+        let config = NSURLSessionConfiguration.defaultSessionConfiguration()
+        config.HTTPAdditionalHeaders = ["User-Agent": "usergrid-ios/v\(UsergridSDKVersion)"]
+
+        self.session = NSURLSession(configuration:  config,
+                                    delegate:       UsergridSessionDelegate(),
+                                    delegateQueue:  NSOperationQueue.mainQueue())
     }
 
     deinit {
