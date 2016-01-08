@@ -239,7 +239,7 @@ public class UsergridQuery : NSObject,NSCopying {
 
     - returns: `Self`
     */
-    public func withinLocation(distance: Float, latitude: Float, longitude: Float) -> Self {
+    public func locationWithin(distance: Float, latitude: Float, longitude: Float) -> Self {
         return self.addRequirement(UsergridQuery.LOCATION + UsergridQuery.SPACE + UsergridQuery.WITHIN + UsergridQuery.SPACE + distance.description + UsergridQuery.SPACE + UsergridQuery.OF + UsergridQuery.SPACE + latitude.description + UsergridQuery.COMMA + longitude.description )
     }
 

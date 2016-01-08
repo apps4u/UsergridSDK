@@ -8,6 +8,9 @@
 
 import Foundation
 
+/// The completion block used for changing the password of `UsergridUser` objects.
+public typealias UsergridUserResetPasswordCompletion = (error: UsergridResponseError?, didSucceed:Bool) -> Void
+
 /**
 `UsergridUser` is a special subclass of `UsergridEntity` that supports functions and properties unique to users.
 */
@@ -53,6 +56,9 @@ public class UsergridUser : UsergridEntity {
         set(age) { self[UsergridUserProperties.Age.stringValue] = age }
         get { return self.getUserSpecificProperty(.Age) as? NSNumber }
     }
+
+    /// Property helper method to get the username or email of the `UsergridUser`.
+    public var usernameOrEmail: String? { return self.username ?? self.email }
 
     /** 
     Property getter and setter helpers for the `UsergridUser` objects `UsergridUserProperties.Activated`.
@@ -139,7 +145,7 @@ public class UsergridUser : UsergridEntity {
 
     - parameter completion: The optional completion block.
     */
-    public func create(completion: UsergridResponseCompletion?) {
+    public func create(completion: UsergridResponseCompletion? = nil) {
         self.create(Usergrid.sharedInstance, completion: completion)
     }
 
@@ -149,7 +155,7 @@ public class UsergridUser : UsergridEntity {
     - parameter client:     The client to use for creation.
     - parameter completion: The optional completion block.
     */
-    public func create(client: UsergridClient, completion: UsergridResponseCompletion?) {
+    public func create(client: UsergridClient, completion: UsergridResponseCompletion? = nil) {
         client.POST(self,completion:completion)
     }
 
@@ -162,7 +168,7 @@ public class UsergridUser : UsergridEntity {
     - parameter password:   The password.
     - parameter completion: The optional completion block.
     */
-    public func login(username:String, password:String, completion: UsergridUserAuthCompletionBlock?) {
+    public func login(username:String, password:String, completion: UsergridUserAuthCompletionBlock? = nil) {
         self.login(Usergrid.sharedInstance, username: username, password: password, completion: completion)
     }
 
@@ -176,12 +182,35 @@ public class UsergridUser : UsergridEntity {
     - parameter password:   The password.
     - parameter completion: The optional completion block.
     */
-    public func login(client: UsergridClient, username:String, password:String, completion: UsergridUserAuthCompletionBlock?) {
+    public func login(client: UsergridClient, username:String, password:String, completion: UsergridUserAuthCompletionBlock? = nil) {
         let userAuth = UsergridUserAuth(username: username, password: password)
         client.authenticateUser(userAuth,setAsCurrentUser:false) { [weak self] (auth, user, error) -> Void in
             self?.auth = userAuth
             completion?(auth: userAuth, user: user, error: error)
         }
+    }
+
+     /**
+     Changes the User's current password with the shared instance of `UsergridClient`.
+
+     - parameter old:        The old password.
+     - parameter new:        The new password.
+     - parameter completion: The optional completion block.
+     */
+    public func resetPassword(old:String, new:String, completion:UsergridUserResetPasswordCompletion? = nil) {
+        self.resetPassword(Usergrid.sharedInstance, old: old, new: new, completion: completion)
+    }
+
+    /**
+     Changes the User's current password with the shared instance of `UsergridClient`.
+
+     - parameter client:     The client to use for resetting the password.
+     - parameter old:        The old password.
+     - parameter new:        The new password.
+     - parameter completion: The optional completion block
+     */
+    public func resetPassword(client: UsergridClient, old:String, new:String, completion:UsergridUserResetPasswordCompletion? = nil) {
+        client.resetPassword(self, old: old, new: new, completion: completion)
     }
 
     /**
@@ -212,7 +241,7 @@ public class UsergridUser : UsergridEntity {
 
     - parameter completion: The optional completion block.
     */
-    public func logout(completion:UsergridResponseCompletion?) {
+    public func logout(completion:UsergridResponseCompletion? = nil) {
         self.logout(Usergrid.sharedInstance,completion:completion)
     }
 
@@ -222,7 +251,7 @@ public class UsergridUser : UsergridEntity {
     - parameter client:     The client to use for logout.
     - parameter completion: The optional completion block.
     */
-    public func logout(client: UsergridClient, completion:UsergridResponseCompletion?) {
+    public func logout(client: UsergridClient, completion:UsergridResponseCompletion? = nil) {
         if self === client.currentUser {
             client.logoutCurrentUser(completion)
         } else if let uuidOrUsername = self.uuidOrUsername, accessToken = self.auth?.accessToken {

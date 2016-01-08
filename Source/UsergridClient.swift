@@ -164,7 +164,7 @@ public class UsergridClient: NSObject, NSCoding {
         PUT(UsergridDevice.DEVICE_ENTITY_TYPE, jsonBody: device.jsonObjectValue, completion: completion)
     }
 
-    // MARK: - Authorization -
+    // MARK: - Authorization and User Management -
 
     /**
     Determines the `UsergridAuth` object that will be used for all outgoing requests made.
@@ -237,6 +237,25 @@ public class UsergridClient: NSObject, NSCoding {
                 self?.currentUser = user
             }
             completion?(auth: auth, user: user, error: error)
+        }
+    }
+
+    /**
+     Changes the give `UsergridUser`'s current password with the shared instance of `UsergridClient`.
+
+     - parameter user:       The user.
+     - parameter old:        The old password.
+     - parameter new:        The new password.
+     - parameter completion: The optional completion block.
+     */
+    public func resetPassword(user: UsergridUser, old:String, new:String, completion:UsergridUserResetPasswordCompletion? = nil) {
+        if let usernameOrEmail = user.usernameOrEmail {
+            let bodyDictionaryData = try! NSJSONSerialization.dataWithJSONObject(["oldpassword":old,"newpassword":new], options: NSJSONWritingOptions.PrettyPrinted)
+            _requestManager.performRequest(UsergridRequestManager.buildRequestURL(self.clientAppURL, paths: ["users",usernameOrEmail,"password"]), method: .PUT, body: bodyDictionaryData, completion: { (response) -> Void in
+                completion?(error: response.error, didSucceed: response.statusCode == 200)
+            })
+        } else {
+            completion?(error: UsergridResponseError(errorName: "Error resetting password.", errorDescription: "The UsergridUser object must contain a valid username or email to reset the password."), didSucceed: false)
         }
     }
 

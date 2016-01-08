@@ -19,7 +19,7 @@ public class UsergridEntity: NSObject, NSCoding {
     // MARK: - Instance Properties -
 
     /// The property dictionary that stores the properties values of the `UsergridEntity` object.
-    var properties: [String : AnyObject] {
+    private var properties: [String : AnyObject] {
         didSet {
             if let fileMetaData = properties.removeValueForKey(UsergridFileMetaData.FILE_METADATA) as? [String:AnyObject] {
                 self.fileMetaData = UsergridFileMetaData(fileMetaDataJSON: fileMetaData)
@@ -95,6 +95,11 @@ public class UsergridEntity: NSObject, NSCoding {
         if let entityName = name {
             self.properties[UsergridEntityProperties.Name.stringValue] = entityName
         }
+    }
+
+    private func copyInternalsFromEntity(entity:UsergridEntity) {
+        self.properties = entity.properties
+        self.asset = entity.asset ?? self.asset
     }
 
     /*!
@@ -380,7 +385,12 @@ public class UsergridEntity: NSObject, NSCoding {
     */
     public func reload(client:UsergridClient, completion: UsergridResponseCompletion? = nil) {
         if let uuidOrName = self.uuidOrName {
-            client.GET(self.type, uuidOrName: uuidOrName, completion: completion)
+            client.GET(self.type, uuidOrName: uuidOrName) { (response) -> Void in
+                if let responseEntity = response.entity {
+                    self.copyInternalsFromEntity(responseEntity)
+                }
+                completion?(response: response)
+            }
         } else {
             completion?(response: UsergridResponse(client: client, errorName: "Entity cannot be reloaded.", errorDescription: "Entity has neither an UUID or specified."))
         }
