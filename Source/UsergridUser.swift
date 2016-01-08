@@ -8,6 +8,9 @@
 
 import Foundation
 
+/// The completion block used for checking email and/or username availablity for new `UsergridUser` objects.
+public typealias UsergridUserAvailabilityCompletion = (error: UsergridResponseError?, available:Bool) -> Void
+
 /// The completion block used for changing the password of `UsergridUser` objects.
 public typealias UsergridUserResetPasswordCompletion = (error: UsergridResponseError?, didSucceed:Bool) -> Void
 
@@ -136,6 +139,40 @@ public class UsergridUser : UsergridEntity {
     public override func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(self.auth, forKey: "auth")
         super.encodeWithCoder(aCoder)
+    }
+
+    // MARK: - Class Methods -
+
+    /**
+    Checks the given email and/or username availablity for new `UsergridUser` objects using the shared instance of `UsergridClient`.
+
+    - parameter email:      The optional email address.
+    - parameter username:   The optional username.
+    - parameter completion: The completion block.
+    */
+    public static func checkAvailable(email:String?, username:String?, completion:UsergridUserAvailabilityCompletion) {
+        self.checkAvailable(Usergrid.sharedInstance, email: email, username: username, completion: completion)
+    }
+
+    /**
+     Checks the given email and username availablity for new `UsergridUser` objects using with the given `UsergridClient`.
+
+     - parameter client:     The client to use for checking availability.
+     - parameter email:      The optional email address.
+     - parameter username:   The optional username.
+     - parameter completion: The completion block.
+     */
+    public static func checkAvailable(client: UsergridClient, email:String?, username:String?, completion:UsergridUserAvailabilityCompletion) {
+        let query = UsergridQuery(USER_ENTITY_TYPE)
+        if let emailValue = email {
+            query.eq(UsergridUserProperties.Email.stringValue, value: emailValue)
+        }
+        if let usernameValue = username {
+            query.or().eq(UsergridUserProperties.Username.stringValue, value: usernameValue)
+        }
+        client.GET(USER_ENTITY_TYPE, query: query) { (response) -> Void in
+            completion(error: response.error, available: response.entity == nil)
+        }
     }
 
     // MARK: - Instance Methods -
