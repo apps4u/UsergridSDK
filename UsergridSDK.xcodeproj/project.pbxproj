@@ -55,6 +55,25 @@
 		63AF0F7E1BBC5692009D4196 /* TestAssets in Resources */ = {isa = PBXBuildFile; fileRef = 63AF0F7D1BBC5692009D4196 /* TestAssets */; };
 		63EE60D91C404AB700AFC2CF /* UsergridResponseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EE60D81C404AB700AFC2CF /* UsergridResponseError.swift */; };
 		63EE60DA1C404AB700AFC2CF /* UsergridResponseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EE60D81C404AB700AFC2CF /* UsergridResponseError.swift */; };
+		63EE60F31C406E1600AFC2CF /* UsergridResponseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EE60D81C404AB700AFC2CF /* UsergridResponseError.swift */; };
+		63EE60F41C406E1600AFC2CF /* UsergridClientConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6343823F1BC30138008624BE /* UsergridClientConfig.swift */; };
+		63EE60F51C406E1600AFC2CF /* UsergridKeychainHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63377E801C28A81200D2D63B /* UsergridKeychainHelpers.swift */; };
+		63EE60F61C406E1600AFC2CF /* UsergridAssetRequestWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6345C4A91BD8432000AF9520 /* UsergridAssetRequestWrapper.swift */; };
+		63EE60F71C406E1600AFC2CF /* UsergridAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF0F411BBC4EF6009D4196 /* UsergridAuth.swift */; };
+		63EE60F81C406E1600AFC2CF /* UsergridFileMetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A7F2611BC4278200596156 /* UsergridFileMetaData.swift */; };
+		63EE60F91C406E1600AFC2CF /* UsergridDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636A4BE11BDA8D9E0061000A /* UsergridDevice.swift */; };
+		63EE60FA1C406E1600AFC2CF /* UsergridQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF0F441BBC4EF6009D4196 /* UsergridQuery.swift */; };
+		63EE60FB1C406E1600AFC2CF /* UsergridExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6345C4AF1BD8438600AF9520 /* UsergridExtensions.swift */; };
+		63EE60FC1C406E1600AFC2CF /* UsergridEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF0F431BBC4EF6009D4196 /* UsergridEntity.swift */; };
+		63EE60FD1C406E1600AFC2CF /* UsergridSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6345C4AB1BD8432000AF9520 /* UsergridSessionDelegate.swift */; };
+		63EE60FE1C406E1600AFC2CF /* UsergridUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF0F481BBC4EF6009D4196 /* UsergridUser.swift */; };
+		63EE60FF1C406E1600AFC2CF /* Usergrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF0F3F1BBC4EF6009D4196 /* Usergrid.swift */; };
+		63EE61001C406E1600AFC2CF /* UsergridResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF0F461BBC4EF6009D4196 /* UsergridResponse.swift */; };
+		63EE61011C406E1600AFC2CF /* UsergridRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6345C4AA1BD8432000AF9520 /* UsergridRequestManager.swift */; };
+		63EE61021C406E1600AFC2CF /* UsergridEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6313CA2D1BD80BB9004451EE /* UsergridEnums.swift */; };
+		63EE61031C406E1600AFC2CF /* UsergridAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF0F401BBC4EF6009D4196 /* UsergridAsset.swift */; };
+		63EE61041C406E1600AFC2CF /* UsergridClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF0F421BBC4EF6009D4196 /* UsergridClient.swift */; };
+		63EE610D1C406E2200AFC2CF /* UsergridSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 63AF0F471BBC4EF6009D4196 /* UsergridSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,8 +97,6 @@
 		6345C4AF1BD8438600AF9520 /* UsergridExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsergridExtensions.swift; sourceTree = "<group>"; };
 		636A4BE11BDA8D9E0061000A /* UsergridDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsergridDevice.swift; sourceTree = "<group>"; };
 		639B4BEB1C3DD6CF005E26E7 /* UsergridSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UsergridSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		639B4BED1C3DD6CF005E26E7 /* UsergridSDK watchOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UsergridSDK watchOS.h"; sourceTree = "<group>"; };
-		639B4BEF1C3DD6CF005E26E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		63A7F2611BC4278200596156 /* UsergridFileMetaData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsergridFileMetaData.swift; sourceTree = "<group>"; };
 		63AF0E881BBC38FB009D4196 /* UsergridSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UsergridSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		63AF0E921BBC38FB009D4196 /* UsergridSDKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UsergridSDKTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -104,6 +121,7 @@
 		63AF0F631BBC528E009D4196 /* User_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User_Tests.swift; sourceTree = "<group>"; };
 		63AF0F7D1BBC5692009D4196 /* TestAssets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TestAssets; sourceTree = "<group>"; };
 		63EE60D81C404AB700AFC2CF /* UsergridResponseError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsergridResponseError.swift; sourceTree = "<group>"; };
+		63EE610B1C406E1600AFC2CF /* UsergridSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UsergridSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +147,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		63EE61051C406E1600AFC2CF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -144,21 +169,11 @@
 			path = Internal;
 			sourceTree = "<group>";
 		};
-		639B4BEC1C3DD6CF005E26E7 /* UsergridSDK watchOS */ = {
-			isa = PBXGroup;
-			children = (
-				639B4BED1C3DD6CF005E26E7 /* UsergridSDK watchOS.h */,
-				639B4BEF1C3DD6CF005E26E7 /* Info.plist */,
-			);
-			path = "UsergridSDK watchOS";
-			sourceTree = "<group>";
-		};
 		63AF0E7E1BBC38FB009D4196 = {
 			isa = PBXGroup;
 			children = (
 				63AF0F3D1BBC4EF6009D4196 /* Source */,
 				63AF0F571BBC528E009D4196 /* Tests */,
-				639B4BEC1C3DD6CF005E26E7 /* UsergridSDK watchOS */,
 				63AF0E891BBC38FB009D4196 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -169,6 +184,7 @@
 				63AF0E881BBC38FB009D4196 /* UsergridSDK.framework */,
 				63AF0E921BBC38FB009D4196 /* UsergridSDKTests.xctest */,
 				639B4BEB1C3DD6CF005E26E7 /* UsergridSDK.framework */,
+				63EE610B1C406E1600AFC2CF /* UsergridSDK.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -248,6 +264,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		63EE61061C406E1600AFC2CF /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				63EE610D1C406E2200AFC2CF /* UsergridSDK.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
@@ -305,6 +329,24 @@
 			productReference = 63AF0E921BBC38FB009D4196 /* UsergridSDKTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		63EE60F11C406E1600AFC2CF /* UsergridSDK tvOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 63EE61081C406E1600AFC2CF /* Build configuration list for PBXNativeTarget "UsergridSDK tvOS" */;
+			buildPhases = (
+				63EE60F21C406E1600AFC2CF /* Sources */,
+				63EE61051C406E1600AFC2CF /* Frameworks */,
+				63EE61061C406E1600AFC2CF /* Headers */,
+				63EE61071C406E1600AFC2CF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "UsergridSDK tvOS";
+			productName = UsergridSDK;
+			productReference = 63EE610B1C406E1600AFC2CF /* UsergridSDK.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -340,6 +382,7 @@
 			targets = (
 				63AF0E871BBC38FB009D4196 /* UsergridSDK */,
 				639B4BEA1C3DD6CF005E26E7 /* UsergridSDK watchOS */,
+				63EE60F11C406E1600AFC2CF /* UsergridSDK tvOS */,
 				63AF0E911BBC38FB009D4196 /* UsergridSDKTests */,
 			);
 		};
@@ -365,6 +408,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				63AF0F7E1BBC5692009D4196 /* TestAssets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		63EE61071C406E1600AFC2CF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -434,6 +484,31 @@
 				63AF0F7A1BBC5314009D4196 /* PUT_Tests.swift in Sources */,
 				63AF0F751BBC5314009D4196 /* ClientCreationTests.swift in Sources */,
 				6343823E1BC2F042008624BE /* CONNECTION_Tests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		63EE60F21C406E1600AFC2CF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				63EE60F31C406E1600AFC2CF /* UsergridResponseError.swift in Sources */,
+				63EE60F41C406E1600AFC2CF /* UsergridClientConfig.swift in Sources */,
+				63EE60F51C406E1600AFC2CF /* UsergridKeychainHelpers.swift in Sources */,
+				63EE60F61C406E1600AFC2CF /* UsergridAssetRequestWrapper.swift in Sources */,
+				63EE60F71C406E1600AFC2CF /* UsergridAuth.swift in Sources */,
+				63EE60F81C406E1600AFC2CF /* UsergridFileMetaData.swift in Sources */,
+				63EE60F91C406E1600AFC2CF /* UsergridDevice.swift in Sources */,
+				63EE60FA1C406E1600AFC2CF /* UsergridQuery.swift in Sources */,
+				63EE60FB1C406E1600AFC2CF /* UsergridExtensions.swift in Sources */,
+				63EE60FC1C406E1600AFC2CF /* UsergridEntity.swift in Sources */,
+				63EE60FD1C406E1600AFC2CF /* UsergridSessionDelegate.swift in Sources */,
+				63EE60FE1C406E1600AFC2CF /* UsergridUser.swift in Sources */,
+				63EE60FF1C406E1600AFC2CF /* Usergrid.swift in Sources */,
+				63EE61001C406E1600AFC2CF /* UsergridResponse.swift in Sources */,
+				63EE61011C406E1600AFC2CF /* UsergridRequestManager.swift in Sources */,
+				63EE61021C406E1600AFC2CF /* UsergridEnums.swift in Sources */,
+				63EE61031C406E1600AFC2CF /* UsergridAsset.swift in Sources */,
+				63EE61041C406E1600AFC2CF /* UsergridClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -637,6 +712,45 @@
 			};
 			name = Release;
 		};
+		63EE61091C406E1600AFC2CF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Source/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.apigee.UsergridSDK;
+				PRODUCT_NAME = UsergridSDK;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		63EE610A1C406E1600AFC2CF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Source/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.apigee.UsergridSDK;
+				PRODUCT_NAME = UsergridSDK;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -672,6 +786,15 @@
 			buildConfigurations = (
 				63AF0EA01BBC38FB009D4196 /* Debug */,
 				63AF0EA11BBC38FB009D4196 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		63EE61081C406E1600AFC2CF /* Build configuration list for PBXNativeTarget "UsergridSDK tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				63EE61091C406E1600AFC2CF /* Debug */,
+				63EE610A1C406E1600AFC2CF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

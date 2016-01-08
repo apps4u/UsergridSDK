@@ -53,7 +53,8 @@ public class UsergridDevice : UsergridEntity {
         var deviceEntityDict: [String:AnyObject] = [:]
         deviceEntityDict[UsergridEntityProperties.EntityType.stringValue] = UsergridDevice.DEVICE_ENTITY_TYPE
         deviceEntityDict[UsergridEntityProperties.UUID.stringValue] = UsergridDevice.usergridDeviceUUID()
-        #if os(iOS)
+
+        #if os(iOS) || os(tvOS)
             deviceEntityDict[UsergridDeviceProperties.Model.stringValue] = UIDevice.currentDevice().model
             deviceEntityDict[UsergridDeviceProperties.Platform.stringValue] = UIDevice.currentDevice().systemName
             deviceEntityDict[UsergridDeviceProperties.OSVersion.stringValue] = UIDevice.currentDevice().systemVersion
@@ -62,6 +63,7 @@ public class UsergridDevice : UsergridEntity {
             deviceEntityDict[UsergridDeviceProperties.Platform.stringValue] = WKInterfaceDevice.currentDevice().systemName
             deviceEntityDict[UsergridDeviceProperties.OSVersion.stringValue] = WKInterfaceDevice.currentDevice().systemVersion
         #endif
+
         super.init(type: UsergridDevice.DEVICE_ENTITY_TYPE, name: nil, propertyDict: deviceEntityDict)
     }
 

@@ -29,8 +29,15 @@ final class UsergridRequestManager {
         self.client = client
 
         let config = NSURLSessionConfiguration.defaultSessionConfiguration()
-        config.HTTPAdditionalHeaders = ["User-Agent": "usergrid-ios/v\(UsergridSDKVersion)"]
 
+        #if os(iOS)
+        config.HTTPAdditionalHeaders = ["User-Agent": "usergrid-ios/v\(UsergridSDKVersion)"]
+        #elseif os(tvOS)
+        config.HTTPAdditionalHeaders = ["User-Agent": "usergrid-tvOS/v\(UsergridSDKVersion)"]
+        #elseif os(watchOS)
+        config.HTTPAdditionalHeaders = ["User-Agent": "usergrid-watchOS/v\(UsergridSDKVersion)"]
+        #endif
+        
         self.session = NSURLSession(configuration:  config,
                                     delegate:       UsergridSessionDelegate(),
                                     delegateQueue:  NSOperationQueue.mainQueue())
