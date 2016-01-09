@@ -155,7 +155,7 @@ public class UsergridUser : UsergridEntity {
     }
 
     /**
-     Checks the given email and username availablity for new `UsergridUser` objects using with the given `UsergridClient`.
+     Checks the given email and/or username availablity for new `UsergridUser` objects using with the given `UsergridClient`.
 
      - parameter client:     The client to use for checking availability.
      - parameter email:      The optional email address.

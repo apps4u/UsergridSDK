@@ -250,6 +250,20 @@ public class UsergridQuery : NSObject,NSCopying {
     */
     public func or() -> Self {
         if !self.requirementStrings.first!.isEmpty {
+            self.requirementStrings.insert(UsergridQuery.OR, atIndex: 0)
+            self.requirementStrings.insert(UsergridQuery.EMPTY_STRING, atIndex: 0)
+        }
+        return self
+    }
+
+    /**
+     Not operation for conditional queries.
+
+     - returns: `Self`
+     */
+    public func not() -> Self {
+        if !self.requirementStrings.first!.isEmpty {
+            self.requirementStrings.insert(UsergridQuery.NOT, atIndex: 0)
             self.requirementStrings.insert(UsergridQuery.EMPTY_STRING, atIndex: 0)
         }
         return self
@@ -403,12 +417,18 @@ public class UsergridQuery : NSObject,NSCopying {
     private func constructRequirementString() -> String {
         var requirementsString = UsergridQuery.EMPTY_STRING
         var requirementStrings = self.requirementStrings
-        if requirementStrings.first!.isEmpty {
-            requirementStrings.removeAtIndex(0)
-            requirementsString = (requirementStrings.reverse() as NSArray).componentsJoinedByString(" \(UsergridQuery.OR) ")
-        } else {
-            requirementsString = (requirementStrings.reverse() as NSArray).componentsJoinedByString(" \(UsergridQuery.OR) ")
+
+        // If the first requirement is empty lets remove it.
+        if let firstRequirement = requirementStrings.first where firstRequirement.isEmpty {
+            requirementStrings.removeFirst()
         }
+
+        // If the first requirement now is a conditional separator then we should remove it so its not placed at the end of the constructed string.
+        if let firstRequirement = requirementStrings.first where firstRequirement == UsergridQuery.OR || firstRequirement == UsergridQuery.NOT {
+            requirementStrings.removeFirst()
+        }
+
+        requirementsString = (requirementStrings.reverse() as NSArray).componentsJoinedByString(UsergridQuery.SPACE)
         return requirementsString
     }
 
@@ -473,6 +493,7 @@ public class UsergridQuery : NSObject,NSCopying {
     private static let IN = "in"
     private static let LIMIT = "limit"
     private static let LOCATION = "location";
+    private static let NOT = "not"
     private static let OF = "of"
     private static let OR = "or"
     private static let ORDER_BY = "order by"
