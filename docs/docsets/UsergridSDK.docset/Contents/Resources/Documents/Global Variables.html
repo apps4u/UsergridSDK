@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>UsergridSDK  Reference</title>
+    <title>Global Variables  Reference</title>
     <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="css/highlight.css" />
     <meta charset='utf-8'>
@@ -9,7 +9,7 @@
     <script src="js/jazzy.js" defer></script>
   </head>
   <body>
-    <a title="UsergridSDK  Reference"></a>
+    <a title="Global Variables  Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="index.html">UsergridSDK Docs</a> (99% documented)</p>
@@ -19,7 +19,7 @@
       <p id="breadcrumbs">
         <a href="index.html">UsergridSDK Reference</a>
         <img id="carat" src="img/carat.png" />
-        UsergridSDK  Reference
+        Global Variables  Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -143,101 +143,47 @@
       <article class="main-content">
         <section>
           <section class="section">
-            
-            <a href='#usergridsdk' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='usergridsdk'>UsergridSDK</h1>
+            <h1>Global Variables</h1>
+            <p>The following global variables are available globally.</p>
 
-<p><a href="https://travis-ci.org/RobertWalsh/UsergridSDK"><img src="https://travis-ci.org/RobertWalsh/UsergridSDK.svg" alt="Build Status"></a>
-<a href="http://cocoadocs.org/docsets/UsergridSDK"><img src="https://img.shields.io/cocoapods/p/UsergridSDK.svg?style=flat" alt="Platform"></a>
-<a href="https://img.shields.io/cocoapods/v/UsergridSDK.svg"><img src="https://img.shields.io/cocoapods/v/UsergridSDK.svg" alt="Cocoapods Compatible"></a></p>
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:v11UsergridSDK18UsergridSDKVersionSS"></a>
+                    <a name="//apple_ref/swift/Global/UsergridSDKVersion" class="dashAnchor"></a>
+                    <a class="token" href="#/s:v11UsergridSDK18UsergridSDKVersionSS">UsergridSDKVersion</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The <code><a href="Classes/Usergrid.html">Usergrid</a></code> class acts as a static shared instance manager for the <code><a href="Classes/UsergridClient.html">UsergridClient</a></code> class.</p>
 
-<p>Usergrid SDK written in Swift </p>
-<a href='#requirements' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='requirements'>Requirements</h2>
+<p>The methods and variables in this class are all static and therefore you will never need or want to initialize an instance of the <code><a href="Classes/Usergrid.html">Usergrid</a></code> class.</p>
 
-<blockquote>
-<p><strong>Embedded frameworks require a minimum deployment target of iOS 8.</strong></p>
-</blockquote>
+<p>Use of this class depends on initialization of the shared instance of the <code><a href="Classes/UsergridClient.html">UsergridClient</a></code> object.  Because of this, before using any of the static methods
+provided you will need to call one of the shared instance initialization methods.  Failure to do so will result in failure from all methods.</p>
 
-<ul>
-<li>iOS 8.0+</li>
-<li>Xcode 7.1+</li>
-</ul>
-<a href='#installation' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='installation'>Installation</h2>
-<a href='#cocoapods' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='cocoapods'>CocoaPods</h3>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">UsergridSDKVersion</span> <span class="o">=</span> <span class="s">"0.0.3"</span></code></pre>
 
-<blockquote>
-<p><strong>CocoaPods 0.39.0+ is required to build the UsergridSDK library.</strong></p>
-</blockquote>
-
-<p>To integrate the UsergridSDK into your Xcode project using CocoaPods, specify it in your <code>Podfile</code>:</p>
-<pre class="highlight ruby"><code><span class="n">platform</span> <span class="ss">:ios</span><span class="p">,</span> <span class="s1">'8.0'</span>
-<span class="n">use_frameworks!</span>
-
-<span class="n">pod</span> <span class="s1">'UsergridSDK'</span>
-</code></pre>
-
-<p>Then, run the following command:</p>
-<pre class="highlight shell"><code><span class="gp">$ </span>pod install
-</code></pre>
-<a href='#embedded_framework' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='embedded_framework'>Embedded Framework</h3>
-
-<ul>
-<li>Open up Terminal, <code>cd</code> into your top-level project directory, and run the following command <q>if</q> your project is not initialized as a git repository:</li>
-</ul>
-<pre class="highlight shell"><code><span class="gp">$ </span>git init
-</code></pre>
-
-<ul>
-<li>Add UsergridSDK as a git submodule by running the following command:</li>
-</ul>
-<pre class="highlight shell"><code><span class="gp">$ </span>git submodule add https://github.com/RobertWalsh/UsergridSDK.git
-</code></pre>
-
-<ul>
-<li>Open the new <code>UsergridSDK</code> folder, and drag the <code>UsergridSDK.xcodeproj</code> into the Project Navigator of your application&rsquo;s Xcode project.</li>
-</ul>
-
-<blockquote>
-<p>It should appear nested underneath your application&rsquo;s blue project icon.</p>
-</blockquote>
-
-<ul>
-<li>Select the <code>UsergridSDK.xcodeproj</code> in the Project Navigator and verify the deployment target matches that of your application target.</li>
-<li>Next, select your application project in the Project Navigator (blue project icon) to navigate to the target configuration window and select the application target under the <q>Targets</q> heading in the sidebar.</li>
-<li>In the tab bar at the top of that window, open the <q>General</q> panel.</li>
-<li>Click on the <code>+</code> button under the <q>Embedded Binaries</q> section.</li>
-<li>Select the <code>UsergridSDK.framework</code>.</li>
-</ul>
-
-<blockquote>
-<p>The <code>UsergridSDK.framework</code> is automatically added as a target dependency, linked framework and embedded framework in a copy files build phase which is all you need to build on the simulator and a device.</p>
-</blockquote>
-<a href='#documentation' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='documentation'>Documentation</h2>
-
-<p>The documentation for this library is available <a href="http://cocoadocs.org/docsets/UsergridSDK">here</a>.</p>
-<a href='#initialization' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='initialization'>Initialization</h2>
-
-<p>The <code>Usergrid</code> class acts as a static shared instance manager for the <code>UsergridClient</code> class.</p>
-
-<blockquote>
-<p>While it is possible to create mutliple instances of the <code>UsergridClient</code> class, we recomend using the shared instance where possible.</p>
-</blockquote>
-
-<p>To initialize the shared instance of you will want to call the following code.  This code usually goes best in the AppDelegate&rsquo;s life cycle functions.</p>
-<pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">UsergridSDK</span>
-
-<span class="kd">func</span> <span class="nf">application</span><span class="p">(</span><span class="nv">application</span><span class="p">:</span> <span class="kt">UIApplication</span><span class="p">,</span> <span class="n">didFinishLaunchingWithOptions</span> <span class="nv">launchOptions</span><span class="p">:</span> <span class="p">[</span><span class="kt">NSObject</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">]?)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span>
-    <span class="kt">Usergrid</span><span class="o">.</span><span class="nf">initSharedInstance</span><span class="p">(</span><span class="nv">orgID</span><span class="p">:</span> <span class="s">"orgID"</span><span class="p">,</span> <span class="nv">appID</span><span class="p">:</span> <span class="s">"appID"</span><span class="p">)</span>
-    <span class="k">return</span> <span class="kc">true</span>
-<span class="p">}</span>
-</code></pre>
-<a href='#communication' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='communication'>Communication</h2>
-
-<ul>
-<li>If you <strong>found a bug</strong>, open an issue.</li>
-<li>If you <strong>have a feature request</strong>, open an issue.</li>
-<li>If you <strong>want to contribute</strong>, submit a pull request.</li>
-</ul>
-
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
           </section>
         </section>
         <section id="footer">

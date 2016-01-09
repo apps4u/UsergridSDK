@@ -63,10 +63,21 @@
                 <a href="../Classes/UsergridResponse.html">UsergridResponse</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/UsergridResponseError.html">UsergridResponseError</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/UsergridUser.html">UsergridUser</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/UsergridUserAuth.html">UsergridUserAuth</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Global Variables.html">Global Variables</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:v11UsergridSDK18UsergridSDKVersionSS">UsergridSDKVersion</a>
               </li>
             </ul>
           </li>
@@ -119,6 +130,12 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Typealiases.html#/s:11UsergridSDK31UsergridUserAuthCompletionBlock">UsergridUserAuthCompletionBlock</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:11UsergridSDK34UsergridUserAvailabilityCompletion">UsergridUserAvailabilityCompletion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:11UsergridSDK35UsergridUserResetPasswordCompletion">UsergridUserResetPasswordCompletion</a>
               </li>
             </ul>
           </li>
@@ -1394,9 +1411,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC11UsergridSDK13UsergridQuery14withinLocationFS0_FTSf8latitudeSf9longitudeSf_DS0_"></a>
-                    <a name="//apple_ref/swift/Method/withinLocation(_:latitude:longitude:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC11UsergridSDK13UsergridQuery14withinLocationFS0_FTSf8latitudeSf9longitudeSf_DS0_">withinLocation(_:latitude:longitude:)</a>
+                    <a name="/s:FC11UsergridSDK13UsergridQuery14locationWithinFS0_FTSf8latitudeSf9longitudeSf_DS0_"></a>
+                    <a name="//apple_ref/swift/Method/locationWithin(_:latitude:longitude:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC11UsergridSDK13UsergridQuery14locationWithinFS0_FTSf8latitudeSf9longitudeSf_DS0_">locationWithin(_:latitude:longitude:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1411,7 +1428,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">withinLocation</span><span class="p">(</span><span class="nv">distance</span><span class="p">:</span> <span class="kt">Float</span><span class="p">,</span> <span class="nv">latitude</span><span class="p">:</span> <span class="kt">Float</span><span class="p">,</span> <span class="nv">longitude</span><span class="p">:</span> <span class="kt">Float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">locationWithin</span><span class="p">(</span><span class="nv">distance</span><span class="p">:</span> <span class="kt">Float</span><span class="p">,</span> <span class="nv">latitude</span><span class="p">:</span> <span class="kt">Float</span><span class="p">,</span> <span class="nv">longitude</span><span class="p">:</span> <span class="kt">Float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
 
                         </div>
                       </div>
@@ -1490,6 +1507,38 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">or</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>Self</code></p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC11UsergridSDK13UsergridQuery3notFS0_FT_DS0_"></a>
+                    <a name="//apple_ref/swift/Method/not()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC11UsergridSDK13UsergridQuery3notFS0_FT_DS0_">not()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Not operation for conditional queries.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">not</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
 
                         </div>
                       </div>
@@ -2000,7 +2049,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2015 <a class="link" href="https://github.com/RobertWalsh/UsergridSDK" target="_blank" rel="external">Robert Walsh</a>. All rights reserved. (Last updated: 2015-12-21)</p>
+          <p>&copy; 2016 <a class="link" href="https://github.com/RobertWalsh/UsergridSDK" target="_blank" rel="external">Robert Walsh</a>. All rights reserved. (Last updated: 2016-01-09)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.4.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

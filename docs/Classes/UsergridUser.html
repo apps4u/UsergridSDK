@@ -63,10 +63,21 @@
                 <a href="../Classes/UsergridResponse.html">UsergridResponse</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/UsergridResponseError.html">UsergridResponseError</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/UsergridUser.html">UsergridUser</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/UsergridUserAuth.html">UsergridUserAuth</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Global Variables.html">Global Variables</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:v11UsergridSDK18UsergridSDKVersionSS">UsergridSDKVersion</a>
               </li>
             </ul>
           </li>
@@ -119,6 +130,12 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Typealiases.html#/s:11UsergridSDK31UsergridUserAuthCompletionBlock">UsergridUserAuthCompletionBlock</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:11UsergridSDK34UsergridUserAvailabilityCompletion">UsergridUserAvailabilityCompletion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:11UsergridSDK35UsergridUserResetPasswordCompletion">UsergridUserResetPasswordCompletion</a>
               </li>
             </ul>
           </li>
@@ -348,6 +365,33 @@ let someName = usergridUser[<q>name</q>]</p></li></p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">age</span><span class="p">:</span> <span class="kt">NSNumber</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC11UsergridSDK12UsergridUser15usernameOrEmailGSqSS_"></a>
+                    <a name="//apple_ref/swift/Property/usernameOrEmail" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC11UsergridSDK12UsergridUser15usernameOrEmailGSqSS_">usernameOrEmail</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Property helper method to get the username or email of the <code><a href="../Classes/UsergridUser.html">UsergridUser</a></code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">usernameOrEmail</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="p">{</span> <span class="k">return</span> <span class="k">self</span><span class="o">.</span><span class="n">username</span> <span class="p">??</span> <span class="k">self</span><span class="o">.</span><span class="n">email</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -708,6 +752,176 @@ let someName = usergridUser[<q>name</q>]</p></li></p>
             </div>
             <div class="task-group">
               <div class="task-name-container">
+                <a name="/Class%20Methods"></a>
+                <a name="//apple_ref/swift/Section/Class Methods" class="dashAnchor"></a>
+                <a href="#/Class%20Methods">
+                  <h3 class="section-name">Class Methods</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC11UsergridSDK12UsergridUser14checkAvailableFMS0_FTGSqSS_8usernameGSqSS_10completionFT5errorGSqCS_21UsergridResponseError_9availableSb_T__T_"></a>
+                    <a name="//apple_ref/swift/Method/checkAvailable(_:username:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC11UsergridSDK12UsergridUser14checkAvailableFMS0_FTGSqSS_8usernameGSqSS_10completionFT5errorGSqCS_21UsergridResponseError_9availableSb_T__T_">checkAvailable(_:username:completion:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Checks the given email and/or username availablity for new <code><a href="../Classes/UsergridUser.html">UsergridUser</a></code> objects using the shared instance of <code><a href="../Classes/UsergridClient.html">UsergridClient</a></code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">checkAvailable</span><span class="p">(</span><span class="nv">email</span><span class="p">:</span><span class="kt">String</span><span class="p">?,</span> <span class="nv">username</span><span class="p">:</span><span class="kt">String</span><span class="p">?,</span> <span class="nv">completion</span><span class="p">:</span><span class="kt">UsergridUserAvailabilityCompletion</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>email</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The optional email address.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>username</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The optional username.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completion</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The completion block.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC11UsergridSDK12UsergridUser14checkAvailableFMS0_FTCS_14UsergridClient5emailGSqSS_8usernameGSqSS_10completionFT5errorGSqCS_21UsergridResponseError_9availableSb_T__T_"></a>
+                    <a name="//apple_ref/swift/Method/checkAvailable(_:email:username:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC11UsergridSDK12UsergridUser14checkAvailableFMS0_FTCS_14UsergridClient5emailGSqSS_8usernameGSqSS_10completionFT5errorGSqCS_21UsergridResponseError_9availableSb_T__T_">checkAvailable(_:email:username:completion:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Checks the given email and/or username availablity for new <code><a href="../Classes/UsergridUser.html">UsergridUser</a></code> objects using with the given <code><a href="../Classes/UsergridClient.html">UsergridClient</a></code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">checkAvailable</span><span class="p">(</span><span class="nv">client</span><span class="p">:</span> <span class="kt">UsergridClient</span><span class="p">,</span> <span class="nv">email</span><span class="p">:</span><span class="kt">String</span><span class="p">?,</span> <span class="nv">username</span><span class="p">:</span><span class="kt">String</span><span class="p">?,</span> <span class="nv">completion</span><span class="p">:</span><span class="kt">UsergridUserAvailabilityCompletion</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>client</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The client to use for checking availability.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>email</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The optional email address.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>username</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The optional username.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completion</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The completion block.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
                 <a name="/Instance%20Methods"></a>
                 <a name="//apple_ref/swift/Section/Instance Methods" class="dashAnchor"></a>
                 <a href="#/Instance%20Methods">
@@ -718,9 +932,9 @@ let someName = usergridUser[<q>name</q>]</p></li></p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC11UsergridSDK12UsergridUser6createFS0_FGSqFT8responseCS_16UsergridResponse_T__T_"></a>
+                    <a name="/s:FC11UsergridSDK12UsergridUser6createFS0_FTGSqFT8responseCS_16UsergridResponse_T___T_"></a>
                     <a name="//apple_ref/swift/Method/create(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC11UsergridSDK12UsergridUser6createFS0_FGSqFT8responseCS_16UsergridResponse_T__T_">create(_:)</a>
+                    <a class="token" href="#/s:FC11UsergridSDK12UsergridUser6createFS0_FTGSqFT8responseCS_16UsergridResponse_T___T_">create(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -735,7 +949,7 @@ let someName = usergridUser[<q>name</q>]</p></li></p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">create</span><span class="p">(</span><span class="nv">completion</span><span class="p">:</span> <span class="kt">UsergridResponseCompletion</span><span class="p">?)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">create</span><span class="p">(</span><span class="nv">completion</span><span class="p">:</span> <span class="kt">UsergridResponseCompletion</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -782,7 +996,7 @@ let someName = usergridUser[<q>name</q>]</p></li></p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">create</span><span class="p">(</span><span class="nv">client</span><span class="p">:</span> <span class="kt">UsergridClient</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kt">UsergridResponseCompletion</span><span class="p">?)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">create</span><span class="p">(</span><span class="nv">client</span><span class="p">:</span> <span class="kt">UsergridClient</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kt">UsergridResponseCompletion</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -844,7 +1058,7 @@ let someName = usergridUser[<q>name</q>]</p></li></p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">login</span><span class="p">(</span><span class="nv">username</span><span class="p">:</span><span class="kt">String</span><span class="p">,</span> <span class="nv">password</span><span class="p">:</span><span class="kt">String</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kt">UsergridUserAuthCompletionBlock</span><span class="p">?)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">login</span><span class="p">(</span><span class="nv">username</span><span class="p">:</span><span class="kt">String</span><span class="p">,</span> <span class="nv">password</span><span class="p">:</span><span class="kt">String</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kt">UsergridUserAuthCompletionBlock</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -919,7 +1133,7 @@ let someName = usergridUser[<q>name</q>]</p></li></p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">login</span><span class="p">(</span><span class="nv">client</span><span class="p">:</span> <span class="kt">UsergridClient</span><span class="p">,</span> <span class="nv">username</span><span class="p">:</span><span class="kt">String</span><span class="p">,</span> <span class="nv">password</span><span class="p">:</span><span class="kt">String</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kt">UsergridUserAuthCompletionBlock</span><span class="p">?)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">login</span><span class="p">(</span><span class="nv">client</span><span class="p">:</span> <span class="kt">UsergridClient</span><span class="p">,</span> <span class="nv">username</span><span class="p">:</span><span class="kt">String</span><span class="p">,</span> <span class="nv">password</span><span class="p">:</span><span class="kt">String</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kt">UsergridUserAuthCompletionBlock</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -975,6 +1189,165 @@ let someName = usergridUser[<q>name</q>]</p></li></p>
                               <td>
                                 <div>
                                   <p>The optional completion block.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC11UsergridSDK12UsergridUser13resetPasswordFS0_FTSS3newSS10completionGSqFT5errorGSqCS_21UsergridResponseError_10didSucceedSb_T___T_"></a>
+                    <a name="//apple_ref/swift/Method/resetPassword(_:new:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC11UsergridSDK12UsergridUser13resetPasswordFS0_FTSS3newSS10completionGSqFT5errorGSqCS_21UsergridResponseError_10didSucceedSb_T___T_">resetPassword(_:new:completion:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Changes the User&rsquo;s current password with the shared instance of <code><a href="../Classes/UsergridClient.html">UsergridClient</a></code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">resetPassword</span><span class="p">(</span><span class="nv">old</span><span class="p">:</span><span class="kt">String</span><span class="p">,</span> <span class="nv">new</span><span class="p">:</span><span class="kt">String</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span><span class="kt">UsergridUserResetPasswordCompletion</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>old</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The old password.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>new</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The new password.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completion</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The optional completion block.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC11UsergridSDK12UsergridUser13resetPasswordFS0_FTCS_14UsergridClient3oldSS3newSS10completionGSqFT5errorGSqCS_21UsergridResponseError_10didSucceedSb_T___T_"></a>
+                    <a name="//apple_ref/swift/Method/resetPassword(_:old:new:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC11UsergridSDK12UsergridUser13resetPasswordFS0_FTCS_14UsergridClient3oldSS3newSS10completionGSqFT5errorGSqCS_21UsergridResponseError_10didSucceedSb_T___T_">resetPassword(_:old:new:completion:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Changes the User&rsquo;s current password with the shared instance of <code><a href="../Classes/UsergridClient.html">UsergridClient</a></code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">resetPassword</span><span class="p">(</span><span class="nv">client</span><span class="p">:</span> <span class="kt">UsergridClient</span><span class="p">,</span> <span class="nv">old</span><span class="p">:</span><span class="kt">String</span><span class="p">,</span> <span class="nv">new</span><span class="p">:</span><span class="kt">String</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span><span class="kt">UsergridUserResetPasswordCompletion</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>client</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The client to use for resetting the password.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>old</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The old password.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>new</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The new password.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completion</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The optional completion block</p>
 
                                 </div>
                               </td>
@@ -1095,9 +1468,9 @@ let someName = usergridUser[<q>name</q>]</p></li></p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC11UsergridSDK12UsergridUser6logoutFS0_FGSqFT8responseCS_16UsergridResponse_T__T_"></a>
+                    <a name="/s:FC11UsergridSDK12UsergridUser6logoutFS0_FTGSqFT8responseCS_16UsergridResponse_T___T_"></a>
                     <a name="//apple_ref/swift/Method/logout(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC11UsergridSDK12UsergridUser6logoutFS0_FGSqFT8responseCS_16UsergridResponse_T__T_">logout(_:)</a>
+                    <a class="token" href="#/s:FC11UsergridSDK12UsergridUser6logoutFS0_FTGSqFT8responseCS_16UsergridResponse_T___T_">logout(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1112,7 +1485,7 @@ let someName = usergridUser[<q>name</q>]</p></li></p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">logout</span><span class="p">(</span><span class="nv">completion</span><span class="p">:</span><span class="kt">UsergridResponseCompletion</span><span class="p">?)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">logout</span><span class="p">(</span><span class="nv">completion</span><span class="p">:</span><span class="kt">UsergridResponseCompletion</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -1159,7 +1532,7 @@ let someName = usergridUser[<q>name</q>]</p></li></p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">logout</span><span class="p">(</span><span class="nv">client</span><span class="p">:</span> <span class="kt">UsergridClient</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span><span class="kt">UsergridResponseCompletion</span><span class="p">?)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">logout</span><span class="p">(</span><span class="nv">client</span><span class="p">:</span> <span class="kt">UsergridClient</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span><span class="kt">UsergridResponseCompletion</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -1204,7 +1577,7 @@ let someName = usergridUser[<q>name</q>]</p></li></p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2015 <a class="link" href="https://github.com/RobertWalsh/UsergridSDK" target="_blank" rel="external">Robert Walsh</a>. All rights reserved. (Last updated: 2015-12-21)</p>
+          <p>&copy; 2016 <a class="link" href="https://github.com/RobertWalsh/UsergridSDK" target="_blank" rel="external">Robert Walsh</a>. All rights reserved. (Last updated: 2016-01-09)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.4.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

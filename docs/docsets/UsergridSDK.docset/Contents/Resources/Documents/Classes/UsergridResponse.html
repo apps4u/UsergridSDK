@@ -63,10 +63,21 @@
                 <a href="../Classes/UsergridResponse.html">UsergridResponse</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/UsergridResponseError.html">UsergridResponseError</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/UsergridUser.html">UsergridUser</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/UsergridUserAuth.html">UsergridUserAuth</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Global Variables.html">Global Variables</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:v11UsergridSDK18UsergridSDKVersionSS">UsergridSDKVersion</a>
               </li>
             </ul>
           </li>
@@ -119,6 +130,12 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Typealiases.html#/s:11UsergridSDK31UsergridUserAuthCompletionBlock">UsergridUserAuthCompletionBlock</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:11UsergridSDK34UsergridUserAvailabilityCompletion">UsergridUserAvailabilityCompletion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:11UsergridSDK35UsergridUserResetPasswordCompletion">UsergridUserResetPasswordCompletion</a>
               </li>
             </ul>
           </li>
@@ -343,9 +360,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC11UsergridSDK16UsergridResponse9errorNameGSqSS_"></a>
-                    <a name="//apple_ref/swift/Property/errorName" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC11UsergridSDK16UsergridResponse9errorNameGSqSS_">errorName</a>
+                    <a name="/s:vC11UsergridSDK16UsergridResponse5errorGSqCS_21UsergridResponseError_"></a>
+                    <a name="//apple_ref/swift/Property/error" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC11UsergridSDK16UsergridResponse5errorGSqCS_21UsergridResponseError_">error</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -353,68 +370,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The error&rsquo;s name.</p>
+                        <p>The error object containing error information if one occurred.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">internal(set)</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">errorName</span> <span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:vC11UsergridSDK16UsergridResponse16errorDescriptionGSqSS_"></a>
-                    <a name="//apple_ref/swift/Property/errorDescription" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC11UsergridSDK16UsergridResponse16errorDescriptionGSqSS_">errorDescription</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The error&rsquo;s description.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">internal(set)</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">errorDescription</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:vC11UsergridSDK16UsergridResponse9exceptionGSqSS_"></a>
-                    <a name="//apple_ref/swift/Property/exception" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC11UsergridSDK16UsergridResponse9exceptionGSqSS_">exception</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The exception.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">internal(set)</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">exception</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">internal(set)</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">error</span><span class="p">:</span> <span class="kt">UsergridResponseError</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -624,9 +587,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC11UsergridSDK16UsergridResponsecFMS0_FT6clientGSqCS_14UsergridClient_9errorNameGSqSS_16errorDescriptionGSqSS__S0_"></a>
+                    <a name="/s:FC11UsergridSDK16UsergridResponsecFMS0_FT6clientGSqCS_14UsergridClient_9errorNameSS16errorDescriptionSS_S0_"></a>
                     <a name="//apple_ref/swift/Method/init(client:errorName:errorDescription:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC11UsergridSDK16UsergridResponsecFMS0_FT6clientGSqCS_14UsergridClient_9errorNameGSqSS_16errorDescriptionGSqSS__S0_">init(client:errorName:errorDescription:)</a>
+                    <a class="token" href="#/s:FC11UsergridSDK16UsergridResponsecFMS0_FT6clientGSqCS_14UsergridClient_9errorNameSS16errorDescriptionSS_S0_">init(client:errorName:errorDescription:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -643,7 +606,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">client</span><span class="p">:</span> <span class="kt">UsergridClient</span><span class="p">?,</span> <span class="nv">errorName</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">errorDescription</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">client</span><span class="p">:</span> <span class="kt">UsergridClient</span><span class="p">?,</span> <span class="nv">errorName</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">errorDescription</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -870,7 +833,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2015 <a class="link" href="https://github.com/RobertWalsh/UsergridSDK" target="_blank" rel="external">Robert Walsh</a>. All rights reserved. (Last updated: 2015-12-21)</p>
+          <p>&copy; 2016 <a class="link" href="https://github.com/RobertWalsh/UsergridSDK" target="_blank" rel="external">Robert Walsh</a>. All rights reserved. (Last updated: 2016-01-09)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.4.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
