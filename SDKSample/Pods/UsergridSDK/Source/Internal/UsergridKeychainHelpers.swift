@@ -30,7 +30,13 @@ internal extension UsergridDevice {
     }
 
     static func createNewUsergridKeychainUUID() -> String {
+
+        #if os(iOS)
         let usergridUUID = UIDevice.currentDevice().identifierForVendor?.UUIDString ?? NSUUID().UUIDString
+        #else
+        let usergridUUID = NSUUID().UUIDString
+        #endif
+
         var keychainItem = UsergridDevice.deviceKeychainItem()
         keychainItem[kSecValueData as String] = (usergridUUID as NSString).dataUsingEncoding(NSUTF8StringEncoding)
         SecItemAdd(keychainItem, nil)
@@ -60,7 +66,7 @@ internal extension UsergridUser {
 
     static func userKeychainItem(client:UsergridClient) -> [String:AnyObject] {
         var keychainItem = usergridGenericKeychainItem()
-        keychainItem[kSecAttrService as String] = USERGRID_CURRENT_USER_KEYCHAIN_SERVICE + "." + client.appID + "." + client.orgID
+        keychainItem[kSecAttrService as String] = USERGRID_CURRENT_USER_KEYCHAIN_SERVICE + "." + client.appId + "." + client.orgId
         return keychainItem
     }
 

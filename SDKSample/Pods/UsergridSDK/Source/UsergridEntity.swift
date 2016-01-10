@@ -19,7 +19,7 @@ public class UsergridEntity: NSObject, NSCoding {
     // MARK: - Instance Properties -
 
     /// The property dictionary that stores the properties values of the `UsergridEntity` object.
-    var properties: [String : AnyObject] {
+    private var properties: [String : AnyObject] {
         didSet {
             if let fileMetaData = properties.removeValueForKey(UsergridFileMetaData.FILE_METADATA) as? [String:AnyObject] {
                 self.fileMetaData = UsergridFileMetaData(fileMetaDataJSON: fileMetaData)
@@ -95,6 +95,11 @@ public class UsergridEntity: NSObject, NSCoding {
         if let entityName = name {
             self.properties[UsergridEntityProperties.Name.stringValue] = entityName
         }
+    }
+
+    private func copyInternalsFromEntity(entity:UsergridEntity) {
+        self.properties = entity.properties
+        self.asset = entity.asset ?? self.asset
     }
 
     /*!
@@ -275,20 +280,10 @@ public class UsergridEntity: NSObject, NSCoding {
     Appends the given value to the end of the properties current value.
 
     - parameter name:  The name of the property.
-    - parameter value: The value to append.
+     - parameter value: The value or an array of values to append.
     */
-    public func push(name:String,value:AnyObject) {
-        self.insertArray(name, index: Int.max, values:[value])
-    }
-
-    /**
-    Appends the given values to the end of the properties current value.
-
-    - parameter name:  The name of the property.
-    - parameter values: The values to append.
-    */
-    public func append(name:String,values:[AnyObject]) {
-        self.insertArray(name, index: Int.max, values: values)
+    public func append(name:String, value:AnyObject) {
+        self.insertArray(name, values:value as? [AnyObject] ?? [value], index: Int.max)
     }
 
     /**
@@ -296,10 +291,10 @@ public class UsergridEntity: NSObject, NSCoding {
 
     - parameter name:  The name of the property.
     - parameter index: The index to insert at.
-    - parameter value: The value to insert.
+    - parameter value: The value or an array of values to insert.
     */
-    public func insert(name:String,index:Int = 0,value:AnyObject) {
-        self.insertArray(name, index: index, values: [value])
+    public func insert(name:String, value:AnyObject, index:Int = 0) {
+        self.insertArray(name, values:value as? [AnyObject] ?? [value], index: index)
     }
 
     /**
@@ -309,7 +304,7 @@ public class UsergridEntity: NSObject, NSCoding {
     - parameter index:  The index to insert at.
     - parameter values: The values to insert.
     */
-    public func insertArray(name:String,index:Int = 0,values:[AnyObject]) {
+    private func insertArray(name:String,values:[AnyObject], index:Int = 0) {
         if let propertyValue = self[name] {
             if var arrayValue = propertyValue as? [AnyObject] {
                 if  index > arrayValue.count {
@@ -390,7 +385,12 @@ public class UsergridEntity: NSObject, NSCoding {
     */
     public func reload(client:UsergridClient, completion: UsergridResponseCompletion? = nil) {
         if let uuidOrName = self.uuidOrName {
-            client.GET(self.type, uuidOrName: uuidOrName, completion: completion)
+            client.GET(self.type, uuidOrName: uuidOrName) { (response) -> Void in
+                if let responseEntity = response.entity {
+                    self.copyInternalsFromEntity(responseEntity)
+                }
+                completion?(response: response)
+            }
         } else {
             completion?(response: UsergridResponse(client: client, errorName: "Entity cannot be reloaded.", errorDescription: "Entity has neither an UUID or specified."))
         }

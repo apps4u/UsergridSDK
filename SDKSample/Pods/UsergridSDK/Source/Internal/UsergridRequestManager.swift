@@ -19,9 +19,7 @@ final class UsergridRequestManager {
 
     unowned let client: UsergridClient
 
-    let session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration(),
-                                delegate:UsergridSessionDelegate(),
-                                delegateQueue:NSOperationQueue.mainQueue())
+    let session: NSURLSession
 
     var sessionDelegate : UsergridSessionDelegate {
         return session.delegate as! UsergridSessionDelegate
@@ -29,14 +27,28 @@ final class UsergridRequestManager {
 
     init(client:UsergridClient) {
         self.client = client
+
+        let config = NSURLSessionConfiguration.defaultSessionConfiguration()
+
+        #if os(tvOS)
+        config.HTTPAdditionalHeaders = ["User-Agent": "usergrid-tvOS/v\(UsergridSDKVersion)"]
+        #elseif os(iOS)
+        config.HTTPAdditionalHeaders = ["User-Agent": "usergrid-ios/v\(UsergridSDKVersion)"]
+        #elseif os(watchOS)
+        config.HTTPAdditionalHeaders = ["User-Agent": "usergrid-watchOS/v\(UsergridSDKVersion)"]
+        #endif
+
+        self.session = NSURLSession(configuration:  config,
+                                    delegate:       UsergridSessionDelegate(),
+                                    delegateQueue:  NSOperationQueue.mainQueue())
     }
 
     deinit {
         session.invalidateAndCancel()
     }
 
-    static func buildRequestURL(baseURL: String, query: UsergridQuery? = nil, paths: [String]? = nil) -> String {
-        var constructedURLString = baseURL
+    static func buildRequestURL(baseUrl: String, query: UsergridQuery? = nil, paths: [String]? = nil) -> String {
+        var constructedURLString = baseUrl
         if let appendingPaths = paths {
             for pathToAppend in appendingPaths {
                 constructedURLString = "\(constructedURLString)\(UsergridRequestManager.FORWARD_SLASH)\(pathToAppend)"
@@ -97,7 +109,7 @@ final class UsergridRequestManager {
 extension UsergridRequestManager {
 
     static func applyAuth(auth:UsergridAuth,request:NSMutableURLRequest) {
-        if auth.tokenIsValid, let accessToken = auth.accessToken {
+        if auth.isValid, let accessToken = auth.accessToken {
             request.setValue("\(UsergridRequestManager.BEARER) \(accessToken)", forHTTPHeaderField: UsergridRequestManager.AUTHORIZATION)
         }
     }
@@ -123,8 +135,9 @@ extension UsergridRequestManager {
                 if let accessToken = jsonDict[UsergridRequestManager.ACCESS_TOKEN] as? String {
                     userAuth.accessToken = accessToken
                 }
-                if let expiresIn = jsonDict[UsergridRequestManager.EXPIRES_IN] as? Int {
-                    userAuth.expiresAt = NSDate(timeIntervalSinceNow: Double(expiresIn))
+                if var expiresIn = jsonDict[UsergridRequestManager.EXPIRES_IN] as? Int {
+                    expiresIn -= 5000
+                    userAuth.expiry = NSDate(timeIntervalSinceNow: Double(expiresIn))
                 }
                 var user: UsergridUser?
                 if let userDict = jsonDict[UsergridUser.USER_ENTITY_TYPE] as? [String:AnyObject] {
@@ -151,8 +164,9 @@ extension UsergridRequestManager {
                 if let accessToken = jsonDict[UsergridRequestManager.ACCESS_TOKEN] as? String {
                     appAuth.accessToken = accessToken
                 }
-                if let expiresIn = jsonDict[UsergridRequestManager.EXPIRES_IN] as? Int {
-                    appAuth.expiresAt = NSDate(timeIntervalSinceNow: Double(expiresIn))
+                if var expiresIn = jsonDict[UsergridRequestManager.EXPIRES_IN] as? Int {
+                    expiresIn -= 5000
+                    appAuth.expiry = NSDate(timeIntervalSinceNow: Double(expiresIn))
                 }
                 completion?(auth: appAuth, error: nil)
             } else {

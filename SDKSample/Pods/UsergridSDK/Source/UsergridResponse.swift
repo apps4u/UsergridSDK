@@ -43,14 +43,8 @@ public class UsergridResponse: NSObject {
     /// The response status code.
     internal(set) public var statusCode: Int?
 
-    /// The error's name.
-    internal(set) public var errorName : String?
-
-    /// The error's description.
-    internal(set) public var errorDescription: String?
-
-    /// The exception.
-    internal(set) public var exception: String?
+    /// The error object containing error information if one occurred.
+    internal(set) public var error: UsergridResponseError?
 
     /// The count of `entities`.
     public var count: Int { return self.entities?.count ?? 0 }
@@ -86,10 +80,9 @@ public class UsergridResponse: NSObject {
 
     - returns: A new instance of `UsergridResponse`.
     */
-    public init(client: UsergridClient?, errorName: String? = nil, errorDescription: String? = nil) {
+    public init(client: UsergridClient?, errorName: String, errorDescription: String) {
         self.client = client
-        self.errorName = errorName
-        self.errorDescription = errorDescription
+        self.error = UsergridResponseError(errorName: errorName, errorDescription: errorDescription, exception: nil)
     }
 
     /**
@@ -105,12 +98,12 @@ public class UsergridResponse: NSObject {
     */
     public init(client:UsergridClient?, data:NSData?, response:NSHTTPURLResponse?, error:NSError?, query:UsergridQuery? = nil) {
         self.client = client
-
         self.statusCode = response?.statusCode
         self.headers = response?.allHeaderFields as? [String:String]
 
-        self.errorName = error?.domain
-        self.errorDescription = error?.localizedDescription
+        if let sessionError = error {
+            self.error = UsergridResponseError(errorName: sessionError.domain, errorDescription: sessionError.localizedDescription)
+        }
 
         if let responseQuery = query {
             self.query = responseQuery.copy() as? UsergridQuery
@@ -121,10 +114,8 @@ public class UsergridResponse: NSObject {
                 let dataAsJSON = try NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions.MutableContainers)
                 if let jsonDict = dataAsJSON as? [String:AnyObject] {
                     self.responseJSON = jsonDict
-                    if let errorName = jsonDict[UsergridResponse.ERROR] as? String {
-                        self.errorName = errorName
-                        self.errorDescription = jsonDict[UsergridResponse.ERROR_DESCRIPTION] as? String
-                        self.exception = jsonDict[UsergridResponse.EXCEPTION] as? String
+                    if let responseError = UsergridResponseError(jsonDictionary: jsonDict) {
+                        self.error = responseError
                     } else {
                         if let entitiesJSONArray = jsonDict[UsergridResponse.ENTITIES] as? [[String:AnyObject]] where entitiesJSONArray.count > 0 {
                             self.entities = UsergridEntity.entities(jsonArray: entitiesJSONArray)
@@ -163,7 +154,4 @@ public class UsergridResponse: NSObject {
 
     static let CURSOR = "cursor"
     static let ENTITIES = "entities"
-    static let ERROR = "error"
-    static let ERROR_DESCRIPTION = "error_description"
-    static let EXCEPTION = "exception"
 }

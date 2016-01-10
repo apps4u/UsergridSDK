@@ -9,6 +9,10 @@
 import Foundation
 import UIKit
 
+#if os(watchOS)
+import WatchKit
+#endif
+
 /**
 `UsergridDevice` is an `UsergridEntity` subclass that encapsulates information about the current device as well as stores information about push tokens and Usergrid notifiers.
 
@@ -49,9 +53,17 @@ public class UsergridDevice : UsergridEntity {
         var deviceEntityDict: [String:AnyObject] = [:]
         deviceEntityDict[UsergridEntityProperties.EntityType.stringValue] = UsergridDevice.DEVICE_ENTITY_TYPE
         deviceEntityDict[UsergridEntityProperties.UUID.stringValue] = UsergridDevice.usergridDeviceUUID()
-        deviceEntityDict[UsergridDeviceProperties.Model.stringValue] = UIDevice.currentDevice().model
-        deviceEntityDict[UsergridDeviceProperties.Platform.stringValue] = UIDevice.currentDevice().systemName
-        deviceEntityDict[UsergridDeviceProperties.OSVersion.stringValue] = UIDevice.currentDevice().systemVersion
+
+        #if os(iOS) || os(tvOS)
+            deviceEntityDict[UsergridDeviceProperties.Model.stringValue] = UIDevice.currentDevice().model
+            deviceEntityDict[UsergridDeviceProperties.Platform.stringValue] = UIDevice.currentDevice().systemName
+            deviceEntityDict[UsergridDeviceProperties.OSVersion.stringValue] = UIDevice.currentDevice().systemVersion
+        #elseif os(watchOS)
+            deviceEntityDict[UsergridDeviceProperties.Model.stringValue] = WKInterfaceDevice.currentDevice().model
+            deviceEntityDict[UsergridDeviceProperties.Platform.stringValue] = WKInterfaceDevice.currentDevice().systemName
+            deviceEntityDict[UsergridDeviceProperties.OSVersion.stringValue] = WKInterfaceDevice.currentDevice().systemVersion
+        #endif
+
         super.init(type: UsergridDevice.DEVICE_ENTITY_TYPE, name: nil, propertyDict: deviceEntityDict)
     }
 

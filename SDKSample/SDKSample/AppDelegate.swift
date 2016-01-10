@@ -29,7 +29,7 @@ let NOTIFIER_ID = "usergridsample"
 
         // Initialize the Usergrid shared instance.
 
-        Usergrid.initSharedInstance(configuration: UsergridClientConfig(orgID: ORG_ID, appID: APP_ID))
+        Usergrid.initSharedInstance(configuration: UsergridClientConfig(orgId: ORG_ID, appId: APP_ID))
 
         // If there is a current user already logged in from the keychain we will skip the login page and go right to the chat screen
 

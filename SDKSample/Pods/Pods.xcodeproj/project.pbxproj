@@ -7,52 +7,53 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		03F131FB30AFD3078DE8558BBCB60952 /* UIResponder+SLKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C824620F7E7CBB6B8DC1D4B1F4748F7B /* UIResponder+SLKAdditions.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		06624F09442390CC6A711AC30474C2F3 /* UsergridKeychainHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDF33540508F9C2334C977869C65C9B /* UsergridKeychainHelpers.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		03F131FB30AFD3078DE8558BBCB60952 /* UIResponder+SLKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 339065047E51EAA1DABDF9212118152D /* UIResponder+SLKAdditions.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		0EAFD02F9D08A8C307FDEC7E59D380AB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */; };
-		1DC0B1684A5FA841731A07A5828AA9C9 /* UIScrollView+SLKAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = AB51FB2134AD2F660DE2C925A693F1F7 /* UIScrollView+SLKAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3A8CBB67D357038A5221B762EE27AA69 /* UsergridResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6200EBDFC882D5B7681ADE1804C606 /* UsergridResponse.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		401079752B004BEF8C96FB773FB8DEF1 /* UsergridEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51A5DAFECD941378BE1A9886C90EB08 /* UsergridEntity.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		45EFED8D2AB9B864322CD1E4043FFEAD /* SLKTextView.h in Headers */ = {isa = PBXBuildFile; fileRef = 6FAF79DD16C0324D5ACE05B3AA36A469 /* SLKTextView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		469D02BE541176959327A573194166D1 /* UsergridClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA10B74124F0D5B932A9BE31F01A97F /* UsergridClient.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		47FDC2CCEEC4E4469908E4DB09AFFEF0 /* SLKTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8782BAC6C5FD2DECD235492F837EFF9D /* SLKTextViewController.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		48B4141A9BF57F43789CCED7326ADFAF /* UsergridRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9563CE970B0CC42D9668D3C459DC9E /* UsergridRequestManager.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		4EC1FAB4A8EA5622EE574931AD318870 /* SLKTextInputbar.m in Sources */ = {isa = PBXBuildFile; fileRef = F8E84D4EBCAE1169AC288150956AB63D /* SLKTextInputbar.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		52C06BB262E7A8340DF6145A901EAB84 /* SLKTypingIndicatorProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 549BD96CC0E6D925DE3823CD0F3073E3 /* SLKTypingIndicatorProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		538E6CFAC12535DCFB86206F0AA664E0 /* UsergridClientConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86FCF799EB404AFD99A89A561233A56 /* UsergridClientConfig.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		61D57F7319113716442DB7025B4F4686 /* SLKTextViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 5C2DFF9E643EAA12438020BBF85F3651 /* SLKTextViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		65BCA932CE45079182374DDA37545ED2 /* SLKTypingIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 13677477D07A07DBAF20D9538AF23F70 /* SLKTypingIndicatorView.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		66DAD9FDE45BF5CB502990F0806EFA35 /* SlackTextViewController-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 418F0945125214A9EE5EBF33CC1ECED3 /* SlackTextViewController-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6704CFD2311D809DD546E8C0C927E53C /* UIResponder+SLKAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B48394EB6C2F496C5E32CCE9BDD738 /* UIResponder+SLKAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		73A7B70680DB5220ABF880641B1E8E90 /* UsergridAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD98C6D5E5F76DD0D5F730A0791ADD27 /* UsergridAuth.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		759E6CA13513EBB07199D5D4511A04D4 /* UIScrollView+SLKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A690ADC63DC5CD0F847026DFC2230B84 /* UIScrollView+SLKAdditions.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		7BC6D3704699DF41FE7B1318C1A041E8 /* UsergridUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08241B39E52CDF4FDED6BE0FF3631F0 /* UsergridUser.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		85876D5488882448C76A24311DC33A6D /* UIView+SLKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = FE4C2B63F958C3471D50B13D744B82E9 /* UIView+SLKAdditions.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		8C6BD59A047A80CF71A7948C264D5E6A /* SLKTypingIndicatorView.h in Headers */ = {isa = PBXBuildFile; fileRef = 47BD27D0BE861C1E7E05B82508D1E066 /* SLKTypingIndicatorView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8D13958C0B086479DE461434B2D7D1A4 /* SLKTextView+SLKAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AE1D7A5C54DCD6C81F7BBC13BBC4BD9 /* SLKTextView+SLKAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1DC0B1684A5FA841731A07A5828AA9C9 /* UIScrollView+SLKAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 017A65AABA880E732F2507C2966AD1BB /* UIScrollView+SLKAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		20404E329D254D4F5454303C56565A8F /* UsergridClientConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886C3066A9974DAF4EA7D5F53498F0C1 /* UsergridClientConfig.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		2061EBD7F06B36C8A53E5DA4E67EFD72 /* UsergridFileMetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B7AFB02A88F890781E514702A35C5A /* UsergridFileMetaData.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		271F82D0D9BB42D10B63A7CF9BBDB4AF /* UsergridDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0C569E5A08BA798C3089E3D8CF8761 /* UsergridDevice.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		3DC1249DB4F9E4CBC029829F56CB4F09 /* UsergridEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC1AC5967870073DB4EB4E003D2BFB4 /* UsergridEntity.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		45EFED8D2AB9B864322CD1E4043FFEAD /* SLKTextView.h in Headers */ = {isa = PBXBuildFile; fileRef = AB03B7F95F28E60801D1046849D57EB4 /* SLKTextView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		47FDC2CCEEC4E4469908E4DB09AFFEF0 /* SLKTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44374F5691BDD88C762F380FDBE8E37B /* SLKTextViewController.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		4EC1FAB4A8EA5622EE574931AD318870 /* SLKTextInputbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D26C32BCD6B01F0AA975854DA164F01 /* SLKTextInputbar.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		52C06BB262E7A8340DF6145A901EAB84 /* SLKTypingIndicatorProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 8E0948B4A1E6A58FBB36DBCC29FE4DEA /* SLKTypingIndicatorProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5662A6D2422A5B3C2CC70FEF518A01E6 /* Usergrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A231E64974047D7156E57BAE6CEC85 /* Usergrid.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		61D57F7319113716442DB7025B4F4686 /* SLKTextViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = B8AD4DFA988B00457A6ACC6BE1F8C960 /* SLKTextViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		65BCA932CE45079182374DDA37545ED2 /* SLKTypingIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = C17712428A7DA1F70A3C4B23077EBC9B /* SLKTypingIndicatorView.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		66DAD9FDE45BF5CB502990F0806EFA35 /* SlackTextViewController-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = CBFEAF36EF8A6B28018D7BEBB9B04A54 /* SlackTextViewController-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6704CFD2311D809DD546E8C0C927E53C /* UIResponder+SLKAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D118B5C826D0BA6B23178AB2980FCB6 /* UIResponder+SLKAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6B2E10F0C3F12A295689FFD957286AC5 /* UsergridExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0BF86340BE566C7FDF35453ECAB35D7 /* UsergridExtensions.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		759E6CA13513EBB07199D5D4511A04D4 /* UIScrollView+SLKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = BF839F7E7489C34E1062CF171AB1EED8 /* UIScrollView+SLKAdditions.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		7A1BFB252BC8675EE389264EA8A7393E /* UsergridKeychainHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB39EDAA7EDC094C88C000949565A8BE /* UsergridKeychainHelpers.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		85876D5488882448C76A24311DC33A6D /* UIView+SLKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D2592AE37E710616AC1E81F9EA247414 /* UIView+SLKAdditions.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		8C6BD59A047A80CF71A7948C264D5E6A /* SLKTypingIndicatorView.h in Headers */ = {isa = PBXBuildFile; fileRef = 156FCA3F096548EB1B5426E7120ADEB9 /* SLKTypingIndicatorView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8D13958C0B086479DE461434B2D7D1A4 /* SLKTextView+SLKAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 485CD1736723D1F89827B2BA9D31AD73 /* SLKTextView+SLKAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9162C9B78D511C4439169353D3C06BB5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */; };
-		924F85E35E91E052E0E291872FB43F35 /* UsergridSDK-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D60D12C6B37567D4374429CD5D25885D /* UsergridSDK-dummy.m */; };
-		945D084F8FB588A9E063508DF6752AE4 /* UsergridSDK-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F726E02453FB614A1CD3D5FBDA6E47B8 /* UsergridSDK-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9C6BF62382E3DB6E39510C75A47BE15D /* UsergridAssetRequestWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA23306D42CF5F6675F394DAC6FD9FE /* UsergridAssetRequestWrapper.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		9DA770092EC682CBFAB59F73DF0BC239 /* UsergridAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2CDF1FF1095F1944BEE3D5977FCA6C /* UsergridAsset.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		9ED4350F87C0B8F294737369B12477A9 /* UsergridQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E360C6942CB15DE0B29FB70CBF354A /* UsergridQuery.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		A4F924DB78F73B105FFE465397DBF254 /* UsergridEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA8720C212292166D53B91F679A1451 /* UsergridEnums.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		92162B975DC75F62EE5F37424A9A8D9C /* UsergridAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7091A28A3F636DF8EC1405638780DF52 /* UsergridAuth.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		945D084F8FB588A9E063508DF6752AE4 /* UsergridSDK-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 0430560862EC38EC9E84150F303DC860 /* UsergridSDK-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9AA34F3E2BD714D5C00F04F7CAFA8460 /* UsergridUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAD06943C57457FC65711F019B116FF /* UsergridUser.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		AA72EB4A5E489A3B6E1ACC77BD032096 /* Pods-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 894E5DA93A9F359521A89826BE6DA777 /* Pods-dummy.m */; };
-		C2D54C494486633548E8C5268BD15BAD /* UsergridDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB476C3C1C4BEE0579E13ED030A41EE9 /* UsergridDevice.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		C8E7E7E7D1E6283F55636DBC14DB674E /* SLKInputAccessoryView.h in Headers */ = {isa = PBXBuildFile; fileRef = 40A71E92FE085533D49A5A8992372644 /* SLKInputAccessoryView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CADC2211A2B21999C855B2164F35C61B /* SLKTextView+SLKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 99BA74FD9AE96FEAEA4AD4D9EC8B0E0B /* SLKTextView+SLKAdditions.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		CFCD87319EAD91FE147CE07D25C4314B /* UIView+SLKAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = FF0ED57CB9D2CB8EC9B0C6AE5BDC3E73 /* UIView+SLKAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D42595CB965DEDD5DAEB1253225864B6 /* SLKTextInputbar.h in Headers */ = {isa = PBXBuildFile; fileRef = C5441C7B659B0709A060482550D42F5E /* SLKTextInputbar.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D576F408102FF1F93A116E567B0B3EE3 /* SLKTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = A666E847BC0F0D71B572C9A429A1E5AF /* SLKTextView.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		DDD4709EEBABAB458065A3C81AFC1E16 /* UsergridSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194EBCE66AE75B161666C3B8F8E18E76 /* UsergridSessionDelegate.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		E061DF423D43CDB1FF73AB240A63E567 /* SlackTextViewController-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C978BBDDDD594533D60208281EA414BD /* SlackTextViewController-dummy.m */; };
-		E4A8C2692695D8C93026AACA5FF33C82 /* UsergridFileMetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D6E3D301A6ED3BF55162D7DCEDA2F4 /* UsergridFileMetaData.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		E89FC593271A10418ABF0B3C7C49DF8F /* UsergridExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55B6731AABAD4BD12DCE7E0A435A72A /* UsergridExtensions.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		ABFB5FA13B3B7AEF6B3DFEDBE59E61A8 /* UsergridResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1EF0689EDF48595883776F983EDBA53 /* UsergridResponse.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		ACE0D89F8EDCB432FE73C5C6D5B4EEAB /* UsergridAssetRequestWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3BD47AA49DEDC8CDBE723B27605C617 /* UsergridAssetRequestWrapper.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		B0A83483198131C17CFC3A5576990A85 /* UsergridQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0F790A6DEB593270E17BD97E8B3ED5 /* UsergridQuery.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		C28FEE6DC950F1E92B524823681335C9 /* UsergridEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DF320E3ECF757156A1E66D022CA716 /* UsergridEnums.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		C8E7E7E7D1E6283F55636DBC14DB674E /* SLKInputAccessoryView.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F872E137F7B3EF0B04A5E9D8026AEFC /* SLKInputAccessoryView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C9FD0F577FFC8949F0D66A6D750EF1B6 /* UsergridAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF5F7F3CC83BD421EF052D10440B4C7 /* UsergridAsset.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		CADC2211A2B21999C855B2164F35C61B /* SLKTextView+SLKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A121A148980647A232BAE3CE20DF556 /* SLKTextView+SLKAdditions.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		CFCD87319EAD91FE147CE07D25C4314B /* UIView+SLKAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = DB98276F28853B3C79A48A839748B130 /* UIView+SLKAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D0810AE8E3026CF88BB4002D9346FC76 /* UsergridSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61F0732254C00B7B5FF08E6E91E87DC /* UsergridSessionDelegate.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		D42595CB965DEDD5DAEB1253225864B6 /* SLKTextInputbar.h in Headers */ = {isa = PBXBuildFile; fileRef = AD0F547FA7F1EC5C5E3B544460365C06 /* SLKTextInputbar.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D576F408102FF1F93A116E567B0B3EE3 /* SLKTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F89D9AFE45C829EA668051D2357BEB9 /* SLKTextView.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		DC86BE1A3A0F91BE59DA24311F370384 /* UsergridClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CDC4855B9081C5C225181C9A0F9DD9 /* UsergridClient.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		E061DF423D43CDB1FF73AB240A63E567 /* SlackTextViewController-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D8EC5DD46D2D5A6BB1714717D366C8 /* SlackTextViewController-dummy.m */; };
 		EA1C475B7615DDD5BD3675C694602EBC /* Pods-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2BCC458FDD5F692BBB2BFC64BB5701FC /* Pods-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EE4BAA9E9A093A10A85DC0F94909AA5D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */; };
-		F92C4570FB50B047A069ADE8F3707ED7 /* SLKInputAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = BFFE614A409D2FC875723F9D73004DE2 /* SLKInputAccessoryView.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		FE1BF9904C13BAA87BEF4E51242FB2F1 /* Usergrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E4BDF254B617633749A769F98C7B18 /* Usergrid.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		FFDBF1F870C20F80CE3D9A52E2301000 /* SLKUIConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 617246005BA2E72DD0E2BD65B2DD17E5 /* SLKUIConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F1318298EE30FF83D320823ED338E8B0 /* UsergridRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D94F365C264F36FFEAA5C7DB0930EBD /* UsergridRequestManager.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		F87171EA54DFFB0A49B402875A436A0E /* UsergridSDK-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = AEA7CF3D34B1F33111245A8E6850F95F /* UsergridSDK-dummy.m */; };
+		F92C4570FB50B047A069ADE8F3707ED7 /* SLKInputAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 51082E24B0D2E127412FBBDE2B544C06 /* SLKInputAccessoryView.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		FD00D75E4F42402788B0201690F2CE05 /* UsergridResponseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CE5470CB0334D02C6E8EE17841A133 /* UsergridResponseError.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		FFDBF1F870C20F80CE3D9A52E2301000 /* SLKUIConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 91A7FFF657234505AD202D6B6331AEAF /* SLKUIConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,70 +74,71 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		01E360C6942CB15DE0B29FB70CBF354A /* UsergridQuery.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UsergridQuery.swift; path = Source/UsergridQuery.swift; sourceTree = "<group>"; };
-		0AE1D7A5C54DCD6C81F7BBC13BBC4BD9 /* SLKTextView+SLKAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "SLKTextView+SLKAdditions.h"; path = "Source/SLKTextView+SLKAdditions.h"; sourceTree = "<group>"; };
-		0C2CDF1FF1095F1944BEE3D5977FCA6C /* UsergridAsset.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UsergridAsset.swift; path = Source/UsergridAsset.swift; sourceTree = "<group>"; };
-		13677477D07A07DBAF20D9538AF23F70 /* SLKTypingIndicatorView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SLKTypingIndicatorView.m; path = Source/SLKTypingIndicatorView.m; sourceTree = "<group>"; };
-		194EBCE66AE75B161666C3B8F8E18E76 /* UsergridSessionDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UsergridSessionDelegate.swift; path = Source/Internal/UsergridSessionDelegate.swift; sourceTree = "<group>"; };
+		017A65AABA880E732F2507C2966AD1BB /* UIScrollView+SLKAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIScrollView+SLKAdditions.h"; path = "Source/UIScrollView+SLKAdditions.h"; sourceTree = "<group>"; };
+		0430560862EC38EC9E84150F303DC860 /* UsergridSDK-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UsergridSDK-umbrella.h"; sourceTree = "<group>"; };
+		0AE4C41103E6EACA3DCDDFD55CF1CE7C /* SlackTextViewController.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SlackTextViewController.xcconfig; sourceTree = "<group>"; };
+		0F0C569E5A08BA798C3089E3D8CF8761 /* UsergridDevice.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UsergridDevice.swift; path = Source/UsergridDevice.swift; sourceTree = "<group>"; };
+		156FCA3F096548EB1B5426E7120ADEB9 /* SLKTypingIndicatorView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SLKTypingIndicatorView.h; path = Source/SLKTypingIndicatorView.h; sourceTree = "<group>"; };
+		1A121A148980647A232BAE3CE20DF556 /* SLKTextView+SLKAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "SLKTextView+SLKAdditions.m"; path = "Source/SLKTextView+SLKAdditions.m"; sourceTree = "<group>"; };
+		1D26C32BCD6B01F0AA975854DA164F01 /* SLKTextInputbar.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SLKTextInputbar.m; path = Source/SLKTextInputbar.m; sourceTree = "<group>"; };
+		23D2D15F19061206A1588D892D5EE41D /* SlackTextViewController.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = SlackTextViewController.modulemap; sourceTree = "<group>"; };
+		2A4EE40568AB17EBBB50567FDEBEBD02 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2BCC458FDD5F692BBB2BFC64BB5701FC /* Pods-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-umbrella.h"; sourceTree = "<group>"; };
-		3DA23306D42CF5F6675F394DAC6FD9FE /* UsergridAssetRequestWrapper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UsergridAssetRequestWrapper.swift; path = Source/Internal/UsergridAssetRequestWrapper.swift; sourceTree = "<group>"; };
+		2BF5F7F3CC83BD421EF052D10440B4C7 /* UsergridAsset.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UsergridAsset.swift; path = Source/UsergridAsset.swift; sourceTree = "<group>"; };
+		2D118B5C826D0BA6B23178AB2980FCB6 /* UIResponder+SLKAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIResponder+SLKAdditions.h"; path = "Source/UIResponder+SLKAdditions.h"; sourceTree = "<group>"; };
+		339065047E51EAA1DABDF9212118152D /* UIResponder+SLKAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIResponder+SLKAdditions.m"; path = "Source/UIResponder+SLKAdditions.m"; sourceTree = "<group>"; };
+		38CDC4855B9081C5C225181C9A0F9DD9 /* UsergridClient.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UsergridClient.swift; path = Source/UsergridClient.swift; sourceTree = "<group>"; };
 		3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		40A71E92FE085533D49A5A8992372644 /* SLKInputAccessoryView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SLKInputAccessoryView.h; path = Source/SLKInputAccessoryView.h; sourceTree = "<group>"; };
-		418F0945125214A9EE5EBF33CC1ECED3 /* SlackTextViewController-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SlackTextViewController-umbrella.h"; sourceTree = "<group>"; };
-		46D6E3D301A6ED3BF55162D7DCEDA2F4 /* UsergridFileMetaData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UsergridFileMetaData.swift; path = Source/UsergridFileMetaData.swift; sourceTree = "<group>"; };
-		47BD27D0BE861C1E7E05B82508D1E066 /* SLKTypingIndicatorView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SLKTypingIndicatorView.h; path = Source/SLKTypingIndicatorView.h; sourceTree = "<group>"; };
-		4FCEC3AAA6668FFD7BA8238DB9661C10 /* SlackTextViewController-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SlackTextViewController-prefix.pch"; sourceTree = "<group>"; };
-		549BD96CC0E6D925DE3823CD0F3073E3 /* SLKTypingIndicatorProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SLKTypingIndicatorProtocol.h; path = Source/SLKTypingIndicatorProtocol.h; sourceTree = "<group>"; };
+		44374F5691BDD88C762F380FDBE8E37B /* SLKTextViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SLKTextViewController.m; path = Source/SLKTextViewController.m; sourceTree = "<group>"; };
+		485CD1736723D1F89827B2BA9D31AD73 /* SLKTextView+SLKAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "SLKTextView+SLKAdditions.h"; path = "Source/SLKTextView+SLKAdditions.h"; sourceTree = "<group>"; };
+		4B7021E0B8123EE29D747E17A16A53F5 /* SlackTextViewController-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SlackTextViewController-prefix.pch"; sourceTree = "<group>"; };
+		51082E24B0D2E127412FBBDE2B544C06 /* SLKInputAccessoryView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SLKInputAccessoryView.m; path = Source/SLKInputAccessoryView.m; sourceTree = "<group>"; };
 		5A0A8C5DF701FB3DACF229C7E3879347 /* SlackTextViewController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SlackTextViewController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		5C2DFF9E643EAA12438020BBF85F3651 /* SLKTextViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SLKTextViewController.h; path = Source/SLKTextViewController.h; sourceTree = "<group>"; };
-		617246005BA2E72DD0E2BD65B2DD17E5 /* SLKUIConstants.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SLKUIConstants.h; path = Source/SLKUIConstants.h; sourceTree = "<group>"; };
-		67E4BDF254B617633749A769F98C7B18 /* Usergrid.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Usergrid.swift; path = Source/Usergrid.swift; sourceTree = "<group>"; };
-		6B94B55D0B1AFAD75127FD460BECF5E9 /* UsergridSDK-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UsergridSDK-prefix.pch"; sourceTree = "<group>"; };
-		6D6E739B89F97249B76EBD7E2B8B4401 /* SlackTextViewController.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SlackTextViewController.xcconfig; sourceTree = "<group>"; };
-		6FAF79DD16C0324D5ACE05B3AA36A469 /* SLKTextView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SLKTextView.h; path = Source/SLKTextView.h; sourceTree = "<group>"; };
-		755E8954F94D108364FBFC4573EA28C6 /* SlackTextViewController.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = SlackTextViewController.modulemap; sourceTree = "<group>"; };
+		5C12D0E93C87652EEE71976BEA6D201D /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		660DD18AF4BD4240B673402B84193F32 /* UsergridSDK.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = UsergridSDK.modulemap; sourceTree = "<group>"; };
+		6852787FF4ABDED6BFC0922F14430DB2 /* UsergridSDK.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = UsergridSDK.xcconfig; sourceTree = "<group>"; };
+		6F89D9AFE45C829EA668051D2357BEB9 /* SLKTextView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SLKTextView.m; path = Source/SLKTextView.m; sourceTree = "<group>"; };
+		7091A28A3F636DF8EC1405638780DF52 /* UsergridAuth.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UsergridAuth.swift; path = Source/UsergridAuth.swift; sourceTree = "<group>"; };
 		79A9DEDC89FE8336BF5FEDAAF75BF7FC /* Pods.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Pods.modulemap; sourceTree = "<group>"; };
-		7BDF33540508F9C2334C977869C65C9B /* UsergridKeychainHelpers.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UsergridKeychainHelpers.swift; path = Source/Internal/UsergridKeychainHelpers.swift; sourceTree = "<group>"; };
-		8782BAC6C5FD2DECD235492F837EFF9D /* SLKTextViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SLKTextViewController.m; path = Source/SLKTextViewController.m; sourceTree = "<group>"; };
+		82A231E64974047D7156E57BAE6CEC85 /* Usergrid.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Usergrid.swift; path = Source/Usergrid.swift; sourceTree = "<group>"; };
 		87B213035BAC5F75386F62D3C75D2342 /* Pods-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-acknowledgements.plist"; sourceTree = "<group>"; };
+		886C3066A9974DAF4EA7D5F53498F0C1 /* UsergridClientConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UsergridClientConfig.swift; path = Source/UsergridClientConfig.swift; sourceTree = "<group>"; };
 		894E5DA93A9F359521A89826BE6DA777 /* Pods-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-dummy.m"; sourceTree = "<group>"; };
+		8E0948B4A1E6A58FBB36DBCC29FE4DEA /* SLKTypingIndicatorProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SLKTypingIndicatorProtocol.h; path = Source/SLKTypingIndicatorProtocol.h; sourceTree = "<group>"; };
+		91A7FFF657234505AD202D6B6331AEAF /* SLKUIConstants.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SLKUIConstants.h; path = Source/SLKUIConstants.h; sourceTree = "<group>"; };
 		977577C045EDA9D9D1F46E2598D19FC7 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.debug.xcconfig; sourceTree = "<group>"; };
-		99BA74FD9AE96FEAEA4AD4D9EC8B0E0B /* SLKTextView+SLKAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "SLKTextView+SLKAdditions.m"; path = "Source/SLKTextView+SLKAdditions.m"; sourceTree = "<group>"; };
+		9D94F365C264F36FFEAA5C7DB0930EBD /* UsergridRequestManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UsergridRequestManager.swift; path = Source/Internal/UsergridRequestManager.swift; sourceTree = "<group>"; };
+		9F872E137F7B3EF0B04A5E9D8026AEFC /* SLKInputAccessoryView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SLKInputAccessoryView.h; path = Source/SLKInputAccessoryView.h; sourceTree = "<group>"; };
 		9FF6AA499B37B57AAF939E67145763E2 /* UsergridSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UsergridSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1D8EC5DD46D2D5A6BB1714717D366C8 /* SlackTextViewController-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SlackTextViewController-dummy.m"; sourceTree = "<group>"; };
 		A49F1A8920C76C83DAC8287B1A70CD4F /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A666E847BC0F0D71B572C9A429A1E5AF /* SLKTextView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SLKTextView.m; path = Source/SLKTextView.m; sourceTree = "<group>"; };
-		A690ADC63DC5CD0F847026DFC2230B84 /* UIScrollView+SLKAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIScrollView+SLKAdditions.m"; path = "Source/UIScrollView+SLKAdditions.m"; sourceTree = "<group>"; };
-		AB476C3C1C4BEE0579E13ED030A41EE9 /* UsergridDevice.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UsergridDevice.swift; path = Source/UsergridDevice.swift; sourceTree = "<group>"; };
-		AB51FB2134AD2F660DE2C925A693F1F7 /* UIScrollView+SLKAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIScrollView+SLKAdditions.h"; path = "Source/UIScrollView+SLKAdditions.h"; sourceTree = "<group>"; };
-		B109DB7A4A0EB75366786A63011EFAB3 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B86FCF799EB404AFD99A89A561233A56 /* UsergridClientConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UsergridClientConfig.swift; path = Source/UsergridClientConfig.swift; sourceTree = "<group>"; };
+		AA0F790A6DEB593270E17BD97E8B3ED5 /* UsergridQuery.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UsergridQuery.swift; path = Source/UsergridQuery.swift; sourceTree = "<group>"; };
+		AB03B7F95F28E60801D1046849D57EB4 /* SLKTextView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SLKTextView.h; path = Source/SLKTextView.h; sourceTree = "<group>"; };
+		AD0F547FA7F1EC5C5E3B544460365C06 /* SLKTextInputbar.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SLKTextInputbar.h; path = Source/SLKTextInputbar.h; sourceTree = "<group>"; };
+		AEA7CF3D34B1F33111245A8E6850F95F /* UsergridSDK-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UsergridSDK-dummy.m"; sourceTree = "<group>"; };
+		AF703CC20252F960EF25B457E7F8EC83 /* UsergridSDK-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UsergridSDK-prefix.pch"; sourceTree = "<group>"; };
+		B3BD47AA49DEDC8CDBE723B27605C617 /* UsergridAssetRequestWrapper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UsergridAssetRequestWrapper.swift; path = Source/Internal/UsergridAssetRequestWrapper.swift; sourceTree = "<group>"; };
+		B8AD4DFA988B00457A6ACC6BE1F8C960 /* SLKTextViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SLKTextViewController.h; path = Source/SLKTextViewController.h; sourceTree = "<group>"; };
+		B8CE5470CB0334D02C6E8EE17841A133 /* UsergridResponseError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UsergridResponseError.swift; path = Source/UsergridResponseError.swift; sourceTree = "<group>"; };
 		BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		BCA8720C212292166D53B91F679A1451 /* UsergridEnums.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UsergridEnums.swift; path = Source/UsergridEnums.swift; sourceTree = "<group>"; };
-		BF6200EBDFC882D5B7681ADE1804C606 /* UsergridResponse.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UsergridResponse.swift; path = Source/UsergridResponse.swift; sourceTree = "<group>"; };
-		BFFE614A409D2FC875723F9D73004DE2 /* SLKInputAccessoryView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SLKInputAccessoryView.m; path = Source/SLKInputAccessoryView.m; sourceTree = "<group>"; };
-		C3B48394EB6C2F496C5E32CCE9BDD738 /* UIResponder+SLKAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIResponder+SLKAdditions.h"; path = "Source/UIResponder+SLKAdditions.h"; sourceTree = "<group>"; };
-		C5441C7B659B0709A060482550D42F5E /* SLKTextInputbar.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SLKTextInputbar.h; path = Source/SLKTextInputbar.h; sourceTree = "<group>"; };
-		C824620F7E7CBB6B8DC1D4B1F4748F7B /* UIResponder+SLKAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIResponder+SLKAdditions.m"; path = "Source/UIResponder+SLKAdditions.m"; sourceTree = "<group>"; };
-		C978BBDDDD594533D60208281EA414BD /* SlackTextViewController-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SlackTextViewController-dummy.m"; sourceTree = "<group>"; };
+		BF839F7E7489C34E1062CF171AB1EED8 /* UIScrollView+SLKAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIScrollView+SLKAdditions.m"; path = "Source/UIScrollView+SLKAdditions.m"; sourceTree = "<group>"; };
+		C17712428A7DA1F70A3C4B23077EBC9B /* SLKTypingIndicatorView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SLKTypingIndicatorView.m; path = Source/SLKTypingIndicatorView.m; sourceTree = "<group>"; };
+		C61F0732254C00B7B5FF08E6E91E87DC /* UsergridSessionDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UsergridSessionDelegate.swift; path = Source/Internal/UsergridSessionDelegate.swift; sourceTree = "<group>"; };
 		CBC0F7C552B739C909B650A0F42F7F38 /* Pods-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-resources.sh"; sourceTree = "<group>"; };
-		CE9563CE970B0CC42D9668D3C459DC9E /* UsergridRequestManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UsergridRequestManager.swift; path = Source/Internal/UsergridRequestManager.swift; sourceTree = "<group>"; };
+		CBFEAF36EF8A6B28018D7BEBB9B04A54 /* SlackTextViewController-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SlackTextViewController-umbrella.h"; sourceTree = "<group>"; };
 		D0405803033A2A777B8E4DFA0C1800ED /* Pods-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-acknowledgements.markdown"; sourceTree = "<group>"; };
-		D1B5CBA5B197BB519A0370BD4B8C9D9C /* UsergridSDK.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = UsergridSDK.modulemap; sourceTree = "<group>"; };
-		D5A0AD1CBB423F6CAFD97A1169F34023 /* UsergridSDK.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = UsergridSDK.xcconfig; sourceTree = "<group>"; };
-		D60D12C6B37567D4374429CD5D25885D /* UsergridSDK-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UsergridSDK-dummy.m"; sourceTree = "<group>"; };
+		D2592AE37E710616AC1E81F9EA247414 /* UIView+SLKAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIView+SLKAdditions.m"; path = "Source/UIView+SLKAdditions.m"; sourceTree = "<group>"; };
 		DA312349A49333542E6F4B36B329960E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.release.xcconfig; sourceTree = "<group>"; };
-		DD92DD8932DF41A76A4D9BD758668684 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DB98276F28853B3C79A48A839748B130 /* UIView+SLKAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+SLKAdditions.h"; path = "Source/UIView+SLKAdditions.h"; sourceTree = "<group>"; };
+		E0BF86340BE566C7FDF35453ECAB35D7 /* UsergridExtensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UsergridExtensions.swift; path = Source/Internal/UsergridExtensions.swift; sourceTree = "<group>"; };
+		E4DF320E3ECF757156A1E66D022CA716 /* UsergridEnums.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UsergridEnums.swift; path = Source/UsergridEnums.swift; sourceTree = "<group>"; };
 		E7F21354943D9F42A70697D5A5EF72E9 /* Pods-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-frameworks.sh"; sourceTree = "<group>"; };
 		E8446514FBAD26C0E18F24A5715AEF67 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F08241B39E52CDF4FDED6BE0FF3631F0 /* UsergridUser.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UsergridUser.swift; path = Source/UsergridUser.swift; sourceTree = "<group>"; };
-		F51A5DAFECD941378BE1A9886C90EB08 /* UsergridEntity.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UsergridEntity.swift; path = Source/UsergridEntity.swift; sourceTree = "<group>"; };
-		F55B6731AABAD4BD12DCE7E0A435A72A /* UsergridExtensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UsergridExtensions.swift; path = Source/Internal/UsergridExtensions.swift; sourceTree = "<group>"; };
-		F726E02453FB614A1CD3D5FBDA6E47B8 /* UsergridSDK-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UsergridSDK-umbrella.h"; sourceTree = "<group>"; };
-		F8E84D4EBCAE1169AC288150956AB63D /* SLKTextInputbar.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SLKTextInputbar.m; path = Source/SLKTextInputbar.m; sourceTree = "<group>"; };
-		FBA10B74124F0D5B932A9BE31F01A97F /* UsergridClient.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UsergridClient.swift; path = Source/UsergridClient.swift; sourceTree = "<group>"; };
-		FD98C6D5E5F76DD0D5F730A0791ADD27 /* UsergridAuth.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UsergridAuth.swift; path = Source/UsergridAuth.swift; sourceTree = "<group>"; };
-		FE4C2B63F958C3471D50B13D744B82E9 /* UIView+SLKAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIView+SLKAdditions.m"; path = "Source/UIView+SLKAdditions.m"; sourceTree = "<group>"; };
-		FF0ED57CB9D2CB8EC9B0C6AE5BDC3E73 /* UIView+SLKAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+SLKAdditions.h"; path = "Source/UIView+SLKAdditions.h"; sourceTree = "<group>"; };
+		EAC1AC5967870073DB4EB4E003D2BFB4 /* UsergridEntity.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UsergridEntity.swift; path = Source/UsergridEntity.swift; sourceTree = "<group>"; };
+		EB39EDAA7EDC094C88C000949565A8BE /* UsergridKeychainHelpers.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UsergridKeychainHelpers.swift; path = Source/Internal/UsergridKeychainHelpers.swift; sourceTree = "<group>"; };
+		F0B7AFB02A88F890781E514702A35C5A /* UsergridFileMetaData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UsergridFileMetaData.swift; path = Source/UsergridFileMetaData.swift; sourceTree = "<group>"; };
+		F1EF0689EDF48595883776F983EDBA53 /* UsergridResponse.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UsergridResponse.swift; path = Source/UsergridResponse.swift; sourceTree = "<group>"; };
+		FFAD06943C57457FC65711F019B116FF /* UsergridUser.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UsergridUser.swift; path = Source/UsergridUser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,32 +179,81 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		2657A0A5AA577897F385C56FA5EC231E /* SlackTextViewController */ = {
+		087685E618DFA088CD9A7966433FBA15 /* SlackTextViewController */ = {
 			isa = PBXGroup;
 			children = (
-				40A71E92FE085533D49A5A8992372644 /* SLKInputAccessoryView.h */,
-				BFFE614A409D2FC875723F9D73004DE2 /* SLKInputAccessoryView.m */,
-				C5441C7B659B0709A060482550D42F5E /* SLKTextInputbar.h */,
-				F8E84D4EBCAE1169AC288150956AB63D /* SLKTextInputbar.m */,
-				6FAF79DD16C0324D5ACE05B3AA36A469 /* SLKTextView.h */,
-				A666E847BC0F0D71B572C9A429A1E5AF /* SLKTextView.m */,
-				0AE1D7A5C54DCD6C81F7BBC13BBC4BD9 /* SLKTextView+SLKAdditions.h */,
-				99BA74FD9AE96FEAEA4AD4D9EC8B0E0B /* SLKTextView+SLKAdditions.m */,
-				5C2DFF9E643EAA12438020BBF85F3651 /* SLKTextViewController.h */,
-				8782BAC6C5FD2DECD235492F837EFF9D /* SLKTextViewController.m */,
-				549BD96CC0E6D925DE3823CD0F3073E3 /* SLKTypingIndicatorProtocol.h */,
-				47BD27D0BE861C1E7E05B82508D1E066 /* SLKTypingIndicatorView.h */,
-				13677477D07A07DBAF20D9538AF23F70 /* SLKTypingIndicatorView.m */,
-				617246005BA2E72DD0E2BD65B2DD17E5 /* SLKUIConstants.h */,
-				C3B48394EB6C2F496C5E32CCE9BDD738 /* UIResponder+SLKAdditions.h */,
-				C824620F7E7CBB6B8DC1D4B1F4748F7B /* UIResponder+SLKAdditions.m */,
-				AB51FB2134AD2F660DE2C925A693F1F7 /* UIScrollView+SLKAdditions.h */,
-				A690ADC63DC5CD0F847026DFC2230B84 /* UIScrollView+SLKAdditions.m */,
-				FF0ED57CB9D2CB8EC9B0C6AE5BDC3E73 /* UIView+SLKAdditions.h */,
-				FE4C2B63F958C3471D50B13D744B82E9 /* UIView+SLKAdditions.m */,
-				C943FE03368C0EAF48122DDFCFEC71EC /* Support Files */,
+				9F872E137F7B3EF0B04A5E9D8026AEFC /* SLKInputAccessoryView.h */,
+				51082E24B0D2E127412FBBDE2B544C06 /* SLKInputAccessoryView.m */,
+				AD0F547FA7F1EC5C5E3B544460365C06 /* SLKTextInputbar.h */,
+				1D26C32BCD6B01F0AA975854DA164F01 /* SLKTextInputbar.m */,
+				AB03B7F95F28E60801D1046849D57EB4 /* SLKTextView.h */,
+				6F89D9AFE45C829EA668051D2357BEB9 /* SLKTextView.m */,
+				485CD1736723D1F89827B2BA9D31AD73 /* SLKTextView+SLKAdditions.h */,
+				1A121A148980647A232BAE3CE20DF556 /* SLKTextView+SLKAdditions.m */,
+				B8AD4DFA988B00457A6ACC6BE1F8C960 /* SLKTextViewController.h */,
+				44374F5691BDD88C762F380FDBE8E37B /* SLKTextViewController.m */,
+				8E0948B4A1E6A58FBB36DBCC29FE4DEA /* SLKTypingIndicatorProtocol.h */,
+				156FCA3F096548EB1B5426E7120ADEB9 /* SLKTypingIndicatorView.h */,
+				C17712428A7DA1F70A3C4B23077EBC9B /* SLKTypingIndicatorView.m */,
+				91A7FFF657234505AD202D6B6331AEAF /* SLKUIConstants.h */,
+				2D118B5C826D0BA6B23178AB2980FCB6 /* UIResponder+SLKAdditions.h */,
+				339065047E51EAA1DABDF9212118152D /* UIResponder+SLKAdditions.m */,
+				017A65AABA880E732F2507C2966AD1BB /* UIScrollView+SLKAdditions.h */,
+				BF839F7E7489C34E1062CF171AB1EED8 /* UIScrollView+SLKAdditions.m */,
+				DB98276F28853B3C79A48A839748B130 /* UIView+SLKAdditions.h */,
+				D2592AE37E710616AC1E81F9EA247414 /* UIView+SLKAdditions.m */,
+				B1335C8B920BC33FF4E44D98E4807327 /* Support Files */,
 			);
 			path = SlackTextViewController;
+			sourceTree = "<group>";
+		};
+		1AFED895F6CE642C54A2E519F3CCFD1E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				087685E618DFA088CD9A7966433FBA15 /* SlackTextViewController */,
+				45F3913D1A138CD0108CFECE63346CB0 /* UsergridSDK */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		33874D3E4937F4B29993A15C16D09479 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				5C12D0E93C87652EEE71976BEA6D201D /* Info.plist */,
+				660DD18AF4BD4240B673402B84193F32 /* UsergridSDK.modulemap */,
+				6852787FF4ABDED6BFC0922F14430DB2 /* UsergridSDK.xcconfig */,
+				AEA7CF3D34B1F33111245A8E6850F95F /* UsergridSDK-dummy.m */,
+				AF703CC20252F960EF25B457E7F8EC83 /* UsergridSDK-prefix.pch */,
+				0430560862EC38EC9E84150F303DC860 /* UsergridSDK-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/UsergridSDK";
+			sourceTree = "<group>";
+		};
+		45F3913D1A138CD0108CFECE63346CB0 /* UsergridSDK */ = {
+			isa = PBXGroup;
+			children = (
+				82A231E64974047D7156E57BAE6CEC85 /* Usergrid.swift */,
+				2BF5F7F3CC83BD421EF052D10440B4C7 /* UsergridAsset.swift */,
+				B3BD47AA49DEDC8CDBE723B27605C617 /* UsergridAssetRequestWrapper.swift */,
+				7091A28A3F636DF8EC1405638780DF52 /* UsergridAuth.swift */,
+				38CDC4855B9081C5C225181C9A0F9DD9 /* UsergridClient.swift */,
+				886C3066A9974DAF4EA7D5F53498F0C1 /* UsergridClientConfig.swift */,
+				0F0C569E5A08BA798C3089E3D8CF8761 /* UsergridDevice.swift */,
+				EAC1AC5967870073DB4EB4E003D2BFB4 /* UsergridEntity.swift */,
+				E4DF320E3ECF757156A1E66D022CA716 /* UsergridEnums.swift */,
+				E0BF86340BE566C7FDF35453ECAB35D7 /* UsergridExtensions.swift */,
+				F0B7AFB02A88F890781E514702A35C5A /* UsergridFileMetaData.swift */,
+				EB39EDAA7EDC094C88C000949565A8BE /* UsergridKeychainHelpers.swift */,
+				AA0F790A6DEB593270E17BD97E8B3ED5 /* UsergridQuery.swift */,
+				9D94F365C264F36FFEAA5C7DB0930EBD /* UsergridRequestManager.swift */,
+				F1EF0689EDF48595883776F983EDBA53 /* UsergridResponse.swift */,
+				B8CE5470CB0334D02C6E8EE17841A133 /* UsergridResponseError.swift */,
+				C61F0732254C00B7B5FF08E6E91E87DC /* UsergridSessionDelegate.swift */,
+				FFAD06943C57457FC65711F019B116FF /* UsergridUser.swift */,
+				33874D3E4937F4B29993A15C16D09479 /* Support Files */,
+			);
+			path = UsergridSDK;
 			sourceTree = "<group>";
 		};
 		75D98FF52E597A11900E131B6C4E1ADA /* Pods */ = {
@@ -223,38 +274,29 @@
 			path = "Target Support Files/Pods";
 			sourceTree = "<group>";
 		};
-		7CE76D8B2E714ACE836AE2340136565E /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				2657A0A5AA577897F385C56FA5EC231E /* SlackTextViewController */,
-				FD9021C2EB7A09CD4DAC123A3C7F3DF6 /* UsergridSDK */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
 				BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */,
 				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
-				7CE76D8B2E714ACE836AE2340136565E /* Pods */,
+				1AFED895F6CE642C54A2E519F3CCFD1E /* Pods */,
 				05383ECC0BAE603E583966DE6EFFEB58 /* Products */,
 				B7B80995527643776607AFFA75B91E24 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		A566E5956AF2D5950608D7A392C3E357 /* Support Files */ = {
+		B1335C8B920BC33FF4E44D98E4807327 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				DD92DD8932DF41A76A4D9BD758668684 /* Info.plist */,
-				D1B5CBA5B197BB519A0370BD4B8C9D9C /* UsergridSDK.modulemap */,
-				D5A0AD1CBB423F6CAFD97A1169F34023 /* UsergridSDK.xcconfig */,
-				D60D12C6B37567D4374429CD5D25885D /* UsergridSDK-dummy.m */,
-				6B94B55D0B1AFAD75127FD460BECF5E9 /* UsergridSDK-prefix.pch */,
-				F726E02453FB614A1CD3D5FBDA6E47B8 /* UsergridSDK-umbrella.h */,
+				2A4EE40568AB17EBBB50567FDEBEBD02 /* Info.plist */,
+				23D2D15F19061206A1588D892D5EE41D /* SlackTextViewController.modulemap */,
+				0AE4C41103E6EACA3DCDDFD55CF1CE7C /* SlackTextViewController.xcconfig */,
+				A1D8EC5DD46D2D5A6BB1714717D366C8 /* SlackTextViewController-dummy.m */,
+				4B7021E0B8123EE29D747E17A16A53F5 /* SlackTextViewController-prefix.pch */,
+				CBFEAF36EF8A6B28018D7BEBB9B04A54 /* SlackTextViewController-umbrella.h */,
 			);
 			name = "Support Files";
-			path = "../Target Support Files/UsergridSDK";
+			path = "../Target Support Files/SlackTextViewController";
 			sourceTree = "<group>";
 		};
 		B7B80995527643776607AFFA75B91E24 /* Targets Support Files */ = {
@@ -279,45 +321,6 @@
 				3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */,
 			);
 			name = iOS;
-			sourceTree = "<group>";
-		};
-		C943FE03368C0EAF48122DDFCFEC71EC /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				B109DB7A4A0EB75366786A63011EFAB3 /* Info.plist */,
-				755E8954F94D108364FBFC4573EA28C6 /* SlackTextViewController.modulemap */,
-				6D6E739B89F97249B76EBD7E2B8B4401 /* SlackTextViewController.xcconfig */,
-				C978BBDDDD594533D60208281EA414BD /* SlackTextViewController-dummy.m */,
-				4FCEC3AAA6668FFD7BA8238DB9661C10 /* SlackTextViewController-prefix.pch */,
-				418F0945125214A9EE5EBF33CC1ECED3 /* SlackTextViewController-umbrella.h */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/SlackTextViewController";
-			sourceTree = "<group>";
-		};
-		FD9021C2EB7A09CD4DAC123A3C7F3DF6 /* UsergridSDK */ = {
-			isa = PBXGroup;
-			children = (
-				67E4BDF254B617633749A769F98C7B18 /* Usergrid.swift */,
-				0C2CDF1FF1095F1944BEE3D5977FCA6C /* UsergridAsset.swift */,
-				3DA23306D42CF5F6675F394DAC6FD9FE /* UsergridAssetRequestWrapper.swift */,
-				FD98C6D5E5F76DD0D5F730A0791ADD27 /* UsergridAuth.swift */,
-				FBA10B74124F0D5B932A9BE31F01A97F /* UsergridClient.swift */,
-				B86FCF799EB404AFD99A89A561233A56 /* UsergridClientConfig.swift */,
-				AB476C3C1C4BEE0579E13ED030A41EE9 /* UsergridDevice.swift */,
-				F51A5DAFECD941378BE1A9886C90EB08 /* UsergridEntity.swift */,
-				BCA8720C212292166D53B91F679A1451 /* UsergridEnums.swift */,
-				F55B6731AABAD4BD12DCE7E0A435A72A /* UsergridExtensions.swift */,
-				46D6E3D301A6ED3BF55162D7DCEDA2F4 /* UsergridFileMetaData.swift */,
-				7BDF33540508F9C2334C977869C65C9B /* UsergridKeychainHelpers.swift */,
-				01E360C6942CB15DE0B29FB70CBF354A /* UsergridQuery.swift */,
-				CE9563CE970B0CC42D9668D3C459DC9E /* UsergridRequestManager.swift */,
-				BF6200EBDFC882D5B7681ADE1804C606 /* UsergridResponse.swift */,
-				194EBCE66AE75B161666C3B8F8E18E76 /* UsergridSessionDelegate.swift */,
-				F08241B39E52CDF4FDED6BE0FF3631F0 /* UsergridUser.swift */,
-				A566E5956AF2D5950608D7A392C3E357 /* Support Files */,
-			);
-			path = UsergridSDK;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -382,7 +385,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B4CE437BA6BDF93107E4E9C4023D576D /* Build configuration list for PBXNativeTarget "UsergridSDK" */;
 			buildPhases = (
-				06E343B82CDE6E25D731A57EBC0C410E /* Sources */,
+				4E62BEC9FDD221F2BCA4D969ECBFD2B4 /* Sources */,
 				18B9B99FD2F6C96D1BBB2D7A5685E725 /* Frameworks */,
 				87922EF20420C836F782AC5E48E626C7 /* Headers */,
 			);
@@ -443,36 +446,37 @@
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		06E343B82CDE6E25D731A57EBC0C410E /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				FE1BF9904C13BAA87BEF4E51242FB2F1 /* Usergrid.swift in Sources */,
-				9DA770092EC682CBFAB59F73DF0BC239 /* UsergridAsset.swift in Sources */,
-				9C6BF62382E3DB6E39510C75A47BE15D /* UsergridAssetRequestWrapper.swift in Sources */,
-				73A7B70680DB5220ABF880641B1E8E90 /* UsergridAuth.swift in Sources */,
-				469D02BE541176959327A573194166D1 /* UsergridClient.swift in Sources */,
-				538E6CFAC12535DCFB86206F0AA664E0 /* UsergridClientConfig.swift in Sources */,
-				C2D54C494486633548E8C5268BD15BAD /* UsergridDevice.swift in Sources */,
-				401079752B004BEF8C96FB773FB8DEF1 /* UsergridEntity.swift in Sources */,
-				A4F924DB78F73B105FFE465397DBF254 /* UsergridEnums.swift in Sources */,
-				E89FC593271A10418ABF0B3C7C49DF8F /* UsergridExtensions.swift in Sources */,
-				E4A8C2692695D8C93026AACA5FF33C82 /* UsergridFileMetaData.swift in Sources */,
-				06624F09442390CC6A711AC30474C2F3 /* UsergridKeychainHelpers.swift in Sources */,
-				9ED4350F87C0B8F294737369B12477A9 /* UsergridQuery.swift in Sources */,
-				48B4141A9BF57F43789CCED7326ADFAF /* UsergridRequestManager.swift in Sources */,
-				3A8CBB67D357038A5221B762EE27AA69 /* UsergridResponse.swift in Sources */,
-				924F85E35E91E052E0E291872FB43F35 /* UsergridSDK-dummy.m in Sources */,
-				DDD4709EEBABAB458065A3C81AFC1E16 /* UsergridSessionDelegate.swift in Sources */,
-				7BC6D3704699DF41FE7B1318C1A041E8 /* UsergridUser.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		3FC7CEC5CBD54EF6DCFD28660E9826D4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				AA72EB4A5E489A3B6E1ACC77BD032096 /* Pods-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4E62BEC9FDD221F2BCA4D969ECBFD2B4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5662A6D2422A5B3C2CC70FEF518A01E6 /* Usergrid.swift in Sources */,
+				C9FD0F577FFC8949F0D66A6D750EF1B6 /* UsergridAsset.swift in Sources */,
+				ACE0D89F8EDCB432FE73C5C6D5B4EEAB /* UsergridAssetRequestWrapper.swift in Sources */,
+				92162B975DC75F62EE5F37424A9A8D9C /* UsergridAuth.swift in Sources */,
+				DC86BE1A3A0F91BE59DA24311F370384 /* UsergridClient.swift in Sources */,
+				20404E329D254D4F5454303C56565A8F /* UsergridClientConfig.swift in Sources */,
+				271F82D0D9BB42D10B63A7CF9BBDB4AF /* UsergridDevice.swift in Sources */,
+				3DC1249DB4F9E4CBC029829F56CB4F09 /* UsergridEntity.swift in Sources */,
+				C28FEE6DC950F1E92B524823681335C9 /* UsergridEnums.swift in Sources */,
+				6B2E10F0C3F12A295689FFD957286AC5 /* UsergridExtensions.swift in Sources */,
+				2061EBD7F06B36C8A53E5DA4E67EFD72 /* UsergridFileMetaData.swift in Sources */,
+				7A1BFB252BC8675EE389264EA8A7393E /* UsergridKeychainHelpers.swift in Sources */,
+				B0A83483198131C17CFC3A5576990A85 /* UsergridQuery.swift in Sources */,
+				F1318298EE30FF83D320823ED338E8B0 /* UsergridRequestManager.swift in Sources */,
+				ABFB5FA13B3B7AEF6B3DFEDBE59E61A8 /* UsergridResponse.swift in Sources */,
+				FD00D75E4F42402788B0201690F2CE05 /* UsergridResponseError.swift in Sources */,
+				F87171EA54DFFB0A49B402875A436A0E /* UsergridSDK-dummy.m in Sources */,
+				D0810AE8E3026CF88BB4002D9346FC76 /* UsergridSessionDelegate.swift in Sources */,
+				9AA34F3E2BD714D5C00F04F7CAFA8460 /* UsergridUser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -513,7 +517,7 @@
 /* Begin XCBuildConfiguration section */
 		01C2383197AB8FBE3F480E3398357ADC /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D5A0AD1CBB423F6CAFD97A1169F34023 /* UsergridSDK.xcconfig */;
+			baseConfigurationReference = 6852787FF4ABDED6BFC0922F14430DB2 /* UsergridSDK.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -540,7 +544,7 @@
 		};
 		02DA0870CF2E9914C16E06A123E92CA6 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6D6E739B89F97249B76EBD7E2B8B4401 /* SlackTextViewController.xcconfig */;
+			baseConfigurationReference = 0AE4C41103E6EACA3DCDDFD55CF1CE7C /* SlackTextViewController.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -598,7 +602,7 @@
 		};
 		39CC5173C2BCF8D3D4B4944B53DE1FCE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6D6E739B89F97249B76EBD7E2B8B4401 /* SlackTextViewController.xcconfig */;
+			baseConfigurationReference = 0AE4C41103E6EACA3DCDDFD55CF1CE7C /* SlackTextViewController.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -625,7 +629,7 @@
 		};
 		7710AC38ED86989FE6BD2443A32F0209 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D5A0AD1CBB423F6CAFD97A1169F34023 /* UsergridSDK.xcconfig */;
+			baseConfigurationReference = 6852787FF4ABDED6BFC0922F14430DB2 /* UsergridSDK.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
