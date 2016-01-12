@@ -36,6 +36,8 @@ final class UsergridRequestManager {
         config.HTTPAdditionalHeaders = ["User-Agent": "usergrid-ios/v\(UsergridSDKVersion)"]
         #elseif os(watchOS)
         config.HTTPAdditionalHeaders = ["User-Agent": "usergrid-watchOS/v\(UsergridSDKVersion)"]
+        #elseif os(OSX)
+        config.HTTPAdditionalHeaders = ["User-Agent": "usergrid-osx/v\(UsergridSDKVersion)"]
         #endif
 
         self.session = NSURLSession(configuration:  config,

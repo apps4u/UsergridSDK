@@ -62,6 +62,10 @@ public class UsergridDevice : UsergridEntity {
             deviceEntityDict[UsergridDeviceProperties.Model.stringValue] = WKInterfaceDevice.currentDevice().model
             deviceEntityDict[UsergridDeviceProperties.Platform.stringValue] = WKInterfaceDevice.currentDevice().systemName
             deviceEntityDict[UsergridDeviceProperties.OSVersion.stringValue] = WKInterfaceDevice.currentDevice().systemVersion
+        #elseif os(OSX)
+            deviceEntityDict[UsergridDeviceProperties.Model.stringValue] = "Mac"
+            deviceEntityDict[UsergridDeviceProperties.Platform.stringValue] = "OSX"
+            deviceEntityDict[UsergridDeviceProperties.OSVersion.stringValue] = NSProcessInfo.processInfo().operatingSystemVersionString()
         #endif
 
         super.init(type: UsergridDevice.DEVICE_ENTITY_TYPE, name: nil, propertyDict: deviceEntityDict)

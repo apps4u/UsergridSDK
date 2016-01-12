@@ -31,7 +31,7 @@ internal extension UsergridDevice {
 
     static func createNewUsergridKeychainUUID() -> String {
 
-        #if os(iOS)
+        #if os(iOS) || os(tvOS)
         let usergridUUID = UIDevice.currentDevice().identifierForVendor?.UUIDString ?? NSUUID().UUIDString
         #else
         let usergridUUID = NSUUID().UUIDString

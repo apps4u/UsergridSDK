@@ -48,6 +48,9 @@ public class UsergridClient: NSObject, NSCoding {
     /// The `UsergridUserAuth` which consists of the token information from the `currentUser` property.
     public var userAuth: UsergridUserAuth? { return currentUser?.auth }
 
+    /// The temporary `UsergridAuth` object that is set when calling the `UsergridClient.usingAuth()` method.
+    private var tempAuth: UsergridAuth? = nil
+
     /// The application level `UsergridAppAuth` object.  Can be set manually but must call `authenticateApp` to retrive token.
     public var appAuth: UsergridAppAuth? {
         set { config.appAuth = newValue }
@@ -107,7 +110,7 @@ public class UsergridClient: NSObject, NSCoding {
 
     - parameter aDecoder: The decoder.
 
-    - returns: A decoded `UsergridUser` object.
+    - returns: A decoded `UsergridClient` object.
     */
     public required init?(coder aDecoder: NSCoder) {
         guard let config = aDecoder.decodeObjectForKey("config") as? UsergridClientConfig
@@ -175,14 +178,45 @@ public class UsergridClient: NSObject, NSCoding {
 
     - returns: The `UsergridAuth` if one is found or nil if not.
     */
-    public func authForRequests() -> UsergridAuth? {
+    internal func authForRequests() -> UsergridAuth? {
         var usergridAuth: UsergridAuth?
-        if let userAuth = self.userAuth where userAuth.isValid {
+        if let tempAuth = self.tempAuth where tempAuth.isValid {
+            usergridAuth = tempAuth
+            self.tempAuth = nil
+        } else if let userAuth = self.userAuth where userAuth.isValid {
             usergridAuth = userAuth
         } else if self.authFallback == .App, let appAuth = self.appAuth where appAuth.isValid {
             usergridAuth = appAuth
         }
         return usergridAuth
+    }
+
+    /**
+     Sets the client's `tempAuth` property using the passed in `UsergridAuth`.
+
+     This will cause the next CRUD method performed by the client to use the `tempAuth` property once and will then reset.
+
+     - parameter auth: The `UsergridAuth` object to temporarily use for authentication.
+
+     - returns: `Self`
+     */
+    public func usingAuth(auth:UsergridAuth) -> Self {
+        self.tempAuth = auth
+        return self
+    }
+
+    /**
+     Sets the client's `tempAuth` property using the passed in token.
+     
+     This will cause the next CRUD method performed by the client to use the `tempAuth` property once and will then reset.
+
+     - parameter auth: The access token to temporarily use for authentication.
+
+     - returns: `Self`
+     */
+    public func usingToken(token:String) -> Self {
+        self.tempAuth = UsergridAuth(accessToken: token)
+        return self
     }
 
     /**

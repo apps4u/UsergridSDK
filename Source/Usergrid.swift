@@ -151,6 +151,33 @@ public class Usergrid: NSObject {
     }
 
     /**
+     Sets the shared `UsergridClient`'s `tempAuth` property using the passed in `UsergridAuth`.
+
+     This will cause the next CRUD method performed by the client to use the `tempAuth` property once and will then reset.
+
+     - parameter auth: The `UsergridAuth` object to temporarily use for authentication.
+
+     - returns: The shared instance of `UsergridClient`
+     */
+    public static func usingAuth(auth:UsergridAuth) -> UsergridClient {
+        return Usergrid.sharedInstance.usingAuth(auth)
+    }
+
+    /**
+     Sets the shared `UsergridClient`'s `tempAuth` property using the passed in token.
+
+     This will cause the next CRUD method performed by the client to use the `tempAuth` property once and will then reset.
+
+     - parameter auth: The access token to temporarily use for authentication.
+
+     - returns: The shared instance of `UsergridClient`
+     */
+    public static func usingToken(token:String) -> UsergridClient {
+        return Usergrid.sharedInstance.usingToken(token)
+    }
+
+
+    /**
     Determines the `UsergridAuth` object that will be used for all outgoing requests made by the shared instance of `UsergridClient`.
 
     If there is a `UsergridUser` logged in and the token of that user is valid then it will return that.

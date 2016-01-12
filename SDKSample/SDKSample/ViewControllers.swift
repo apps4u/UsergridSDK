@@ -197,7 +197,7 @@ class MessageViewController : SLKTextViewController {
     }
 
     func reloadMessages() {
-        let sortByCreatedDateQuery = UsergridQuery().desc("created")
+        let sortByCreatedDateQuery = UsergridQuery().desc(UsergridEntityProperties.Created.stringValue)
         Usergrid.GET(MessageViewController.MESSAGE_ENTITY_TYPE, query:sortByCreatedDateQuery) { (response) -> Void in
             self.messageEntities = response.entities ?? []
             self.tableView.reloadData()
@@ -220,8 +220,13 @@ class MessageViewController : SLKTextViewController {
     override func didPressRightButton(sender: AnyObject!) {
         self.textView.refreshFirstResponder()
 
-        let messageEntity = UsergridEntity(type: MessageViewController.MESSAGE_ENTITY_TYPE, propertyDict: [MessageViewController.MESSAGE_ENTITY_CREATOR:Usergrid.currentUser!.username!,MessageViewController.MESSAGE_ENTITY_TEXT:self.textView.text,
-            MessageViewController.MESSAGE_ENTITY_CREATOR_THUMBNAIL:Usergrid.currentUser!["picture"]!])
+        var messageEntityProperties: [String:String] = [:]
+        messageEntityProperties[MessageViewController.MESSAGE_ENTITY_CREATOR] = Usergrid.currentUser?.usernameOrEmail ?? ""
+        messageEntityProperties[MessageViewController.MESSAGE_ENTITY_CREATOR_THUMBNAIL] = Usergrid.currentUser?.picture ?? ""
+        messageEntityProperties[MessageViewController.MESSAGE_ENTITY_TEXT] = self.textView.text
+
+        let messageEntity = UsergridEntity(type: MessageViewController.MESSAGE_ENTITY_TYPE, propertyDict: messageEntityProperties)
+
         messageEntity.save { (response) -> Void in
             if let errorDescription = response.error?.errorDescription {
                 print("Uploading message error: \(errorDescription)")

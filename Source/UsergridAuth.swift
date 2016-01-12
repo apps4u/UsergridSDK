@@ -60,6 +60,19 @@ public class UsergridAuth : NSObject, NSCoding {
         super.init()
     }
 
+    /**
+     Initializer for a base `UsergridAuth` object that just contains an `accessToken` and an optional `expiry` date.
+
+     - parameter accessToken: The access token.
+     - parameter expiry:      The optional expiry date.
+
+     - returns: A new instance of `UsergridAuth`
+     */
+    public init(accessToken:String, expiry:NSDate? = nil) {
+        self.accessToken = accessToken
+        self.expiry = expiry
+    }
+
     // MARK: - NSCoding -
 
     /**
