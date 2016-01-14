@@ -106,6 +106,14 @@ public class UsergridAuth : NSObject, NSCoding {
             aCoder.encodeObject(expiresAt, forKey: "expiry")
         }
     }
+
+    /**
+     Destroys/removes the access token and expiry .
+     */
+    public func destroy() {
+        self.accessToken = nil
+        self.expiry = nil
+    }
 }
 
 /// The `UsergridAuth` subclass used for user level authorization.
