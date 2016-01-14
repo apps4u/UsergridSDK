@@ -32,14 +32,19 @@ public class UsergridAuth : NSObject, NSCoding {
     /// Determines if an access token exists.
     public var hasToken: Bool { return self.accessToken != nil }
 
+    /// Determines if the token was set explicitly within the init method or not.
+    private var usingToken: Bool = false
+
     /// Determines if an access token exists and if the token is not expired.
     public var isValid : Bool { return self.hasToken && !self.isExpired }
 
     /// Determines if the access token, if one exists, is expired.
     public var isExpired: Bool {
-        var isExpired = true
+        var isExpired = false
         if let expires = self.expiry {
             isExpired = expires.timeIntervalSinceNow < 0.0
+        } else {
+            isExpired = !self.usingToken
         }
         return isExpired
     }
@@ -69,6 +74,7 @@ public class UsergridAuth : NSObject, NSCoding {
      - returns: A new instance of `UsergridAuth`
      */
     public init(accessToken:String, expiry:NSDate? = nil) {
+        self.usingToken = true
         self.accessToken = accessToken
         self.expiry = expiry
     }

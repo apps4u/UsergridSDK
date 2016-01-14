@@ -172,6 +172,8 @@ public class UsergridClient: NSObject, NSCoding {
     /**
     Determines the `UsergridAuth` object that will be used for all outgoing requests made.
 
+    If there is a valid temporary `UsergridAuth` set by the functions `usingAuth` or `usingToken` it will return that.
+
     If there is a `UsergridUser` logged in and the token of that user is valid then it will return that.
 
     Otherwise, if the `authFallback` is `.App`, and the `UsergridAppAuth` of the client is set and the token is valid it will return that.
