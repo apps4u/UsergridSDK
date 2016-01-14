@@ -107,8 +107,10 @@ public class UsergridAuth : NSObject, NSCoding {
         }
     }
 
+    // MARK: - Instance Methods -
+
     /**
-     Destroys/removes the access token and expiry .
+     Destroys/removes the access token and expiry.
      */
     public func destroy() {
         self.accessToken = nil
