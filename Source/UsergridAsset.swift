@@ -154,51 +154,6 @@ public class UsergridAsset: NSObject, NSCoding {
         aCoder.encodeObject(self.originalLocation, forKey: "originalLocation")
     }
 
-
-    //MARK: - MultiPart Creation -
-
-    /// A constructed multipart http body for requests to upload.
-    var multiPartHTTPBody: NSData {
-        let httpBodyString = UsergridAsset.MULTIPART_START +
-            "\(UsergridAsset.CONTENT_DISPOSITION):\(UsergridAsset.FORM_DATA); name=file; filename=\(self.fileName)\r\n" +
-            "\(UsergridRequestManager.CONTENT_TYPE): \(self.contentType)\r\n\r\n" as NSString
-
-        let assetBodyData = self.assetData
-
-        let httpBody = NSMutableData()
-        httpBody.appendData(httpBodyString.dataUsingEncoding(NSUTF8StringEncoding)!)
-        httpBody.appendData(assetBodyData)
-        httpBody.appendData(UsergridAsset.MULTIPART_END.dataUsingEncoding(NSUTF8StringEncoding)!)
-
-        return httpBody
-    }
-
-    /**
-    Generates a `NSMutableURLRequest` object based on the passed in requestURL and the assets current properties.
-
-    - parameter requestURL: The requests URL.
-
-    - returns: The created `NSMutableURLRequest` object.
-    */
-    func multipartRequest(requestURL:NSURL) -> NSMutableURLRequest {
-        let request = NSMutableURLRequest(URL: requestURL)
-        request.HTTPMethod = UsergridHttpMethod.PUT.rawValue
-        request.setValue(UsergridAsset.ASSET_UPLOAD_CONTENT_HEADER, forHTTPHeaderField: UsergridRequestManager.CONTENT_TYPE)
-        request.setValue(String(format: "%lu", self.multiPartHTTPBody.length), forHTTPHeaderField: UsergridRequestManager.CONTENT_LENGTH)
-        return request
-    }
-
-    /**
-    Creates and returns both the `NSMutableURLRequest` object as well as the multiPartHTTPBody in a tuple.
-
-    - parameter requestURL: The requests URL.
-
-    - returns: The tuple containing the request and httpBody.
-    */
-    func multipartRequestAndBody(requestURL:NSURL) -> (request:NSMutableURLRequest,multipartData:NSData) {
-        return (self.multipartRequest(requestURL),self.multiPartHTTPBody)
-    }
-
     private static func MIMEType(fileURL: NSURL) -> String? {
         if let pathExtension = fileURL.pathExtension {
             if let UTIRef = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, pathExtension, nil) {
@@ -213,11 +168,4 @@ public class UsergridAsset: NSObject, NSCoding {
         }
         return nil
     }
-
-    private static let ASSET_UPLOAD_BOUNDARY = "apigee-asset-upload-boundary"
-    private static let ASSET_UPLOAD_CONTENT_HEADER = "multipart/form-data; boundary=\(UsergridAsset.ASSET_UPLOAD_BOUNDARY)"
-    private static let CONTENT_DISPOSITION = "Content-Disposition"
-    private static let MULTIPART_START = "--\(UsergridAsset.ASSET_UPLOAD_BOUNDARY)\r\n"
-    private static let MULTIPART_END = "\r\n--\(UsergridAsset.ASSET_UPLOAD_BOUNDARY)--\r\n" as NSString
-    private static let FORM_DATA = "form-data"
 }

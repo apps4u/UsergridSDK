@@ -40,6 +40,9 @@
                 <a href="../Classes/UsergridAsset.html">UsergridAsset</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/UsergridAssetUploadRequest.html">UsergridAssetUploadRequest</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/UsergridAuth.html">UsergridAuth</a>
               </li>
               <li class="nav-group-task">
@@ -59,6 +62,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/UsergridQuery.html">UsergridQuery</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/UsergridRequest.html">UsergridRequest</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/UsergridResponse.html">UsergridResponse</a>
@@ -96,6 +102,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/UsergridEntityProperties.html">UsergridEntityProperties</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/UsergridHttpMethod.html">UsergridHttpMethod</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/UsergridImageContentType.html">UsergridImageContentType</a>
@@ -644,7 +653,7 @@
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>A decoded <code><a href="../Classes/UsergridUser.html">UsergridUser</a></code> object.</p>
+                        <p>A decoded <code><a href="../Classes/UsergridClient.html">UsergridClient</a></code> object.</p>
 
                       </div>
                     </section>
@@ -881,9 +890,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC11UsergridSDK14UsergridClient15authForRequestsFS0_FT_GSqCS_12UsergridAuth_"></a>
-                    <a name="//apple_ref/swift/Method/authForRequests()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC11UsergridSDK14UsergridClient15authForRequestsFS0_FT_GSqCS_12UsergridAuth_">authForRequests()</a>
+                    <a name="/s:FC11UsergridSDK14UsergridClient9usingAuthFS0_FCS_12UsergridAuthDS0_"></a>
+                    <a name="//apple_ref/swift/Method/usingAuth(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC11UsergridSDK14UsergridClient9usingAuthFS0_FCS_12UsergridAuthDS0_">usingAuth(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -891,24 +900,96 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Determines the <code><a href="../Classes/UsergridAuth.html">UsergridAuth</a></code> object that will be used for all outgoing requests made.</p>
+                        <p>Sets the client&rsquo;s <code>tempAuth</code> property using the passed in <code><a href="../Classes/UsergridAuth.html">UsergridAuth</a></code>.</p>
 
-<p>If there is a <code><a href="../Classes/UsergridUser.html">UsergridUser</a></code> logged in and the token of that user is valid then it will return that.</p>
-
-<p>Otherwise, if the <code><a href="../Classes/UsergridClient.html#/s:vC11UsergridSDK14UsergridClient12authFallbackOS_20UsergridAuthFallback">authFallback</a></code> is <code>.App</code>, and the <code><a href="../Classes/UsergridAppAuth.html">UsergridAppAuth</a></code> of the client is set and the token is valid it will return that.</p>
+<p>This will cause the next CRUD method performed by the client to use the <code>tempAuth</code> property once and will then reset.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">authForRequests</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">UsergridAuth</span><span class="p">?</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">usingAuth</span><span class="p">(</span><span class="nv">auth</span><span class="p">:</span><span class="kt">UsergridAuth</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
 
                         </div>
                       </div>
                       <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>auth</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The <code>UsergridAuth</code> object to temporarily use for authentication.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
                         <h4>Return Value</h4>
-                        <p>The <code><a href="../Classes/UsergridAuth.html">UsergridAuth</a></code> if one is found or nil if not.</p>
+                        <p><code>Self</code></p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC11UsergridSDK14UsergridClient10usingTokenFS0_FSSDS0_"></a>
+                    <a name="//apple_ref/swift/Method/usingToken(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC11UsergridSDK14UsergridClient10usingTokenFS0_FSSDS0_">usingToken(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sets the client&rsquo;s <code>tempAuth</code> property using the passed in token.</p>
+
+<p>This will cause the next CRUD method performed by the client to use the <code>tempAuth</code> property once and will then reset.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">usingToken</span><span class="p">(</span><span class="nv">token</span><span class="p">:</span><span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>auth</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The access token to temporarily use for authentication.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>Self</code></p>
 
                       </div>
                     </section>
@@ -1387,6 +1468,83 @@
             </div>
             <div class="task-group">
               <div class="task-name-container">
+                <a name="/Generic%20Request%20Methods"></a>
+                <a name="//apple_ref/swift/Section/Generic Request Methods" class="dashAnchor"></a>
+                <a href="#/Generic%20Request%20Methods">
+                  <h3 class="section-name">Generic Request Methods</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC11UsergridSDK14UsergridClient11sendRequestFS0_FTCS_15UsergridRequest10completionGSqFT8responseCS_16UsergridResponse_T___T_"></a>
+                    <a name="//apple_ref/swift/Method/sendRequest(_:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC11UsergridSDK14UsergridClient11sendRequestFS0_FTCS_15UsergridRequest10completionGSqFT8responseCS_16UsergridResponse_T___T_">sendRequest(_:completion:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Starts the <code><a href="../Classes/UsergridRequest.html">UsergridRequest</a></code> sending process.</p>
+
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    <p>This method should only be used when you construct your own <code><a href="../Classes/UsergridRequest.html">UsergridRequest</a></code> objects.</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">sendRequest</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span><span class="kt">UsergridRequest</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span><span class="kt">UsergridResponseCompletion</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>request</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The <code>UsergridRequest</code> object to send.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completion</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The optional completion block that will be called once the request has completed.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
                 <a name="/GET"></a>
                 <a name="//apple_ref/swift/Section/GET" class="dashAnchor"></a>
                 <a href="#/GET">
@@ -1456,7 +1614,7 @@
                               </td>
                               <td>
                                 <div>
-                                  <p>The completion block that will be called once the request has completed.</p>
+                                  <p>The optional completion block that will be called once the request has completed.</p>
 
                                 </div>
                               </td>
@@ -1529,7 +1687,7 @@
                               </td>
                               <td>
                                 <div>
-                                  <p>The completion block that will be called once the request has completed.</p>
+                                  <p>The optional completion block that will be called once the request has completed.</p>
 
                                 </div>
                               </td>
@@ -1626,7 +1784,7 @@
                               </td>
                               <td>
                                 <div>
-                                  <p>The completion block that will be called once the request has completed.</p>
+                                  <p>The optional completion block that will be called once the request has completed.</p>
 
                                 </div>
                               </td>
@@ -1686,7 +1844,7 @@
                               </td>
                               <td>
                                 <div>
-                                  <p>The completion block that will be called once the request has completed.</p>
+                                  <p>The optional completion block that will be called once the request has completed.</p>
 
                                 </div>
                               </td>
@@ -1844,7 +2002,7 @@
                               </td>
                               <td>
                                 <div>
-                                  <p>The completion block that will be called once the request has completed.</p>
+                                  <p>The optional completion block that will be called once the request has completed.</p>
 
                                 </div>
                               </td>
@@ -1881,7 +2039,7 @@
                       <div class="abstract">
                         <p>Creates and posts creates an <code><a href="../Classes/UsergridEntity.html">UsergridEntity</a></code>.
 - parameter entity:     The <code><a href="../Classes/UsergridEntity.html">UsergridEntity</a></code> to create.
-- parameter completion: The completion block that will be called once the request has completed.</p>
+- parameter completion: The optional completion block that will be called once the request has completed.</p>
 
                       </div>
                       <div class="declaration">
@@ -1917,7 +2075,7 @@
                               </td>
                               <td>
                                 <div>
-                                  <p>The completion block that will be called once the request has completed.</p>
+                                  <p>The optional completion block that will be called once the request has completed.</p>
 
                                 </div>
                               </td>
@@ -1983,7 +2141,7 @@
                               </td>
                               <td>
                                 <div>
-                                  <p>The completion block that will be called once the request has completed.</p>
+                                  <p>The optional completion block that will be called once the request has completed.</p>
 
                                 </div>
                               </td>
@@ -2056,7 +2214,7 @@
                               </td>
                               <td>
                                 <div>
-                                  <p>The completion block that will be called once the request has completed.</p>
+                                  <p>The optional completion block that will be called once the request has completed.</p>
 
                                 </div>
                               </td>
@@ -2129,7 +2287,7 @@
                               </td>
                               <td>
                                 <div>
-                                  <p>The completion block that will be called once the request has completed.</p>
+                                  <p>The optional completion block that will be called once the request has completed.</p>
 
                                 </div>
                               </td>
@@ -2215,7 +2373,7 @@
                               </td>
                               <td>
                                 <div>
-                                  <p>The completion block that will be called once the request has completed.</p>
+                                  <p>The optional completion block that will be called once the request has completed.</p>
 
                                 </div>
                               </td>
@@ -2292,7 +2450,7 @@
                               </td>
                               <td>
                                 <div>
-                                  <p>The completion block that will be called once the request has completed.</p>
+                                  <p>The optional completion block that will be called once the request has completed.</p>
 
                                 </div>
                               </td>
@@ -2358,7 +2516,7 @@
                               </td>
                               <td>
                                 <div>
-                                  <p>The completion block that will be called once the request has completed.</p>
+                                  <p>The optional completion block that will be called once the request has completed.</p>
 
                                 </div>
                               </td>
@@ -2431,7 +2589,7 @@
                               </td>
                               <td>
                                 <div>
-                                  <p>The completion block that will be called once the request has completed.</p>
+                                  <p>The optional completion block that will be called once the request has completed.</p>
 
                                 </div>
                               </td>
@@ -2528,119 +2686,7 @@
                               </td>
                               <td>
                                 <div>
-                                  <p>The completion block that will be called once the request has completed.</p>
-
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FC11UsergridSDK14UsergridClient7connectFS0_FTSS8entityIDSS12relationshipSS6toTypeGSqSS_4toIDSS10completionGSqFT8responseCS_16UsergridResponse_T___T_"></a>
-                    <a name="//apple_ref/swift/Method/connect(_:entityID:relationship:toType:toID:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC11UsergridSDK14UsergridClient7connectFS0_FTSS8entityIDSS12relationshipSS6toTypeGSqSS_4toIDSS10completionGSqFT8responseCS_16UsergridResponse_T___T_">connect(_:entityID:relationship:toType:toID:completion:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Connects the entity objects via the relationship.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">connect</span><span class="p">(</span><span class="nv">entityType</span><span class="p">:</span><span class="kt">String</span><span class="p">,</span> <span class="nv">entityID</span><span class="p">:</span><span class="kt">String</span><span class="p">,</span> <span class="nv">relationship</span><span class="p">:</span><span class="kt">String</span><span class="p">,</span> <span class="nv">toType</span><span class="p">:</span><span class="kt">String</span><span class="p">?,</span> <span class="nv">toID</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kt">UsergridResponseCompletion</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>entityType</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The entity type.</p>
-
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>entityID</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The entity UUID or name.</p>
-
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>relationship</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The relationship of the connection.</p>
-
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>toType</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The optional type of the entity you are connecting to.</p>
-
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>toID</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The UUID of the entity you are connecting to.</p>
-
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>completion</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The completion block that will be called once the request has completed.</p>
+                                  <p>The optional completion block that will be called once the request has completed.</p>
 
                                 </div>
                               </td>
@@ -2752,7 +2798,119 @@
                               </td>
                               <td>
                                 <div>
-                                  <p>The completion block that will be called once the request has completed.</p>
+                                  <p>The optional completion block that will be called once the request has completed.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC11UsergridSDK14UsergridClient7connectFS0_FTSS8entityIDSS12relationshipSS6toTypeGSqSS_4toIDSS10completionGSqFT8responseCS_16UsergridResponse_T___T_"></a>
+                    <a name="//apple_ref/swift/Method/connect(_:entityID:relationship:toType:toID:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC11UsergridSDK14UsergridClient7connectFS0_FTSS8entityIDSS12relationshipSS6toTypeGSqSS_4toIDSS10completionGSqFT8responseCS_16UsergridResponse_T___T_">connect(_:entityID:relationship:toType:toID:completion:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Connects the entity objects via the relationship.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">connect</span><span class="p">(</span><span class="nv">entityType</span><span class="p">:</span><span class="kt">String</span><span class="p">,</span> <span class="nv">entityID</span><span class="p">:</span><span class="kt">String</span><span class="p">,</span> <span class="nv">relationship</span><span class="p">:</span><span class="kt">String</span><span class="p">,</span> <span class="nv">toType</span><span class="p">:</span><span class="kt">String</span><span class="p">?,</span> <span class="nv">toID</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kt">UsergridResponseCompletion</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>entityType</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The entity type.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>entityID</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The entity UUID or name.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>relationship</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The relationship of the connection.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>toType</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The optional type of the entity you are connecting to.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>toID</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The UUID of the entity you are connecting to.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completion</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The optional completion block that will be called once the request has completed.</p>
 
                                 </div>
                               </td>
@@ -2838,119 +2996,7 @@
                               </td>
                               <td>
                                 <div>
-                                  <p>The completion block that will be called once the request has completed.</p>
-
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FC11UsergridSDK14UsergridClient10disconnectFS0_FTSS8entityIDSS12relationshipSS8fromTypeGSqSS_6fromIDSS10completionGSqFT8responseCS_16UsergridResponse_T___T_"></a>
-                    <a name="//apple_ref/swift/Method/disconnect(_:entityID:relationship:fromType:fromID:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC11UsergridSDK14UsergridClient10disconnectFS0_FTSS8entityIDSS12relationshipSS8fromTypeGSqSS_6fromIDSS10completionGSqFT8responseCS_16UsergridResponse_T___T_">disconnect(_:entityID:relationship:fromType:fromID:completion:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Disconnects the entity objects via the relationship.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">disconnect</span><span class="p">(</span><span class="nv">entityType</span><span class="p">:</span><span class="kt">String</span><span class="p">,</span> <span class="nv">entityID</span><span class="p">:</span><span class="kt">String</span><span class="p">,</span> <span class="nv">relationship</span><span class="p">:</span><span class="kt">String</span><span class="p">,</span> <span class="nv">fromType</span><span class="p">:</span><span class="kt">String</span><span class="p">?,</span> <span class="nv">fromID</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kt">UsergridResponseCompletion</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>entityType</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The entity type.</p>
-
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>entityID</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The entity UUID or name.</p>
-
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>relationship</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The relationship of the connection.</p>
-
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>fromType</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The optional type of the entity you are disconnecting from.</p>
-
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>toID</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The UUID of the entity you are disconnecting from.</p>
-
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>completion</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The completion block that will be called once the request has completed.</p>
+                                  <p>The optional completion block that will be called once the request has completed.</p>
 
                                 </div>
                               </td>
@@ -3062,7 +3108,119 @@
                               </td>
                               <td>
                                 <div>
-                                  <p>The completion block that will be called once the request has completed.</p>
+                                  <p>The optional completion block that will be called once the request has completed.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC11UsergridSDK14UsergridClient10disconnectFS0_FTSS8entityIDSS12relationshipSS8fromTypeGSqSS_6fromIDSS10completionGSqFT8responseCS_16UsergridResponse_T___T_"></a>
+                    <a name="//apple_ref/swift/Method/disconnect(_:entityID:relationship:fromType:fromID:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC11UsergridSDK14UsergridClient10disconnectFS0_FTSS8entityIDSS12relationshipSS8fromTypeGSqSS_6fromIDSS10completionGSqFT8responseCS_16UsergridResponse_T___T_">disconnect(_:entityID:relationship:fromType:fromID:completion:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Disconnects the entity objects via the relationship.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">disconnect</span><span class="p">(</span><span class="nv">entityType</span><span class="p">:</span><span class="kt">String</span><span class="p">,</span> <span class="nv">entityID</span><span class="p">:</span><span class="kt">String</span><span class="p">,</span> <span class="nv">relationship</span><span class="p">:</span><span class="kt">String</span><span class="p">,</span> <span class="nv">fromType</span><span class="p">:</span><span class="kt">String</span><span class="p">?,</span> <span class="nv">fromID</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kt">UsergridResponseCompletion</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>entityType</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The entity type.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>entityID</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The entity UUID or name.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>relationship</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The relationship of the connection.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>fromType</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The optional type of the entity you are disconnecting from.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>toID</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The UUID of the entity you are disconnecting from.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completion</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The optional completion block that will be called once the request has completed.</p>
 
                                 </div>
                               </td>
@@ -3135,7 +3293,7 @@
                               </td>
                               <td>
                                 <div>
-                                  <p>The completion block that will be called once the request has completed.</p>
+                                  <p>The optional completion block that will be called once the request has completed.</p>
 
                                 </div>
                               </td>
@@ -3234,7 +3392,7 @@
                               </td>
                               <td>
                                 <div>
-                                  <p>The completion block that will be called once the request has completed.</p>
+                                  <p>The optional completion block that will be called once the request has completed.</p>
 
                                 </div>
                               </td>
@@ -3318,7 +3476,7 @@
                               </td>
                               <td>
                                 <div>
-                                  <p>The progress block that will be called to update the progress of the upload.</p>
+                                  <p>The optional progress block that will be called to update the progress of the upload.</p>
 
                                 </div>
                               </td>
@@ -3331,7 +3489,7 @@
                               </td>
                               <td>
                                 <div>
-                                  <p>The completion block that will be called once the request has completed.</p>
+                                  <p>The optional completion block that will be called once the request has completed.</p>
 
                                 </div>
                               </td>
@@ -3433,7 +3591,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2016 <a class="link" href="https://github.com/RobertWalsh/UsergridSDK" target="_blank" rel="external">Robert Walsh</a>. All rights reserved. (Last updated: 2016-01-09)</p>
+          <p>&copy; 2016 <a class="link" href="https://github.com/RobertWalsh/UsergridSDK" target="_blank" rel="external">Robert Walsh</a>. All rights reserved. (Last updated: 2016-01-14)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.5.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

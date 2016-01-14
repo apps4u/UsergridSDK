@@ -40,6 +40,9 @@
                 <a href="../Classes/UsergridAsset.html">UsergridAsset</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/UsergridAssetUploadRequest.html">UsergridAssetUploadRequest</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/UsergridAuth.html">UsergridAuth</a>
               </li>
               <li class="nav-group-task">
@@ -59,6 +62,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/UsergridQuery.html">UsergridQuery</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/UsergridRequest.html">UsergridRequest</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/UsergridResponse.html">UsergridResponse</a>
@@ -96,6 +102,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/UsergridEntityProperties.html">UsergridEntityProperties</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/UsergridHttpMethod.html">UsergridHttpMethod</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/UsergridImageContentType.html">UsergridImageContentType</a>
@@ -826,6 +835,114 @@ within the UsergridSDK library.</p>
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/s:ZFC11UsergridSDK8Usergrid9usingAuthFMS0_FCS_12UsergridAuthCS_14UsergridClient"></a>
+                    <a name="//apple_ref/swift/Method/usingAuth(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC11UsergridSDK8Usergrid9usingAuthFMS0_FCS_12UsergridAuthCS_14UsergridClient">usingAuth(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sets the shared <code><a href="../Classes/UsergridClient.html">UsergridClient</a></code>&rsquo;s <code>tempAuth</code> property using the passed in <code><a href="../Classes/UsergridAuth.html">UsergridAuth</a></code>.</p>
+
+<p>This will cause the next CRUD method performed by the client to use the <code>tempAuth</code> property once and will then reset.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">usingAuth</span><span class="p">(</span><span class="nv">auth</span><span class="p">:</span><span class="kt">UsergridAuth</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UsergridClient</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>auth</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The <code>UsergridAuth</code> object to temporarily use for authentication.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The shared instance of <code><a href="../Classes/UsergridClient.html">UsergridClient</a></code></p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC11UsergridSDK8Usergrid10usingTokenFMS0_FSSCS_14UsergridClient"></a>
+                    <a name="//apple_ref/swift/Method/usingToken(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC11UsergridSDK8Usergrid10usingTokenFMS0_FSSCS_14UsergridClient">usingToken(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sets the shared <code><a href="../Classes/UsergridClient.html">UsergridClient</a></code>&rsquo;s <code>tempAuth</code> property using the passed in token.</p>
+
+<p>This will cause the next CRUD method performed by the client to use the <code>tempAuth</code> property once and will then reset.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">usingToken</span><span class="p">(</span><span class="nv">token</span><span class="p">:</span><span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UsergridClient</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>auth</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The access token to temporarily use for authentication.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The shared instance of <code><a href="../Classes/UsergridClient.html">UsergridClient</a></code></p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/s:ZFC11UsergridSDK8Usergrid15authForRequestsFMS0_FT_GSqCS_12UsergridAuth_"></a>
                     <a name="//apple_ref/swift/Method/authForRequests()" class="dashAnchor"></a>
                     <a class="token" href="#/s:ZFC11UsergridSDK8Usergrid15authForRequestsFMS0_FT_GSqCS_12UsergridAuth_">authForRequests()</a>
@@ -1232,6 +1349,83 @@ within the UsergridSDK library.</p>
                               <td>
                                 <div>
                                   <p>The completion block that will be called after logout has completed.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Generic%20Request%20Methods"></a>
+                <a name="//apple_ref/swift/Section/Generic Request Methods" class="dashAnchor"></a>
+                <a href="#/Generic%20Request%20Methods">
+                  <h3 class="section-name">Generic Request Methods</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC11UsergridSDK8Usergrid11sendRequestFMS0_FTCS_15UsergridRequest10completionGSqFT8responseCS_16UsergridResponse_T___T_"></a>
+                    <a name="//apple_ref/swift/Method/sendRequest(_:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC11UsergridSDK8Usergrid11sendRequestFMS0_FTCS_15UsergridRequest10completionGSqFT8responseCS_16UsergridResponse_T___T_">sendRequest(_:completion:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Starts the <code><a href="../Classes/UsergridRequest.html">UsergridRequest</a></code> sending process using the shared instance of <code>UsergridCient</code>.</p>
+
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    <p>This method should only be used when you construct your own `UsergridRequest objects.</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">sendRequest</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span><span class="kt">UsergridRequest</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span><span class="kt">UsergridResponseCompletion</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>request</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The <code>UsergridRequest</code> object to send.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completion</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The optional completion block that will be called once the request has completed.</p>
 
                                 </div>
                               </td>
@@ -3303,7 +3497,7 @@ within the UsergridSDK library.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2016 <a class="link" href="https://github.com/RobertWalsh/UsergridSDK" target="_blank" rel="external">Robert Walsh</a>. All rights reserved. (Last updated: 2016-01-09)</p>
+          <p>&copy; 2016 <a class="link" href="https://github.com/RobertWalsh/UsergridSDK" target="_blank" rel="external">Robert Walsh</a>. All rights reserved. (Last updated: 2016-01-14)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.5.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

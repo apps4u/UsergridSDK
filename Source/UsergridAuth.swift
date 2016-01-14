@@ -100,25 +100,6 @@ public class UsergridAuth : NSObject, NSCoding {
             aCoder.encodeObject(expiresAt, forKey: "expiry")
         }
     }
-
-    /**
-    Builds an authorization request which is can be used to retrieve the access token.
-
-    - parameter baseUrl: The base URL of the access token request.
-
-    - returns: A `NSURLRequest` object.
-    */
-    func buildAuthRequest(baseUrl:String) -> NSURLRequest {
-        let requestURL = UsergridRequestManager.buildRequestURL(baseUrl,paths:["token"])
-        let request = NSMutableURLRequest(URL: NSURL(string:requestURL)!)
-        request.HTTPMethod = UsergridHttpMethod.POST.rawValue
-
-        let jsonData = try! NSJSONSerialization.dataWithJSONObject(self.credentialsJSONDict, options: NSJSONWritingOptions())
-        request.HTTPBody = jsonData
-        request.setValue(String(format: "%lu", jsonData.length), forHTTPHeaderField: UsergridRequestManager.CONTENT_LENGTH)
-
-        return request
-    }
 }
 
 /// The `UsergridAuth` subclass used for user level authorization.

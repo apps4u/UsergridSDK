@@ -259,6 +259,20 @@ public class Usergrid: NSObject {
         Usergrid.sharedInstance.logoutUser(uuidOrUsername, token: token, completion: completion)
     }
 
+    // MARK: - Generic Request Methods -
+
+    /**
+    Starts the `UsergridRequest` sending process using the shared instance of `UsergridCient`.
+
+    - Note: This method should only be used when you construct your own `UsergridRequest objects.
+
+    - parameter request:    The `UsergridRequest` object to send.
+    - parameter completion: The optional completion block that will be called once the request has completed.
+    */
+    public static func sendRequest(request:UsergridRequest, completion:UsergridResponseCompletion? = nil) {
+        Usergrid.sharedInstance.sendRequest(request, completion: completion)
+    }
+
     // MARK: - GET -
 
     /**

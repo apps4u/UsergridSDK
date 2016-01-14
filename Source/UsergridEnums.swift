@@ -341,6 +341,34 @@ An enumeration that is used to determine what the `UsergridClient` will fallback
     }
 }
 
+/**
+ An enumeration for defining the HTTP methods used by Usergrid.
+ */
+@objc public enum UsergridHttpMethod : Int {
+
+    /// GET
+    case Get
+
+    /// PUT
+    case Put
+
+    /// POST
+    case Post
+
+    /// DELETE
+    case Delete
+
+    /// Returns the string value.
+    public var stringValue: String {
+        switch self {
+            case .Get: return "GET"
+            case .Put: return "PUT"
+            case .Post: return "POST"
+            case .Delete: return "DELETE"
+        }
+    }
+}
+
 let ENTITY_TYPE = "type"
 let ENTITY_UUID = "uuid"
 let ENTITY_NAME = "name"

@@ -74,6 +74,9 @@
 		63EE61031C406E1600AFC2CF /* UsergridAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF0F401BBC4EF6009D4196 /* UsergridAsset.swift */; };
 		63EE61041C406E1600AFC2CF /* UsergridClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF0F421BBC4EF6009D4196 /* UsergridClient.swift */; };
 		63EE610D1C406E2200AFC2CF /* UsergridSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 63AF0F471BBC4EF6009D4196 /* UsergridSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		63F36F0F1C458AAE00CEEF54 /* UsergridRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F36F0E1C458AAE00CEEF54 /* UsergridRequest.swift */; };
+		63F36F101C458AAE00CEEF54 /* UsergridRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F36F0E1C458AAE00CEEF54 /* UsergridRequest.swift */; };
+		63F36F111C458AAE00CEEF54 /* UsergridRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F36F0E1C458AAE00CEEF54 /* UsergridRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -122,6 +125,7 @@
 		63AF0F7D1BBC5692009D4196 /* TestAssets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TestAssets; sourceTree = "<group>"; };
 		63EE60D81C404AB700AFC2CF /* UsergridResponseError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsergridResponseError.swift; sourceTree = "<group>"; };
 		63EE610B1C406E1600AFC2CF /* UsergridSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UsergridSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		63F36F0E1C458AAE00CEEF54 /* UsergridRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsergridRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -222,6 +226,7 @@
 				63AF0F441BBC4EF6009D4196 /* UsergridQuery.swift */,
 				63AF0F461BBC4EF6009D4196 /* UsergridResponse.swift */,
 				63EE60D81C404AB700AFC2CF /* UsergridResponseError.swift */,
+				63F36F0E1C458AAE00CEEF54 /* UsergridRequest.swift */,
 				63AF0F481BBC4EF6009D4196 /* UsergridUser.swift */,
 				6345C4A81BD8432000AF9520 /* Internal */,
 			);
@@ -426,6 +431,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				63EE60DA1C404AB700AFC2CF /* UsergridResponseError.swift in Sources */,
+				63F36F101C458AAE00CEEF54 /* UsergridRequest.swift in Sources */,
 				639B4BF51C3DD915005E26E7 /* UsergridAuth.swift in Sources */,
 				639B4BF71C3DD915005E26E7 /* UsergridEntity.swift in Sources */,
 				639B4C011C3DD918005E26E7 /* UsergridKeychainHelpers.swift in Sources */,
@@ -451,6 +457,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				63EE60D91C404AB700AFC2CF /* UsergridResponseError.swift in Sources */,
+				63F36F0F1C458AAE00CEEF54 /* UsergridRequest.swift in Sources */,
 				634382401BC30138008624BE /* UsergridClientConfig.swift in Sources */,
 				63377E811C28A81200D2D63B /* UsergridKeychainHelpers.swift in Sources */,
 				6345C4AC1BD8432000AF9520 /* UsergridAssetRequestWrapper.swift in Sources */,
@@ -492,6 +499,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				63EE60F31C406E1600AFC2CF /* UsergridResponseError.swift in Sources */,
+				63F36F111C458AAE00CEEF54 /* UsergridRequest.swift in Sources */,
 				63EE60F41C406E1600AFC2CF /* UsergridClientConfig.swift in Sources */,
 				63EE60F51C406E1600AFC2CF /* UsergridKeychainHelpers.swift in Sources */,
 				63EE60F61C406E1600AFC2CF /* UsergridAssetRequestWrapper.swift in Sources */,

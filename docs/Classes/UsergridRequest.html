@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>UsergridUserProperties Enum Reference</title>
+    <title>UsergridRequest Class Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Enum/UsergridUserProperties" class="dashAnchor"></a>
-    <a title="UsergridUserProperties Enum Reference"></a>
+    <a name="//apple_ref/swift/Class/UsergridRequest" class="dashAnchor"></a>
+    <a title="UsergridRequest Class Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html">UsergridSDK Docs</a> (99% documented)</p>
@@ -21,7 +21,7 @@
       <p id="breadcrumbs">
         <a href="../index.html">UsergridSDK Reference</a>
         <img id="carat" src="../img/carat.png" />
-        UsergridUserProperties Enum Reference
+        UsergridRequest Class Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -154,25 +154,34 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>UsergridUserProperties</h1>
+            <h1>UsergridRequest</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="kd">enum</span> <span class="kt">UsergridUserProperties</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">UsergridRequest</span> <span class="p">:</span> <span class="kt">NSObject</span></code></pre>
 
                 </div>
               </div>
-            <p><code><a href="../Classes/UsergridUser.html">UsergridUser</a></code> specific properties keys.</p>
+            <p>The UsergridRequest class incapsulates the properties that all requests made by the SDK have in common.  </p>
+
+<p>This class is also functions to create <code>NSURLRequest</code> objects based on the properties of the class.</p>
 
           </section>
           <section class="section task-group-section">
             <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Instance%20Properties"></a>
+                <a name="//apple_ref/swift/Section/Instance Properties" class="dashAnchor"></a>
+                <a href="#/Instance%20Properties">
+                  <h3 class="section-name">Instance Properties</h3>
+                </a>
+              </div>
               <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO11UsergridSDK22UsergridUserProperties4NameFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/Name" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO11UsergridSDK22UsergridUserProperties4NameFMS0_S0_">Name</a>
+                    <a name="/s:vC11UsergridSDK15UsergridRequest6methodOS_18UsergridHttpMethod"></a>
+                    <a name="//apple_ref/swift/Property/method" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC11UsergridSDK15UsergridRequest6methodOS_18UsergridHttpMethod">method</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -180,30 +189,26 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Corresponds to the property &lsquo;name&rsquo;</p>
+                        <p>The HTTP method.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="kt">Name</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">method</span><span class="p">:</span> <span class="kt">UsergridHttpMethod</span></code></pre>
 
                         </div>
                       </div>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO11UsergridSDK22UsergridUserProperties8UsernameFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/Username" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO11UsergridSDK22UsergridUserProperties8UsernameFMS0_S0_">Username</a>
+                    <a name="/s:vC11UsergridSDK15UsergridRequest7baseUrlSS"></a>
+                    <a name="//apple_ref/swift/Property/baseUrl" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC11UsergridSDK15UsergridRequest7baseUrlSS">baseUrl</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -211,30 +216,26 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Corresponds to the property &lsquo;username&rsquo;</p>
+                        <p>The base URL.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="kt">Username</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">baseUrl</span><span class="p">:</span> <span class="kt">String</span></code></pre>
 
                         </div>
                       </div>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO11UsergridSDK22UsergridUserProperties8PasswordFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/Password" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO11UsergridSDK22UsergridUserProperties8PasswordFMS0_S0_">Password</a>
+                    <a name="/s:vC11UsergridSDK15UsergridRequest5pathsGSqGSaSS__"></a>
+                    <a name="//apple_ref/swift/Property/paths" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC11UsergridSDK15UsergridRequest5pathsGSqGSaSS__">paths</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -242,30 +243,26 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Corresponds to the property &lsquo;password&rsquo;</p>
+                        <p>The paths to append to the base URL.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="kt">Password</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">paths</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">]?</span></code></pre>
 
                         </div>
                       </div>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO11UsergridSDK22UsergridUserProperties5EmailFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/Email" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO11UsergridSDK22UsergridUserProperties5EmailFMS0_S0_">Email</a>
+                    <a name="/s:vC11UsergridSDK15UsergridRequest5queryGSqCS_13UsergridQuery_"></a>
+                    <a name="//apple_ref/swift/Property/query" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC11UsergridSDK15UsergridRequest5queryGSqCS_13UsergridQuery_">query</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -273,30 +270,26 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Corresponds to the property &lsquo;email&rsquo;</p>
+                        <p>The query to append to the URL.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="kt">Email</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">query</span><span class="p">:</span> <span class="kt">UsergridQuery</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO11UsergridSDK22UsergridUserProperties3AgeFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/Age" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO11UsergridSDK22UsergridUserProperties3AgeFMS0_S0_">Age</a>
+                    <a name="/s:vC11UsergridSDK15UsergridRequest4authGSqCS_12UsergridAuth_"></a>
+                    <a name="//apple_ref/swift/Property/auth" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC11UsergridSDK15UsergridRequest4authGSqCS_12UsergridAuth_">auth</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -304,30 +297,26 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Corresponds to the property &lsquo;age&rsquo;</p>
+                        <p>The auth that will be used.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="kt">Age</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">auth</span><span class="p">:</span> <span class="kt">UsergridAuth</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO11UsergridSDK22UsergridUserProperties9ActivatedFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/Activated" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO11UsergridSDK22UsergridUserProperties9ActivatedFMS0_S0_">Activated</a>
+                    <a name="/s:vC11UsergridSDK15UsergridRequest7headersGSqGVSs10DictionarySSSS__"></a>
+                    <a name="//apple_ref/swift/Property/headers" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC11UsergridSDK15UsergridRequest7headersGSqGVSs10DictionarySSSS__">headers</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -335,30 +324,26 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Corresponds to the property &lsquo;activated&rsquo;</p>
+                        <p>The headers to add to the request.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="kt">Activated</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">headers</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span><span class="kt">String</span><span class="p">]?</span></code></pre>
 
                         </div>
                       </div>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO11UsergridSDK22UsergridUserProperties8DisabledFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/Disabled" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO11UsergridSDK22UsergridUserProperties8DisabledFMS0_S0_">Disabled</a>
+                    <a name="/s:vC11UsergridSDK15UsergridRequest8jsonBodyGSqPSs9AnyObject__"></a>
+                    <a name="//apple_ref/swift/Property/jsonBody" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC11UsergridSDK15UsergridRequest8jsonBodyGSqPSs9AnyObject__">jsonBody</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -366,45 +351,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Corresponds to the property &lsquo;disabled&rsquo;</p>
+                        <p>The JSON body that will be set on the request.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="kt">Disabled</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FO11UsergridSDK22UsergridUserProperties7PictureFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/Picture" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO11UsergridSDK22UsergridUserProperties7PictureFMS0_S0_">Picture</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Corresponds to the property &lsquo;picture&rsquo;</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="kt">Picture</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">jsonBody</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -415,19 +369,19 @@
             </div>
             <div class="task-group">
               <div class="task-name-container">
-                <a name="/Methods"></a>
-                <a name="//apple_ref/swift/Section/Methods" class="dashAnchor"></a>
-                <a href="#/Methods">
-                  <h3 class="section-name">Methods</h3>
+                <a name="/Initialization"></a>
+                <a name="//apple_ref/swift/Section/Initialization" class="dashAnchor"></a>
+                <a href="#/Initialization">
+                  <h3 class="section-name">Initialization</h3>
                 </a>
               </div>
               <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZFO11UsergridSDK22UsergridUserProperties10fromStringFMS0_FSSGSqS0__"></a>
-                    <a name="//apple_ref/swift/Method/fromString(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZFO11UsergridSDK22UsergridUserProperties10fromStringFMS0_FSSGSqS0__">fromString(_:)</a>
+                    <a name="/s:FC11UsergridSDK15UsergridRequestcFMS0_FT6methodOS_18UsergridHttpMethod7baseUrlSS5pathsGSqGSaSS__5queryGSqCS_13UsergridQuery_4authGSqCS_12UsergridAuth_7headersGSqGVSs10DictionarySSSS__8jsonBodyGSqPSs9AnyObject___S0_"></a>
+                    <a name="//apple_ref/swift/Method/init(method:baseUrl:paths:query:auth:headers:jsonBody:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC11UsergridSDK15UsergridRequestcFMS0_FT6methodOS_18UsergridHttpMethod7baseUrlSS5pathsGSqGSaSS__5queryGSqCS_13UsergridQuery_4authGSqCS_12UsergridAuth_7headersGSqGVSs10DictionarySSSS__8jsonBodyGSqPSs9AnyObject___S0_">init(method:baseUrl:paths:query:auth:headers:jsonBody:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -435,14 +389,20 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Gets the corresponding <code><a href="../Enums/UsergridUserProperties.html">UsergridUserProperties</a></code> from a string if it&rsquo;s valid.</p>
+                        <p>The designated initializer for <code><a href="../Classes/UsergridRequest.html">UsergridRequest</a></code> objects.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">fromString</span><span class="p">(</span><span class="nv">stringValue</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UsergridUserProperties</span><span class="p">?</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">method</span><span class="p">:</span><span class="kt">UsergridHttpMethod</span><span class="p">,</span>
+                <span class="nv">baseUrl</span><span class="p">:</span><span class="kt">String</span><span class="p">,</span>
+                <span class="nv">paths</span><span class="p">:[</span><span class="kt">String</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+                <span class="nv">query</span><span class="p">:</span><span class="kt">UsergridQuery</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+                <span class="nv">auth</span><span class="p">:</span><span class="kt">UsergridAuth</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+                <span class="nv">headers</span><span class="p">:[</span><span class="kt">String</span><span class="p">:</span><span class="kt">String</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+                <span class="nv">jsonBody</span><span class="p">:</span><span class="kt">AnyObject</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -453,12 +413,90 @@
                             <tr>
                               <td>
                                 <code>
-                                <em>stringValue</em>
+                                <em>method</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p>The string value to convert.</p>
+                                  <p>The HTTP method.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>baseUrl</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The base URL.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>paths</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The optional paths to append to the base URL.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>query</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The optional query to append to the URL.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>auth</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The optional <code>UsergridAuth</code> that will be used in the Authorization header.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>headers</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The optional headers.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>jsonBody</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The optional JSON body.</p>
 
                                 </div>
                               </td>
@@ -468,18 +506,29 @@
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>The corresponding <code><a href="../Enums/UsergridUserProperties.html">UsergridUserProperties</a></code> or nil.</p>
+                        <p>A new instance of <code><a href="../Classes/UsergridRequest.html">UsergridRequest</a></code>.</p>
 
                       </div>
                     </section>
                   </div>
                 </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Instance%20Methods"></a>
+                <a name="//apple_ref/swift/Section/Instance Methods" class="dashAnchor"></a>
+                <a href="#/Instance%20Methods">
+                  <h3 class="section-name">Instance Methods</h3>
+                </a>
+              </div>
+              <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vO11UsergridSDK22UsergridUserProperties11stringValueSS"></a>
-                    <a name="//apple_ref/swift/Property/stringValue" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vO11UsergridSDK22UsergridUserProperties11stringValueSS">stringValue</a>
+                    <a name="/s:FC11UsergridSDK15UsergridRequest17buildNSURLRequestFS0_FT_CSo12NSURLRequest"></a>
+                    <a name="//apple_ref/swift/Method/buildNSURLRequest()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC11UsergridSDK15UsergridRequest17buildNSURLRequestFS0_FT_CSo12NSURLRequest">buildNSURLRequest()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -487,16 +536,21 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Returns the string value.</p>
+                        <p>Constructs a <code>NSURLRequest</code> object with this objects instance properties.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">stringValue</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildNSURLRequest</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">NSURLRequest</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>An initialized and configured <code>NSURLRequest</code> object.</p>
+
                       </div>
                     </section>
                   </div>
