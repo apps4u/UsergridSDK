@@ -78,6 +78,7 @@ class User_Tests: XCTestCase {
 
         user.create(client) { (createResponse) in
             XCTAssertNotNil(createResponse)
+            XCTAssertTrue(createResponse.ok)
             XCTAssertNotNil(createResponse.user)
             XCTAssertNotNil(createResponse.users)
 
@@ -93,6 +94,7 @@ class User_Tests: XCTestCase {
 
                 createdUser.remove(self.client) { (removeResponse) in
                     XCTAssertNotNil(removeResponse)
+                    XCTAssertTrue(removeResponse.ok)
                     XCTAssertNotNil(removeResponse.user)
                     XCTAssertNotNil(removeResponse.users)
                     createUserExpect.fulfill()

@@ -30,6 +30,7 @@ class PUT_Tests: XCTestCase {
         client.PUT(PUT_Tests.collectionName, uuidOrName: PUT_Tests.entityUUID, jsonBody:[propertyNameToUpdate : propertiesNewValue]) { (response) in
 
             XCTAssertNotNil(response)
+            XCTAssertTrue(response.ok)
             XCTAssertEqual(response.entities!.count, 1)
             let entity = response.first!
 
@@ -54,6 +55,7 @@ class PUT_Tests: XCTestCase {
 
         client.PUT(PUT_Tests.collectionName, jsonBody: jsonDictToPut) { (response) in
             XCTAssertNotNil(response)
+            XCTAssertTrue(response.ok)
             XCTAssertEqual(response.entities!.count, 1)
             let entity = response.first!
 
@@ -75,6 +77,7 @@ class PUT_Tests: XCTestCase {
 
         client.GET(PUT_Tests.collectionName, uuidOrName: PUT_Tests.entityUUID) { (getResponse) in
             XCTAssertNotNil(getResponse)
+            XCTAssertTrue(getResponse.ok)
             XCTAssertEqual(getResponse.entities!.count, 1)
 
             var responseEntity = getResponse.first!
@@ -86,6 +89,7 @@ class PUT_Tests: XCTestCase {
 
             self.client.PUT(responseEntity) { (putResponse) in
                 XCTAssertNotNil(putResponse)
+                XCTAssertTrue(putResponse.ok)
                 XCTAssertEqual(putResponse.entities!.count, 1)
                 responseEntity = putResponse.first!
 
@@ -108,6 +112,7 @@ class PUT_Tests: XCTestCase {
 
         client.PUT(self.query, jsonBody: [propertyNameToUpdate : propertiesNewValue]) { (putResponse) in
             XCTAssertNotNil(putResponse)
+            XCTAssertTrue(putResponse.ok)
             XCTAssertEqual(putResponse.entities!.count, 3)
 
             let responseEntity = putResponse.first!

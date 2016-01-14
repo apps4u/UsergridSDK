@@ -15,9 +15,9 @@ public typealias UsergridAppAuthCompletionBlock = (auth:UsergridAppAuth?, error:
 public typealias UsergridUserAuthCompletionBlock = (auth:UsergridUserAuth?, user:UsergridUser?, error: String?) -> Void
 
 /** 
-The base class for `UsergridAppAuth` and `UsergridUserAuth` classes.
-
-This class should never be initialized on its own.  The use of the `UsergridAppAuth` and `UsergridUserAuth` subclasses should be used.
+ The `UsergridAuth` class functions to create and store authentication information used by Usergrid.
+ 
+ The `UsergridAuth` sub classes, `UsergridAppAuth` and `UsergridUserAuth`, provide different ways for authentication to be used in creating requests for access tokens through the SDK.
 */
 public class UsergridAuth : NSObject, NSCoding {
 
@@ -61,7 +61,7 @@ public class UsergridAuth : NSObject, NSCoding {
 
     - returns: A new instance of `UsergridAuth`.
     */
-    override internal init() {
+    override private init() {
         super.init()
     }
 

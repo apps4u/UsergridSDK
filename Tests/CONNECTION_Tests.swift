@@ -30,6 +30,7 @@ class CONNECTION_Tests: XCTestCase {
                 self?.testAuthClient.GET(CONNECTION_Tests.collectionName) { (response) in
 
                     XCTAssertNotNil(response)
+                    XCTAssertTrue(response.ok)
                     XCTAssertTrue(response.hasNextPage)
                     XCTAssertEqual(response.entities!.count, 10)
 
@@ -39,15 +40,19 @@ class CONNECTION_Tests: XCTestCase {
 
                     entity.connect(self!.testAuthClient,relationship:"likes", toEntity: entityToConnect) { (response) -> Void in
                         XCTAssertNotNil(response)
+                        XCTAssertTrue(response.ok)
                         entity.getConnections(self!.testAuthClient, direction:.Out, relationship: "likes") { (response) -> Void in
                             XCTAssertNotNil(response)
+                            XCTAssertTrue(response.ok)
                             let connectedEntity = response.first!
                             XCTAssertNotNil(connectedEntity)
                             XCTAssertEqual(connectedEntity.uuidOrName, entityToConnect.uuidOrName)
                             entity.disconnect(self!.testAuthClient, relationship: "likes", fromEntity: connectedEntity) { (response) -> Void in
                                 XCTAssertNotNil(response)
+                                XCTAssertTrue(response.ok)
                                 entity.getConnections(self!.testAuthClient, direction:.Out, relationship: "likes") { (response) -> Void in
                                     XCTAssertNotNil(response)
+                                    XCTAssertTrue(response.ok)
                                     authExpect.fulfill()
                                 }
                             }

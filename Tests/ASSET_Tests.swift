@@ -47,6 +47,7 @@ class ASSET_Tests: XCTestCase {
             entity.uploadAsset(self.sharedClient, asset:asset!, progress:uploadProgress) { (response, uploadedAsset, error) -> Void in
                 XCTAssertNotNil(asset)
                 XCTAssertNil(error)
+                XCTAssertTrue(response.ok)
                 entity.downloadAsset(UsergridImageContentType.Png.stringValue, progress:downloadProgress)
                 { (downloadedAsset, error) -> Void in
                     XCTAssertNotNil(downloadedAsset)

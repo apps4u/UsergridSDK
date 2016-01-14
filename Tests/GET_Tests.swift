@@ -27,8 +27,9 @@ class GET_Tests: XCTestCase {
         let getExpect = self.expectationWithDescription("\(__FUNCTION__)")
         usergridClientInstance.GET(GET_Tests.collectionName) { (response) in
             XCTAssertNotNil(response)
+            XCTAssertTrue(response.ok)
             XCTAssertTrue(response.hasNextPage)
-            XCTAssertEqual(response.entities!.count, 10)
+            XCTAssertEqual(response.count, 10)
             getExpect.fulfill()
         }
         self.waitForExpectationsWithTimeout(10, handler: nil)
@@ -39,7 +40,8 @@ class GET_Tests: XCTestCase {
         let getExpect = self.expectationWithDescription("\(__FUNCTION__)")
         usergridClientInstance.GET(GET_Tests.collectionName, query:self.query) { (response) in
             XCTAssertNotNil(response)
-            XCTAssertEqual(response.entities!.count, 3)
+            XCTAssertTrue(response.ok)
+            XCTAssertEqual(response.count, 3)
             getExpect.fulfill()
         }
         self.waitForExpectationsWithTimeout(10, handler: nil)
@@ -50,9 +52,10 @@ class GET_Tests: XCTestCase {
         let getExpect = self.expectationWithDescription("\(__FUNCTION__)")
         usergridClientInstance.GET(GET_Tests.collectionName, uuidOrName:GET_Tests.entityUUID) { (response) in
             XCTAssertNotNil(response)
+            XCTAssertTrue(response.ok)
             let entity = response.first!
             XCTAssertFalse(response.hasNextPage)
-            XCTAssertEqual(response.entities!.count, 1)
+            XCTAssertEqual(response.count, 1)
             XCTAssertNotNil(entity)
             XCTAssertEqual(entity.uuid!, GET_Tests.entityUUID)
             getExpect.fulfill()
@@ -65,10 +68,12 @@ class GET_Tests: XCTestCase {
         let getExpect = self.expectationWithDescription("\(__FUNCTION__)")
         usergridClientInstance.GET(GET_Tests.collectionName) { (response) in
             XCTAssertNotNil(response)
+            XCTAssertTrue(response.ok)
             XCTAssertTrue(response.hasNextPage)
-            XCTAssertEqual(response.entities!.count, 10)
+            XCTAssertEqual(response.count, 10)
 
             response.loadNextPage() { (nextPageResponse) in
+                XCTAssertTrue(nextPageResponse.ok)
                 XCTAssertNotNil(nextPageResponse)
                 XCTAssertFalse(nextPageResponse.hasNextPage)
                 XCTAssertEqual(nextPageResponse.entities!.count, 2)

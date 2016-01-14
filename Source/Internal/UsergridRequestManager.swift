@@ -126,8 +126,8 @@ extension UsergridRequestManager {
 
     func performAssetUpload(usergridRequest:UsergridAssetUploadRequest, progress:UsergridAssetRequestProgress? = nil, completion: UsergridAssetUploadCompletion? = nil) {
         let uploadTask = session.uploadTaskWithRequest(usergridRequest.buildNSURLRequest(), fromData: usergridRequest.multiPartHTTPBody)
-        let requestWrapper = UsergridAssetRequestWrapper(session: self.session, sessionTask: uploadTask, progress: progress)  { (request) -> Void in
-            completion?(response: UsergridResponse(client: self.client, data: request.responseData, response: request.response as? NSHTTPURLResponse, error: request.error),asset:usergridRequest.asset,error:nil)
+        let requestWrapper = UsergridAssetRequestWrapper(session: self.session, sessionTask: uploadTask, progress: progress)  { [weak self] (request) -> Void in
+            completion?(response: UsergridResponse(client: self?.client, data: request.responseData, response: request.response as? NSHTTPURLResponse, error: request.error),asset:usergridRequest.asset,error:nil)
         }
         self.sessionDelegate.addRequestDelegate(requestWrapper.sessionTask, requestWrapper:requestWrapper)
         requestWrapper.sessionTask.resume()
