@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import MobileCoreServices
 
 /** 
  The UsergridRequest class incapsulates the properties that all requests made by the SDK have in common.  

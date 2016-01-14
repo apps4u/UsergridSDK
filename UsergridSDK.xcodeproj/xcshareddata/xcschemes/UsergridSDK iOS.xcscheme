@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "63AF0E871BBC38FB009D4196"
                BuildableName = "UsergridSDK.framework"
-               BlueprintName = "UsergridSDK"
+               BlueprintName = "UsergridSDK iOS"
                ReferencedContainer = "container:UsergridSDK.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,7 +45,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "63AF0E871BBC38FB009D4196"
             BuildableName = "UsergridSDK.framework"
-            BlueprintName = "UsergridSDK"
+            BlueprintName = "UsergridSDK iOS"
             ReferencedContainer = "container:UsergridSDK.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -67,7 +67,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "63AF0E871BBC38FB009D4196"
             BuildableName = "UsergridSDK.framework"
-            BlueprintName = "UsergridSDK"
+            BlueprintName = "UsergridSDK iOS"
             ReferencedContainer = "container:UsergridSDK.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -85,7 +85,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "63AF0E871BBC38FB009D4196"
             BuildableName = "UsergridSDK.framework"
-            BlueprintName = "UsergridSDK"
+            BlueprintName = "UsergridSDK iOS"
             ReferencedContainer = "container:UsergridSDK.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

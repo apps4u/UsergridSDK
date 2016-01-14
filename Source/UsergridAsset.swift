@@ -7,8 +7,10 @@
 //
 
 import Foundation
+#if os(iOS) || os(watchOS) || os(tvOS)
 import UIKit
 import MobileCoreServices
+#endif
 
 /// The progress block used in `UsergridAsset` are being uploaded or downloaded.
 public typealias UsergridAssetRequestProgress = (bytesFinished:Int64, bytesExpected: Int64) -> Void
@@ -64,6 +66,7 @@ public class UsergridAsset: NSObject, NSCoding {
         self.contentType = contentType
     }
 
+    #if os(iOS) || os(watchOS) || os(tvOS)
     /**
     Convenience initializer for `UsergridAsset` objects dealing with image data.
 
@@ -87,6 +90,7 @@ public class UsergridAsset: NSObject, NSCoding {
             return nil
         }
     }
+    #endif
 
     /**
     Convenience initializer for `UsergridAsset` objects dealing directly with files on disk.

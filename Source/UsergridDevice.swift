@@ -7,7 +7,10 @@
 //
 
 import Foundation
+
+#if os(iOS) || os(watchOS) || os(tvOS)
 import UIKit
+#endif
 
 #if os(watchOS)
 import WatchKit
@@ -65,7 +68,7 @@ public class UsergridDevice : UsergridEntity {
         #elseif os(OSX)
             deviceEntityDict[UsergridDeviceProperties.Model.stringValue] = "Mac"
             deviceEntityDict[UsergridDeviceProperties.Platform.stringValue] = "OSX"
-            deviceEntityDict[UsergridDeviceProperties.OSVersion.stringValue] = NSProcessInfo.processInfo().operatingSystemVersionString()
+            deviceEntityDict[UsergridDeviceProperties.OSVersion.stringValue] = NSProcessInfo.processInfo().operatingSystemVersionString
         #endif
 
         super.init(type: UsergridDevice.DEVICE_ENTITY_TYPE, name: nil, propertyDict: deviceEntityDict)
