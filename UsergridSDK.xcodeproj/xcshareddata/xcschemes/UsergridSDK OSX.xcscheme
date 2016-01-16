@@ -28,7 +28,26 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "630A219E1C49BFFC008BE87F"
+               BuildableName = "UsergridSDK_OSX_Tests.xctest"
+               BlueprintName = "UsergridSDK_OSX_Tests"
+               ReferencedContainer = "container:UsergridSDK.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "6319202A1C48436500F99E86"
+            BuildableName = "UsergridSDK.framework"
+            BlueprintName = "UsergridSDK OSX"
+            ReferencedContainer = "container:UsergridSDK.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>

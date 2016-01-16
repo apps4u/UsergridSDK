@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0700"
+   LastUpgradeVersion = "0720"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -16,9 +16,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "63AF0E911BBC38FB009D4196"
-               BuildableName = "UsergridSDKTests.xctest"
-               BlueprintName = "UsergridSDKTests"
+               BlueprintIdentifier = "630A219E1C49BFFC008BE87F"
+               BuildableName = "UsergridSDK_OSX_Tests.xctest"
+               BlueprintName = "UsergridSDK_OSX_Tests"
                ReferencedContainer = "container:UsergridSDK.xcodeproj">
             </BuildableReference>
          </TestableReference>

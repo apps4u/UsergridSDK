@@ -35,7 +35,7 @@ public class UsergridRequest : NSObject {
     /// The headers to add to the request.
     public let headers: [String:String]?
 
-    /// The JSON body that will be set on the request.
+    /// The JSON body that will be set on the request.  Can be either a valid JSON object or NSData.
     public let jsonBody: AnyObject?
 
     // MARK: - Initialization -
@@ -49,7 +49,7 @@ public class UsergridRequest : NSObject {
      - parameter query:    The optional query to append to the URL.
      - parameter auth:     The optional `UsergridAuth` that will be used in the Authorization header.
      - parameter headers:  The optional headers.
-     - parameter jsonBody: The optional JSON body.
+     - parameter jsonBody: The optional JSON body. Can be either a valid JSON object or NSData.
 
      - returns: A new instance of `UsergridRequest`.
      */
@@ -166,11 +166,9 @@ public class UsergridAssetUploadRequest: UsergridRequest {
             "\(UsergridAssetUploadRequest.CONTENT_DISPOSITION):\(UsergridAssetUploadRequest.FORM_DATA); name=file; filename=\(self.asset.fileName)\r\n" +
             "\(UsergridRequest.CONTENT_TYPE): \(self.asset.contentType)\r\n\r\n" as NSString
 
-        let assetBodyData = self.asset.assetData
-
         let httpBody = NSMutableData()
         httpBody.appendData(httpBodyString.dataUsingEncoding(NSUTF8StringEncoding)!)
-        httpBody.appendData(assetBodyData)
+        httpBody.appendData(self.asset.assetData)
         httpBody.appendData(UsergridAssetUploadRequest.MULTIPART_END.dataUsingEncoding(NSUTF8StringEncoding)!)
 
         return httpBody
@@ -196,18 +194,10 @@ public class UsergridAssetUploadRequest: UsergridRequest {
                     super.init(method: .Put, baseUrl: baseUrl, paths: paths, auth: auth)
     }
 
-    // MARK: - Instance Methods -
-
-    /**
-     Constructs a `NSURLRequest` object with this objects instance properties.
-
-     - returns: An initialized and configured `NSURLRequest` object.
-     */
-    override public func buildNSURLRequest() -> NSURLRequest {
-        let request = super.buildNSURLRequest() as! NSMutableURLRequest
+    private override func applyHeaders(request: NSMutableURLRequest) {
+        super.applyHeaders(request)
         request.setValue(UsergridAssetUploadRequest.ASSET_UPLOAD_CONTENT_HEADER, forHTTPHeaderField: UsergridRequest.CONTENT_TYPE)
         request.setValue(String(format: "%lu", self.multiPartHTTPBody.length), forHTTPHeaderField: UsergridRequest.CONTENT_LENGTH)
-        return request
     }
 
     private static let ASSET_UPLOAD_BOUNDARY = "apigee-asset-upload-boundary"
