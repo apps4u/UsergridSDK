@@ -33,7 +33,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "63AF0E911BBC38FB009D4196"
+               BlueprintIdentifier = "630A21B71C49C473008BE87F"
                BuildableName = "UsergridSDK_iOS_Tests.xctest"
                BlueprintName = "UsergridSDK_iOS_Tests"
                ReferencedContainer = "container:UsergridSDK.xcodeproj">
