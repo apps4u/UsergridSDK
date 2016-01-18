@@ -76,7 +76,7 @@ class GET_Tests: XCTestCase {
                 XCTAssertTrue(nextPageResponse.ok)
                 XCTAssertNotNil(nextPageResponse)
                 XCTAssertFalse(nextPageResponse.hasNextPage)
-                XCTAssertEqual(nextPageResponse.entities!.count, 2)
+                XCTAssertEqual(nextPageResponse.entities!.count, 5)
                 getExpect.fulfill()
             }
         }

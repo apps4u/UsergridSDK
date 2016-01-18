@@ -163,7 +163,7 @@ public class UsergridAssetUploadRequest: UsergridRequest {
     /// A constructed multipart http body for requests to upload.
     public var multiPartHTTPBody: NSData {
         let httpBodyString = UsergridAssetUploadRequest.MULTIPART_START +
-            "\(UsergridAssetUploadRequest.CONTENT_DISPOSITION):\(UsergridAssetUploadRequest.FORM_DATA); name=file; filename=\(self.asset.fileName)\r\n" +
+            "\(UsergridAssetUploadRequest.CONTENT_DISPOSITION):\(UsergridAssetUploadRequest.FORM_DATA); name=file; filename=\(self.asset.filename)\r\n" +
             "\(UsergridRequest.CONTENT_TYPE): \(self.asset.contentType)\r\n\r\n" as NSString
 
         let httpBody = NSMutableData()

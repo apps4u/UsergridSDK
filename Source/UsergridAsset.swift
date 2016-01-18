@@ -33,7 +33,7 @@ public class UsergridAsset: NSObject, NSCoding {
     // MARK: - Instance Properties -
 
     /// The filename to be used in the multipart/form-data request.
-    public let fileName: String
+    public let filename: String
 
     /// Binary representation of asset data. If an image or image path was passed on initialization of the `UsergridAsset`.
     public let assetData: NSData
@@ -59,8 +59,8 @@ public class UsergridAsset: NSObject, NSCoding {
 
     - returns: A new instance of `UsergridAsset`.
     */
-    public init(fileName:String? = UsergridAsset.DEFAULT_FILE_NAME, data:NSData, originalLocation:String? = nil, contentType:String) {
-        self.fileName = fileName ?? UsergridAsset.DEFAULT_FILE_NAME
+    public init(filename:String? = UsergridAsset.DEFAULT_FILE_NAME, data:NSData, originalLocation:String? = nil, contentType:String) {
+        self.filename = filename ?? UsergridAsset.DEFAULT_FILE_NAME
         self.assetData = data
         self.originalLocation = originalLocation
         self.contentType = contentType
@@ -85,7 +85,7 @@ public class UsergridAsset: NSObject, NSCoding {
                 imageData = UIImageJPEGRepresentation(image, 1.0)
         }
         if let assetData = imageData {
-            self.init(fileName:fileName,data:assetData,contentType:imageContentType.stringValue)
+            self.init(filename:fileName,data:assetData,contentType:imageContentType.stringValue)
         } else {
             return nil
         }
@@ -108,7 +108,7 @@ public class UsergridAsset: NSObject, NSCoding {
             }
             contentType = contentType ?? UsergridAsset.MIMEType(fileURL)
             if let fileContentType = contentType {
-                self.init(fileName:fileName,data:assetData,originalLocation:fileURL.absoluteString,contentType:fileContentType)
+                self.init(filename:fileName,data:assetData,originalLocation:fileURL.absoluteString,contentType:fileContentType)
             } else {
                 print("Usergrid Error: Failed to imply content type of the asset.")
                 return nil
@@ -128,18 +128,18 @@ public class UsergridAsset: NSObject, NSCoding {
     - returns: A decoded `UsergridUser` object.
     */
     required public init?(coder aDecoder: NSCoder) {
-        guard   let fileName = aDecoder.decodeObjectForKey("fileName") as? String,
+        guard   let filename = aDecoder.decodeObjectForKey("filename") as? String,
                 let assetData = aDecoder.decodeObjectForKey("assetData") as? NSData,
                 let contentType = aDecoder.decodeObjectForKey("contentType") as? String
         else {
-            self.fileName = ""
+            self.filename = ""
             self.contentType = ""
             self.originalLocation = nil
             self.assetData = NSData()
             super.init()
             return nil
         }
-        self.fileName = fileName
+        self.filename = filename
         self.assetData = assetData
         self.contentType = contentType
         self.originalLocation = aDecoder.decodeObjectForKey("originalLocation") as? String
@@ -152,7 +152,7 @@ public class UsergridAsset: NSObject, NSCoding {
      - parameter aCoder: The encoder.
      */
     public func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(self.fileName, forKey: "fileName")
+        aCoder.encodeObject(self.filename, forKey: "filename")
         aCoder.encodeObject(self.assetData, forKey: "assetData")
         aCoder.encodeObject(self.contentType, forKey: "contentType")
         aCoder.encodeObject(self.originalLocation, forKey: "originalLocation")
