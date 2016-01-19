@@ -9,12 +9,7 @@
 import UIKit
 import UsergridSDK
 
-
 // TODO: Change the values to correspond to your organization, application, and notifier identifiers.
-
-let ORG_ID = "rwalsh"
-let APP_ID = "sandbox"
-let NOTIFIER_ID = "usergridsample"
 
 @UIApplicationMain class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -26,10 +21,8 @@ let NOTIFIER_ID = "usergridsample"
         application.registerUserNotificationSettings(UIUserNotificationSettings( forTypes: [.Alert, .Badge, .Sound], categories: nil))
         application.registerForRemoteNotifications()
 
-
         // Initialize the Usergrid shared instance.
-
-        Usergrid.initSharedInstance(configuration: UsergridClientConfig(orgId: ORG_ID, appId: APP_ID))
+        UsergridManager.initializeSharedInstance()
 
         // If there is a current user already logged in from the keychain we will skip the login page and go right to the chat screen
 
@@ -43,7 +36,7 @@ let NOTIFIER_ID = "usergridsample"
     }
 
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
-        Usergrid.applyPushToken(deviceToken, notifierID: NOTIFIER_ID, completion: nil)
+        Usergrid.applyPushToken(deviceToken, notifierID: UsergridManager.NOTIFIER_ID, completion: nil)
     }
 
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {

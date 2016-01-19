@@ -9,6 +9,7 @@
 import UIKit
 import UsergridSDK
 import SlackTextViewController
+import WatchConnectivity
 
 extension UIViewController {
 
@@ -100,10 +101,7 @@ class LoginViewController: UIViewController {
     }
 
     func loginUser(username:String, password:String) {
-
-        let userAuth = UsergridUserAuth(username: username, password: password)
-
-        Usergrid.authenticateUser(userAuth) { (auth, user, error) -> Void in
+        UsergridManager.loginUser(username,password: password) { (auth, user, error) -> Void in
             if let authErrorDescription = error {
                 self.showAlert(title: "Error Authenticating User", message: authErrorDescription)
             } else if let authenticatedUser = user {
@@ -146,10 +144,7 @@ class RegisterViewController: UIViewController {
     }
 
     func createUser(name:String, username:String, email:String, password:String) {
-        let user = UsergridUser(name: name, propertyDict: [UsergridUserProperties.Username.stringValue:username,
-                                                           UsergridUserProperties.Email.stringValue:email,
-                                                           UsergridUserProperties.Password.stringValue:password])
-        user.create() { (response) -> Void in
+        UsergridManager.createUser(name, username: username, email: email, password: password) { (response) -> Void in
             if let createdUser = response.user {
                 self.showAlert(title: "Registering User Successful", message: "User description: \n \(createdUser.stringValue)") { (action) -> Void in
                     self.performSegueWithIdentifier("unwindSegue", sender: self)
@@ -161,12 +156,8 @@ class RegisterViewController: UIViewController {
     }
 }
 
-class MessageViewController : SLKTextViewController {
+class MessageViewController : SLKTextViewController, WCSessionDelegate {
 
-    static let MESSAGE_ENTITY_TYPE = "sdkmessage"
-    static let MESSAGE_ENTITY_CREATOR = "creator"
-    static let MESSAGE_ENTITY_TEXT = "text"
-    static let MESSAGE_ENTITY_CREATOR_THUMBNAIL = "creatorThumb"
     static let MESSAGE_CELL_IDENTIFIER = "MessengerCell"
 
     var messageEntities: [UsergridEntity] = []
@@ -185,6 +176,10 @@ class MessageViewController : SLKTextViewController {
         return .Plain
     }
 
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+
     func commonInit() {
         self.bounces = true
         self.shakeToClearEnabled = true
@@ -192,13 +187,18 @@ class MessageViewController : SLKTextViewController {
         self.shouldScrollToBottomAfterKeyboardShows = true
         self.inverted = true
 
+        if (WCSession.isSupported()) {
+            let session = WCSession.defaultSession()
+            session.delegate = self // conforms to WCSessionDelegate
+            session.activateSession()
+        }
+
         self.registerClassForTextView(MessageTextView)
         self.reloadMessages()
     }
 
     func reloadMessages() {
-        let sortByCreatedDateQuery = UsergridQuery().desc(UsergridEntityProperties.Created.stringValue)
-        Usergrid.GET(MessageViewController.MESSAGE_ENTITY_TYPE, query:sortByCreatedDateQuery) { (response) -> Void in
+        UsergridManager.getMessages { (response) -> Void in
             self.messageEntities = response.entities ?? []
             self.tableView.reloadData()
         }
@@ -220,18 +220,7 @@ class MessageViewController : SLKTextViewController {
     override func didPressRightButton(sender: AnyObject!) {
         self.textView.refreshFirstResponder()
 
-        var messageEntityProperties: [String:String] = [:]
-        messageEntityProperties[MessageViewController.MESSAGE_ENTITY_CREATOR] = Usergrid.currentUser?.usernameOrEmail ?? ""
-        messageEntityProperties[MessageViewController.MESSAGE_ENTITY_CREATOR_THUMBNAIL] = Usergrid.currentUser?.picture ?? ""
-        messageEntityProperties[MessageViewController.MESSAGE_ENTITY_TEXT] = self.textView.text
-
-        let messageEntity = UsergridEntity(type: MessageViewController.MESSAGE_ENTITY_TYPE, propertyDict: messageEntityProperties)
-
-        messageEntity.save { (response) -> Void in
-            if let errorDescription = response.error?.errorDescription {
-                print("Uploading message error: \(errorDescription)")
-            }
-        }
+        let messageEntity = UsergridManager.postMessage(self.textView.text)
 
         let indexPath = NSIndexPath(forRow: 0, inSection: 0)
         let rowAnimation: UITableViewRowAnimation = self.inverted ? .Bottom : .Top
@@ -244,6 +233,14 @@ class MessageViewController : SLKTextViewController {
 
         self.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: scrollPosition, animated: true)
         self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+
+        if !WCSession.defaultSession().reachable {
+            self.showAlert(title: "WCSession Unreachable.", message: "Something went wrong")
+        } else {
+            WCSession.defaultSession().sendMessage(["action":"reload"], replyHandler:nil, errorHandler: { (error) -> Void in
+                self.showAlert(title: "WCSession Unreachable.", message: "\(error)")
+            })
+        }
 
         super.didPressRightButton(sender)
     }
@@ -269,7 +266,7 @@ class MessageViewController : SLKTextViewController {
 
         let messageEntity = self.messageEntities[indexPath.row]
         cell.thumbnailView.image = nil
-        if let profileImage = messageEntity[MessageViewController.MESSAGE_ENTITY_CREATOR_THUMBNAIL] as? String {
+        if let profileImage = messageEntity[UsergridManager.MESSAGE_ENTITY_CREATOR_THUMBNAIL] as? String {
             if let imageURL = NSURL(string: profileImage) {
                 NSURLSession.sharedSession().dataTaskWithURL(imageURL) { (data, response, error) in
                     if let imageData = data {
@@ -284,8 +281,8 @@ class MessageViewController : SLKTextViewController {
                 }.resume()
             }
         }
-        cell.titleLabel.text = messageEntity[MessageViewController.MESSAGE_ENTITY_CREATOR] as? String
-        cell.bodyLabel.text = messageEntity[MessageViewController.MESSAGE_ENTITY_TEXT] as? String
+        cell.titleLabel.text = messageEntity[UsergridManager.MESSAGE_ENTITY_CREATOR] as? String
+        cell.bodyLabel.text = messageEntity[UsergridManager.MESSAGE_ENTITY_TEXT] as? String
         cell.indexPath = indexPath
         cell.transform = self.tableView.transform
 
@@ -295,12 +292,12 @@ class MessageViewController : SLKTextViewController {
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         let messageEntity = messageEntities[indexPath.row]
 
-        let messageText : NSString = messageEntity[MessageViewController.MESSAGE_ENTITY_TEXT] as? NSString ?? ""
+        let messageText : NSString = messageEntity[UsergridManager.MESSAGE_ENTITY_TEXT] as? NSString ?? ""
         if messageText.length == 0 {
             return 0
         }
 
-        let messageUsername : NSString = messageEntity[MessageViewController.MESSAGE_ENTITY_CREATOR] as? NSString ?? ""
+        let messageUsername : NSString = messageEntity[UsergridManager.MESSAGE_ENTITY_CREATOR] as? NSString ?? ""
 
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineBreakMode = .ByWordWrapping

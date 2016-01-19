@@ -1,5 +1,5 @@
 framework module UsergridSDK {
-  umbrella header "UsergridSDK-umbrella.h"
+  umbrella header "Pods-SDKSample-UsergridSDK-umbrella.h"
 
   export *
   module * { export * }

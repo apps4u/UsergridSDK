@@ -84,10 +84,10 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "Pods/SlackTextViewController.framework"
-  install_framework "Pods/UsergridSDK.framework"
+  install_framework "Pods-SDKSample/SlackTextViewController.framework"
+  install_framework "Pods-SDKSample/UsergridSDK.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "Pods/SlackTextViewController.framework"
-  install_framework "Pods/UsergridSDK.framework"
+  install_framework "Pods-SDKSample/SlackTextViewController.framework"
+  install_framework "Pods-SDKSample/UsergridSDK.framework"
 fi
