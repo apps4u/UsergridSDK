@@ -6,8 +6,10 @@ Pod::Spec.new do |s|
   s.license = 'MIT'
   s.author = { 'Robert Walsh' => 'rjwalsh1985@gmail.com' }
   s.social_media_url = 'https://twitter.com/Apigee'
-  s.platform = :ios, '8.0'
   s.requires_arc = true
+
+  s.ios.deployment_target = '8.0'
+  s.watchos.deployment_target = '2.0'
 
   s.source = { :git => 'https://github.com/RobertWalsh/UsergridSDK.git', :branch => 'master', :tag => 'v0.0.3' }
   s.source_files  = 'Source/*.swift','Source/Internal/*.swift'
