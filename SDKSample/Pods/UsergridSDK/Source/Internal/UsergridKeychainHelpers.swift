@@ -7,7 +7,10 @@
 //
 
 import Foundation
+
+#if os(iOS) || os(tvOS) || os(watchOS)
 import UIKit
+#endif
 
 private let USERGRID_KEYCHAIN_NAME = "Usergrid"
 private let USERGRID_DEVICE_KEYCHAIN_SERVICE = "DeviceUUID"
@@ -31,7 +34,7 @@ internal extension UsergridDevice {
 
     static func createNewUsergridKeychainUUID() -> String {
 
-        #if os(iOS)
+        #if os(iOS) || os(tvOS)
         let usergridUUID = UIDevice.currentDevice().identifierForVendor?.UUIDString ?? NSUUID().UUIDString
         #else
         let usergridUUID = NSUUID().UUIDString

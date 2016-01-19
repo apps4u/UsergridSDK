@@ -46,6 +46,15 @@ public class UsergridResponse: NSObject {
     /// The error object containing error information if one occurred.
     internal(set) public var error: UsergridResponseError?
 
+    /// Returns true if the HTTP status code from the response is less than 400.
+    public var ok : Bool {
+        var isOk = false
+        if let statusCode = self.statusCode {
+            isOk = (statusCode < 400)
+        }
+        return isOk
+    }
+
     /// The count of `entities`.
     public var count: Int { return self.entities?.count ?? 0 }
 

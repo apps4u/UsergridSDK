@@ -15,9 +15,9 @@ public typealias UsergridAppAuthCompletionBlock = (auth:UsergridAppAuth?, error:
 public typealias UsergridUserAuthCompletionBlock = (auth:UsergridUserAuth?, user:UsergridUser?, error: String?) -> Void
 
 /** 
-The base class for `UsergridAppAuth` and `UsergridUserAuth` classes.
-
-This class should never be initialized on its own.  The use of the `UsergridAppAuth` and `UsergridUserAuth` subclasses should be used.
+ The `UsergridAuth` class functions to create and store authentication information used by Usergrid.
+ 
+ The `UsergridAuth` sub classes, `UsergridAppAuth` and `UsergridUserAuth`, provide different ways for authentication to be used in creating requests for access tokens through the SDK.
 */
 public class UsergridAuth : NSObject, NSCoding {
 
@@ -32,14 +32,19 @@ public class UsergridAuth : NSObject, NSCoding {
     /// Determines if an access token exists.
     public var hasToken: Bool { return self.accessToken != nil }
 
+    /// Determines if the token was set explicitly within the init method or not.
+    private var usingToken: Bool = false
+
     /// Determines if an access token exists and if the token is not expired.
     public var isValid : Bool { return self.hasToken && !self.isExpired }
 
     /// Determines if the access token, if one exists, is expired.
     public var isExpired: Bool {
-        var isExpired = true
+        var isExpired = false
         if let expires = self.expiry {
             isExpired = expires.timeIntervalSinceNow < 0.0
+        } else {
+            isExpired = !self.usingToken
         }
         return isExpired
     }
@@ -56,8 +61,22 @@ public class UsergridAuth : NSObject, NSCoding {
 
     - returns: A new instance of `UsergridAuth`.
     */
-    override internal init() {
+    override private init() {
         super.init()
+    }
+
+    /**
+     Initializer for a base `UsergridAuth` object that just contains an `accessToken` and an optional `expiry` date.
+
+     - parameter accessToken: The access token.
+     - parameter expiry:      The optional expiry date.
+
+     - returns: A new instance of `UsergridAuth`
+     */
+    public init(accessToken:String, expiry:NSDate? = nil) {
+        self.usingToken = true
+        self.accessToken = accessToken
+        self.expiry = expiry
     }
 
     // MARK: - NSCoding -
@@ -88,23 +107,14 @@ public class UsergridAuth : NSObject, NSCoding {
         }
     }
 
+    // MARK: - Instance Methods -
+
     /**
-    Builds an authorization request which is can be used to retrieve the access token.
-
-    - parameter baseUrl: The base URL of the access token request.
-
-    - returns: A `NSURLRequest` object.
-    */
-    func buildAuthRequest(baseUrl:String) -> NSURLRequest {
-        let requestURL = UsergridRequestManager.buildRequestURL(baseUrl,paths:["token"])
-        let request = NSMutableURLRequest(URL: NSURL(string:requestURL)!)
-        request.HTTPMethod = UsergridHttpMethod.POST.rawValue
-
-        let jsonData = try! NSJSONSerialization.dataWithJSONObject(self.credentialsJSONDict, options: NSJSONWritingOptions())
-        request.HTTPBody = jsonData
-        request.setValue(String(format: "%lu", jsonData.length), forHTTPHeaderField: UsergridRequestManager.CONTENT_LENGTH)
-
-        return request
+     Destroys/removes the access token and expiry.
+     */
+    public func destroy() {
+        self.accessToken = nil
+        self.expiry = nil
     }
 }
 

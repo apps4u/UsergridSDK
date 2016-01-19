@@ -7,8 +7,10 @@
 //
 
 import Foundation
+#if os(iOS) || os(watchOS) || os(tvOS)
 import UIKit
 import MobileCoreServices
+#endif
 
 /// The progress block used in `UsergridAsset` are being uploaded or downloaded.
 public typealias UsergridAssetRequestProgress = (bytesFinished:Int64, bytesExpected: Int64) -> Void
@@ -31,7 +33,7 @@ public class UsergridAsset: NSObject, NSCoding {
     // MARK: - Instance Properties -
 
     /// The filename to be used in the multipart/form-data request.
-    public let fileName: String
+    public let filename: String
 
     /// Binary representation of asset data. If an image or image path was passed on initialization of the `UsergridAsset`.
     public let assetData: NSData
@@ -57,13 +59,14 @@ public class UsergridAsset: NSObject, NSCoding {
 
     - returns: A new instance of `UsergridAsset`.
     */
-    public init(fileName:String? = UsergridAsset.DEFAULT_FILE_NAME, data:NSData, originalLocation:String? = nil, contentType:String) {
-        self.fileName = fileName ?? UsergridAsset.DEFAULT_FILE_NAME
+    public init(filename:String? = UsergridAsset.DEFAULT_FILE_NAME, data:NSData, originalLocation:String? = nil, contentType:String) {
+        self.filename = filename ?? UsergridAsset.DEFAULT_FILE_NAME
         self.assetData = data
         self.originalLocation = originalLocation
         self.contentType = contentType
     }
 
+    #if os(iOS) || os(watchOS) || os(tvOS)
     /**
     Convenience initializer for `UsergridAsset` objects dealing with image data.
 
@@ -82,11 +85,12 @@ public class UsergridAsset: NSObject, NSCoding {
                 imageData = UIImageJPEGRepresentation(image, 1.0)
         }
         if let assetData = imageData {
-            self.init(fileName:fileName,data:assetData,contentType:imageContentType.stringValue)
+            self.init(filename:fileName,data:assetData,contentType:imageContentType.stringValue)
         } else {
             return nil
         }
     }
+    #endif
 
     /**
     Convenience initializer for `UsergridAsset` objects dealing directly with files on disk.
@@ -104,7 +108,7 @@ public class UsergridAsset: NSObject, NSCoding {
             }
             contentType = contentType ?? UsergridAsset.MIMEType(fileURL)
             if let fileContentType = contentType {
-                self.init(fileName:fileName,data:assetData,originalLocation:fileURL.absoluteString,contentType:fileContentType)
+                self.init(filename:fileName,data:assetData,originalLocation:fileURL.absoluteString,contentType:fileContentType)
             } else {
                 print("Usergrid Error: Failed to imply content type of the asset.")
                 return nil
@@ -124,18 +128,18 @@ public class UsergridAsset: NSObject, NSCoding {
     - returns: A decoded `UsergridUser` object.
     */
     required public init?(coder aDecoder: NSCoder) {
-        guard   let fileName = aDecoder.decodeObjectForKey("fileName") as? String,
+        guard   let filename = aDecoder.decodeObjectForKey("filename") as? String,
                 let assetData = aDecoder.decodeObjectForKey("assetData") as? NSData,
                 let contentType = aDecoder.decodeObjectForKey("contentType") as? String
         else {
-            self.fileName = ""
+            self.filename = ""
             self.contentType = ""
             self.originalLocation = nil
             self.assetData = NSData()
             super.init()
             return nil
         }
-        self.fileName = fileName
+        self.filename = filename
         self.assetData = assetData
         self.contentType = contentType
         self.originalLocation = aDecoder.decodeObjectForKey("originalLocation") as? String
@@ -148,55 +152,10 @@ public class UsergridAsset: NSObject, NSCoding {
      - parameter aCoder: The encoder.
      */
     public func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(self.fileName, forKey: "fileName")
+        aCoder.encodeObject(self.filename, forKey: "filename")
         aCoder.encodeObject(self.assetData, forKey: "assetData")
         aCoder.encodeObject(self.contentType, forKey: "contentType")
         aCoder.encodeObject(self.originalLocation, forKey: "originalLocation")
-    }
-
-
-    //MARK: - MultiPart Creation -
-
-    /// A constructed multipart http body for requests to upload.
-    var multiPartHTTPBody: NSData {
-        let httpBodyString = UsergridAsset.MULTIPART_START +
-            "\(UsergridAsset.CONTENT_DISPOSITION):\(UsergridAsset.FORM_DATA); name=file; filename=\(self.fileName)\r\n" +
-            "\(UsergridRequestManager.CONTENT_TYPE): \(self.contentType)\r\n\r\n" as NSString
-
-        let assetBodyData = self.assetData
-
-        let httpBody = NSMutableData()
-        httpBody.appendData(httpBodyString.dataUsingEncoding(NSUTF8StringEncoding)!)
-        httpBody.appendData(assetBodyData)
-        httpBody.appendData(UsergridAsset.MULTIPART_END.dataUsingEncoding(NSUTF8StringEncoding)!)
-
-        return httpBody
-    }
-
-    /**
-    Generates a `NSMutableURLRequest` object based on the passed in requestURL and the assets current properties.
-
-    - parameter requestURL: The requests URL.
-
-    - returns: The created `NSMutableURLRequest` object.
-    */
-    func multipartRequest(requestURL:NSURL) -> NSMutableURLRequest {
-        let request = NSMutableURLRequest(URL: requestURL)
-        request.HTTPMethod = UsergridHttpMethod.PUT.rawValue
-        request.setValue(UsergridAsset.ASSET_UPLOAD_CONTENT_HEADER, forHTTPHeaderField: UsergridRequestManager.CONTENT_TYPE)
-        request.setValue(String(format: "%lu", self.multiPartHTTPBody.length), forHTTPHeaderField: UsergridRequestManager.CONTENT_LENGTH)
-        return request
-    }
-
-    /**
-    Creates and returns both the `NSMutableURLRequest` object as well as the multiPartHTTPBody in a tuple.
-
-    - parameter requestURL: The requests URL.
-
-    - returns: The tuple containing the request and httpBody.
-    */
-    func multipartRequestAndBody(requestURL:NSURL) -> (request:NSMutableURLRequest,multipartData:NSData) {
-        return (self.multipartRequest(requestURL),self.multiPartHTTPBody)
     }
 
     private static func MIMEType(fileURL: NSURL) -> String? {
@@ -213,11 +172,4 @@ public class UsergridAsset: NSObject, NSCoding {
         }
         return nil
     }
-
-    private static let ASSET_UPLOAD_BOUNDARY = "apigee-asset-upload-boundary"
-    private static let ASSET_UPLOAD_CONTENT_HEADER = "multipart/form-data; boundary=\(UsergridAsset.ASSET_UPLOAD_BOUNDARY)"
-    private static let CONTENT_DISPOSITION = "Content-Disposition"
-    private static let MULTIPART_START = "--\(UsergridAsset.ASSET_UPLOAD_BOUNDARY)\r\n"
-    private static let MULTIPART_END = "\r\n--\(UsergridAsset.ASSET_UPLOAD_BOUNDARY)--\r\n" as NSString
-    private static let FORM_DATA = "form-data"
 }
