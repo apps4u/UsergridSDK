@@ -16,7 +16,7 @@ import CoreLocation
 */
 public class UsergridEntity: NSObject, NSCoding {
 
-    static private var subclassMappings: [String:UsergridEntity.Type] = [:]
+    static private var subclassMappings: [String:UsergridEntity.Type] = [UsergridUser.USER_ENTITY_TYPE:UsergridUser.self,UsergridDevice.DEVICE_ENTITY_TYPE:UsergridDevice.self]
 
     // MARK: - Instance Properties -
 
