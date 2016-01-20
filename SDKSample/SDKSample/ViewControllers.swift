@@ -184,11 +184,6 @@ class MessageViewController : SLKTextViewController, WCSessionDelegate {
         super.viewWillAppear(animated)
     }
 
-    override func viewWillDisappear(animated: Bool) {
-        self.navigationItem.title = ""
-        super.viewWillDisappear(animated)
-    }
-
     func commonInit() {
         self.bounces = true
         self.shakeToClearEnabled = true
@@ -351,11 +346,6 @@ class FollowViewController : UIViewController {
 
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var addFollowerButton: UIButton!
-
-    override func viewWillAppear(animated: Bool) {
-        self.navigationItem.backBarButtonItem?.title = ""
-        super.viewWillAppear(animated)
-    }
 
     @IBAction func addFollowerButtonTouched(sender:AnyObject?) {
         if let username = usernameTextField.text where !username.isEmpty {
