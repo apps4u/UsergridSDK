@@ -93,7 +93,8 @@ public class UsergridRequest : NSObject {
         var constructedURLString = self.baseUrl
         if let appendingPaths = self.paths {
             for pathToAppend in appendingPaths {
-                constructedURLString = "\(constructedURLString)\(UsergridRequest.FORWARD_SLASH)\(pathToAppend)"
+                let encodedPath =  pathToAppend.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLHostAllowedCharacterSet())
+                constructedURLString = "\(constructedURLString)\(UsergridRequest.FORWARD_SLASH)\(encodedPath)"
             }
         }
         if let queryToAppend = self.query {
