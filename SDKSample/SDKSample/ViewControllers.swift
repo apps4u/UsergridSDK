@@ -163,7 +163,7 @@ class MessageViewController : SLKTextViewController, WCSessionDelegate {
     var messageEntities: [UsergridEntity] = []
 
     init() {
-        super.init(tableViewStyle: UITableViewStyle.Plain)
+        super.init(tableViewStyle:.Plain)
         commonInit()
     }
     
@@ -176,8 +176,9 @@ class MessageViewController : SLKTextViewController, WCSessionDelegate {
         return .Plain
     }
 
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(animated: Bool) {
+        self.reloadMessages()
+        super.viewWillAppear(animated)
     }
 
     func commonInit() {
@@ -189,16 +190,15 @@ class MessageViewController : SLKTextViewController, WCSessionDelegate {
 
         if (WCSession.isSupported()) {
             let session = WCSession.defaultSession()
-            session.delegate = self // conforms to WCSessionDelegate
+            session.delegate = self
             session.activateSession()
         }
 
         self.registerClassForTextView(MessageTextView)
-        self.reloadMessages()
     }
 
     func reloadMessages() {
-        UsergridManager.getMessages { (response) -> Void in
+        UsergridManager.getFeedMessages { (response) -> Void in
             self.messageEntities = response.entities ?? []
             self.tableView.reloadData()
         }
@@ -220,28 +220,23 @@ class MessageViewController : SLKTextViewController, WCSessionDelegate {
     override func didPressRightButton(sender: AnyObject!) {
         self.textView.refreshFirstResponder()
 
-        let messageEntity = UsergridManager.postMessage(self.textView.text)
+        UsergridManager.postFeedMessage(self.textView.text) { (response) -> Void in
+            if let messageEntity = response.entity {
+                let indexPath = NSIndexPath(forRow: 0, inSection: 0)
+                let rowAnimation: UITableViewRowAnimation = self.inverted ? .Bottom : .Top
+                let scrollPosition: UITableViewScrollPosition = self.inverted ? .Bottom : .Top
 
-        let indexPath = NSIndexPath(forRow: 0, inSection: 0)
-        let rowAnimation: UITableViewRowAnimation = self.inverted ? .Bottom : .Top
-        let scrollPosition: UITableViewScrollPosition = self.inverted ? .Bottom : .Top
+                self.tableView.beginUpdates()
+                self.messageEntities.insert(messageEntity, atIndex: 0)
+                self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: rowAnimation)
+                self.tableView.endUpdates()
 
-        self.tableView.beginUpdates()
-        self.messageEntities.insert(messageEntity, atIndex: 0)
-        self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: rowAnimation)
-        self.tableView.endUpdates()
+                self.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: scrollPosition, animated: true)
+                self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
 
-        self.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: scrollPosition, animated: true)
-        self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-
-        if !WCSession.defaultSession().reachable {
-            self.showAlert(title: "WCSession Unreachable.", message: "Something went wrong")
-        } else {
-            WCSession.defaultSession().sendMessage(["action":"reload"], replyHandler:nil, errorHandler: { (error) -> Void in
-                self.showAlert(title: "WCSession Unreachable.", message: "\(error)")
-            })
+                self.sendEntitiesToWatch(self.messageEntities)
+            }
         }
-
         super.didPressRightButton(sender)
     }
 
@@ -261,28 +256,32 @@ class MessageViewController : SLKTextViewController, WCSessionDelegate {
         return self.messageCellForRowAtIndexPath(indexPath)
     }
 
+    @IBAction func unwindToChat(segue: UIStoryboardSegue) {
+
+    }
+
+    func populateCell(cell:MessageTableViewCell,feedEntity:UsergridEntity) {
+
+        let messageInfo = UsergridManager.getMessageInfoFromEntity(feedEntity)
+        cell.titleLabel.text = messageInfo.displayName
+        cell.bodyLabel.text = messageInfo.content
+        cell.thumbnailView.image = nil
+
+        if let imageURLString = messageInfo.imageURL, imageURL = NSURL(string: imageURLString) {
+            NSURLSession.sharedSession().dataTaskWithURL(imageURL) { (data, response, error) in
+                if let imageData = data, image = UIImage(data: imageData) {
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        cell.thumbnailView.image = image
+                    })
+                }
+            }.resume()
+        }
+    }
+
     func messageCellForRowAtIndexPath(indexPath:NSIndexPath) -> MessageTableViewCell {
         let cell = self.tableView.dequeueReusableCellWithIdentifier(MessageViewController.MESSAGE_CELL_IDENTIFIER) as! MessageTableViewCell
+        self.populateCell(cell, feedEntity: self.messageEntities[indexPath.row])
 
-        let messageEntity = self.messageEntities[indexPath.row]
-        cell.thumbnailView.image = nil
-        if let profileImage = messageEntity[UsergridManager.MESSAGE_ENTITY_CREATOR_THUMBNAIL] as? String {
-            if let imageURL = NSURL(string: profileImage) {
-                NSURLSession.sharedSession().dataTaskWithURL(imageURL) { (data, response, error) in
-                    if let imageData = data {
-                        if let image = UIImage(data: imageData) {
-                            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                                cell.thumbnailView.image = image
-                            })
-                        }
-                    } else {
-                        cell.thumbnailView.image = nil
-                    }
-                }.resume()
-            }
-        }
-        cell.titleLabel.text = messageEntity[UsergridManager.MESSAGE_ENTITY_CREATOR] as? String
-        cell.bodyLabel.text = messageEntity[UsergridManager.MESSAGE_ENTITY_TEXT] as? String
         cell.indexPath = indexPath
         cell.transform = self.tableView.transform
 
@@ -291,13 +290,14 @@ class MessageViewController : SLKTextViewController, WCSessionDelegate {
 
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         let messageEntity = messageEntities[indexPath.row]
+        let messageInfo = UsergridManager.getMessageInfoFromEntity(messageEntity)
 
-        let messageText : NSString = messageEntity[UsergridManager.MESSAGE_ENTITY_TEXT] as? NSString ?? ""
+        let messageText : NSString = messageInfo.content ?? ""
         if messageText.length == 0 {
             return 0
         }
 
-        let messageUsername : NSString = messageEntity[UsergridManager.MESSAGE_ENTITY_CREATOR] as? NSString ?? ""
+        let messageUsername : NSString = messageInfo.displayName ?? ""
 
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineBreakMode = .ByWordWrapping
@@ -319,5 +319,43 @@ class MessageViewController : SLKTextViewController, WCSessionDelegate {
         return height
     }
 
+    func sendEntitiesToWatch(messages:[UsergridEntity]) {
+        if WCSession.defaultSession().reachable {
+            let data = NSKeyedArchiver.archivedDataWithRootObject(messages)
+            WCSession.defaultSession().sendMessageData(data, replyHandler: nil, errorHandler: { (error) -> Void in
+                self.showAlert(title: "WCSession Unreachable.", message: "\(error)")
+            })
+        }
+    }
+
+    func session(session: WCSession, didReceiveMessage message: [String : AnyObject]) {
+        if let action = message["action"] as? String where action == "getMessages" {
+            UsergridManager.getFeedMessages { (response) -> Void in
+                if let entities = response.entities {
+                    self.sendEntitiesToWatch(entities)
+                }
+            }
+        }
+    }
+}
+
+class FollowViewController : UIViewController {
+
+    @IBOutlet weak var usernameTextField: UITextField!
+    @IBOutlet weak var addFollowerButton: UIButton!
+
+    @IBAction func addFollowerButtonTouched(sender:AnyObject?) {
+        if let username = usernameTextField.text where !username.isEmpty {
+            UsergridManager.followUser(username, completion: { (response) -> Void in
+                if response.ok {
+                    self.performSegueWithIdentifier("unwindToChatSegue", sender: self)
+                } else {
+                    self.showAlert(title: "Follow failed.", message: "No user with the username \"\(username)\" found.")
+                }
+            })
+        } else {
+            self.showAlert(title: "Follow failed.", message: "Please enter a valid username.")
+        }
+    }
 }
 

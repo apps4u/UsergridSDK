@@ -9,17 +9,12 @@
 import Foundation
 import UsergridSDK
 
-/// This class handles the primary communications to Usergird used by the iOS and watchOS applications.
+/// This class handles the primary communications to the UsergirdSDK.
 public class UsergridManager {
 
     static let ORG_ID = "rwalsh"
     static let APP_ID = "sandbox"
     static let NOTIFIER_ID = "usergridsample"
-
-    static let MESSAGE_ENTITY_TYPE = "sdkmessage"
-    static let MESSAGE_ENTITY_CREATOR = "creator"
-    static let MESSAGE_ENTITY_TEXT = "text"
-    static let MESSAGE_ENTITY_CREATOR_THUMBNAIL = "creatorThumb"
 
     static func initializeSharedInstance() {
         Usergrid.initSharedInstance(configuration: UsergridClientConfig(orgId: UsergridManager.ORG_ID, appId: UsergridManager.APP_ID))
@@ -37,24 +32,52 @@ public class UsergridManager {
         user.create(completion)
     }
 
-    static func getMessages(completion:UsergridResponseCompletion) {
-        let sortByCreatedDateQuery = UsergridQuery().desc(UsergridEntityProperties.Created.stringValue)
-        Usergrid.GET(UsergridManager.MESSAGE_ENTITY_TYPE, query:sortByCreatedDateQuery, completion: completion)
+    static func getFeedMessages(completion:UsergridResponseCompletion) {
+        let request = UsergridRequest(method: .Get,
+                                      baseUrl: Usergrid.clientAppURL,
+                                      paths: ["users","me","feed"],
+                                      query: UsergridQuery().desc(UsergridEntityProperties.Created.stringValue),
+                                      auth: Usergrid.authForRequests())
+        Usergrid.sendRequest(request,completion: completion)
     }
 
-    static func postMessage(text:String) -> UsergridEntity {
-        var messageEntityProperties: [String:String] = [:]
-        messageEntityProperties[UsergridManager.MESSAGE_ENTITY_CREATOR] = Usergrid.currentUser?.usernameOrEmail ?? ""
-        messageEntityProperties[UsergridManager.MESSAGE_ENTITY_CREATOR_THUMBNAIL] = Usergrid.currentUser?.picture ?? ""
-        messageEntityProperties[UsergridManager.MESSAGE_ENTITY_TEXT] = text
+    static func postFeedMessage(text:String,completion:UsergridResponseCompletion) {
+        let currentUser = Usergrid.currentUser!
 
-        let messageEntity = UsergridEntity(type: UsergridManager.MESSAGE_ENTITY_TYPE, propertyDict: messageEntityProperties)
+        let verb = "post"
+        let content = text
 
-        messageEntity.save { (response) -> Void in
-            if let errorDescription = response.error?.errorDescription {
-                print("Uploading message error: \(errorDescription)")
+        var actorDictionary = [String:AnyObject]()
+        actorDictionary["displayName"] = currentUser.name ?? currentUser.usernameOrEmail ?? ""
+        actorDictionary["email"] = currentUser.email ?? ""
+        if let imageURL = currentUser.picture {
+            actorDictionary["image"] = ["url":imageURL,"height":80,"width":80]
+        }
+
+        let request = UsergridRequest(method: .Post,
+                                      baseUrl: Usergrid.clientAppURL,
+                                      paths: ["users","me","activities"],
+                                      auth: Usergrid.authForRequests(),
+                                      jsonBody:["actor":actorDictionary,"verb":verb,"content":content])
+
+        Usergrid.sendRequest(request,completion: completion)
+    }
+
+    static func getMessageInfoFromEntity(feedEntity:UsergridEntity) -> (displayName:String?,content:String?,imageURL:String?) {
+        var messageInfo: (displayName:String?,content:String?,imageURL:String?) = (nil,nil,nil)
+        messageInfo.content = feedEntity["content"] as? String
+        if let actor = feedEntity["actor"] as? [String:AnyObject] {
+            messageInfo.displayName = actor["displayName"] as? String
+
+            if let imageDict = actor["image"] as? [String:AnyObject], imageURLString = imageDict["url"] as? String {
+                messageInfo.imageURL = imageURLString
             }
         }
-        return messageEntity
+        return messageInfo
+    }
+
+    static func followUser(username:String, completion:UsergridResponseCompletion) {
+        Usergrid.connect("users", entityID: "me", relationship: "following", toType: "users", toName: username, completion: completion)
+
     }
 }

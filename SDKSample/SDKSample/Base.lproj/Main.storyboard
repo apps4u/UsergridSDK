@@ -150,17 +150,94 @@
                     <view key="view" contentMode="scaleToFill" id="gFB-Jy-DrN">
                         <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.90980392156862744" green="0.93333333333333335" blue="0.92941176470588238" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="Chat" id="Y6L-of-zqW">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="vgj-xd-QK3"/>
+                        <barButtonItem key="rightBarButtonItem" title="  " style="done" id="yD7-i9-e4G">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="gUd-wc-Uax">
+                                <rect key="frame" x="302" y="7" width="92" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <inset key="contentEdgeInsets" minX="42" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="Follow"/>
+                                <connections>
+                                    <segue destination="dZf-Pa-FEf" kind="show" id="Yrh-o0-CLY"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KDg-MX-rlV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Vtr-ga-m5m" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="873" y="692"/>
+        </scene>
+        <!--Follow-->
+        <scene sceneID="L1J-vW-kjp">
+            <objects>
+                <viewController id="dZf-Pa-FEf" customClass="FollowViewController" customModule="SDKSample" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bqC-DA-7jl"/>
+                        <viewControllerLayoutGuide type="bottom" id="WfX-kG-aQR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="qAg-Dl-t9F">
+                        <rect key="frame" x="0.0" y="64" width="414" height="672"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dSM-Kh-jtM" userLabel="Sign In ">
+                                <rect key="frame" x="55" y="304" width="305" height="45"/>
+                                <color key="backgroundColor" red="0.95686274510000002" green="0.2901960784" blue="0.015686274510000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                <state key="normal" title="Add Follower">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="addFollowerButtonTouched:" destination="dZf-Pa-FEf" eventType="touchUpInside" id="yuv-da-ArK"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="30w-Hq-z3n" customClass="FormTextField" customModule="SDKSample" customModuleProvider="target">
+                                <rect key="frame" x="55" y="229" width="305" height="30"/>
+                                <color key="backgroundColor" red="0.98431372549999996" green="0.98431372549999996" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="VgQ-oU-xSh"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="inset">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="nextResponderField" destination="dSM-Kh-jtM" id="JKY-WD-0wK"/>
+                                </connections>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" red="0.90980392156862744" green="0.93333333333333335" blue="0.92941176470588238" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="30w-Hq-z3n" firstAttribute="leading" secondItem="qAg-Dl-t9F" secondAttribute="leadingMargin" constant="35" id="ETC-Hj-qu0"/>
+                            <constraint firstItem="dSM-Kh-jtM" firstAttribute="leading" secondItem="30w-Hq-z3n" secondAttribute="leading" id="MrI-EB-S4Q"/>
+                            <constraint firstItem="dSM-Kh-jtM" firstAttribute="centerX" secondItem="qAg-Dl-t9F" secondAttribute="centerX" id="XGA-b6-Kbm"/>
+                            <constraint firstItem="dSM-Kh-jtM" firstAttribute="top" secondItem="30w-Hq-z3n" secondAttribute="bottom" constant="45" id="hYz-y9-k2e"/>
+                            <constraint firstItem="30w-Hq-z3n" firstAttribute="trailing" secondItem="dSM-Kh-jtM" secondAttribute="trailing" id="jBo-UK-A49"/>
+                            <constraint firstItem="WfX-kG-aQR" firstAttribute="top" secondItem="dSM-Kh-jtM" secondAttribute="bottom" constant="323" id="l8c-Ap-E9b"/>
+                            <constraint firstItem="30w-Hq-z3n" firstAttribute="top" secondItem="bqC-DA-7jl" secondAttribute="bottom" constant="229" id="p7k-Gp-8pf"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Follow" id="j5X-9C-znz">
+                        <barButtonItem key="backBarButtonItem" title=" " id="HXY-KA-xWY"/>
+                    </navigationItem>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <connections>
+                        <outlet property="addFollowerButton" destination="dSM-Kh-jtM" id="eXH-MZ-8hc"/>
+                        <outlet property="usernameTextField" destination="30w-Hq-z3n" id="QcA-z0-XWe"/>
+                        <segue destination="Vtr-ga-m5m" kind="unwind" identifier="unwindToChatSegue" unwindAction="unwindToChat:" id="uwe-tT-3Yl"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="P87-dE-iQW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1334" y="692"/>
         </scene>
         <!--Create Account-->
         <scene sceneID="KTq-tk-yrN">
@@ -295,6 +372,6 @@
         <image name="loginLogo_153x120" width="305" height="240"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="jbi-vT-etg"/>
+        <segue reference="yFG-ee-xdi"/>
     </inferredMetricsTieBreakers>
 </document>
