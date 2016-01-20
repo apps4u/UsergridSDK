@@ -88,12 +88,36 @@ public class UsergridDevice : UsergridEntity {
     }
 
     /**
+     The required public initializer for `UsergridEntity` subclasses.
+
+     - parameter type:         The type associated with the `UsergridEntity` object.
+     - parameter name:         The optional name associated with the `UsergridEntity` object.
+     - parameter propertyDict: The optional property dictionary that the `UsergridEntity` object will start out with.
+
+     - returns: A new `UsergridDevice` object.
+     */
+    required public init(type: String, name: String?, propertyDict: [String : AnyObject]?) {
+        super.init(type: type, name: name, propertyDict: propertyDict)
+    }
+
+    /**
      NSCoding protocol encoder.
 
      - parameter aCoder: The encoder.
      */
     public override func encodeWithCoder(aCoder: NSCoder) {
         super.encodeWithCoder(aCoder)
+    }
+
+    // MARK: - Subclass Initialization -
+
+    /**
+    Required override for subclasses of UsergridEntity objects.
+
+    In this method you will need to map the custom type with the type string returned from Usergrid using the `UsergridEntity.mapCustomType` method.
+    */
+    override public class func initialize() {
+        UsergridEntity.mapCustomType(UsergridDevice.DEVICE_ENTITY_TYPE, toSubclass: UsergridDevice.self)
     }
 
     /**

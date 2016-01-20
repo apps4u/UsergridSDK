@@ -18,7 +18,7 @@ class User_Tests: XCTestCase {
 
     static let name = "Robert Walsh"
     static let age = 29
-    static let email = "rjwalsh1985@gmail.com"
+    static let email = "handsomeRob741@yahoo.com"
     static let username = "rwalsh"
     static let password = "password"
     static let picture = "http://www.gravatar.com/avatar/e466d447df831ddce35fbc50763fb03a"
