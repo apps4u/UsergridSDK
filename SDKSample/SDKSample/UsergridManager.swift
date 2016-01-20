@@ -33,12 +33,11 @@ public class UsergridManager {
     }
 
     static func getFeedMessages(completion:UsergridResponseCompletion) {
-        let request = UsergridRequest(method: .Get,
-                                      baseUrl: Usergrid.clientAppURL,
-                                      paths: ["users","me","feed"],
-                                      query: UsergridQuery().desc(UsergridEntityProperties.Created.stringValue),
-                                      auth: Usergrid.authForRequests())
-        Usergrid.sendRequest(request,completion: completion)
+        Usergrid.GET("users/me/feed", query: UsergridQuery().desc(UsergridEntityProperties.Created.stringValue), completion: completion)
+    }
+
+    static func followUser(username:String, completion:UsergridResponseCompletion) {
+        Usergrid.connect("users", entityID: "me", relationship: "following", toType: "users", toName: username, completion: completion)
     }
 
     static func postFeedMessage(text:String,completion:UsergridResponseCompletion) {
@@ -54,13 +53,7 @@ public class UsergridManager {
             actorDictionary["image"] = ["url":imageURL,"height":80,"width":80]
         }
 
-        let request = UsergridRequest(method: .Post,
-                                      baseUrl: Usergrid.clientAppURL,
-                                      paths: ["users","me","activities"],
-                                      auth: Usergrid.authForRequests(),
-                                      jsonBody:["actor":actorDictionary,"verb":verb,"content":content])
-
-        Usergrid.sendRequest(request,completion: completion)
+        Usergrid.POST("users/me/activities", jsonBody: ["actor":actorDictionary,"verb":verb,"content":content], completion: completion)
     }
 
     static func getMessageInfoFromEntity(feedEntity:UsergridEntity) -> (displayName:String?,content:String?,imageURL:String?) {
@@ -74,10 +67,5 @@ public class UsergridManager {
             }
         }
         return messageInfo
-    }
-
-    static func followUser(username:String, completion:UsergridResponseCompletion) {
-        Usergrid.connect("users", entityID: "me", relationship: "following", toType: "users", toName: username, completion: completion)
-
     }
 }

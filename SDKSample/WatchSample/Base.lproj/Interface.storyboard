@@ -19,7 +19,7 @@
                                                 <color key="color" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             </separator>
                                             <label alignment="left" text="Label" numberOfLines="0" id="Moc-hL-RIQ">
-                                                <color key="textColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="textColor" red="0.090196078430000007" green="0.33725490200000002" blue="0.50588235290000005" alpha="1" colorSpace="calibratedRGB"/>
                                             </label>
                                             <label width="119.5" alignment="left" text="Label" numberOfLines="0" id="uGF-56-y5z"/>
                                             <separator alignment="left" id="zwp-tp-Qaa">

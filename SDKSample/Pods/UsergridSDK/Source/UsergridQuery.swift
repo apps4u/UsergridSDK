@@ -295,7 +295,7 @@ public class UsergridQuery : NSObject,NSCopying {
     }
 
     /**
-    Sets the limit on the query.
+    Sets the limit on the query.  Default limit is 10.
 
     - parameter limit: The limit.
 

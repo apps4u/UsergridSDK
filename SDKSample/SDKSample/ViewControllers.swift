@@ -178,7 +178,15 @@ class MessageViewController : SLKTextViewController, WCSessionDelegate {
 
     override func viewWillAppear(animated: Bool) {
         self.reloadMessages()
+        if let username = Usergrid.currentUser?.name {
+            self.navigationItem.title = "\(username)'s Feed"
+        }
         super.viewWillAppear(animated)
+    }
+
+    override func viewWillDisappear(animated: Bool) {
+        self.navigationItem.title = ""
+        super.viewWillDisappear(animated)
     }
 
     func commonInit() {
@@ -343,6 +351,11 @@ class FollowViewController : UIViewController {
 
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var addFollowerButton: UIButton!
+
+    override func viewWillAppear(animated: Bool) {
+        self.navigationItem.backBarButtonItem?.title = ""
+        super.viewWillAppear(animated)
+    }
 
     @IBAction func addFollowerButtonTouched(sender:AnyObject?) {
         if let username = usernameTextField.text where !username.isEmpty {

@@ -14,7 +14,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="kgZ-6Y-2Hs">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.95686274509803915" green="0.29019607843137252" blue="0.015686274509803921" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.10196078431372549" green="0.41176470588235292" blue="0.56862745098039214" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" red="0.97647058823529409" green="0.97647058823529409" blue="0.97647058823529409" alpha="1" colorSpace="calibratedRGB"/>
                         </textAttributes>
@@ -75,7 +75,7 @@
                             </textField>
                             <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pj4-c5-WOw" userLabel="Sign In ">
                                 <rect key="frame" x="54" y="287" width="305" height="45"/>
-                                <color key="backgroundColor" red="0.95686274509803915" green="0.29019607843137252" blue="0.015686274509803921" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.10196078431372549" green="0.41568627450980394" blue="0.58039215686274515" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="iPw-MQ-dMe"/>
                                 </constraints>
@@ -94,13 +94,13 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                 <state key="normal" title="Create Account">
-                                    <color key="titleColor" red="0.95686274509803915" green="0.29019607843137252" blue="0.015686274509803921" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.090196078431372548" green="0.33725490196078434" blue="0.50588235294117645" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <segue destination="bnr-oZ-e0h" kind="show" identifier="signUpSegue" id="NXY-Nd-h56"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loginLogo_153x120" translatesAutoresizingMaskIntoConstraints="NO" id="t6Y-SG-C6M">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UsergridGuy" translatesAutoresizingMaskIntoConstraints="NO" id="t6Y-SG-C6M">
                                 <rect key="frame" x="128" y="41" width="169" height="105"/>
                             </imageView>
                         </subviews>
@@ -153,17 +153,12 @@
                         <color key="backgroundColor" red="0.90980392156862744" green="0.93333333333333335" blue="0.92941176470588238" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
-                    <navigationItem key="navigationItem" title="Chat" id="Y6L-of-zqW">
-                        <barButtonItem key="rightBarButtonItem" title="  " style="done" id="yD7-i9-e4G">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="gUd-wc-Uax">
-                                <rect key="frame" x="302" y="7" width="92" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <inset key="contentEdgeInsets" minX="42" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <state key="normal" title="Follow"/>
-                                <connections>
-                                    <segue destination="dZf-Pa-FEf" kind="show" id="Yrh-o0-CLY"/>
-                                </connections>
-                            </button>
+                    <navigationItem key="navigationItem" title="Chat" id="A1Z-Fm-fb7" userLabel="Chat">
+                        <barButtonItem key="backBarButtonItem" title="   " id="lTa-eA-MlI"/>
+                        <barButtonItem key="rightBarButtonItem" title="Follow" id="oWz-oN-r0q">
+                            <connections>
+                                <segue destination="dZf-Pa-FEf" kind="show" id="4hi-xR-y7a"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
@@ -187,7 +182,7 @@
                         <subviews>
                             <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dSM-Kh-jtM" userLabel="Sign In ">
                                 <rect key="frame" x="55" y="304" width="305" height="45"/>
-                                <color key="backgroundColor" red="0.95686274510000002" green="0.2901960784" blue="0.015686274510000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.090196078431372548" green="0.33333333333333331" blue="0.49411764705882355" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                 <state key="normal" title="Add Follower">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -226,7 +221,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Follow" id="j5X-9C-znz">
-                        <barButtonItem key="backBarButtonItem" title=" " id="HXY-KA-xWY"/>
+                        <barButtonItem key="backBarButtonItem" id="HXY-KA-xWY"/>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
@@ -327,7 +322,7 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                 <state key="normal" title="Create Account">
-                                    <color key="titleColor" red="0.95686274510000002" green="0.2901960784" blue="0.015686274510000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.090196078431372548" green="0.33333333333333331" blue="0.49019607843137253" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="registerButtonTouched:" destination="bnr-oZ-e0h" eventType="touchUpInside" id="GSH-40-K9q"/>
@@ -369,7 +364,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="loginLogo_153x120" width="305" height="240"/>
+        <image name="UsergridGuy" width="162" height="161"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="yFG-ee-xdi"/>
