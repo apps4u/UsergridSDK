@@ -124,7 +124,7 @@
                             <constraint firstItem="JLH-ZA-uPM" firstAttribute="centerX" secondItem="Pj4-c5-WOw" secondAttribute="centerX" id="xPz-Hj-Iv4"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Chit-Chat" id="9X6-oC-0Ku">
+                    <navigationItem key="navigationItem" id="9X6-oC-0Ku">
                         <barButtonItem key="backBarButtonItem" title="   " id="saf-1i-WZ7"/>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
