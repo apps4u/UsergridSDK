@@ -3,6 +3,7 @@
 [![Build Status](https://travis-ci.org/RobertWalsh/UsergridSDK.svg)](https://travis-ci.org/RobertWalsh/UsergridSDK)
 [![Platform](https://img.shields.io/cocoapods/p/UsergridSDK.svg?style=flat)](http://cocoadocs.org/docsets/UsergridSDK)
 [![Cocoapods Compatible](https://img.shields.io/cocoapods/v/UsergridSDK.svg)](https://img.shields.io/cocoapods/v/UsergridSDK.svg)
+[![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
 Usergrid SDK written in Swift 
 
