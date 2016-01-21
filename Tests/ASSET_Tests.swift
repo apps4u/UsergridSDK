@@ -52,7 +52,7 @@ class ASSET_Tests: XCTestCase {
                 { (downloadedAsset, error) -> Void in
                     XCTAssertNotNil(downloadedAsset)
                     XCTAssertNil(error)
-                    let downloadedImage = UIImage(data: downloadedAsset!.assetData)
+                    let downloadedImage = UIImage(data: downloadedAsset!.data)
                     XCTAssertEqual(UIImagePNGRepresentation(localImage!), UIImagePNGRepresentation(downloadedImage!))
                     XCTAssertNotNil(downloadedImage)
                     getExpect.fulfill()

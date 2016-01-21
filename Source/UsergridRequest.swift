@@ -170,7 +170,7 @@ public class UsergridAssetUploadRequest: UsergridRequest {
 
         let httpBody = NSMutableData()
         httpBody.appendData(httpBodyString.dataUsingEncoding(NSUTF8StringEncoding)!)
-        httpBody.appendData(self.asset.assetData)
+        httpBody.appendData(self.asset.data)
         httpBody.appendData(UsergridAssetUploadRequest.MULTIPART_END.dataUsingEncoding(NSUTF8StringEncoding)!)
 
         return httpBody

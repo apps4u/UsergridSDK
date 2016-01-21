@@ -42,29 +42,19 @@
 		6319202C1C48436500F99E86 /* UsergridResponseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EE60D81C404AB700AFC2CF /* UsergridResponseError.swift */; };
 		6319202D1C48436500F99E86 /* UsergridRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F36F0E1C458AAE00CEEF54 /* UsergridRequest.swift */; };
 		6319202E1C48436500F99E86 /* UsergridClientConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6343823F1BC30138008624BE /* UsergridClientConfig.swift */; };
-		6319202F1C48436500F99E86 /* UsergridKeychainHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63377E801C28A81200D2D63B /* UsergridKeychainHelpers.swift */; };
-		631920301C48436500F99E86 /* UsergridAssetRequestWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6345C4A91BD8432000AF9520 /* UsergridAssetRequestWrapper.swift */; };
 		631920311C48436500F99E86 /* UsergridAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF0F411BBC4EF6009D4196 /* UsergridAuth.swift */; };
 		631920321C48436500F99E86 /* UsergridFileMetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A7F2611BC4278200596156 /* UsergridFileMetaData.swift */; };
 		631920331C48436500F99E86 /* UsergridDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636A4BE11BDA8D9E0061000A /* UsergridDevice.swift */; };
 		631920341C48436500F99E86 /* UsergridQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF0F441BBC4EF6009D4196 /* UsergridQuery.swift */; };
-		631920351C48436500F99E86 /* UsergridExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6345C4AF1BD8438600AF9520 /* UsergridExtensions.swift */; };
 		631920361C48436500F99E86 /* UsergridEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF0F431BBC4EF6009D4196 /* UsergridEntity.swift */; };
-		631920371C48436500F99E86 /* UsergridSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6345C4AB1BD8432000AF9520 /* UsergridSessionDelegate.swift */; };
 		631920381C48436500F99E86 /* UsergridUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF0F481BBC4EF6009D4196 /* UsergridUser.swift */; };
 		631920391C48436500F99E86 /* Usergrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF0F3F1BBC4EF6009D4196 /* Usergrid.swift */; };
 		6319203A1C48436500F99E86 /* UsergridResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF0F461BBC4EF6009D4196 /* UsergridResponse.swift */; };
-		6319203B1C48436500F99E86 /* UsergridRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6345C4AA1BD8432000AF9520 /* UsergridRequestManager.swift */; };
 		6319203C1C48436500F99E86 /* UsergridEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6313CA2D1BD80BB9004451EE /* UsergridEnums.swift */; };
 		6319203D1C48436500F99E86 /* UsergridAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF0F401BBC4EF6009D4196 /* UsergridAsset.swift */; };
 		6319203E1C48436500F99E86 /* UsergridClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF0F421BBC4EF6009D4196 /* UsergridClient.swift */; };
 		631920501C49BC0700F99E86 /* UsergridSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63EE610B1C406E1600AFC2CF /* UsergridSDK.framework */; };
-		63377E811C28A81200D2D63B /* UsergridKeychainHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63377E801C28A81200D2D63B /* UsergridKeychainHelpers.swift */; };
 		634382401BC30138008624BE /* UsergridClientConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6343823F1BC30138008624BE /* UsergridClientConfig.swift */; };
-		6345C4AC1BD8432000AF9520 /* UsergridAssetRequestWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6345C4A91BD8432000AF9520 /* UsergridAssetRequestWrapper.swift */; };
-		6345C4AD1BD8432000AF9520 /* UsergridRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6345C4AA1BD8432000AF9520 /* UsergridRequestManager.swift */; };
-		6345C4AE1BD8432000AF9520 /* UsergridSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6345C4AB1BD8432000AF9520 /* UsergridSessionDelegate.swift */; };
-		6345C4B01BD8438600AF9520 /* UsergridExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6345C4AF1BD8438600AF9520 /* UsergridExtensions.swift */; };
 		636A4BE21BDA8D9E0061000A /* UsergridDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636A4BE11BDA8D9E0061000A /* UsergridDevice.swift */; };
 		639B4BF31C3DD85A005E26E7 /* UsergridSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 63AF0F471BBC4EF6009D4196 /* UsergridSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		639B4BF41C3DD90D005E26E7 /* UsergridAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF0F401BBC4EF6009D4196 /* UsergridAsset.swift */; };
@@ -76,11 +66,6 @@
 		639B4BFA1C3DD915005E26E7 /* UsergridQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF0F441BBC4EF6009D4196 /* UsergridQuery.swift */; };
 		639B4BFB1C3DD915005E26E7 /* UsergridResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF0F461BBC4EF6009D4196 /* UsergridResponse.swift */; };
 		639B4BFC1C3DD915005E26E7 /* UsergridUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF0F481BBC4EF6009D4196 /* UsergridUser.swift */; };
-		639B4BFD1C3DD918005E26E7 /* UsergridAssetRequestWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6345C4A91BD8432000AF9520 /* UsergridAssetRequestWrapper.swift */; };
-		639B4BFE1C3DD918005E26E7 /* UsergridExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6345C4AF1BD8438600AF9520 /* UsergridExtensions.swift */; };
-		639B4BFF1C3DD918005E26E7 /* UsergridRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6345C4AA1BD8432000AF9520 /* UsergridRequestManager.swift */; };
-		639B4C001C3DD918005E26E7 /* UsergridSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6345C4AB1BD8432000AF9520 /* UsergridSessionDelegate.swift */; };
-		639B4C011C3DD918005E26E7 /* UsergridKeychainHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63377E801C28A81200D2D63B /* UsergridKeychainHelpers.swift */; };
 		639B4C021C3DD91A005E26E7 /* Usergrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF0F3F1BBC4EF6009D4196 /* Usergrid.swift */; };
 		639B4C031C3DD91A005E26E7 /* UsergridClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF0F421BBC4EF6009D4196 /* UsergridClient.swift */; };
 		639B4C041C3DD91A005E26E7 /* UsergridClientConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6343823F1BC30138008624BE /* UsergridClientConfig.swift */; };
@@ -93,23 +78,38 @@
 		63AF0F4F1BBC4EF6009D4196 /* UsergridQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF0F441BBC4EF6009D4196 /* UsergridQuery.swift */; };
 		63AF0F511BBC4EF6009D4196 /* UsergridResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF0F461BBC4EF6009D4196 /* UsergridResponse.swift */; };
 		63AF0F531BBC4EF6009D4196 /* UsergridUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF0F481BBC4EF6009D4196 /* UsergridUser.swift */; };
+		63E7DD2F1C514CA200D84B12 /* UsergridAssetRequestWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E7DD2A1C514CA200D84B12 /* UsergridAssetRequestWrapper.swift */; };
+		63E7DD301C514CA200D84B12 /* UsergridAssetRequestWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E7DD2A1C514CA200D84B12 /* UsergridAssetRequestWrapper.swift */; };
+		63E7DD311C514CA200D84B12 /* UsergridAssetRequestWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E7DD2A1C514CA200D84B12 /* UsergridAssetRequestWrapper.swift */; };
+		63E7DD321C514CA200D84B12 /* UsergridAssetRequestWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E7DD2A1C514CA200D84B12 /* UsergridAssetRequestWrapper.swift */; };
+		63E7DD331C514CA200D84B12 /* UsergridExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E7DD2B1C514CA200D84B12 /* UsergridExtensions.swift */; };
+		63E7DD341C514CA200D84B12 /* UsergridExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E7DD2B1C514CA200D84B12 /* UsergridExtensions.swift */; };
+		63E7DD351C514CA200D84B12 /* UsergridExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E7DD2B1C514CA200D84B12 /* UsergridExtensions.swift */; };
+		63E7DD361C514CA200D84B12 /* UsergridExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E7DD2B1C514CA200D84B12 /* UsergridExtensions.swift */; };
+		63E7DD371C514CA200D84B12 /* UsergridKeychainHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E7DD2C1C514CA200D84B12 /* UsergridKeychainHelpers.swift */; };
+		63E7DD381C514CA200D84B12 /* UsergridKeychainHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E7DD2C1C514CA200D84B12 /* UsergridKeychainHelpers.swift */; };
+		63E7DD391C514CA200D84B12 /* UsergridKeychainHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E7DD2C1C514CA200D84B12 /* UsergridKeychainHelpers.swift */; };
+		63E7DD3A1C514CA200D84B12 /* UsergridKeychainHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E7DD2C1C514CA200D84B12 /* UsergridKeychainHelpers.swift */; };
+		63E7DD3B1C514CA200D84B12 /* UsergridRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E7DD2D1C514CA200D84B12 /* UsergridRequestManager.swift */; };
+		63E7DD3C1C514CA200D84B12 /* UsergridRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E7DD2D1C514CA200D84B12 /* UsergridRequestManager.swift */; };
+		63E7DD3D1C514CA200D84B12 /* UsergridRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E7DD2D1C514CA200D84B12 /* UsergridRequestManager.swift */; };
+		63E7DD3E1C514CA200D84B12 /* UsergridRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E7DD2D1C514CA200D84B12 /* UsergridRequestManager.swift */; };
+		63E7DD3F1C514CA200D84B12 /* UsergridSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E7DD2E1C514CA200D84B12 /* UsergridSessionDelegate.swift */; };
+		63E7DD401C514CA200D84B12 /* UsergridSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E7DD2E1C514CA200D84B12 /* UsergridSessionDelegate.swift */; };
+		63E7DD411C514CA200D84B12 /* UsergridSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E7DD2E1C514CA200D84B12 /* UsergridSessionDelegate.swift */; };
+		63E7DD421C514CA200D84B12 /* UsergridSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E7DD2E1C514CA200D84B12 /* UsergridSessionDelegate.swift */; };
 		63EE60D91C404AB700AFC2CF /* UsergridResponseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EE60D81C404AB700AFC2CF /* UsergridResponseError.swift */; };
 		63EE60DA1C404AB700AFC2CF /* UsergridResponseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EE60D81C404AB700AFC2CF /* UsergridResponseError.swift */; };
 		63EE60F31C406E1600AFC2CF /* UsergridResponseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EE60D81C404AB700AFC2CF /* UsergridResponseError.swift */; };
 		63EE60F41C406E1600AFC2CF /* UsergridClientConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6343823F1BC30138008624BE /* UsergridClientConfig.swift */; };
-		63EE60F51C406E1600AFC2CF /* UsergridKeychainHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63377E801C28A81200D2D63B /* UsergridKeychainHelpers.swift */; };
-		63EE60F61C406E1600AFC2CF /* UsergridAssetRequestWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6345C4A91BD8432000AF9520 /* UsergridAssetRequestWrapper.swift */; };
 		63EE60F71C406E1600AFC2CF /* UsergridAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF0F411BBC4EF6009D4196 /* UsergridAuth.swift */; };
 		63EE60F81C406E1600AFC2CF /* UsergridFileMetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A7F2611BC4278200596156 /* UsergridFileMetaData.swift */; };
 		63EE60F91C406E1600AFC2CF /* UsergridDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636A4BE11BDA8D9E0061000A /* UsergridDevice.swift */; };
 		63EE60FA1C406E1600AFC2CF /* UsergridQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF0F441BBC4EF6009D4196 /* UsergridQuery.swift */; };
-		63EE60FB1C406E1600AFC2CF /* UsergridExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6345C4AF1BD8438600AF9520 /* UsergridExtensions.swift */; };
 		63EE60FC1C406E1600AFC2CF /* UsergridEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF0F431BBC4EF6009D4196 /* UsergridEntity.swift */; };
-		63EE60FD1C406E1600AFC2CF /* UsergridSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6345C4AB1BD8432000AF9520 /* UsergridSessionDelegate.swift */; };
 		63EE60FE1C406E1600AFC2CF /* UsergridUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF0F481BBC4EF6009D4196 /* UsergridUser.swift */; };
 		63EE60FF1C406E1600AFC2CF /* Usergrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF0F3F1BBC4EF6009D4196 /* Usergrid.swift */; };
 		63EE61001C406E1600AFC2CF /* UsergridResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF0F461BBC4EF6009D4196 /* UsergridResponse.swift */; };
-		63EE61011C406E1600AFC2CF /* UsergridRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6345C4AA1BD8432000AF9520 /* UsergridRequestManager.swift */; };
 		63EE61021C406E1600AFC2CF /* UsergridEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6313CA2D1BD80BB9004451EE /* UsergridEnums.swift */; };
 		63EE61031C406E1600AFC2CF /* UsergridAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF0F401BBC4EF6009D4196 /* UsergridAsset.swift */; };
 		63EE61041C406E1600AFC2CF /* UsergridClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF0F421BBC4EF6009D4196 /* UsergridClient.swift */; };
@@ -149,13 +149,8 @@
 		6313CA2D1BD80BB9004451EE /* UsergridEnums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsergridEnums.swift; sourceTree = "<group>"; };
 		631920451C48436500F99E86 /* UsergridSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UsergridSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6319204B1C49BC0700F99E86 /* UsergridSDK_TVOS_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UsergridSDK_TVOS_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		63377E801C28A81200D2D63B /* UsergridKeychainHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsergridKeychainHelpers.swift; sourceTree = "<group>"; };
 		6343823D1BC2F042008624BE /* CONNECTION_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CONNECTION_Tests.swift; sourceTree = "<group>"; };
 		6343823F1BC30138008624BE /* UsergridClientConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsergridClientConfig.swift; sourceTree = "<group>"; };
-		6345C4A91BD8432000AF9520 /* UsergridAssetRequestWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsergridAssetRequestWrapper.swift; sourceTree = "<group>"; };
-		6345C4AA1BD8432000AF9520 /* UsergridRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsergridRequestManager.swift; sourceTree = "<group>"; };
-		6345C4AB1BD8432000AF9520 /* UsergridSessionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsergridSessionDelegate.swift; sourceTree = "<group>"; };
-		6345C4AF1BD8438600AF9520 /* UsergridExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsergridExtensions.swift; sourceTree = "<group>"; };
 		636A4BE11BDA8D9E0061000A /* UsergridDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsergridDevice.swift; sourceTree = "<group>"; };
 		639B4BEB1C3DD6CF005E26E7 /* UsergridSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UsergridSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		63A7F2611BC4278200596156 /* UsergridFileMetaData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsergridFileMetaData.swift; sourceTree = "<group>"; };
@@ -180,6 +175,11 @@
 		63AF0F601BBC528E009D4196 /* PUT_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PUT_Tests.swift; sourceTree = "<group>"; };
 		63AF0F631BBC528E009D4196 /* User_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User_Tests.swift; sourceTree = "<group>"; };
 		63AF0F7D1BBC5692009D4196 /* TestAssets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TestAssets; sourceTree = "<group>"; };
+		63E7DD2A1C514CA200D84B12 /* UsergridAssetRequestWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsergridAssetRequestWrapper.swift; sourceTree = "<group>"; };
+		63E7DD2B1C514CA200D84B12 /* UsergridExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsergridExtensions.swift; sourceTree = "<group>"; };
+		63E7DD2C1C514CA200D84B12 /* UsergridKeychainHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsergridKeychainHelpers.swift; sourceTree = "<group>"; };
+		63E7DD2D1C514CA200D84B12 /* UsergridRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsergridRequestManager.swift; sourceTree = "<group>"; };
+		63E7DD2E1C514CA200D84B12 /* UsergridSessionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsergridSessionDelegate.swift; sourceTree = "<group>"; };
 		63EE60D81C404AB700AFC2CF /* UsergridResponseError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsergridResponseError.swift; sourceTree = "<group>"; };
 		63EE610B1C406E1600AFC2CF /* UsergridSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UsergridSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		63F36F0E1C458AAE00CEEF54 /* UsergridRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsergridRequest.swift; sourceTree = "<group>"; };
@@ -241,18 +241,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		6345C4A81BD8432000AF9520 /* Internal */ = {
-			isa = PBXGroup;
-			children = (
-				6345C4A91BD8432000AF9520 /* UsergridAssetRequestWrapper.swift */,
-				6345C4AF1BD8438600AF9520 /* UsergridExtensions.swift */,
-				6345C4AA1BD8432000AF9520 /* UsergridRequestManager.swift */,
-				6345C4AB1BD8432000AF9520 /* UsergridSessionDelegate.swift */,
-				63377E801C28A81200D2D63B /* UsergridKeychainHelpers.swift */,
-			);
-			path = Internal;
-			sourceTree = "<group>";
-		};
 		63AF0E7E1BBC38FB009D4196 = {
 			isa = PBXGroup;
 			children = (
@@ -311,7 +299,7 @@
 				63EE60D81C404AB700AFC2CF /* UsergridResponseError.swift */,
 				63F36F0E1C458AAE00CEEF54 /* UsergridRequest.swift */,
 				63AF0F481BBC4EF6009D4196 /* UsergridUser.swift */,
-				6345C4A81BD8432000AF9520 /* Internal */,
+				63E7DD431C514CA700D84B12 /* Internal */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -332,6 +320,18 @@
 				63AF0F7D1BBC5692009D4196 /* TestAssets */,
 			);
 			path = Tests;
+			sourceTree = "<group>";
+		};
+		63E7DD431C514CA700D84B12 /* Internal */ = {
+			isa = PBXGroup;
+			children = (
+				63E7DD2A1C514CA200D84B12 /* UsergridAssetRequestWrapper.swift */,
+				63E7DD2B1C514CA200D84B12 /* UsergridExtensions.swift */,
+				63E7DD2C1C514CA200D84B12 /* UsergridKeychainHelpers.swift */,
+				63E7DD2D1C514CA200D84B12 /* UsergridRequestManager.swift */,
+				63E7DD2E1C514CA200D84B12 /* UsergridSessionDelegate.swift */,
+			);
+			name = Internal;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -640,22 +640,22 @@
 				6319202C1C48436500F99E86 /* UsergridResponseError.swift in Sources */,
 				6319202D1C48436500F99E86 /* UsergridRequest.swift in Sources */,
 				6319202E1C48436500F99E86 /* UsergridClientConfig.swift in Sources */,
-				6319202F1C48436500F99E86 /* UsergridKeychainHelpers.swift in Sources */,
-				631920301C48436500F99E86 /* UsergridAssetRequestWrapper.swift in Sources */,
+				63E7DD321C514CA200D84B12 /* UsergridAssetRequestWrapper.swift in Sources */,
 				631920311C48436500F99E86 /* UsergridAuth.swift in Sources */,
 				631920321C48436500F99E86 /* UsergridFileMetaData.swift in Sources */,
+				63E7DD3A1C514CA200D84B12 /* UsergridKeychainHelpers.swift in Sources */,
+				63E7DD3E1C514CA200D84B12 /* UsergridRequestManager.swift in Sources */,
 				631920331C48436500F99E86 /* UsergridDevice.swift in Sources */,
 				631920341C48436500F99E86 /* UsergridQuery.swift in Sources */,
-				631920351C48436500F99E86 /* UsergridExtensions.swift in Sources */,
+				63E7DD421C514CA200D84B12 /* UsergridSessionDelegate.swift in Sources */,
 				631920361C48436500F99E86 /* UsergridEntity.swift in Sources */,
-				631920371C48436500F99E86 /* UsergridSessionDelegate.swift in Sources */,
 				631920381C48436500F99E86 /* UsergridUser.swift in Sources */,
 				631920391C48436500F99E86 /* Usergrid.swift in Sources */,
 				6319203A1C48436500F99E86 /* UsergridResponse.swift in Sources */,
-				6319203B1C48436500F99E86 /* UsergridRequestManager.swift in Sources */,
 				6319203C1C48436500F99E86 /* UsergridEnums.swift in Sources */,
 				6319203D1C48436500F99E86 /* UsergridAsset.swift in Sources */,
 				6319203E1C48436500F99E86 /* UsergridClient.swift in Sources */,
+				63E7DD361C514CA200D84B12 /* UsergridExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -683,21 +683,21 @@
 				63F36F101C458AAE00CEEF54 /* UsergridRequest.swift in Sources */,
 				639B4BF51C3DD915005E26E7 /* UsergridAuth.swift in Sources */,
 				639B4BF71C3DD915005E26E7 /* UsergridEntity.swift in Sources */,
-				639B4C011C3DD918005E26E7 /* UsergridKeychainHelpers.swift in Sources */,
+				63E7DD301C514CA200D84B12 /* UsergridAssetRequestWrapper.swift in Sources */,
 				639B4C031C3DD91A005E26E7 /* UsergridClient.swift in Sources */,
-				639B4BFE1C3DD918005E26E7 /* UsergridExtensions.swift in Sources */,
+				63E7DD381C514CA200D84B12 /* UsergridKeychainHelpers.swift in Sources */,
+				63E7DD3C1C514CA200D84B12 /* UsergridRequestManager.swift in Sources */,
 				639B4C041C3DD91A005E26E7 /* UsergridClientConfig.swift in Sources */,
 				639B4BF81C3DD915005E26E7 /* UsergridEnums.swift in Sources */,
+				63E7DD401C514CA200D84B12 /* UsergridSessionDelegate.swift in Sources */,
 				639B4BFC1C3DD915005E26E7 /* UsergridUser.swift in Sources */,
-				639B4C001C3DD918005E26E7 /* UsergridSessionDelegate.swift in Sources */,
 				639B4C021C3DD91A005E26E7 /* Usergrid.swift in Sources */,
 				639B4BF61C3DD915005E26E7 /* UsergridDevice.swift in Sources */,
-				639B4BFD1C3DD918005E26E7 /* UsergridAssetRequestWrapper.swift in Sources */,
 				639B4BF41C3DD90D005E26E7 /* UsergridAsset.swift in Sources */,
-				639B4BFF1C3DD918005E26E7 /* UsergridRequestManager.swift in Sources */,
 				639B4BFB1C3DD915005E26E7 /* UsergridResponse.swift in Sources */,
 				639B4BFA1C3DD915005E26E7 /* UsergridQuery.swift in Sources */,
 				639B4BF91C3DD915005E26E7 /* UsergridFileMetaData.swift in Sources */,
+				63E7DD341C514CA200D84B12 /* UsergridExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -708,22 +708,22 @@
 				63EE60D91C404AB700AFC2CF /* UsergridResponseError.swift in Sources */,
 				63F36F0F1C458AAE00CEEF54 /* UsergridRequest.swift in Sources */,
 				634382401BC30138008624BE /* UsergridClientConfig.swift in Sources */,
-				63377E811C28A81200D2D63B /* UsergridKeychainHelpers.swift in Sources */,
-				6345C4AC1BD8432000AF9520 /* UsergridAssetRequestWrapper.swift in Sources */,
+				63E7DD2F1C514CA200D84B12 /* UsergridAssetRequestWrapper.swift in Sources */,
 				63AF0F4C1BBC4EF6009D4196 /* UsergridAuth.swift in Sources */,
 				63A7F2621BC4278200596156 /* UsergridFileMetaData.swift in Sources */,
+				63E7DD371C514CA200D84B12 /* UsergridKeychainHelpers.swift in Sources */,
+				63E7DD3B1C514CA200D84B12 /* UsergridRequestManager.swift in Sources */,
 				636A4BE21BDA8D9E0061000A /* UsergridDevice.swift in Sources */,
 				63AF0F4F1BBC4EF6009D4196 /* UsergridQuery.swift in Sources */,
-				6345C4B01BD8438600AF9520 /* UsergridExtensions.swift in Sources */,
+				63E7DD3F1C514CA200D84B12 /* UsergridSessionDelegate.swift in Sources */,
 				63AF0F4E1BBC4EF6009D4196 /* UsergridEntity.swift in Sources */,
-				6345C4AE1BD8432000AF9520 /* UsergridSessionDelegate.swift in Sources */,
 				63AF0F531BBC4EF6009D4196 /* UsergridUser.swift in Sources */,
 				63AF0F4A1BBC4EF6009D4196 /* Usergrid.swift in Sources */,
 				63AF0F511BBC4EF6009D4196 /* UsergridResponse.swift in Sources */,
-				6345C4AD1BD8432000AF9520 /* UsergridRequestManager.swift in Sources */,
 				6313CA2E1BD80BB9004451EE /* UsergridEnums.swift in Sources */,
 				63AF0F4B1BBC4EF6009D4196 /* UsergridAsset.swift in Sources */,
 				63AF0F4D1BBC4EF6009D4196 /* UsergridClient.swift in Sources */,
+				63E7DD331C514CA200D84B12 /* UsergridExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -734,22 +734,22 @@
 				63EE60F31C406E1600AFC2CF /* UsergridResponseError.swift in Sources */,
 				63F36F111C458AAE00CEEF54 /* UsergridRequest.swift in Sources */,
 				63EE60F41C406E1600AFC2CF /* UsergridClientConfig.swift in Sources */,
-				63EE60F51C406E1600AFC2CF /* UsergridKeychainHelpers.swift in Sources */,
-				63EE60F61C406E1600AFC2CF /* UsergridAssetRequestWrapper.swift in Sources */,
+				63E7DD311C514CA200D84B12 /* UsergridAssetRequestWrapper.swift in Sources */,
 				63EE60F71C406E1600AFC2CF /* UsergridAuth.swift in Sources */,
 				63EE60F81C406E1600AFC2CF /* UsergridFileMetaData.swift in Sources */,
+				63E7DD391C514CA200D84B12 /* UsergridKeychainHelpers.swift in Sources */,
+				63E7DD3D1C514CA200D84B12 /* UsergridRequestManager.swift in Sources */,
 				63EE60F91C406E1600AFC2CF /* UsergridDevice.swift in Sources */,
 				63EE60FA1C406E1600AFC2CF /* UsergridQuery.swift in Sources */,
-				63EE60FB1C406E1600AFC2CF /* UsergridExtensions.swift in Sources */,
+				63E7DD411C514CA200D84B12 /* UsergridSessionDelegate.swift in Sources */,
 				63EE60FC1C406E1600AFC2CF /* UsergridEntity.swift in Sources */,
-				63EE60FD1C406E1600AFC2CF /* UsergridSessionDelegate.swift in Sources */,
 				63EE60FE1C406E1600AFC2CF /* UsergridUser.swift in Sources */,
 				63EE60FF1C406E1600AFC2CF /* Usergrid.swift in Sources */,
 				63EE61001C406E1600AFC2CF /* UsergridResponse.swift in Sources */,
-				63EE61011C406E1600AFC2CF /* UsergridRequestManager.swift in Sources */,
 				63EE61021C406E1600AFC2CF /* UsergridEnums.swift in Sources */,
 				63EE61031C406E1600AFC2CF /* UsergridAsset.swift in Sources */,
 				63EE61041C406E1600AFC2CF /* UsergridClient.swift in Sources */,
+				63E7DD351C514CA200D84B12 /* UsergridExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1116,6 +1116,7 @@
 				630A21A91C49BFFC008BE87F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		630A21C01C49C473008BE87F /* Build configuration list for PBXNativeTarget "UsergridSDK_iOS_Tests" */ = {
 			isa = XCConfigurationList;
@@ -1124,6 +1125,7 @@
 				630A21C21C49C473008BE87F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		631920421C48436500F99E86 /* Build configuration list for PBXNativeTarget "UsergridSDK OSX" */ = {
 			isa = XCConfigurationList;

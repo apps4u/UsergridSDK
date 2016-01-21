@@ -15,7 +15,7 @@ import UIKit
 #if os(watchOS)
 import WatchKit
 #endif
-
+ 
 /**
 `UsergridDevice` is an `UsergridEntity` subclass that encapsulates information about the current device as well as stores information about push tokens and Usergrid notifiers.
 
@@ -71,20 +71,7 @@ public class UsergridDevice : UsergridEntity {
             deviceEntityDict[UsergridDeviceProperties.OSVersion.stringValue] = NSProcessInfo.processInfo().operatingSystemVersionString
         #endif
 
-        super.init(type: UsergridDevice.DEVICE_ENTITY_TYPE, name: nil, propertyDict: deviceEntityDict)
-    }
-
-    // MARK: - NSCoding -
-
-    /**
-    NSCoding protocol initializer.
-
-    - parameter aDecoder: The decoder.
-
-    - returns: A decoded `UsergridUser` object.
-    */
-    required public init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        super.init(type: UsergridDevice.DEVICE_ENTITY_TYPE, propertyDict: deviceEntityDict)
     }
 
     /**
@@ -98,6 +85,19 @@ public class UsergridDevice : UsergridEntity {
      */
     required public init(type: String, name: String?, propertyDict: [String : AnyObject]?) {
         super.init(type: type, name: name, propertyDict: propertyDict)
+    }
+
+    // MARK: - NSCoding -
+
+    /**
+    NSCoding protocol initializer.
+
+    - parameter aDecoder: The decoder.
+
+    - returns: A decoded `UsergridUser` object.
+    */
+    required public init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
     }
 
     /**

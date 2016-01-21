@@ -8,11 +8,11 @@ Pod::Spec.new do |s|
   s.social_media_url = 'https://twitter.com/Apigee'
   s.requires_arc = true
 
-  s.watchos.deployment_target = '2.1'
   s.ios.deployment_target = '8.0'
+  s.watchos.deployment_target = '2.1'
   s.tvos.deployment_target = '9.1'
   s.osx.deployment_target = '10.11'
 
-  s.source = { :git => 'https://github.com/RobertWalsh/UsergridSDK.git', :branch => 'master', :tag => 'v0.0.4' }
-  s.source_files  = 'Source/*.swift','Source/Internal/*.swift'
+  s.source = { :git => 'https://github.com/RobertWalsh/UsergridSDK.git', :branch => 'master', :tag => 'v' + s.version.to_s }
+  s.source_files  = 'Source/*.swift'
 end

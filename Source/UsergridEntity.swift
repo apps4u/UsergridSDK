@@ -317,13 +317,14 @@ public class UsergridEntity: NSObject, NSCoding {
     */
     private func insertArray(name:String,values:[AnyObject], index:Int = 0) {
         if let propertyValue = self[name] {
-            if var arrayValue = propertyValue as? [AnyObject] {
+            if let arrayValue = propertyValue as? [AnyObject] {
+                var arrayOfValues = arrayValue
                 if  index > arrayValue.count {
-                    arrayValue.appendContentsOf(values)
+                    arrayOfValues.appendContentsOf(values)
                 } else {
-                    arrayValue.insertContentsOf(values, at: index)
+                    arrayOfValues.insertContentsOf(values, at: index)
                 }
-                self[name] = arrayValue
+                self[name] = arrayOfValues
             } else {
                 if index > 0 {
                     self[name] = [propertyValue] + values
@@ -342,9 +343,10 @@ public class UsergridEntity: NSObject, NSCoding {
     - parameter name: The name of the property.
     */
     public func pop(name:String) {
-        if var arrayValue = self[name] as? [AnyObject] where arrayValue.count > 0 {
-            arrayValue.removeLast()
-            self[name] = arrayValue
+        if let arrayValue = self[name] as? [AnyObject] where arrayValue.count > 0 {
+            var arrayOfValues = arrayValue
+            arrayOfValues.removeLast()
+            self[name] = arrayOfValues
         }
     }
 
@@ -354,9 +356,10 @@ public class UsergridEntity: NSObject, NSCoding {
     - parameter name: The name of the property.
     */
     public func shift(name:String) {
-        if var arrayValue = self[name] as? [AnyObject] where arrayValue.count > 0 {
-            arrayValue.removeFirst()
-            self[name] = arrayValue
+        if let arrayValue = self[name] as? [AnyObject] where arrayValue.count > 0 {
+            var arrayOfValues = arrayValue
+            arrayOfValues.removeFirst()
+            self[name] = arrayOfValues
         }
     }
 
