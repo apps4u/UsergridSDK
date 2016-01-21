@@ -106,6 +106,19 @@ public class UsergridUser : UsergridEntity {
     }
 
     /**
+     The required public initializer for `UsergridEntity` subclasses.
+
+     - parameter type:         The type associated with the `UsergridEntity` object.
+     - parameter name:         The optional name associated with the `UsergridEntity` object.
+     - parameter propertyDict: The optional property dictionary that the `UsergridEntity` object will start out with.
+
+     - returns: A new `UsergridUser` object.
+     */
+    required public init(type: String, name: String?, propertyDict: [String : AnyObject]?) {
+        super.init(type: type, name: name, propertyDict: propertyDict)
+    }
+
+    /**
     Designated initializer for `UsergridUser` objects.
 
     - parameter name:         The name of the user.  Note this is different from the `username` property.
@@ -139,6 +152,18 @@ public class UsergridUser : UsergridEntity {
     public override func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(self.auth, forKey: "auth")
         super.encodeWithCoder(aCoder)
+    }
+
+    // MARK: - Subclass Initialization -
+
+    /**
+    Required override for subclasses of UsergridEntity objects.
+
+    In this method you will need to map the custom type with the type string returned from Usergrid using the `UsergridEntity.mapCustomType` method.
+    */
+    override public class func initialize() {
+        UsergridEntity.mapCustomType(UsergridUser.USER_ENTITY_TYPE, toSubclass: UsergridUser.self)
+        super.initialize()
     }
 
     // MARK: - Class Methods -

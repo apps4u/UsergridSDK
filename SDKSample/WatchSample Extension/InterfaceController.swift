@@ -14,11 +14,10 @@ import WatchConnectivity
 class InterfaceController: WKInterfaceController,WCSessionDelegate {
 
     @IBOutlet var messageTable: WKInterfaceTable!
-    var messageEntities: [UsergridEntity] = []
+    var messageEntities: [ActivityEntity] = []
 
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
-        self.setTitle("Chit-Chat")
         if WCSession.isSupported() {
             let session = WCSession.defaultSession()
             session.delegate = self
@@ -41,15 +40,15 @@ class InterfaceController: WKInterfaceController,WCSessionDelegate {
         for index in 0..<self.messageTable.numberOfRows {
             if let controller = self.messageTable.rowControllerAtIndex(index) as? MessageRowController {
                 let messageEntity = messageEntities[index]
-                let messageInfo = UsergridManager.getMessageInfoFromEntity(messageEntity)
-                controller.titleLabel.setText(messageInfo.displayName)
-                controller.messageLabel.setText(messageInfo.content)
+                controller.titleLabel.setText(messageEntity.displayName)
+                controller.messageLabel.setText(messageEntity.content)
             }
         }
     }
 
     func session(session: WCSession, didReceiveMessageData messageData: NSData) {
-        if let messageEntities = NSKeyedUnarchiver.unarchiveObjectWithData(messageData) as? [UsergridEntity] {
+        NSKeyedUnarchiver.setClass(ActivityEntity.self, forClassName: "ActivityEntity")
+        if let messageEntities = NSKeyedUnarchiver.unarchiveObjectWithData(messageData) as? [ActivityEntity] {
             self.messageEntities = messageEntities
             self.reloadTable()
         }

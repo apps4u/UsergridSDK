@@ -160,7 +160,7 @@ class MessageViewController : SLKTextViewController, WCSessionDelegate {
 
     static let MESSAGE_CELL_IDENTIFIER = "MessengerCell"
 
-    var messageEntities: [UsergridEntity] = []
+    var messageEntities: [ActivityEntity] = []
 
     init() {
         super.init(tableViewStyle:.Plain)
@@ -202,7 +202,7 @@ class MessageViewController : SLKTextViewController, WCSessionDelegate {
 
     func reloadMessages() {
         UsergridManager.getFeedMessages { (response) -> Void in
-            self.messageEntities = response.entities ?? []
+            self.messageEntities = response.entities as? [ActivityEntity] ?? []
             self.tableView.reloadData()
         }
     }
@@ -224,7 +224,7 @@ class MessageViewController : SLKTextViewController, WCSessionDelegate {
         self.textView.refreshFirstResponder()
 
         UsergridManager.postFeedMessage(self.textView.text) { (response) -> Void in
-            if let messageEntity = response.entity {
+            if let messageEntity = response.entity as? ActivityEntity {
                 let indexPath = NSIndexPath(forRow: 0, inSection: 0)
                 let rowAnimation: UITableViewRowAnimation = self.inverted ? .Bottom : .Top
                 let scrollPosition: UITableViewScrollPosition = self.inverted ? .Bottom : .Top
@@ -263,14 +263,13 @@ class MessageViewController : SLKTextViewController, WCSessionDelegate {
 
     }
 
-    func populateCell(cell:MessageTableViewCell,feedEntity:UsergridEntity) {
+    func populateCell(cell:MessageTableViewCell,feedEntity:ActivityEntity) {
 
-        let messageInfo = UsergridManager.getMessageInfoFromEntity(feedEntity)
-        cell.titleLabel.text = messageInfo.displayName
-        cell.bodyLabel.text = messageInfo.content
+        cell.titleLabel.text = feedEntity.displayName
+        cell.bodyLabel.text = feedEntity.content
         cell.thumbnailView.image = nil
 
-        if let imageURLString = messageInfo.imageURL, imageURL = NSURL(string: imageURLString) {
+        if let imageURLString = feedEntity.imageURL, imageURL = NSURL(string: imageURLString) {
             NSURLSession.sharedSession().dataTaskWithURL(imageURL) { (data, response, error) in
                 if let imageData = data, image = UIImage(data: imageData) {
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
@@ -292,15 +291,14 @@ class MessageViewController : SLKTextViewController, WCSessionDelegate {
     }
 
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        let messageEntity = messageEntities[indexPath.row]
-        let messageInfo = UsergridManager.getMessageInfoFromEntity(messageEntity)
+        let feedEntity = messageEntities[indexPath.row]
 
-        let messageText : NSString = messageInfo.content ?? ""
+        let messageText : NSString = feedEntity.content ?? ""
         if messageText.length == 0 {
             return 0
         }
 
-        let messageUsername : NSString = messageInfo.displayName ?? ""
+        let messageUsername : NSString = feedEntity.displayName ?? ""
 
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineBreakMode = .ByWordWrapping
@@ -324,6 +322,7 @@ class MessageViewController : SLKTextViewController, WCSessionDelegate {
 
     func sendEntitiesToWatch(messages:[UsergridEntity]) {
         if WCSession.defaultSession().reachable {
+            NSKeyedArchiver.setClassName("ActivityEntity", forClass: ActivityEntity.self)
             let data = NSKeyedArchiver.archivedDataWithRootObject(messages)
             WCSession.defaultSession().sendMessageData(data, replyHandler: nil, errorHandler: { (error) -> Void in
                 self.showAlert(title: "WCSession Unreachable.", message: "\(error)")

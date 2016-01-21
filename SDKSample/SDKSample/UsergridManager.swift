@@ -18,6 +18,7 @@ public class UsergridManager {
 
     static func initializeSharedInstance() {
         Usergrid.initSharedInstance(configuration: UsergridClientConfig(orgId: UsergridManager.ORG_ID, appId: UsergridManager.APP_ID))
+        UsergridEntity.mapCustomType("activity", toSubclass: ActivityEntity.self)
     }
 
     static func loginUser(username:String, password:String, completion:UsergridUserAuthCompletionBlock) {
@@ -54,18 +55,5 @@ public class UsergridManager {
         }
 
         Usergrid.POST("users/me/activities", jsonBody: ["actor":actorDictionary,"verb":verb,"content":content], completion: completion)
-    }
-
-    static func getMessageInfoFromEntity(feedEntity:UsergridEntity) -> (displayName:String?,content:String?,imageURL:String?) {
-        var messageInfo: (displayName:String?,content:String?,imageURL:String?) = (nil,nil,nil)
-        messageInfo.content = feedEntity["content"] as? String
-        if let actor = feedEntity["actor"] as? [String:AnyObject] {
-            messageInfo.displayName = actor["displayName"] as? String
-
-            if let imageDict = actor["image"] as? [String:AnyObject], imageURLString = imageDict["url"] as? String {
-                messageInfo.imageURL = imageURLString
-            }
-        }
-        return messageInfo
     }
 }

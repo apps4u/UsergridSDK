@@ -12,7 +12,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   UsergridSDK:
-    :commit: 4169341d6943f13a5aa14148a887ef4523886677
+    :commit: c6ce41f8b1ba83226aebcf6d535f9a5bd080a2f5
     :git: https://github.com/RobertWalsh/UsergridSDK
 
 SPEC CHECKSUMS:

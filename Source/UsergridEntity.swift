@@ -104,6 +104,13 @@ public class UsergridEntity: NSObject, NSCoding {
         self.asset = entity.asset ?? self.asset
     }
 
+
+    /**
+     Used for custom mapping subclasses to a given `Usergrid` type.
+
+     - parameter type:       The type of the `Usergrid` object.
+     - parameter toSubclass: The subclass `UsergridEntity.Type` to map it to.
+     */
     public static func mapCustomType(type:String,toSubclass:UsergridEntity.Type) {
         UsergridEntity.subclassMappings[type] = toSubclass
     }

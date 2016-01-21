@@ -16,6 +16,8 @@ import CoreLocation
 */
 public class UsergridEntity: NSObject, NSCoding {
 
+    static private var subclassMappings: [String:NSObject.Type] = [:]
+
     // MARK: - Instance Properties -
 
     /// The property dictionary that stores the properties values of the `UsergridEntity` object.
@@ -82,7 +84,7 @@ public class UsergridEntity: NSObject, NSCoding {
 
     - returns: A new `UsergridEntity` object.
     */
-    public init(type:String, name:String? = nil, propertyDict:[String:AnyObject]? = nil) {
+    required public init(type:String, name:String? = nil, propertyDict:[String:AnyObject]? = nil) {
         self.properties = propertyDict ?? [:]
         super.init()
         if self is UsergridUser {
@@ -102,6 +104,10 @@ public class UsergridEntity: NSObject, NSCoding {
         self.asset = entity.asset ?? self.asset
     }
 
+    public static func mapCustomType(type:String,toSubclass:UsergridEntity.Type) {
+        UsergridEntity.subclassMappings[type] = toSubclass
+    }
+
     /*!
     Class convenience constructor for creating `UsergridEntity` objects dynamically.
 
@@ -111,10 +117,8 @@ public class UsergridEntity: NSObject, NSCoding {
     */
     public class func entity(jsonDict jsonDict: [String:AnyObject]) -> UsergridEntity? {
         if let type = jsonDict[UsergridEntityProperties.EntityType.stringValue] as? String {
-            if UsergridUser.USER_ENTITY_TYPE == type {
-                let user = UsergridUser()
-                user.properties = jsonDict
-                return user
+            if let mapping = UsergridEntity.subclassMappings[type] as? UsergridEntity.Type {
+                return mapping.init(type: type,propertyDict:jsonDict)
             } else {
                 return UsergridEntity(type:type, propertyDict:jsonDict)
             }
