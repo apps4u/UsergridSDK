@@ -57,14 +57,14 @@ public class UsergridDevice : UsergridEntity {
         deviceEntityDict[UsergridEntityProperties.EntityType.stringValue] = UsergridDevice.DEVICE_ENTITY_TYPE
         deviceEntityDict[UsergridEntityProperties.UUID.stringValue] = UsergridDevice.usergridDeviceUUID()
 
-        #if os(iOS) || os(tvOS)
-            deviceEntityDict[UsergridDeviceProperties.Model.stringValue] = UIDevice.currentDevice().model
-            deviceEntityDict[UsergridDeviceProperties.Platform.stringValue] = UIDevice.currentDevice().systemName
-            deviceEntityDict[UsergridDeviceProperties.OSVersion.stringValue] = UIDevice.currentDevice().systemVersion
-        #elseif os(watchOS)
+        #if os(watchOS)
             deviceEntityDict[UsergridDeviceProperties.Model.stringValue] = WKInterfaceDevice.currentDevice().model
             deviceEntityDict[UsergridDeviceProperties.Platform.stringValue] = WKInterfaceDevice.currentDevice().systemName
             deviceEntityDict[UsergridDeviceProperties.OSVersion.stringValue] = WKInterfaceDevice.currentDevice().systemVersion
+        #elseif os(iOS) || os(tvOS)
+            deviceEntityDict[UsergridDeviceProperties.Model.stringValue] = UIDevice.currentDevice().model
+            deviceEntityDict[UsergridDeviceProperties.Platform.stringValue] = UIDevice.currentDevice().systemName
+            deviceEntityDict[UsergridDeviceProperties.OSVersion.stringValue] = UIDevice.currentDevice().systemVersion
         #elseif os(OSX)
             deviceEntityDict[UsergridDeviceProperties.Model.stringValue] = "Mac"
             deviceEntityDict[UsergridDeviceProperties.Platform.stringValue] = "OSX"
