@@ -8,7 +8,7 @@
 
 import Foundation
 
-#if os(iOS) || os(watchOS) || os(tvOS)
+#if !os(OSX)
 import UIKit
 #endif
 
