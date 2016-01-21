@@ -18,7 +18,7 @@ public class UsergridManager {
 
     static func initializeSharedInstance() {
         Usergrid.initSharedInstance(configuration: UsergridClientConfig(orgId: UsergridManager.ORG_ID, appId: UsergridManager.APP_ID))
-        UsergridEntity.mapCustomType("activity", toSubclass: ActivityEntity.self)
+        ActivityEntity.registerSubclass()
     }
 
     static func loginUser(username:String, password:String, completion:UsergridUserAuthCompletionBlock) {
@@ -37,10 +37,6 @@ public class UsergridManager {
         Usergrid.GET("users/me/feed", query: UsergridQuery().desc(UsergridEntityProperties.Created.stringValue), completion: completion)
     }
 
-    static func followUser(username:String, completion:UsergridResponseCompletion) {
-        Usergrid.connect("users", entityID: "me", relationship: "following", toType: "users", toName: username, completion: completion)
-    }
-
     static func postFeedMessage(text:String,completion:UsergridResponseCompletion) {
         let currentUser = Usergrid.currentUser!
 
@@ -55,5 +51,9 @@ public class UsergridManager {
         }
 
         Usergrid.POST("users/me/activities", jsonBody: ["actor":actorDictionary,"verb":verb,"content":content], completion: completion)
+    }
+
+    static func followUser(username:String, completion:UsergridResponseCompletion) {
+        Usergrid.connect("users", entityID: "me", relationship: "following", toType: "users", toName: username, completion: completion)
     }
 }

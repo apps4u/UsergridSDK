@@ -15,11 +15,10 @@
 		6348D96F1C4EAC0B005C978C /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6348D96E1C4EAC0B005C978C /* ExtensionDelegate.swift */; };
 		6348D9711C4EAC0C005C978C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6348D9701C4EAC0C005C978C /* Assets.xcassets */; };
 		6348D9751C4EAC0C005C978C /* WatchSample.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 6348D95B1C4EAC0B005C978C /* WatchSample.app */; };
-		6348D97F1C4EB290005C978C /* MessageRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6348D97E1C4EB290005C978C /* MessageRowController.swift */; };
 		6348D9861C4EC1FD005C978C /* UsergridManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6348D9851C4EC1FD005C978C /* UsergridManager.swift */; };
 		6348D9871C4EC1FD005C978C /* UsergridManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6348D9851C4EC1FD005C978C /* UsergridManager.swift */; };
 		6355FEC51BFE4FC600E07170 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6355FEC41BFE4FC600E07170 /* AppDelegate.swift */; };
-		6355FEC71BFE4FC600E07170 /* ViewControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6355FEC61BFE4FC600E07170 /* ViewControllers.swift */; };
+		6355FEC71BFE4FC600E07170 /* ViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6355FEC61BFE4FC600E07170 /* ViewControllerExtensions.swift */; };
 		6355FECA1BFE4FC600E07170 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6355FEC81BFE4FC600E07170 /* Main.storyboard */; };
 		6355FECC1BFE4FC600E07170 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6355FECB1BFE4FC600E07170 /* Assets.xcassets */; };
 		6355FECF1BFE4FC600E07170 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6355FECD1BFE4FC600E07170 /* LaunchScreen.storyboard */; };
@@ -27,6 +26,11 @@
 		63C9E5311C05184900C65F81 /* MessageTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C9E5301C05184900C65F81 /* MessageTextView.swift */; };
 		63CD143D1C505EC500C00076 /* ActivityEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD143C1C505EC500C00076 /* ActivityEntity.swift */; };
 		63CD143E1C505EC500C00076 /* ActivityEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD143C1C505EC500C00076 /* ActivityEntity.swift */; };
+		63E7DD741C518BAD00D84B12 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E7DD731C518BAD00D84B12 /* LoginViewController.swift */; };
+		63E7DD761C518C9000D84B12 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E7DD751C518C9000D84B12 /* RegisterViewController.swift */; };
+		63E7DD781C518E0400D84B12 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E7DD771C518E0400D84B12 /* MessageViewController.swift */; };
+		63E7DD7A1C518F1700D84B12 /* FollowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E7DD791C518F1700D84B12 /* FollowViewController.swift */; };
+		63E7DD7E1C518FDD00D84B12 /* FormTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E7DD7D1C518FDD00D84B12 /* FormTextField.swift */; };
 		96DB0D784612A8993D0C015E /* Pods_SDKSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC7800A4D424F7EEB81D8631 /* Pods_SDKSample.framework */; };
 /* End PBXBuildFile section */
 
@@ -85,13 +89,12 @@
 		6348D96E1C4EAC0B005C978C /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
 		6348D9701C4EAC0C005C978C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6348D9721C4EAC0C005C978C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6348D97E1C4EB290005C978C /* MessageRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageRowController.swift; sourceTree = "<group>"; };
 		6348D9801C4EB45C005C978C /* UsergridSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UsergridSDK.framework; path = "Pods/../build/Debug-iphoneos/UsergridSDK.framework"; sourceTree = "<group>"; };
 		6348D9821C4EB590005C978C /* Pods.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods.framework; path = "Pods/../build/Debug-iphoneos/Pods.framework"; sourceTree = "<group>"; };
 		6348D9851C4EC1FD005C978C /* UsergridManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsergridManager.swift; sourceTree = "<group>"; };
 		6355FEC11BFE4FC600E07170 /* SDKSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SDKSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6355FEC41BFE4FC600E07170 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		6355FEC61BFE4FC600E07170 /* ViewControllers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllers.swift; sourceTree = "<group>"; };
+		6355FEC61BFE4FC600E07170 /* ViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtensions.swift; sourceTree = "<group>"; };
 		6355FEC91BFE4FC600E07170 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6355FECB1BFE4FC600E07170 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6355FECE1BFE4FC600E07170 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -99,6 +102,11 @@
 		63C9E5291C04F3B900C65F81 /* MessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
 		63C9E5301C05184900C65F81 /* MessageTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageTextView.swift; sourceTree = "<group>"; };
 		63CD143C1C505EC500C00076 /* ActivityEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityEntity.swift; sourceTree = "<group>"; };
+		63E7DD731C518BAD00D84B12 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		63E7DD751C518C9000D84B12 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		63E7DD771C518E0400D84B12 /* MessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
+		63E7DD791C518F1700D84B12 /* FollowViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowViewController.swift; sourceTree = "<group>"; };
+		63E7DD7D1C518FDD00D84B12 /* FormTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormTextField.swift; sourceTree = "<group>"; };
 		6D72F611CBF37680A99027EB /* Pods-SDKSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SDKSample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SDKSample/Pods-SDKSample.debug.xcconfig"; sourceTree = "<group>"; };
 		759B5E451ADDEAFCFC675B4E /* Pods-WatchSample Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WatchSample Extension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WatchSample Extension/Pods-WatchSample Extension.debug.xcconfig"; sourceTree = "<group>"; };
 		8BEAAECA0D546D0C1893CE9A /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -141,7 +149,6 @@
 			isa = PBXGroup;
 			children = (
 				6348D96C1C4EAC0B005C978C /* InterfaceController.swift */,
-				6348D97E1C4EB290005C978C /* MessageRowController.swift */,
 				6348D96E1C4EAC0B005C978C /* ExtensionDelegate.swift */,
 				6348D9701C4EAC0C005C978C /* Assets.xcassets */,
 				6348D9721C4EAC0C005C978C /* Info.plist */,
@@ -175,17 +182,54 @@
 			isa = PBXGroup;
 			children = (
 				6355FEC41BFE4FC600E07170 /* AppDelegate.swift */,
-				6355FEC61BFE4FC600E07170 /* ViewControllers.swift */,
-				63C9E5291C04F3B900C65F81 /* MessageTableViewCell.swift */,
-				63C9E5301C05184900C65F81 /* MessageTextView.swift */,
 				6348D9851C4EC1FD005C978C /* UsergridManager.swift */,
 				63CD143C1C505EC500C00076 /* ActivityEntity.swift */,
-				6355FEC81BFE4FC600E07170 /* Main.storyboard */,
-				6355FECB1BFE4FC600E07170 /* Assets.xcassets */,
-				6355FECD1BFE4FC600E07170 /* LaunchScreen.storyboard */,
-				6355FED01BFE4FC600E07170 /* Info.plist */,
+				63E7DD7B1C518F9600D84B12 /* View Controllers */,
+				63E7DD7C1C518FC300D84B12 /* Custom Views */,
+				63E7DD801C51903A00D84B12 /* Storyboards */,
+				63E7DD7F1C51902F00D84B12 /* Supporting Files */,
 			);
 			path = SDKSample;
+			sourceTree = "<group>";
+		};
+		63E7DD7B1C518F9600D84B12 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				63E7DD791C518F1700D84B12 /* FollowViewController.swift */,
+				63E7DD731C518BAD00D84B12 /* LoginViewController.swift */,
+				63E7DD771C518E0400D84B12 /* MessageViewController.swift */,
+				63E7DD751C518C9000D84B12 /* RegisterViewController.swift */,
+				6355FEC61BFE4FC600E07170 /* ViewControllerExtensions.swift */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		63E7DD7C1C518FC300D84B12 /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				63E7DD7D1C518FDD00D84B12 /* FormTextField.swift */,
+				63C9E5291C04F3B900C65F81 /* MessageTableViewCell.swift */,
+				63C9E5301C05184900C65F81 /* MessageTextView.swift */,
+			);
+			name = "Custom Views";
+			sourceTree = "<group>";
+		};
+		63E7DD7F1C51902F00D84B12 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6355FECB1BFE4FC600E07170 /* Assets.xcassets */,
+				6355FED01BFE4FC600E07170 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		63E7DD801C51903A00D84B12 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				6355FEC81BFE4FC600E07170 /* Main.storyboard */,
+				6355FECD1BFE4FC600E07170 /* LaunchScreen.storyboard */,
+			);
+			name = Storyboards;
 			sourceTree = "<group>";
 		};
 		9A38C0628A51D3876968ADC0 /* Pods */ = {
@@ -448,7 +492,6 @@
 				63CD143E1C505EC500C00076 /* ActivityEntity.swift in Sources */,
 				6348D96F1C4EAC0B005C978C /* ExtensionDelegate.swift in Sources */,
 				6348D96D1C4EAC0B005C978C /* InterfaceController.swift in Sources */,
-				6348D97F1C4EB290005C978C /* MessageRowController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -456,12 +499,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63E7DD741C518BAD00D84B12 /* LoginViewController.swift in Sources */,
+				63E7DD781C518E0400D84B12 /* MessageViewController.swift in Sources */,
 				6348D9861C4EC1FD005C978C /* UsergridManager.swift in Sources */,
-				6355FEC71BFE4FC600E07170 /* ViewControllers.swift in Sources */,
+				6355FEC71BFE4FC600E07170 /* ViewControllerExtensions.swift in Sources */,
+				63E7DD761C518C9000D84B12 /* RegisterViewController.swift in Sources */,
 				6355FEC51BFE4FC600E07170 /* AppDelegate.swift in Sources */,
+				63E7DD7A1C518F1700D84B12 /* FollowViewController.swift in Sources */,
 				63CD143D1C505EC500C00076 /* ActivityEntity.swift in Sources */,
 				63C9E5311C05184900C65F81 /* MessageTextView.swift in Sources */,
 				63C9E52A1C04F3B900C65F81 /* MessageTableViewCell.swift in Sources */,
+				63E7DD7E1C518FDD00D84B12 /* FormTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

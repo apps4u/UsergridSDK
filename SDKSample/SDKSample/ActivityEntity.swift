@@ -23,6 +23,10 @@ public class ActivityEntity: UsergridEntity {
 
     public var imageURL: String? { return self.imageInfo?["url"] as? String }
 
+    static func registerSubclass() {
+        UsergridEntity.mapCustomType("activity", toSubclass: ActivityEntity.self)
+    }
+
     required public init(type: String, name: String?, propertyDict: [String : AnyObject]?) {
         super.init(type: type, name: name, propertyDict: propertyDict)
     }

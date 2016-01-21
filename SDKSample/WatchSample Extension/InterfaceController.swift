@@ -53,5 +53,11 @@ class InterfaceController: WKInterfaceController,WCSessionDelegate {
             self.reloadTable()
         }
     }
+}
 
+class MessageRowController: NSObject {
+
+    @IBOutlet var titleLabel: WKInterfaceLabel!
+    @IBOutlet var messageLabel: WKInterfaceLabel!
+    
 }

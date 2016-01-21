@@ -39,7 +39,7 @@
                         <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Password11!!" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AUv-4K-02z" userLabel="Password Text Field" customClass="FormTextField" customModule="SDKSample" customModuleProvider="target">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AUv-4K-02z" userLabel="Password Text Field" customClass="FormTextField" customModule="SDKSample" customModuleProvider="target">
                                 <rect key="frame" x="55" y="221" width="305" height="30"/>
                                 <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -56,7 +56,7 @@
                                     <outlet property="nextResponderField" destination="Pj4-c5-WOw" id="ndL-qj-xzY"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="SDKTestUser" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Z6O-sS-NMx" customClass="FormTextField" customModule="SDKSample" customModuleProvider="target">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Z6O-sS-NMx" customClass="FormTextField" customModule="SDKSample" customModuleProvider="target">
                                 <rect key="frame" x="54" y="183" width="305" height="30"/>
                                 <color key="backgroundColor" red="0.98431372549019602" green="0.98431372549019602" blue="0.98431372549019602" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -225,7 +225,6 @@
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
-                        <outlet property="addFollowerButton" destination="dSM-Kh-jtM" id="eXH-MZ-8hc"/>
                         <outlet property="usernameTextField" destination="30w-Hq-z3n" id="QcA-z0-XWe"/>
                         <segue destination="Vtr-ga-m5m" kind="unwind" identifier="unwindToChatSegue" unwindAction="unwindToChat:" id="uwe-tT-3Yl"/>
                     </connections>

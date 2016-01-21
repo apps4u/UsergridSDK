@@ -1,172 +1,27 @@
 //
-//  ViewController.swift
+//  MessageViewController.swift
 //  SDKSample
 //
-//  Created by Robert Walsh on 11/19/15.
-//  Copyright © 2015 Apigee Inc. All rights reserved.
+//  Created by Robert Walsh on 1/21/16.
+//  Copyright © 2016 Apigee Inc. All rights reserved.
 //
 
-import UIKit
+import Foundation
 import UsergridSDK
 import SlackTextViewController
 import WatchConnectivity
 
-extension UIViewController {
-
-    func showAlert(title title: String, message: String?, handler:((UIAlertAction) -> Void)? = nil) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Default, handler: handler))
-        self.presentViewController(alert, animated: true, completion: nil)
-    }
-}
-
-@IBDesignable class FormTextField: UITextField {
-
-    @IBInspectable var inset: CGFloat = 0
-    @IBOutlet weak var nextResponderField: UIResponder?
-
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        setUp()
-    }
-
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setUp()
-    }
-
-    func setUp() {
-        addTarget(self, action: "actionKeyboardButtonTapped:", forControlEvents: .EditingDidEndOnExit)
-    }
-
-    func actionKeyboardButtonTapped(sender: UITextField) {
-        switch nextResponderField {
-        case let button as UIButton:
-            if button.enabled {
-                button.sendActionsForControlEvents(.TouchUpInside)
-            } else {
-                resignFirstResponder()
-            }
-        case .Some(let responder):
-            responder.becomeFirstResponder()
-        default:
-            resignFirstResponder()
-        }
-    }
-
-    override func textRectForBounds(bounds: CGRect) -> CGRect {
-        return CGRectInset(bounds, inset, 0)
-    }
-
-    override func editingRectForBounds(bounds: CGRect) -> CGRect {
-        return textRectForBounds(bounds)
-    }
-}
-
-class LoginViewController: UIViewController {
-
-    @IBOutlet weak var usernameTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
-
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-
-        self.usernameTextField.text = nil
-        self.passwordTextField.text = nil
-
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action:nil)
-    }
-
-    override func viewDidAppear(animated: Bool) {
-        Usergrid.logoutCurrentUser()
-        super.viewDidAppear(animated)
-    }
-
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        self.view.endEditing(true)
-    }
-
-    @IBAction func loginButtonTouched(sender: AnyObject) {
-        if let username = usernameTextField.text, password = passwordTextField.text
-            where !username.isEmpty && !password.isEmpty
-        {
-            self.loginUser(username, password: password)
-        }
-        else
-        {
-            self.showAlert(title: "Error Authenticating User", message: "Username and password must not be empty.")
-        }
-    }
-
-    func loginUser(username:String, password:String) {
-        UsergridManager.loginUser(username,password: password) { (auth, user, error) -> Void in
-            if let authErrorDescription = error {
-                self.showAlert(title: "Error Authenticating User", message: authErrorDescription)
-            } else if let authenticatedUser = user {
-                self.showAlert(title: "Authenticated User Successful", message: "User description: \n \(authenticatedUser.stringValue)") { (action) -> Void in
-                    self.performSegueWithIdentifier("loginSuccessSegue", sender: self)
-                }
-            }
-        }
-    }
-
-    @IBAction func unwind(segue: UIStoryboardSegue) {
-
-    }
-}
-
-class RegisterViewController: UIViewController {
-
-    @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var usernameTextField: UITextField!
-    @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
-
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-
-        self.usernameTextField.text = nil
-        self.passwordTextField.text = nil
-    }
-
-    @IBAction func registerButtonTouched(sender: AnyObject) {
-        if let name = nameTextField.text, username = usernameTextField.text, email = emailTextField.text, password = passwordTextField.text
-            where !name.isEmpty && !username.isEmpty && !email.isEmpty && !password.isEmpty
-        {
-                self.createUser(name, username: username, email: email, password: password)
-        }
-        else
-        {
-            self.showAlert(title: "Error Registering User", message: "Name, username, email, and password fields must not be empty.")
-        }
-    }
-
-    func createUser(name:String, username:String, email:String, password:String) {
-        UsergridManager.createUser(name, username: username, email: email, password: password) { (response) -> Void in
-            if let createdUser = response.user {
-                self.showAlert(title: "Registering User Successful", message: "User description: \n \(createdUser.stringValue)") { (action) -> Void in
-                    self.performSegueWithIdentifier("unwindSegue", sender: self)
-                }
-            } else {
-                self.showAlert(title: "Error Registering User", message: response.error?.errorDescription)
-            }
-        }
-    }
-}
-
-class MessageViewController : SLKTextViewController, WCSessionDelegate {
+class MessageViewController : SLKTextViewController {
 
     static let MESSAGE_CELL_IDENTIFIER = "MessengerCell"
 
-    var messageEntities: [ActivityEntity] = []
+    private var messageEntities: [ActivityEntity] = []
 
     init() {
         super.init(tableViewStyle:.Plain)
         commonInit()
     }
-    
+
     required init!(coder decoder: NSCoder!) {
         super.init(coder: decoder)
         commonInit()
@@ -191,13 +46,8 @@ class MessageViewController : SLKTextViewController, WCSessionDelegate {
         self.shouldScrollToBottomAfterKeyboardShows = true
         self.inverted = true
 
-        if (WCSession.isSupported()) {
-            let session = WCSession.defaultSession()
-            session.delegate = self
-            session.activateSession()
-        }
-
         self.registerClassForTextView(MessageTextView)
+        self.activateWCSession()
     }
 
     func reloadMessages() {
@@ -252,7 +102,7 @@ class MessageViewController : SLKTextViewController, WCSessionDelegate {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return messageEntities.count
+        return self.messageEntities.count
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -291,11 +141,12 @@ class MessageViewController : SLKTextViewController, WCSessionDelegate {
     }
 
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+
         let feedEntity = messageEntities[indexPath.row]
 
-        let messageText : NSString = feedEntity.content ?? ""
-        if messageText.length == 0 {
-            return 0
+        guard let messageText = feedEntity.content where !messageText.isEmpty
+        else {
+                return 0
         }
 
         let messageUsername : NSString = feedEntity.displayName ?? ""
@@ -319,6 +170,17 @@ class MessageViewController : SLKTextViewController, WCSessionDelegate {
 
         return height
     }
+}
+
+extension MessageViewController : WCSessionDelegate {
+
+    func activateWCSession() {
+        if (WCSession.isSupported()) {
+            let session = WCSession.defaultSession()
+            session.delegate = self
+            session.activateSession()
+        }
+    }
 
     func sendEntitiesToWatch(messages:[UsergridEntity]) {
         if WCSession.defaultSession().reachable {
@@ -339,25 +201,6 @@ class MessageViewController : SLKTextViewController, WCSessionDelegate {
             }
         }
     }
-}
 
-class FollowViewController : UIViewController {
-
-    @IBOutlet weak var usernameTextField: UITextField!
-    @IBOutlet weak var addFollowerButton: UIButton!
-
-    @IBAction func addFollowerButtonTouched(sender:AnyObject?) {
-        if let username = usernameTextField.text where !username.isEmpty {
-            UsergridManager.followUser(username, completion: { (response) -> Void in
-                if response.ok {
-                    self.performSegueWithIdentifier("unwindToChatSegue", sender: self)
-                } else {
-                    self.showAlert(title: "Follow failed.", message: "No user with the username \"\(username)\" found.")
-                }
-            })
-        } else {
-            self.showAlert(title: "Follow failed.", message: "Please enter a valid username.")
-        }
-    }
 }
 
