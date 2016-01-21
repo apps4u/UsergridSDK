@@ -34,10 +34,10 @@ internal extension UsergridDevice {
 
     static func createNewUsergridKeychainUUID() -> String {
 
-        #if os(iOS) || os(tvOS)
-        let usergridUUID = UIDevice.currentDevice().identifierForVendor?.UUIDString ?? NSUUID().UUIDString
-        #else
-        let usergridUUID = NSUUID().UUIDString
+        #if os(watchOS) || os(OSX)
+            let usergridUUID = NSUUID().UUIDString
+        #elseif os(iOS) || os(tvOS)
+            let usergridUUID = UIDevice.currentDevice().identifierForVendor?.UUIDString ?? NSUUID().UUIDString
         #endif
 
         var keychainItem = UsergridDevice.deviceKeychainItem()

@@ -49,6 +49,7 @@ public class UsergridResponseError: NSObject {
                errorDescription = jsonDictionary[USERGRID_ERROR_DESCRIPTION] as? String {
             self.init(errorName:errorName,errorDescription:errorDescription,exception:jsonDictionary[USERGRID_EXCEPTION] as? String)
         } else {
+            self.init(errorName:"",errorDescription:"")
             return nil
         }
     }

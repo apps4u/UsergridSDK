@@ -59,9 +59,9 @@ extension UsergridRequestManager {
         if let accessToken = jsonDict["access_token"] as? String {
             token = accessToken
         }
-        if var expiresIn = jsonDict["expires_in"] as? Int {
-            expiresIn -= 5000
-            expiry = NSDate(timeIntervalSinceNow: Double(expiresIn))
+        if let expiresIn = jsonDict["expires_in"] as? Int {
+            let expiresInAdjusted = expiresIn - 5000
+            expiry = NSDate(timeIntervalSinceNow: Double(expiresInAdjusted))
         }
         return (token,expiry)
     }
