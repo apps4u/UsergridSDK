@@ -88,6 +88,7 @@ public class UsergridAsset: NSObject, NSCoding {
         if let assetData = imageData {
             self.init(filename:fileName,data:assetData,contentType:imageContentType.stringValue)
         } else {
+            self.init(filename:"",data:NSData(),contentType:"")
             return nil
         }
     }
@@ -116,6 +117,7 @@ public class UsergridAsset: NSObject, NSCoding {
             }
         } else {
             print("Usergrid Error: fileURL parameter must be a file reference URL.")
+            self.init(filename:"",data:NSData(),contentType:"")
             return nil
         }
     }
