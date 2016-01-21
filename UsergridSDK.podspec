@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'UsergridSDK'
-  s.version = '0.0.3'
+  s.version = '0.0.4'
   s.summary = 'Usergrid SDK for iOS written in Swift'
   s.homepage = 'https://github.com/RobertWalsh/UsergridSDK'
   s.license = 'MIT'
@@ -9,7 +9,9 @@ Pod::Spec.new do |s|
   s.requires_arc = true
 
   s.ios.deployment_target = '8.0'
-  s.watchos.deployment_target = '2.0'
+  s.watchos.deployment_target = '2.1'
+  s.tvos.deployment_target = '9.1'
+  s.osx.deployment_target = '10.11'
 
   s.source = { :git => 'https://github.com/RobertWalsh/UsergridSDK.git', :branch => 'master', :tag => 'v0.0.3' }
   s.source_files  = 'Source/*.swift','Source/Internal/*.swift'
