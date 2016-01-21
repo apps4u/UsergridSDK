@@ -109,17 +109,6 @@ public class UsergridDevice : UsergridEntity {
         super.encodeWithCoder(aCoder)
     }
 
-    // MARK: - Subclass Initialization -
-
-    /**
-    Required override for subclasses of UsergridEntity objects.
-
-    In this method you will need to map the custom type with the type string returned from Usergrid using the `UsergridEntity.mapCustomType` method.
-    */
-    override public class func initialize() {
-        UsergridEntity.mapCustomType(UsergridDevice.DEVICE_ENTITY_TYPE, toSubclass: UsergridDevice.self)
-    }
-
     /**
     Subscript for the `UsergridDevice` class. Note that all of the `UsergridDeviceProperties` are immutable.
 

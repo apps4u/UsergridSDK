@@ -16,7 +16,7 @@ import CoreLocation
 */
 public class UsergridEntity: NSObject, NSCoding {
 
-    static private var subclassMappings: [String:NSObject.Type] = [:]
+    static private var subclassMappings: [String:UsergridEntity.Type] = [UsergridUser.USER_ENTITY_TYPE:UsergridUser.self,UsergridDevice.DEVICE_ENTITY_TYPE:UsergridDevice.self]
 
     // MARK: - Instance Properties -
 
@@ -104,6 +104,13 @@ public class UsergridEntity: NSObject, NSCoding {
         self.asset = entity.asset ?? self.asset
     }
 
+
+    /**
+     Used for custom mapping subclasses to a given `Usergrid` type.
+
+     - parameter type:       The type of the `Usergrid` object.
+     - parameter toSubclass: The subclass `UsergridEntity.Type` to map it to.
+     */
     public static func mapCustomType(type:String,toSubclass:UsergridEntity.Type) {
         UsergridEntity.subclassMappings[type] = toSubclass
     }
@@ -117,7 +124,7 @@ public class UsergridEntity: NSObject, NSCoding {
     */
     public class func entity(jsonDict jsonDict: [String:AnyObject]) -> UsergridEntity? {
         if let type = jsonDict[UsergridEntityProperties.EntityType.stringValue] as? String {
-            if let mapping = UsergridEntity.subclassMappings[type] as? UsergridEntity.Type {
+            if let mapping = UsergridEntity.subclassMappings[type] {
                 return mapping.init(type: type,propertyDict:jsonDict)
             } else {
                 return UsergridEntity(type:type, propertyDict:jsonDict)
