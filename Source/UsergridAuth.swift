@@ -232,16 +232,17 @@ public class UsergridAppAuth : UsergridAuth {
     - returns: A decoded `UsergridUser` object.
     */
     required public init?(coder aDecoder: NSCoder) {
-        if let clientId = aDecoder.decodeObjectForKey("clientId") as? String, clientSecret = aDecoder.decodeObjectForKey("clientSecret") as? String {
-            self.clientId = clientId
-            self.clientSecret = clientSecret
-            super.init(coder: aDecoder)
-        } else {
+        guard let clientId = aDecoder.decodeObjectForKey("clientId") as? String,
+              let clientSecret = aDecoder.decodeObjectForKey("clientSecret") as? String
+        else {
             self.clientId = ""
             self.clientSecret = ""
             super.init(coder: aDecoder)
             return nil
         }
+        self.clientId = clientId
+        self.clientSecret = clientSecret
+        super.init(coder: aDecoder)
     }
 
     /**

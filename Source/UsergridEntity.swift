@@ -553,10 +553,11 @@ public class UsergridEntity: NSObject, NSCoding {
 
     - parameter direction:      The direction of the connection.
     - parameter relationship:   The relationship type.
+    - parameter query:          The optional query.
     - parameter completion:     An optional completion block.
     */
-    public func getConnections(direction:UsergridDirection, relationship:String, completion:UsergridResponseCompletion? = nil) {
-        Usergrid.sharedInstance.getConnections(direction, entity: self, relationship: relationship, completion: completion)
+    public func getConnections(direction:UsergridDirection, relationship:String, query:UsergridQuery?, completion:UsergridResponseCompletion? = nil) {
+        Usergrid.sharedInstance.getConnections(direction, entity: self, relationship: relationship, query:query, completion: completion)
     }
 
     /**
@@ -565,9 +566,10 @@ public class UsergridEntity: NSObject, NSCoding {
     - parameter client:       The client to use when getting the connected `UsergridEntity` objects.
     - parameter direction:    The direction of the connection.
     - parameter relationship: The relationship type.
+    - parameter query:        The optional query.
     - parameter completion:   An optional completion block.
     */
-    public func getConnections(client:UsergridClient, direction:UsergridDirection, relationship:String, completion:UsergridResponseCompletion? = nil) {
-        client.getConnections(direction, entity: self, relationship: relationship, completion: completion)
+    public func getConnections(client:UsergridClient, direction:UsergridDirection, relationship:String, query:UsergridQuery?, completion:UsergridResponseCompletion? = nil) {
+        client.getConnections(direction, entity: self, relationship: relationship, query:query, completion: completion)
     }
 }

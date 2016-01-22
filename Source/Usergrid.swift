@@ -533,21 +533,35 @@ public class Usergrid: NSObject {
     - parameter relationship: The relationship.
     - parameter completion:   The completion block that will be called once the request has completed.
     */
-    public static func getConnections(direction:UsergridDirection, entity:UsergridEntity, relationship:String, completion:UsergridResponseCompletion? = nil) {
-        Usergrid.sharedInstance.getConnections(direction, entity: entity, relationship: relationship, completion: completion)
+    public static func getConnections(direction:UsergridDirection, entity:UsergridEntity, relationship:String, query:UsergridQuery?, completion:UsergridResponseCompletion? = nil) {
+        Usergrid.sharedInstance.getConnections(direction, entity: entity, relationship: relationship, query:query, completion: completion)
     }
 
     /**
      Gets the connected entities for the given relationship using the shared instance of `UsergridCient`.
 
      - parameter direction:        The direction of the connection.
-     - parameter entityType:       The entity type.
-     - parameter entityID:         The entity UUID or name.
+     - parameter type:             The entity type.
+     - parameter uuidOrName:       The entity UUID or name.
      - parameter relationship:     The relationship of the connection.
+     - parameter query:            The optional query.
      - parameter completion:       The completion block that will be called once the request has completed.
      */
-    public static func getConnections(direction:UsergridDirection, entityType:String, entityID:String, relationship:String, completion:UsergridResponseCompletion? = nil) {
-        Usergrid.sharedInstance.getConnections(direction, entityType: entityType, entityID: entityID, relationship: relationship, completion: completion)
+    public static func getConnections(direction:UsergridDirection, type:String, uuidOrName:String, relationship:String, query:UsergridQuery?, completion:UsergridResponseCompletion? = nil) {
+        Usergrid.sharedInstance.getConnections(direction, type: type, uuidOrName: uuidOrName, relationship: relationship, query:query, completion: completion)
+    }
+
+    /**
+     Gets the connected entities for the given relationship using the shared instance of `UsergridCient`.
+
+     - parameter direction:    The direction of the connection.
+     - parameter uuid:         The entity UUID.
+     - parameter relationship: The relationship of the connection.
+     - parameter query:        The optional query.
+     - parameter completion:   The optional completion block that will be called once the request has completed.
+     */
+    public static func getConnections(direction:UsergridDirection, uuid:String, relationship:String, query:UsergridQuery?, completion:UsergridResponseCompletion? = nil) {
+        Usergrid.sharedInstance.getConnections(direction, uuid: uuid, relationship: relationship, query: query, completion: completion)
     }
 
     // MARK: - Asset Management -
