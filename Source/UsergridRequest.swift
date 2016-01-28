@@ -66,8 +66,15 @@ public class UsergridRequest : NSObject {
                     self.auth = auth
                     self.headers = headers
                     self.query = query
-                    if let body = jsonBody where (body is NSData || NSJSONSerialization.isValidJSONObject(body)) {
-                        self.jsonBody = body
+                    if let body = jsonBody {
+                        if body is NSData {
+                            self.jsonBody = body
+                        } else if NSJSONSerialization.isValidJSONObject(body) {
+                            self.jsonBody = body
+                        } else {
+                            print("Invalid jsonBody in UsergridRequest: \(body)")
+                            self.jsonBody = nil
+                        }
                     } else {
                         self.jsonBody = nil
                     }
