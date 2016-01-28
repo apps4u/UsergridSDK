@@ -16,3 +16,9 @@ internal extension NSDate {
         return Int(self.timeIntervalSince1970 * 1000)
     }
 }
+
+internal extension String {
+    func isUuid() -> Bool {
+        return (NSUUID(UUIDString: self) != nil) ? true : false
+    }
+}
