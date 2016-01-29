@@ -1,0 +1,19 @@
+PODS:
+  - UsergridSDK (0.0.4)
+
+DEPENDENCIES:
+  - UsergridSDK (from `https://github.com/RobertWalsh/UsergridSDK`)
+
+EXTERNAL SOURCES:
+  UsergridSDK:
+    :git: https://github.com/RobertWalsh/UsergridSDK
+
+CHECKOUT OPTIONS:
+  UsergridSDK:
+    :commit: 3aed7acec61ccab236d14a93c4ae89eb815321ba
+    :git: https://github.com/RobertWalsh/UsergridSDK
+
+SPEC CHECKSUMS:
+  UsergridSDK: 1a803fbb616fecea8daa7c59a8f19c1df5fd2400
+
+COCOAPODS: 0.39.0
