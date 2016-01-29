@@ -44,7 +44,7 @@ public class UsergridManager {
     }
 
     static func pushToThisDevice() {
-        UsergridManager.sendPush(deviceId: UsergridDevice.sharedDevice.uuid!, message: "Push to this device message.")
+        UsergridManager.sendPush(deviceId: UsergridDevice.sharedDevice.uuid, message: "Push to this device message.")
     }
 
     static func pushToAllDevices() {
