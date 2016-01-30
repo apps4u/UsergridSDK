@@ -348,15 +348,15 @@ public class UsergridClient: NSObject, NSCoding {
     - parameter completion: The completion block that will be called after logout has completed.
     */
     public func logoutUser(uuidOrUsername:String, token:String?, completion:UsergridResponseCompletion? = nil) {
-        var paths = ["users",uuidOrUsername]
+        let userIdEncoded = uuidOrUsername.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLPathAllowedCharacterSet()) ?? uuidOrUsername
+        var logoutURL: String = "\(self.clientAppURL)/users/\(userIdEncoded)"
         if let accessToken = token {
-            paths.append("revoketoken?token=\(accessToken)")
+            logoutURL += "/revoketoken?token=\(accessToken)"
         } else {
-            paths.append("revoketokens")
+            logoutURL += "/revoketokens"
         }
         let request = UsergridRequest(method: .Put,
-                                      baseUrl: self.clientAppURL,
-                                      paths: paths,
+                                      baseUrl: logoutURL,
                                       auth: self.authForRequests())
         self.sendRequest(request, completion: completion)
     }
