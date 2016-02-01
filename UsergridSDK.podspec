@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
   s.version = '0.0.4'
   s.summary = 'Usergrid SDK for iOS written in Swift'
   s.homepage = 'https://github.com/RobertWalsh/UsergridSDK'
-  s.license = 'MIT'
+  s.license = 'Apache 2.0'
   s.author = { 'Robert Walsh' => 'rjwalsh1985@gmail.com' }
   s.social_media_url = 'https://twitter.com/Apigee'
   s.requires_arc = true
