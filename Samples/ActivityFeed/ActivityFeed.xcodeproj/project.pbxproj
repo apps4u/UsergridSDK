@@ -79,7 +79,6 @@
 /* Begin PBXFileReference section */
 		11770D6403BBFAC636BD634F /* Pods-WatchSample Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WatchSample Extension.release.xcconfig"; path = "Pods/Target Support Files/Pods-WatchSample Extension/Pods-WatchSample Extension.release.xcconfig"; sourceTree = "<group>"; };
 		33AB73250FAB15F2DBBC680F /* Pods_WatchSample_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WatchSample_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3AFB4D42891E6FD0C4C29300 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		6348D95B1C4EAC0B005C978C /* WatchSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatchSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6348D95E1C4EAC0B005C978C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		6348D9601C4EAC0B005C978C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -107,15 +106,12 @@
 		63E7DD771C518E0400D84B12 /* MessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		63E7DD791C518F1700D84B12 /* FollowViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowViewController.swift; sourceTree = "<group>"; };
 		63E7DD7D1C518FDD00D84B12 /* FormTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormTextField.swift; sourceTree = "<group>"; };
-		6D72F611CBF37680A99027EB /* Pods-SDKSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SDKSample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SDKSample/Pods-SDKSample.debug.xcconfig"; sourceTree = "<group>"; };
 		73A2B8D2F7EA89F650F04C7F /* Pods-ActivityFeed.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ActivityFeed.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ActivityFeed/Pods-ActivityFeed.debug.xcconfig"; sourceTree = "<group>"; };
 		759B5E451ADDEAFCFC675B4E /* Pods-WatchSample Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WatchSample Extension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WatchSample Extension/Pods-WatchSample Extension.debug.xcconfig"; sourceTree = "<group>"; };
 		8BEAAECA0D546D0C1893CE9A /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D13656DC30773B0295408B9 /* Pods_ActivityFeed.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ActivityFeed.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC7800A4D424F7EEB81D8631 /* Pods_SDKSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SDKSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C2E190F1A0669E3215CB8CE5 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		C9344ED6EB68998ACAFBD88C /* Pods-ActivityFeed.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ActivityFeed.release.xcconfig"; path = "Pods/Target Support Files/Pods-ActivityFeed/Pods-ActivityFeed.release.xcconfig"; sourceTree = "<group>"; };
-		FC9B5ED220710C045CADCC24 /* Pods-SDKSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SDKSample.release.xcconfig"; path = "Pods/Target Support Files/Pods-SDKSample/Pods-SDKSample.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -238,10 +234,6 @@
 		9A38C0628A51D3876968ADC0 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				C2E190F1A0669E3215CB8CE5 /* Pods.debug.xcconfig */,
-				3AFB4D42891E6FD0C4C29300 /* Pods.release.xcconfig */,
-				6D72F611CBF37680A99027EB /* Pods-SDKSample.debug.xcconfig */,
-				FC9B5ED220710C045CADCC24 /* Pods-SDKSample.release.xcconfig */,
 				759B5E451ADDEAFCFC675B4E /* Pods-WatchSample Extension.debug.xcconfig */,
 				11770D6403BBFAC636BD634F /* Pods-WatchSample Extension.release.xcconfig */,
 				73A2B8D2F7EA89F650F04C7F /* Pods-ActivityFeed.debug.xcconfig */,

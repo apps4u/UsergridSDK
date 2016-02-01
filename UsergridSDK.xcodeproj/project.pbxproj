@@ -13,7 +13,6 @@
 		630A21851C49BDDE008BE87F /* CONNECTION_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6343823D1BC2F042008624BE /* CONNECTION_Tests.swift */; };
 		630A21861C49BDDE008BE87F /* Entity_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF0F5C1BBC528E009D4196 /* Entity_Tests.swift */; };
 		630A21871C49BDDE008BE87F /* GET_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF0F5D1BBC528E009D4196 /* GET_Tests.swift */; };
-		630A21881C49BDDE008BE87F /* POST_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF0F5F1BBC528E009D4196 /* POST_Tests.swift */; };
 		630A21891C49BDDE008BE87F /* PUT_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF0F601BBC528E009D4196 /* PUT_Tests.swift */; };
 		630A218A1C49BDDE008BE87F /* User_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF0F631BBC528E009D4196 /* User_Tests.swift */; };
 		630A219A1C49BF13008BE87F /* TestAssets in Resources */ = {isa = PBXBuildFile; fileRef = 63AF0F7D1BBC5692009D4196 /* TestAssets */; };
@@ -23,7 +22,6 @@
 		630A21AD1C49C011008BE87F /* CONNECTION_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6343823D1BC2F042008624BE /* CONNECTION_Tests.swift */; };
 		630A21AE1C49C011008BE87F /* Entity_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF0F5C1BBC528E009D4196 /* Entity_Tests.swift */; };
 		630A21AF1C49C011008BE87F /* GET_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF0F5D1BBC528E009D4196 /* GET_Tests.swift */; };
-		630A21B01C49C011008BE87F /* POST_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF0F5F1BBC528E009D4196 /* POST_Tests.swift */; };
 		630A21B11C49C011008BE87F /* PUT_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF0F601BBC528E009D4196 /* PUT_Tests.swift */; };
 		630A21B21C49C011008BE87F /* User_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF0F631BBC528E009D4196 /* User_Tests.swift */; };
 		630A21B31C49C013008BE87F /* TestAssets in Resources */ = {isa = PBXBuildFile; fileRef = 63AF0F7D1BBC5692009D4196 /* TestAssets */; };
@@ -34,7 +32,6 @@
 		630A21C71C49C4C0008BE87F /* CONNECTION_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6343823D1BC2F042008624BE /* CONNECTION_Tests.swift */; };
 		630A21C81C49C4C0008BE87F /* Entity_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF0F5C1BBC528E009D4196 /* Entity_Tests.swift */; };
 		630A21C91C49C4C0008BE87F /* GET_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF0F5D1BBC528E009D4196 /* GET_Tests.swift */; };
-		630A21CA1C49C4C0008BE87F /* POST_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF0F5F1BBC528E009D4196 /* POST_Tests.swift */; };
 		630A21CB1C49C4C0008BE87F /* PUT_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF0F601BBC528E009D4196 /* PUT_Tests.swift */; };
 		630A21CC1C49C4C0008BE87F /* User_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF0F631BBC528E009D4196 /* User_Tests.swift */; };
 		630A21CD1C49C4CC008BE87F /* TestAssets in Resources */ = {isa = PBXBuildFile; fileRef = 63AF0F7D1BBC5692009D4196 /* TestAssets */; };
@@ -171,7 +168,6 @@
 		63AF0F5C1BBC528E009D4196 /* Entity_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entity_Tests.swift; sourceTree = "<group>"; };
 		63AF0F5D1BBC528E009D4196 /* GET_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GET_Tests.swift; sourceTree = "<group>"; };
 		63AF0F5E1BBC528E009D4196 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		63AF0F5F1BBC528E009D4196 /* POST_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = POST_Tests.swift; sourceTree = "<group>"; };
 		63AF0F601BBC528E009D4196 /* PUT_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PUT_Tests.swift; sourceTree = "<group>"; };
 		63AF0F631BBC528E009D4196 /* User_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User_Tests.swift; sourceTree = "<group>"; };
 		63AF0F7D1BBC5692009D4196 /* TestAssets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TestAssets; sourceTree = "<group>"; };
@@ -313,7 +309,6 @@
 				6343823D1BC2F042008624BE /* CONNECTION_Tests.swift */,
 				63AF0F5C1BBC528E009D4196 /* Entity_Tests.swift */,
 				63AF0F5D1BBC528E009D4196 /* GET_Tests.swift */,
-				63AF0F5F1BBC528E009D4196 /* POST_Tests.swift */,
 				63AF0F601BBC528E009D4196 /* PUT_Tests.swift */,
 				63AF0F631BBC528E009D4196 /* User_Tests.swift */,
 				63AF0F5E1BBC528E009D4196 /* Info.plist */,
@@ -610,7 +605,6 @@
 				630A21AB1C49C011008BE87F /* AUTH_Tests.swift in Sources */,
 				630A21B21C49C011008BE87F /* User_Tests.swift in Sources */,
 				630A21B11C49C011008BE87F /* PUT_Tests.swift in Sources */,
-				630A21B01C49C011008BE87F /* POST_Tests.swift in Sources */,
 				630A21AD1C49C011008BE87F /* CONNECTION_Tests.swift in Sources */,
 				630A21AF1C49C011008BE87F /* GET_Tests.swift in Sources */,
 				630A21AC1C49C011008BE87F /* ClientCreationTests.swift in Sources */,
@@ -622,7 +616,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				630A21C91C49C4C0008BE87F /* GET_Tests.swift in Sources */,
-				630A21CA1C49C4C0008BE87F /* POST_Tests.swift in Sources */,
 				630A21C81C49C4C0008BE87F /* Entity_Tests.swift in Sources */,
 				630A21C61C49C4C0008BE87F /* ClientCreationTests.swift in Sources */,
 				630A21C41C49C4C0008BE87F /* ASSET_Tests.swift in Sources */,
@@ -667,7 +660,6 @@
 				630A218A1C49BDDE008BE87F /* User_Tests.swift in Sources */,
 				630A21891C49BDDE008BE87F /* PUT_Tests.swift in Sources */,
 				630A21821C49BDD3008BE87F /* AUTH_Tests.swift in Sources */,
-				630A21881C49BDDE008BE87F /* POST_Tests.swift in Sources */,
 				630A21851C49BDDE008BE87F /* CONNECTION_Tests.swift in Sources */,
 				630A21871C49BDDE008BE87F /* GET_Tests.swift in Sources */,
 				630A21831C49BDDE008BE87F /* ASSET_Tests.swift in Sources */,
