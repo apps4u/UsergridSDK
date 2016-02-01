@@ -27,10 +27,10 @@
 import Foundation
 
 /// The completion block used in `UsergridAppAuth` authentication methods.
-public typealias UsergridAppAuthCompletionBlock = (auth:UsergridAppAuth?, error: String?) -> Void
+public typealias UsergridAppAuthCompletionBlock = (auth:UsergridAppAuth?, error: UsergridResponseError?) -> Void
 
 /// The completion block used in `UsergridUserAuth` authentication methods.
-public typealias UsergridUserAuthCompletionBlock = (auth:UsergridUserAuth?, user:UsergridUser?, error: String?) -> Void
+public typealias UsergridUserAuthCompletionBlock = (auth:UsergridUserAuth?, user:UsergridUser?, error: UsergridResponseError?) -> Void
 
 /** 
  The `UsergridAuth` class functions to create and store authentication information used by Usergrid.

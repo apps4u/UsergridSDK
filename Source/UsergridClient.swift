@@ -248,7 +248,8 @@ public class UsergridClient: NSObject, NSCoding {
     public func authenticateApp(completion: UsergridAppAuthCompletionBlock? = nil) {
         guard let appAuth = self.appAuth
         else {
-            completion?(auth: nil, error: "UsergridClient's appAuth is nil.")
+            let error = UsergridResponseError(errorName: "Invalid UsergridAppAuth.", errorDescription: "UsergridClient's appAuth is nil.")
+            completion?(auth: nil, error: error)
             return
         }
         self.authenticateApp(appAuth, completion: completion)

@@ -102,10 +102,12 @@ extension UsergridRequestManager {
                 if let createdUser = user {
                     completion?(auth: userAuth, user:createdUser, error: nil)
                 } else {
-                    completion?(auth: userAuth, user:nil, error: jsonDict["error_description"] as? String ?? error?.description ?? "Unknown error occurred.")
+                    let error = UsergridResponseError(jsonDictionary: jsonDict) ?? UsergridResponseError(errorName: "Auth Failed.", errorDescription: "Error Description: \(error?.localizedDescription).")
+                    completion?(auth: userAuth, user:nil, error:error)
                 }
             } else {
-                completion?(auth: userAuth, user:nil, error: "Auth Failed. Error Description: \(error?.localizedDescription).")
+                let error = UsergridResponseError(errorName: "Auth Failed.", errorDescription: "Error Description: \(error?.localizedDescription).")
+                completion?(auth: userAuth, user:nil, error: error)
             }
         }.resume()
     }
@@ -119,7 +121,8 @@ extension UsergridRequestManager {
                 appAuth.expiry = tokenAndExpiry.1
                 completion?(auth: appAuth, error: nil)
             } else {
-                completion?(auth: nil, error: "Auth Failed. Error Description: \(error?.localizedDescription).")
+                let error = UsergridResponseError(errorName: "Auth Failed.", errorDescription: "Error Description: \(error?.localizedDescription).")
+                completion?(auth: nil, error: error)
             }
         }.resume()
     }

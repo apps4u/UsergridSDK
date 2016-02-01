@@ -300,7 +300,8 @@ public class UsergridUser : UsergridEntity {
         if let userAuth = self.auth {
             client.authenticateUser(userAuth, completion: completion)
         } else {
-            completion?(auth: nil, user: self, error: "No UsergridUserAuth found on the UsergridUser.")
+            let error = UsergridResponseError(errorName: "Invalid UsergridUserAuth.", errorDescription: "No UsergridUserAuth found on the UsergridUser.")
+            completion?(auth: nil, user: self, error: error)
         }
     }
 
