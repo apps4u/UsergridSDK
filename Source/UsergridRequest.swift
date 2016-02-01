@@ -55,47 +55,46 @@ public class UsergridRequest : NSObject {
 
     /// The JSON body that will be set on the request.  Can be either a valid JSON object or NSData.
     public let jsonBody: AnyObject?
+    
+    /// The query params that will be set on the request.
+    public let queryParams: [String:String]?
 
     // MARK: - Initialization -
 
     /**
-     The designated initializer for `UsergridRequest` objects.
-
-     - parameter method:   The HTTP method.
-     - parameter baseUrl:  The base URL.
-     - parameter paths:    The optional paths to append to the base URL.
-     - parameter query:    The optional query to append to the URL.
-     - parameter auth:     The optional `UsergridAuth` that will be used in the Authorization header.
-     - parameter headers:  The optional headers.
-     - parameter jsonBody: The optional JSON body. Can be either a valid JSON object or NSData.
-
-     - returns: A new instance of `UsergridRequest`.
-     */
+    The designated initializer for `UsergridRequest` objects.
+    
+    - parameter method:      The HTTP method.
+    - parameter baseUrl:     The base URL.
+    - parameter paths:       The optional paths to append to the base URL.
+    - parameter query:       The optional query to append to the URL.
+    - parameter auth:        The optional `UsergridAuth` that will be used in the Authorization header.
+    - parameter headers:     The optional headers.
+    - parameter jsonBody:    The optional JSON body. Can be either a valid JSON object or NSData.
+    - parameter queryParams: The optional query params to be appended to the request url.
+    
+    - returns: A new instance of `UsergridRequest`.
+    */
     public init(method:UsergridHttpMethod,
-                baseUrl:String,
-                paths:[String]? = nil,
-                query:UsergridQuery? = nil,
-                auth:UsergridAuth? = nil,
-                headers:[String:String]? = nil,
-                jsonBody:AnyObject? = nil) {
-                    self.method = method
-                    self.baseUrl = baseUrl
-                    self.paths = paths
-                    self.auth = auth
-                    self.headers = headers
-                    self.query = query
-                    if let body = jsonBody {
-                        if body is NSData {
-                            self.jsonBody = body
-                        } else if NSJSONSerialization.isValidJSONObject(body) {
-                            self.jsonBody = body
-                        } else {
-                            print("Invalid jsonBody in UsergridRequest: \(body)")
-                            self.jsonBody = nil
-                        }
-                    } else {
-                        self.jsonBody = nil
-                    }
+        baseUrl:String,
+        paths:[String]? = nil,
+        query:UsergridQuery? = nil,
+        auth:UsergridAuth? = nil,
+        headers:[String:String]? = nil,
+        jsonBody:AnyObject? = nil,
+        queryParams:[String:String]? = nil) {
+            self.method = method
+            self.baseUrl = baseUrl
+            self.paths = paths
+            self.auth = auth
+            self.headers = headers
+            self.query = query
+            self.queryParams = queryParams
+            if let body = jsonBody where (body is NSData || NSJSONSerialization.isValidJSONObject(body)) {
+                self.jsonBody = body
+            } else {
+                self.jsonBody = nil
+            }
     }
 
     // MARK: - Instance Methods -
@@ -127,6 +126,16 @@ public class UsergridRequest : NSObject {
             let appendFromQuery = queryToAppend.build()
             if !appendFromQuery.isEmpty {
                 constructedURLString = "\(constructedURLString)\(UsergridRequest.FORWARD_SLASH)\(appendFromQuery)"
+            }
+        }
+        if let queryParams = self.queryParams {
+            if let components = NSURLComponents(string: constructedURLString) {
+                components.queryItems = components.queryItems ?? []
+                for (key, value) in queryParams {
+                    let q: NSURLQueryItem = NSURLQueryItem(name: key, value: value)
+                    components.queryItems!.append(q)
+                }
+                constructedURLString = components.string!
             }
         }
         return NSURL(string:constructedURLString)!

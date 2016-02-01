@@ -344,8 +344,10 @@ public class UsergridClient: NSObject, NSCoding {
         }
 
         self.logoutUser(uuidOrUsername, token: token) { (response) -> Void in
-            self.currentUser?.auth = nil
-            self.currentUser = nil
+            if response.ok || response.error?.errorName == "auth_bad_access_token" {
+                self.currentUser?.auth = nil
+                self.currentUser = nil
+            }
             completion?(response: response)
         }
     }
@@ -367,16 +369,19 @@ public class UsergridClient: NSObject, NSCoding {
     - parameter completion: The completion block that will be called after logout has completed.
     */
     public func logoutUser(uuidOrUsername:String, token:String?, completion:UsergridResponseCompletion? = nil) {
-        let userIdEncoded = uuidOrUsername.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLPathAllowedCharacterSet()) ?? uuidOrUsername
-        var logoutURL: String = "\(self.clientAppURL)/users/\(userIdEncoded)"
+        var paths = ["users",uuidOrUsername]
+        var queryParams: [String: String]?
         if let accessToken = token {
-            logoutURL += "/revoketoken?token=\(accessToken)"
+            paths.append("revoketoken")
+            queryParams = ["token": accessToken]
         } else {
-            logoutURL += "/revoketokens"
+            paths.append("revoketokens")
         }
         let request = UsergridRequest(method: .Put,
-                                      baseUrl: logoutURL,
-                                      auth: self.authForRequests())
+                                      baseUrl: self.clientAppURL,
+                                      paths: paths,
+                                      auth: self.authForRequests(),
+                                      queryParams: queryParams)
         self.sendRequest(request, completion: completion)
     }
 
