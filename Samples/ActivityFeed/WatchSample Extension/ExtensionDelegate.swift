@@ -3,7 +3,6 @@
 //  WatchSample Extension
 //
 //  Created by Robert Walsh on 1/19/16.
-//  Copyright © 2016 Apigee Inc. All rights reserved.
 //
 /*
  *
@@ -24,6 +23,7 @@
  * directory of this distribution.
  *
  */
+
 
 import WatchKit
 

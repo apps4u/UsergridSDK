@@ -3,7 +3,6 @@
 //  Push
 //
 //  Created by Robert Walsh on 1/29/16.
-//  Copyright © 2016 Apigee Inc. All rights reserved.
 //
 /*
  *

@@ -3,7 +3,6 @@
 //  UsergridSDK
 //
 //  Created by Robert Walsh on 12/21/15.
-//  Copyright © 2015 Apigee Inc. All rights reserved.
 //
 /*
  *

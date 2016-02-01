@@ -3,7 +3,6 @@
 //  ActivityFeed
 //
 //  Created by Robert Walsh on 1/21/16.
-//  Copyright © 2016 Apigee Inc. All rights reserved.
 //
 /*
  *

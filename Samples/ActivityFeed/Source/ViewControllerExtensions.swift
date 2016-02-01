@@ -1,9 +1,8 @@
 //
-//  ViewController.swift
+//  ViewControllerExtensions.swift
 //  ActivityFeed
 //
 //  Created by Robert Walsh on 11/19/15.
-//  Copyright © 2015 Apigee Inc. All rights reserved.
 //
 /*
  *
