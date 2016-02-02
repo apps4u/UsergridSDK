@@ -31,8 +31,8 @@ class User_Tests: XCTestCase {
 
     var client = UsergridClient(orgId:ClientCreationTests.orgId, appId: ClientCreationTests.appId)
 
-    let user = UsergridUser(name: User_Tests.name)
     let userWithNoName = UsergridUser()
+    let user = UsergridUser(name:User_Tests.name, email:User_Tests.email, username:User_Tests.username, password:User_Tests.password)
 
     static let name = "Robert Walsh"
     static let age = 29
@@ -46,9 +46,6 @@ class User_Tests: XCTestCase {
     override func setUp() {
         super.setUp()
         user.age = User_Tests.age
-        user.username = User_Tests.username
-        user.email = User_Tests.email
-        user.password = User_Tests.password
         user.picture = User_Tests.picture
         user.activated = User_Tests.activated
         user.disabled = User_Tests.disabled

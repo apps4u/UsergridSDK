@@ -91,6 +91,16 @@ public class UsergridEntity: NSObject, NSCoding {
     /// The string value.
     public var stringValue : String { return NSString(data: try! NSJSONSerialization.dataWithJSONObject(self.jsonObjectValue, options: .PrettyPrinted), encoding: NSASCIIStringEncoding) as! String }
 
+    /// The description.
+    public override var description : String {
+        return "Properties of Entity: \(stringValue)."
+    }
+
+    /// The debug description.
+    public override var debugDescription : String {
+        return "Properties of Entity: \(stringValue)."
+    }
+
     // MARK: - Initialization -
 
     /*!

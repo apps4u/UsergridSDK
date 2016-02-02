@@ -94,6 +94,25 @@ public class UsergridResponse: NSObject {
     /// Does the response have a cursor.
     public var hasNextPage: Bool { return self.cursor != nil }
 
+    /// The string value.
+    public var stringValue : String? {
+        if let responseJSON = self.responseJSON {
+            return NSString(data: try! NSJSONSerialization.dataWithJSONObject(responseJSON, options: .PrettyPrinted), encoding: NSASCIIStringEncoding) as? String
+        } else {
+            return error?.description
+        }
+    }
+
+    /// The description.
+    public override var description : String {
+        return "Response Description: \(stringValue)."
+    }
+
+    /// The debug description.
+    public override var debugDescription : String {
+        return "Properties of Entity: \(stringValue)."
+    }
+
     // MARK: - Initialization -
 
     /**

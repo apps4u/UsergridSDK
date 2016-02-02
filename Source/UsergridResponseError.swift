@@ -29,6 +29,8 @@ import Foundation
 /// A standard error object that contains details about a request failure.
 public class UsergridResponseError: NSObject {
 
+    // MARK: - Instance Properties -
+
     /// The error's name.
     public let errorName : String
 
@@ -37,6 +39,16 @@ public class UsergridResponseError: NSObject {
 
     /// The exception.
     public var exception: String?
+
+    /// The description.
+    public override var description : String {
+        return "Error Name: \(errorName).  Error Description: \(errorDescription).  Exception: \(exception)."
+    }
+
+    /// The debug description.
+    public override var debugDescription : String {
+        return "Error Name: \(errorName).  Error Description: \(errorDescription).  Exception: \(exception)."
+    }
 
     // MARK: - Initialization -
 
