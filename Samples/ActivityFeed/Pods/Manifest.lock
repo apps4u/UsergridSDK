@@ -12,11 +12,11 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   UsergridSDK:
-    :commit: 55df0c19ffe1382d212bff0f701f7cb3d04cbe3d
+    :commit: fc5512533f486b7658f030cffed7aec484559fa4
     :git: https://github.com/RobertWalsh/UsergridSDK
 
 SPEC CHECKSUMS:
   SlackTextViewController: d51503f7be846cb9976a273499dc90f2445e9447
-  UsergridSDK: 1a803fbb616fecea8daa7c59a8f19c1df5fd2400
+  UsergridSDK: c0a36c8632910e2c6566fb18f76d7e6c804ee86a
 
 COCOAPODS: 0.39.0

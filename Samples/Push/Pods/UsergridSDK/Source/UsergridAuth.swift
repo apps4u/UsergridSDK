@@ -3,16 +3,34 @@
 //  UsergridSDK
 //
 //  Created by Robert Walsh on 9/11/15.
-//  Copyright © 2015 Apigee. All rights reserved.
 //
+/*
+ *
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  The ASF licenses this file to You
+ * under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.  For additional information regarding
+ * copyright in this work, please see the NOTICE file in the top level
+ * directory of this distribution.
+ *
+ */
 
 import Foundation
 
 /// The completion block used in `UsergridAppAuth` authentication methods.
-public typealias UsergridAppAuthCompletionBlock = (auth:UsergridAppAuth?, error: String?) -> Void
+public typealias UsergridAppAuthCompletionBlock = (auth:UsergridAppAuth?, error: UsergridResponseError?) -> Void
 
 /// The completion block used in `UsergridUserAuth` authentication methods.
-public typealias UsergridUserAuthCompletionBlock = (auth:UsergridUserAuth?, user:UsergridUser?, error: String?) -> Void
+public typealias UsergridUserAuthCompletionBlock = (auth:UsergridUserAuth?, user:UsergridUser?, error: UsergridResponseError?) -> Void
 
 /** 
  The `UsergridAuth` class functions to create and store authentication information used by Usergrid.

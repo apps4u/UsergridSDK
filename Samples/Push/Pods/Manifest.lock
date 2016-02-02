@@ -10,10 +10,10 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   UsergridSDK:
-    :commit: b17259e4f428f6362aeca861b96c5512a6fc36f0
+    :commit: fc5512533f486b7658f030cffed7aec484559fa4
     :git: https://github.com/RobertWalsh/UsergridSDK
 
 SPEC CHECKSUMS:
-  UsergridSDK: 1a803fbb616fecea8daa7c59a8f19c1df5fd2400
+  UsergridSDK: c0a36c8632910e2c6566fb18f76d7e6c804ee86a
 
 COCOAPODS: 0.39.0

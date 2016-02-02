@@ -3,8 +3,26 @@
 //  UsergridSDK
 //
 //  Created by Robert Walsh on 7/21/15.
-//  Copyright © 2015 Apigee. All rights reserved.
 //
+/*
+ *
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  The ASF licenses this file to You
+ * under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.  For additional information regarding
+ * copyright in this work, please see the NOTICE file in the top level
+ * directory of this distribution.
+ *
+ */
 
 import Foundation
 
@@ -128,6 +146,73 @@ public class UsergridUser : UsergridEntity {
     */
     public init(name:String,propertyDict:[String:AnyObject]? = nil) {
         super.init(type: UsergridUser.USER_ENTITY_TYPE, name:name, propertyDict:propertyDict)
+    }
+
+    /**
+     Convenience initializer for `UsergridUser` objects.
+
+     - parameter name:     The name of the user.  Note this is different from the `username` property.
+     - parameter email:    The user's email.
+     - parameter password: The optional user's password.
+
+     - returns: A new instance of `UsergridUser`.
+     */
+    public convenience init(name:String, email:String, password:String? = nil) {
+        self.init(name:name,email:email,username:nil,password:password)
+    }
+
+    /**
+     Convenience initializer for `UsergridUser` objects.
+
+     - parameter email:    The user's email.
+     - parameter password: The optional user's password.
+
+     - returns: A new instance of `UsergridUser`.
+     */
+    public convenience init(email:String, password:String? = nil) {
+        self.init(name:nil,email:email,username:nil,password:password)
+    }
+
+    /**
+     Convenience initializer for `UsergridUser` objects.
+
+     - parameter name:     The name of the user.  Note this is different from the `username` property.
+     - parameter username: The username of the user.
+     - parameter password: The optional user's password.
+
+     - returns: A new instance of `UsergridUser`.
+     */
+    public convenience init(name:String, username:String, password:String? = nil) {
+        self.init(name:name,email:nil,username:username,password:password)
+    }
+
+    /**
+     Convenience initializer for `UsergridUser` objects.
+
+     - parameter username: The username of the user.
+     - parameter password: The optional user's password.
+
+     - returns: A new instance of `UsergridUser`.
+     */
+    public convenience init(username:String, password:String? = nil) {
+        self.init(name:nil,email:nil,username:username,password:password)
+    }
+
+    /**
+     Convenience initializer for `UsergridUser` objects.
+
+     - parameter name:     The optional name of the user.  Note this is different from the `username` property.
+     - parameter email:    The optional user's email.
+     - parameter username: The optional username of the user.
+     - parameter password: The optional user's password.
+
+     - returns: A new instance of `UsergridUser`.
+     */
+    public convenience init(name:String?, email:String?, username:String?, password:String? = nil) {
+        self.init(name:name)
+        self.email = email
+        self.username = username
+        self.password = password
     }
 
     // MARK: - NSCoding -
@@ -282,7 +367,8 @@ public class UsergridUser : UsergridEntity {
         if let userAuth = self.auth {
             client.authenticateUser(userAuth, completion: completion)
         } else {
-            completion?(auth: nil, user: self, error: "No UsergridUserAuth found on the UsergridUser.")
+            let error = UsergridResponseError(errorName: "Invalid UsergridUserAuth.", errorDescription: "No UsergridUserAuth found on the UsergridUser.")
+            completion?(auth: nil, user: self, error: error)
         }
     }
 

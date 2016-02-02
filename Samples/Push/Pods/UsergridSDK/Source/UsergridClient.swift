@@ -3,8 +3,27 @@
 //  UsergridSDK
 //
 //  Created by Robert Walsh on 9/3/15.
-//  Copyright © 2015 Apigee. All rights reserved.
 //
+/*
+ *
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  The ASF licenses this file to You
+ * under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.  For additional information regarding
+ * copyright in this work, please see the NOTICE file in the top level
+ * directory of this distribution.
+ *
+ */
+
 
 import Foundation
 
@@ -229,7 +248,8 @@ public class UsergridClient: NSObject, NSCoding {
     public func authenticateApp(completion: UsergridAppAuthCompletionBlock? = nil) {
         guard let appAuth = self.appAuth
         else {
-            completion?(auth: nil, error: "UsergridClient's appAuth is nil.")
+            let error = UsergridResponseError(errorName: "Invalid UsergridAppAuth.", errorDescription: "UsergridClient's appAuth is nil.")
+            completion?(auth: nil, error: error)
             return
         }
         self.authenticateApp(appAuth, completion: completion)
@@ -325,8 +345,10 @@ public class UsergridClient: NSObject, NSCoding {
         }
 
         self.logoutUser(uuidOrUsername, token: token) { (response) -> Void in
-            self.currentUser?.auth = nil
-            self.currentUser = nil
+            if response.ok || response.error?.errorName == "auth_bad_access_token" {
+                self.currentUser?.auth = nil
+                self.currentUser = nil
+            }
             completion?(response: response)
         }
     }
@@ -349,15 +371,18 @@ public class UsergridClient: NSObject, NSCoding {
     */
     public func logoutUser(uuidOrUsername:String, token:String?, completion:UsergridResponseCompletion? = nil) {
         var paths = ["users",uuidOrUsername]
+        var queryParams: [String: String]?
         if let accessToken = token {
-            paths.append("revoketoken?token=\(accessToken)")
+            paths.append("revoketoken")
+            queryParams = ["token": accessToken]
         } else {
             paths.append("revoketokens")
         }
         let request = UsergridRequest(method: .Put,
                                       baseUrl: self.clientAppURL,
                                       paths: paths,
-                                      auth: self.authForRequests())
+                                      auth: self.authForRequests(),
+                                      queryParams: queryParams)
         self.sendRequest(request, completion: completion)
     }
 

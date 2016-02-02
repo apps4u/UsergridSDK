@@ -1,13 +1,17 @@
 use_frameworks!
 inhibit_all_warnings!
 
+def shared_pods
+    pod 'UsergridSDK',:git => 'https://github.com/RobertWalsh/UsergridSDK'
+end
+
 target 'ActivityFeed' do
     platform :ios, '9.0'
+    shared_pods
     pod 'SlackTextViewController'
-    pod 'UsergridSDK',:git => 'https://github.com/RobertWalsh/UsergridSDK'
 end
 
 target 'WatchSample Extension' do
     platform :watchos, '2.1'
-    pod 'UsergridSDK',:git => 'https://github.com/RobertWalsh/UsergridSDK'
+    shared_pods
 end

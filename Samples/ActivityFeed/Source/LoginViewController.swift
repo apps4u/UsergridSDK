@@ -61,7 +61,7 @@ class LoginViewController: UIViewController {
     func loginUser(username:String, password:String) {
         UsergridManager.loginUser(username,password: password) { (auth, user, error) -> Void in
             if let authErrorDescription = error {
-                self.showAlert(title: "Error Authenticating User", message: authErrorDescription)
+                self.showAlert(title: "Error Authenticating User", message: authErrorDescription.errorDescription)
             } else if let authenticatedUser = user {
                 self.showAlert(title: "Authenticated User Successful", message: "User description: \n \(authenticatedUser.stringValue)") { (action) -> Void in
                     self.performSegueWithIdentifier("loginSuccessSegue", sender: self)

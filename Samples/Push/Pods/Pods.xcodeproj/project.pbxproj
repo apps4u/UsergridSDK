@@ -7,245 +7,263 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		06B7A54DB8999BDC286AB1E46FD420BB /* UsergridQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99415F336D2693D96EDEA3F6B35325C9 /* UsergridQuery.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		15AFF49BB2235B7C429349FDAC54404F /* UsergridRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E635582309FDB26751CA08CE17378B47 /* UsergridRequest.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		2AD616E515E3889327445A7F3B849190 /* UsergridEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5818876AB9FB21C91372478D1FD5848 /* UsergridEntity.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		3BD6D25E0A175016592F7660740FB202 /* UsergridSDK-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B6A6AFB90D9838616E3697B4EBD12652 /* UsergridSDK-dummy.m */; };
-		43B045CC81348AF425F755B1F99FB32D /* UsergridClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB05B0105884FA3E8EBC902995AF919D /* UsergridClient.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		50FEE9F0EA8F02EDDB80CA7E21F4CAD3 /* UsergridResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C959C2AE46B0F77BC359973F8C6845 /* UsergridResponse.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		56AC2BB6AE6991981D17CA8D60DED4DC /* UsergridRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89335118FE7A4C21B09E7BFA641DAC4C /* UsergridRequestManager.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		5A9F6ED562C82F29F8EB11E318471107 /* UsergridAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3E5246B577A825C73DCE18B1A65A86 /* UsergridAuth.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		643A0FDCD1A385759ACD834CE99B5916 /* UsergridClientConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C10A8AAD12B9F9CB82AF5E60CB3429 /* UsergridClientConfig.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		65B7D3948913F3EC67AC64F29DA47E23 /* Usergrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469C76D9B2ACAE22881133B3F0FBF499 /* Usergrid.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		6ACDFFBFF6F05B71D0CBEBBD4F7E1C68 /* UsergridResponseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628A80AC9EF50CEA4DEA4EF78B2E6DE0 /* UsergridResponseError.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		708986072721B99B0AE63FC843D5D084 /* UsergridUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60FA24DC9AD9A9687FF2D628D50C82E /* UsergridUser.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		74F868217213BB29A5504D8B82C54AF8 /* UsergridFileMetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7E85887760618B8D4086BF7E9F9A3F /* UsergridFileMetaData.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		7F5699E096721511E5CC8EB4311FDC76 /* UsergridExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF45FDC43F9176643302A8E9EB38424 /* UsergridExtensions.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		8B053C309B75C46B25E2041067FC7778 /* UsergridKeychainHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8683DB41ACF77CB58926130451AE5D /* UsergridKeychainHelpers.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		958E160D0C5D9102E09315A37C246C14 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */; };
-		9F8B8B117D9A121D5E7B4B71E2B34B43 /* Pods-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2BCC458FDD5F692BBB2BFC64BB5701FC /* Pods-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A4C25FEE28853BF522BC12CB2D6B4B01 /* Pods-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 894E5DA93A9F359521A89826BE6DA777 /* Pods-dummy.m */; };
-		A842D0C5BCC3CAEF61E62539DE3304DD /* UsergridSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E227417C30949EBCA80BB546244CE4 /* UsergridSessionDelegate.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		CD662DDBCD7462A712E705A096D66F9B /* UsergridDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15BEF30649B58FCC79926A53C2D4133 /* UsergridDevice.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		D48D6CE5330F2FD409A5B7A4FB74F267 /* UsergridEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6946CD7D204C6A4B40E0FEC93027CBD4 /* UsergridEnums.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		EF5A0E0332BC8760A4EB9EAAE95184AE /* UsergridAssetRequestWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C2F1D7946D9594F01B3D4954C37AC96 /* UsergridAssetRequestWrapper.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		FB037595BA1F342A088DCB83BB69D9F4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */; };
-		FC759738477709729EB0EB2CB83F4271 /* UsergridSDK-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = EBE6B35B07DE1BCF2B8A5A6C9AC29E01 /* UsergridSDK-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		FC9536AA6FED70E3E8EB3E5A38E0950B /* UsergridAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535E5C3624D81CA2F6C3DA6D86935EF0 /* UsergridAsset.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		053F911A30B983262F1D9BEE /* UsergridKeychainHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083C8EA7515FC35C092F478F /* UsergridKeychainHelpers.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		05D0782987ABD2E9B0DFEEE8 /* UsergridSDK-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = FD059864DBA370A6B56CECC9 /* UsergridSDK-dummy.m */; };
+		0D13237A3F2DD55B0F559965 /* UsergridSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5493A4590A9D798F4F6FED /* UsergridSessionDelegate.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		2A94D70543CFF594E30500EF /* UsergridClientConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F91DFD748BAFF26858E3A5A /* UsergridClientConfig.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		30AF94A57E600E0E425A3DCF /* UsergridResponseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD15F3D977F5267B59E3752A /* UsergridResponseError.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		407EF7C5B181C67DB93CE135 /* Usergrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC27C59D5165899EAD7E84F /* Usergrid.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		4361DD9146EC46511A29B54B /* UsergridAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654DA292DF3ACA065A528D59 /* UsergridAsset.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		46516CE0AD0D9F7A47428939 /* Pods-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5470E66692A72BC9A4404155 /* Pods-dummy.m */; };
+		60FFE3EB7D9DE7BFC2790515 /* Pods-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A3ED1E1CD75C70777564E5F /* Pods-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		658FC2265D5B33A501E70EAF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BFB5392F954885E480BF18F /* Foundation.framework */; };
+		6BBD2EF49396ED5DF00816F7 /* UsergridQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9A20AB6B81ADF765EC55F7 /* UsergridQuery.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		791D46D12100AC3BD27AE61F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BFB5392F954885E480BF18F /* Foundation.framework */; };
+		8101027AA501B886AD638C21 /* UsergridEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A568817F0927F0CE5BB1685 /* UsergridEntity.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		820B39838AD99899C3BD68EB /* UsergridClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FB49128783B064386C22C5 /* UsergridClient.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		88C337A7C96AF6EE7A865CFF /* UsergridAssetRequestWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FDF1E3E6A9172F3406D1AC /* UsergridAssetRequestWrapper.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		9CB5B1A10FC9DBD21614173C /* UsergridFileMetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78EF9B2F990919420D9FF40 /* UsergridFileMetaData.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		9D77FE03A6D7C57227B43D66 /* UsergridRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5BE60BB11F1EFD6B58B5F9 /* UsergridRequestManager.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		A28F4F4CFB8675B377673C03 /* UsergridUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599BD3DD51FF690ABF4EC4EB /* UsergridUser.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		A889783D151D9F7E401692D4 /* UsergridSDK-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = AA3B1281DEE02D2144AC4877 /* UsergridSDK-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C6EBA4762911FDE2922E86B4 /* UsergridExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3784777B859DD5C151B1559E /* UsergridExtensions.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		C6F08F1B0E68B5BC0E496AC4 /* UsergridAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92FECBEF8F41C6341794C9E /* UsergridAuth.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		DCE1BA9260EC72BC73BAA529 /* UsergridRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF570CE3D5F78BF28CDFE3B4 /* UsergridRequest.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		DFF72084408BC60D58714B49 /* UsergridDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C13E2E77A4EE0A2DA1FC93 /* UsergridDevice.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		E00F123AD733CC46337F0EFF /* UsergridEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1617AB01682251115FA501 /* UsergridEnums.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		F13615D5A1BDFE4B309586DB /* UsergridResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58CF649E72F3A368CBA64B9 /* UsergridResponse.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		FC8684722D61896CF73846098287814D /* PBXContainerItemProxy */ = {
+		DBA0B17E751AEE1EB8D15A77 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			containerPortal = 102DA316FFE6A8AEE2639C18 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 91A155DE5B0AEF892B605F508D34A8D1;
+			remoteGlobalIDString = F3ACAC7D254B2FAF772C3E10;
 			remoteInfo = UsergridSDK;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		14E227417C30949EBCA80BB546244CE4 /* UsergridSessionDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UsergridSessionDelegate.swift; path = Source/UsergridSessionDelegate.swift; sourceTree = "<group>"; };
-		21142951EF32B28967C43E472BB8D10F /* UsergridSDK.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = UsergridSDK.xcconfig; sourceTree = "<group>"; };
-		231F4725102865DCA8622808AD494B9C /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2711DEBAB6CB4FCB835DCB81ADDA8737 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2BCC458FDD5F692BBB2BFC64BB5701FC /* Pods-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-umbrella.h"; sourceTree = "<group>"; };
-		2D8683DB41ACF77CB58926130451AE5D /* UsergridKeychainHelpers.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UsergridKeychainHelpers.swift; path = Source/UsergridKeychainHelpers.swift; sourceTree = "<group>"; };
-		3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		3EF45FDC43F9176643302A8E9EB38424 /* UsergridExtensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UsergridExtensions.swift; path = Source/UsergridExtensions.swift; sourceTree = "<group>"; };
-		469C76D9B2ACAE22881133B3F0FBF499 /* Usergrid.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Usergrid.swift; path = Source/Usergrid.swift; sourceTree = "<group>"; };
-		535E5C3624D81CA2F6C3DA6D86935EF0 /* UsergridAsset.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UsergridAsset.swift; path = Source/UsergridAsset.swift; sourceTree = "<group>"; };
-		628A80AC9EF50CEA4DEA4EF78B2E6DE0 /* UsergridResponseError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UsergridResponseError.swift; path = Source/UsergridResponseError.swift; sourceTree = "<group>"; };
-		6946CD7D204C6A4B40E0FEC93027CBD4 /* UsergridEnums.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UsergridEnums.swift; path = Source/UsergridEnums.swift; sourceTree = "<group>"; };
-		79A9DEDC89FE8336BF5FEDAAF75BF7FC /* Pods.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Pods.modulemap; sourceTree = "<group>"; };
-		87B213035BAC5F75386F62D3C75D2342 /* Pods-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-acknowledgements.plist"; sourceTree = "<group>"; };
-		89335118FE7A4C21B09E7BFA641DAC4C /* UsergridRequestManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UsergridRequestManager.swift; path = Source/UsergridRequestManager.swift; sourceTree = "<group>"; };
-		894E5DA93A9F359521A89826BE6DA777 /* Pods-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-dummy.m"; sourceTree = "<group>"; };
-		90C959C2AE46B0F77BC359973F8C6845 /* UsergridResponse.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UsergridResponse.swift; path = Source/UsergridResponse.swift; sourceTree = "<group>"; };
-		977577C045EDA9D9D1F46E2598D19FC7 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.debug.xcconfig; sourceTree = "<group>"; };
-		99415F336D2693D96EDEA3F6B35325C9 /* UsergridQuery.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UsergridQuery.swift; path = Source/UsergridQuery.swift; sourceTree = "<group>"; };
-		9C2F1D7946D9594F01B3D4954C37AC96 /* UsergridAssetRequestWrapper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UsergridAssetRequestWrapper.swift; path = Source/UsergridAssetRequestWrapper.swift; sourceTree = "<group>"; };
-		9F7E85887760618B8D4086BF7E9F9A3F /* UsergridFileMetaData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UsergridFileMetaData.swift; path = Source/UsergridFileMetaData.swift; sourceTree = "<group>"; };
-		A8D07B691CE30CF44A69307F8789B79A /* UsergridSDK.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = UsergridSDK.modulemap; sourceTree = "<group>"; };
-		B60FA24DC9AD9A9687FF2D628D50C82E /* UsergridUser.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UsergridUser.swift; path = Source/UsergridUser.swift; sourceTree = "<group>"; };
-		B6A6AFB90D9838616E3697B4EBD12652 /* UsergridSDK-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UsergridSDK-dummy.m"; sourceTree = "<group>"; };
-		B8C10A8AAD12B9F9CB82AF5E60CB3429 /* UsergridClientConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UsergridClientConfig.swift; path = Source/UsergridClientConfig.swift; sourceTree = "<group>"; };
-		BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		CBC0F7C552B739C909B650A0F42F7F38 /* Pods-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-resources.sh"; sourceTree = "<group>"; };
-		CD3E5246B577A825C73DCE18B1A65A86 /* UsergridAuth.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UsergridAuth.swift; path = Source/UsergridAuth.swift; sourceTree = "<group>"; };
-		D0405803033A2A777B8E4DFA0C1800ED /* Pods-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-acknowledgements.markdown"; sourceTree = "<group>"; };
-		D15BEF30649B58FCC79926A53C2D4133 /* UsergridDevice.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UsergridDevice.swift; path = Source/UsergridDevice.swift; sourceTree = "<group>"; };
-		DA312349A49333542E6F4B36B329960E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.release.xcconfig; sourceTree = "<group>"; };
-		DD887B305211CB7C54B6E361E032931D /* UsergridSDK-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UsergridSDK-prefix.pch"; sourceTree = "<group>"; };
-		E1790DE8881520F7770C003BAEE90584 /* UsergridSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UsergridSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E5818876AB9FB21C91372478D1FD5848 /* UsergridEntity.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UsergridEntity.swift; path = Source/UsergridEntity.swift; sourceTree = "<group>"; };
-		E635582309FDB26751CA08CE17378B47 /* UsergridRequest.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UsergridRequest.swift; path = Source/UsergridRequest.swift; sourceTree = "<group>"; };
-		E7F21354943D9F42A70697D5A5EF72E9 /* Pods-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-frameworks.sh"; sourceTree = "<group>"; };
-		E8446514FBAD26C0E18F24A5715AEF67 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EBE6B35B07DE1BCF2B8A5A6C9AC29E01 /* UsergridSDK-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UsergridSDK-umbrella.h"; sourceTree = "<group>"; };
-		FB05B0105884FA3E8EBC902995AF919D /* UsergridClient.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UsergridClient.swift; path = Source/UsergridClient.swift; sourceTree = "<group>"; };
+		03D96D4B3A9DDFBD34B4CA08 /* UsergridSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UsergridSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		083C8EA7515FC35C092F478F /* UsergridKeychainHelpers.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UsergridKeychainHelpers.swift; path = Source/UsergridKeychainHelpers.swift; sourceTree = "<group>"; };
+		0A20A9D48325D72741AD7885 /* UsergridSDK-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UsergridSDK-prefix.pch"; sourceTree = "<group>"; };
+		0A568817F0927F0CE5BB1685 /* UsergridEntity.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UsergridEntity.swift; path = Source/UsergridEntity.swift; sourceTree = "<group>"; };
+		11FDF1E3E6A9172F3406D1AC /* UsergridAssetRequestWrapper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UsergridAssetRequestWrapper.swift; path = Source/UsergridAssetRequestWrapper.swift; sourceTree = "<group>"; };
+		13C13E2E77A4EE0A2DA1FC93 /* UsergridDevice.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UsergridDevice.swift; path = Source/UsergridDevice.swift; sourceTree = "<group>"; };
+		1F68599D060A510FDE318F06 /* Pods.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Pods.modulemap; sourceTree = "<group>"; };
+		2810F660A3177225173C9956 /* UsergridSDK.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = UsergridSDK.modulemap; sourceTree = "<group>"; };
+		3134FD4948CAC09460C01BD2 /* Pods-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-resources.sh"; sourceTree = "<group>"; };
+		35E240D4A84CAF77F5D12181 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3784777B859DD5C151B1559E /* UsergridExtensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UsergridExtensions.swift; path = Source/UsergridExtensions.swift; sourceTree = "<group>"; };
+		3C1617AB01682251115FA501 /* UsergridEnums.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UsergridEnums.swift; path = Source/UsergridEnums.swift; sourceTree = "<group>"; };
+		3D5BE60BB11F1EFD6B58B5F9 /* UsergridRequestManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UsergridRequestManager.swift; path = Source/UsergridRequestManager.swift; sourceTree = "<group>"; };
+		3ED47E3C18348850E8757FE5 /* Pods-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-acknowledgements.markdown"; sourceTree = "<group>"; };
+		3F054EC52F6BFA2ED7D8632E /* Pods-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-frameworks.sh"; sourceTree = "<group>"; };
+		4024B59C99EA84B4F3702F4A /* Pods-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-acknowledgements.plist"; sourceTree = "<group>"; };
+		50FB49128783B064386C22C5 /* UsergridClient.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UsergridClient.swift; path = Source/UsergridClient.swift; sourceTree = "<group>"; };
+		5470E66692A72BC9A4404155 /* Pods-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-dummy.m"; sourceTree = "<group>"; };
+		577DAE6557AECE6B491D42C8 /* UsergridSDK.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = UsergridSDK.xcconfig; sourceTree = "<group>"; };
+		599BD3DD51FF690ABF4EC4EB /* UsergridUser.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UsergridUser.swift; path = Source/UsergridUser.swift; sourceTree = "<group>"; };
+		5AC27C59D5165899EAD7E84F /* Usergrid.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Usergrid.swift; path = Source/Usergrid.swift; sourceTree = "<group>"; };
+		654DA292DF3ACA065A528D59 /* UsergridAsset.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UsergridAsset.swift; path = Source/UsergridAsset.swift; sourceTree = "<group>"; };
+		6BFA6572B0588D314FC328AD /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.debug.xcconfig; sourceTree = "<group>"; };
+		6BFB5392F954885E480BF18F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		6E5493A4590A9D798F4F6FED /* UsergridSessionDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UsergridSessionDelegate.swift; path = Source/UsergridSessionDelegate.swift; sourceTree = "<group>"; };
+		7A3ED1E1CD75C70777564E5F /* Pods-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-umbrella.h"; sourceTree = "<group>"; };
+		7C2BF54915F9CC425DE324A1 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8F91DFD748BAFF26858E3A5A /* UsergridClientConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UsergridClientConfig.swift; path = Source/UsergridClientConfig.swift; sourceTree = "<group>"; };
+		8F9A20AB6B81ADF765EC55F7 /* UsergridQuery.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UsergridQuery.swift; path = Source/UsergridQuery.swift; sourceTree = "<group>"; };
+		A78EF9B2F990919420D9FF40 /* UsergridFileMetaData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UsergridFileMetaData.swift; path = Source/UsergridFileMetaData.swift; sourceTree = "<group>"; };
+		AA3B1281DEE02D2144AC4877 /* UsergridSDK-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UsergridSDK-umbrella.h"; sourceTree = "<group>"; };
+		C466F6CF35FD4A4F2E23B083 /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		C58CF649E72F3A368CBA64B9 /* UsergridResponse.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UsergridResponse.swift; path = Source/UsergridResponse.swift; sourceTree = "<group>"; };
+		CD15F3D977F5267B59E3752A /* UsergridResponseError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UsergridResponseError.swift; path = Source/UsergridResponseError.swift; sourceTree = "<group>"; };
+		CF570CE3D5F78BF28CDFE3B4 /* UsergridRequest.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UsergridRequest.swift; path = Source/UsergridRequest.swift; sourceTree = "<group>"; };
+		E79781E4E49810F17DCE1FAD /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E92FECBEF8F41C6341794C9E /* UsergridAuth.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UsergridAuth.swift; path = Source/UsergridAuth.swift; sourceTree = "<group>"; };
+		F46CDA70A60EA56A70A90F4D /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.release.xcconfig; sourceTree = "<group>"; };
+		FD059864DBA370A6B56CECC9 /* UsergridSDK-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UsergridSDK-dummy.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		308DFCB7A9C218B2297F04C149239384 /* Frameworks */ = {
+		912D70563D624BA3E84EF3D3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FB037595BA1F342A088DCB83BB69D9F4 /* Foundation.framework in Frameworks */,
+				791D46D12100AC3BD27AE61F /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E44E31AB4AE1E4EAB1FE7759F0400299 /* Frameworks */ = {
+		B607198275EB116F149C43B4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				958E160D0C5D9102E09315A37C246C14 /* Foundation.framework in Frameworks */,
+				658FC2265D5B33A501E70EAF /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		08625D426975F6E69230DF133A3C9D79 /* Products */ = {
+		05AD6B79194C71AA0B2DFCEA = {
 			isa = PBXGroup;
 			children = (
-				2711DEBAB6CB4FCB835DCB81ADDA8737 /* Pods.framework */,
-				E1790DE8881520F7770C003BAEE90584 /* UsergridSDK.framework */,
+				C466F6CF35FD4A4F2E23B083 /* Podfile */,
+				5C6F998AE52F5C38A1FE710F /* Frameworks */,
+				8D12E9E03132BB7DD6773219 /* Pods */,
+				122425A63F5FB6D5F8503223 /* Products */,
+				F1A5BCACB6FB3A7C4C4F04A8 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		122425A63F5FB6D5F8503223 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7C2BF54915F9CC425DE324A1 /* Pods.framework */,
+				03D96D4B3A9DDFBD34B4CA08 /* UsergridSDK.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		08B8F100237EB2CB1512538C28164EEB /* Support Files */ = {
+		5C6F998AE52F5C38A1FE710F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				231F4725102865DCA8622808AD494B9C /* Info.plist */,
-				A8D07B691CE30CF44A69307F8789B79A /* UsergridSDK.modulemap */,
-				21142951EF32B28967C43E472BB8D10F /* UsergridSDK.xcconfig */,
-				B6A6AFB90D9838616E3697B4EBD12652 /* UsergridSDK-dummy.m */,
-				DD887B305211CB7C54B6E361E032931D /* UsergridSDK-prefix.pch */,
-				EBE6B35B07DE1BCF2B8A5A6C9AC29E01 /* UsergridSDK-umbrella.h */,
+				A110C52BBEB82CF20D9D2D7D /* iOS */,
 			);
-			name = "Support Files";
-			path = "../Target Support Files/UsergridSDK";
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		75D98FF52E597A11900E131B6C4E1ADA /* Pods */ = {
+		8D12E9E03132BB7DD6773219 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				E8446514FBAD26C0E18F24A5715AEF67 /* Info.plist */,
-				79A9DEDC89FE8336BF5FEDAAF75BF7FC /* Pods.modulemap */,
-				D0405803033A2A777B8E4DFA0C1800ED /* Pods-acknowledgements.markdown */,
-				87B213035BAC5F75386F62D3C75D2342 /* Pods-acknowledgements.plist */,
-				894E5DA93A9F359521A89826BE6DA777 /* Pods-dummy.m */,
-				E7F21354943D9F42A70697D5A5EF72E9 /* Pods-frameworks.sh */,
-				CBC0F7C552B739C909B650A0F42F7F38 /* Pods-resources.sh */,
-				2BCC458FDD5F692BBB2BFC64BB5701FC /* Pods-umbrella.h */,
-				977577C045EDA9D9D1F46E2598D19FC7 /* Pods.debug.xcconfig */,
-				DA312349A49333542E6F4B36B329960E /* Pods.release.xcconfig */,
+				C487AB9F3449764E4586426C /* UsergridSDK */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		9CCE80515EFA87760D1ABA85 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E79781E4E49810F17DCE1FAD /* Info.plist */,
+				1F68599D060A510FDE318F06 /* Pods.modulemap */,
+				3ED47E3C18348850E8757FE5 /* Pods-acknowledgements.markdown */,
+				4024B59C99EA84B4F3702F4A /* Pods-acknowledgements.plist */,
+				5470E66692A72BC9A4404155 /* Pods-dummy.m */,
+				3F054EC52F6BFA2ED7D8632E /* Pods-frameworks.sh */,
+				3134FD4948CAC09460C01BD2 /* Pods-resources.sh */,
+				7A3ED1E1CD75C70777564E5F /* Pods-umbrella.h */,
+				6BFA6572B0588D314FC328AD /* Pods.debug.xcconfig */,
+				F46CDA70A60EA56A70A90F4D /* Pods.release.xcconfig */,
 			);
 			name = Pods;
 			path = "Target Support Files/Pods";
 			sourceTree = "<group>";
 		};
-		7DB346D0F39D3F0E887471402A8071AB = {
+		A110C52BBEB82CF20D9D2D7D /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */,
-				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
-				ABCD566CC79DC5337AAEC3C849B01FC2 /* Pods */,
-				08625D426975F6E69230DF133A3C9D79 /* Products */,
-				B7B80995527643776607AFFA75B91E24 /* Targets Support Files */,
+				6BFB5392F954885E480BF18F /* Foundation.framework */,
 			);
+			name = iOS;
 			sourceTree = "<group>";
 		};
-		ABCD566CC79DC5337AAEC3C849B01FC2 /* Pods */ = {
+		C487AB9F3449764E4586426C /* UsergridSDK */ = {
 			isa = PBXGroup;
 			children = (
-				B9A1C387A9D402C51B6036A1FBE00E0B /* UsergridSDK */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		B7B80995527643776607AFFA75B91E24 /* Targets Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				75D98FF52E597A11900E131B6C4E1ADA /* Pods */,
-			);
-			name = "Targets Support Files";
-			sourceTree = "<group>";
-		};
-		B9A1C387A9D402C51B6036A1FBE00E0B /* UsergridSDK */ = {
-			isa = PBXGroup;
-			children = (
-				469C76D9B2ACAE22881133B3F0FBF499 /* Usergrid.swift */,
-				535E5C3624D81CA2F6C3DA6D86935EF0 /* UsergridAsset.swift */,
-				9C2F1D7946D9594F01B3D4954C37AC96 /* UsergridAssetRequestWrapper.swift */,
-				CD3E5246B577A825C73DCE18B1A65A86 /* UsergridAuth.swift */,
-				FB05B0105884FA3E8EBC902995AF919D /* UsergridClient.swift */,
-				B8C10A8AAD12B9F9CB82AF5E60CB3429 /* UsergridClientConfig.swift */,
-				D15BEF30649B58FCC79926A53C2D4133 /* UsergridDevice.swift */,
-				E5818876AB9FB21C91372478D1FD5848 /* UsergridEntity.swift */,
-				6946CD7D204C6A4B40E0FEC93027CBD4 /* UsergridEnums.swift */,
-				3EF45FDC43F9176643302A8E9EB38424 /* UsergridExtensions.swift */,
-				9F7E85887760618B8D4086BF7E9F9A3F /* UsergridFileMetaData.swift */,
-				2D8683DB41ACF77CB58926130451AE5D /* UsergridKeychainHelpers.swift */,
-				99415F336D2693D96EDEA3F6B35325C9 /* UsergridQuery.swift */,
-				E635582309FDB26751CA08CE17378B47 /* UsergridRequest.swift */,
-				89335118FE7A4C21B09E7BFA641DAC4C /* UsergridRequestManager.swift */,
-				90C959C2AE46B0F77BC359973F8C6845 /* UsergridResponse.swift */,
-				628A80AC9EF50CEA4DEA4EF78B2E6DE0 /* UsergridResponseError.swift */,
-				14E227417C30949EBCA80BB546244CE4 /* UsergridSessionDelegate.swift */,
-				B60FA24DC9AD9A9687FF2D628D50C82E /* UsergridUser.swift */,
-				08B8F100237EB2CB1512538C28164EEB /* Support Files */,
+				5AC27C59D5165899EAD7E84F /* Usergrid.swift */,
+				654DA292DF3ACA065A528D59 /* UsergridAsset.swift */,
+				11FDF1E3E6A9172F3406D1AC /* UsergridAssetRequestWrapper.swift */,
+				E92FECBEF8F41C6341794C9E /* UsergridAuth.swift */,
+				50FB49128783B064386C22C5 /* UsergridClient.swift */,
+				8F91DFD748BAFF26858E3A5A /* UsergridClientConfig.swift */,
+				13C13E2E77A4EE0A2DA1FC93 /* UsergridDevice.swift */,
+				0A568817F0927F0CE5BB1685 /* UsergridEntity.swift */,
+				3C1617AB01682251115FA501 /* UsergridEnums.swift */,
+				3784777B859DD5C151B1559E /* UsergridExtensions.swift */,
+				A78EF9B2F990919420D9FF40 /* UsergridFileMetaData.swift */,
+				083C8EA7515FC35C092F478F /* UsergridKeychainHelpers.swift */,
+				8F9A20AB6B81ADF765EC55F7 /* UsergridQuery.swift */,
+				CF570CE3D5F78BF28CDFE3B4 /* UsergridRequest.swift */,
+				3D5BE60BB11F1EFD6B58B5F9 /* UsergridRequestManager.swift */,
+				C58CF649E72F3A368CBA64B9 /* UsergridResponse.swift */,
+				CD15F3D977F5267B59E3752A /* UsergridResponseError.swift */,
+				6E5493A4590A9D798F4F6FED /* UsergridSessionDelegate.swift */,
+				599BD3DD51FF690ABF4EC4EB /* UsergridUser.swift */,
+				F73059B40E8517AFC560A877 /* Support Files */,
 			);
 			path = UsergridSDK;
 			sourceTree = "<group>";
 		};
-		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
+		F1A5BCACB6FB3A7C4C4F04A8 /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				BF6342C8B29F4CEEA088EFF7AB4DE362 /* iOS */,
+				9CCE80515EFA87760D1ABA85 /* Pods */,
 			);
-			name = Frameworks;
+			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		BF6342C8B29F4CEEA088EFF7AB4DE362 /* iOS */ = {
+		F73059B40E8517AFC560A877 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */,
+				35E240D4A84CAF77F5D12181 /* Info.plist */,
+				2810F660A3177225173C9956 /* UsergridSDK.modulemap */,
+				577DAE6557AECE6B491D42C8 /* UsergridSDK.xcconfig */,
+				FD059864DBA370A6B56CECC9 /* UsergridSDK-dummy.m */,
+				0A20A9D48325D72741AD7885 /* UsergridSDK-prefix.pch */,
+				AA3B1281DEE02D2144AC4877 /* UsergridSDK-umbrella.h */,
 			);
-			name = iOS;
+			name = "Support Files";
+			path = "../Target Support Files/UsergridSDK";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		6F0F9293D0262AD68EC44BD777A0B521 /* Headers */ = {
+		B382D8C1A694DB769046E1B2 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FC759738477709729EB0EB2CB83F4271 /* UsergridSDK-umbrella.h in Headers */,
+				A889783D151D9F7E401692D4 /* UsergridSDK-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		752A7DCAA7E1513298C2513437107C9F /* Headers */ = {
+		CDA029C57B8AA3A0FCA3081D /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9F8B8B117D9A121D5E7B4B71E2B34B43 /* Pods-umbrella.h in Headers */,
+				60FFE3EB7D9DE7BFC2790515 /* Pods-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		91A155DE5B0AEF892B605F508D34A8D1 /* UsergridSDK */ = {
+		8414A39F1E2F003BA2799329 /* Pods */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C62B13C4059EA08E1C971A5B35FD2261 /* Build configuration list for PBXNativeTarget "UsergridSDK" */;
+			buildConfigurationList = F3CF2C0C9F3E5806AFA53DF1 /* Build configuration list for PBXNativeTarget "Pods" */;
 			buildPhases = (
-				C4B2F84C0A24A51BE3054FFE6C605B52 /* Sources */,
-				E44E31AB4AE1E4EAB1FE7759F0400299 /* Frameworks */,
-				6F0F9293D0262AD68EC44BD777A0B521 /* Headers */,
+				5CA7DFEF0BB929AFE782C59B /* Sources */,
+				912D70563D624BA3E84EF3D3 /* Frameworks */,
+				CDA029C57B8AA3A0FCA3081D /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3FA09F96190C1619545B7875 /* PBXTargetDependency */,
+			);
+			name = Pods;
+			productName = Pods;
+			productReference = 7C2BF54915F9CC425DE324A1 /* Pods.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		F3ACAC7D254B2FAF772C3E10 /* UsergridSDK */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0BE38FB481CD20BA40D64C20 /* Build configuration list for PBXNativeTarget "UsergridSDK" */;
+			buildPhases = (
+				67C683AD455ACBD137C55641 /* Sources */,
+				B607198275EB116F149C43B4 /* Frameworks */,
+				B382D8C1A694DB769046E1B2 /* Headers */,
 			);
 			buildRules = (
 			);
@@ -253,105 +271,118 @@
 			);
 			name = UsergridSDK;
 			productName = UsergridSDK;
-			productReference = E1790DE8881520F7770C003BAEE90584 /* UsergridSDK.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		D65ECD6C196A038298699569AC4B1A82 /* Pods */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 78A8D9CBA9713851ED4A0FEE5DB2B519 /* Build configuration list for PBXNativeTarget "Pods" */;
-			buildPhases = (
-				3F81600D6EA5C8F1E97C70C9392D6D0B /* Sources */,
-				308DFCB7A9C218B2297F04C149239384 /* Frameworks */,
-				752A7DCAA7E1513298C2513437107C9F /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				9348C303257F2715CAE383A12D8A03CA /* PBXTargetDependency */,
-			);
-			name = Pods;
-			productName = Pods;
-			productReference = 2711DEBAB6CB4FCB835DCB81ADDA8737 /* Pods.framework */;
+			productReference = 03D96D4B3A9DDFBD34B4CA08 /* UsergridSDK.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+		102DA316FFE6A8AEE2639C18 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0700;
 			};
-			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			buildConfigurationList = C8A44726CD6B983A68BB64A3 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = 08625D426975F6E69230DF133A3C9D79 /* Products */;
+			mainGroup = 05AD6B79194C71AA0B2DFCEA;
+			productRefGroup = 122425A63F5FB6D5F8503223 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D65ECD6C196A038298699569AC4B1A82 /* Pods */,
-				91A155DE5B0AEF892B605F508D34A8D1 /* UsergridSDK */,
+				8414A39F1E2F003BA2799329 /* Pods */,
+				F3ACAC7D254B2FAF772C3E10 /* UsergridSDK */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		3F81600D6EA5C8F1E97C70C9392D6D0B /* Sources */ = {
+		5CA7DFEF0BB929AFE782C59B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A4C25FEE28853BF522BC12CB2D6B4B01 /* Pods-dummy.m in Sources */,
+				46516CE0AD0D9F7A47428939 /* Pods-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C4B2F84C0A24A51BE3054FFE6C605B52 /* Sources */ = {
+		67C683AD455ACBD137C55641 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65B7D3948913F3EC67AC64F29DA47E23 /* Usergrid.swift in Sources */,
-				FC9536AA6FED70E3E8EB3E5A38E0950B /* UsergridAsset.swift in Sources */,
-				EF5A0E0332BC8760A4EB9EAAE95184AE /* UsergridAssetRequestWrapper.swift in Sources */,
-				5A9F6ED562C82F29F8EB11E318471107 /* UsergridAuth.swift in Sources */,
-				43B045CC81348AF425F755B1F99FB32D /* UsergridClient.swift in Sources */,
-				643A0FDCD1A385759ACD834CE99B5916 /* UsergridClientConfig.swift in Sources */,
-				CD662DDBCD7462A712E705A096D66F9B /* UsergridDevice.swift in Sources */,
-				2AD616E515E3889327445A7F3B849190 /* UsergridEntity.swift in Sources */,
-				D48D6CE5330F2FD409A5B7A4FB74F267 /* UsergridEnums.swift in Sources */,
-				7F5699E096721511E5CC8EB4311FDC76 /* UsergridExtensions.swift in Sources */,
-				74F868217213BB29A5504D8B82C54AF8 /* UsergridFileMetaData.swift in Sources */,
-				8B053C309B75C46B25E2041067FC7778 /* UsergridKeychainHelpers.swift in Sources */,
-				06B7A54DB8999BDC286AB1E46FD420BB /* UsergridQuery.swift in Sources */,
-				15AFF49BB2235B7C429349FDAC54404F /* UsergridRequest.swift in Sources */,
-				56AC2BB6AE6991981D17CA8D60DED4DC /* UsergridRequestManager.swift in Sources */,
-				50FEE9F0EA8F02EDDB80CA7E21F4CAD3 /* UsergridResponse.swift in Sources */,
-				6ACDFFBFF6F05B71D0CBEBBD4F7E1C68 /* UsergridResponseError.swift in Sources */,
-				3BD6D25E0A175016592F7660740FB202 /* UsergridSDK-dummy.m in Sources */,
-				A842D0C5BCC3CAEF61E62539DE3304DD /* UsergridSessionDelegate.swift in Sources */,
-				708986072721B99B0AE63FC843D5D084 /* UsergridUser.swift in Sources */,
+				407EF7C5B181C67DB93CE135 /* Usergrid.swift in Sources */,
+				4361DD9146EC46511A29B54B /* UsergridAsset.swift in Sources */,
+				88C337A7C96AF6EE7A865CFF /* UsergridAssetRequestWrapper.swift in Sources */,
+				C6F08F1B0E68B5BC0E496AC4 /* UsergridAuth.swift in Sources */,
+				820B39838AD99899C3BD68EB /* UsergridClient.swift in Sources */,
+				2A94D70543CFF594E30500EF /* UsergridClientConfig.swift in Sources */,
+				DFF72084408BC60D58714B49 /* UsergridDevice.swift in Sources */,
+				8101027AA501B886AD638C21 /* UsergridEntity.swift in Sources */,
+				E00F123AD733CC46337F0EFF /* UsergridEnums.swift in Sources */,
+				C6EBA4762911FDE2922E86B4 /* UsergridExtensions.swift in Sources */,
+				9CB5B1A10FC9DBD21614173C /* UsergridFileMetaData.swift in Sources */,
+				053F911A30B983262F1D9BEE /* UsergridKeychainHelpers.swift in Sources */,
+				6BBD2EF49396ED5DF00816F7 /* UsergridQuery.swift in Sources */,
+				DCE1BA9260EC72BC73BAA529 /* UsergridRequest.swift in Sources */,
+				9D77FE03A6D7C57227B43D66 /* UsergridRequestManager.swift in Sources */,
+				F13615D5A1BDFE4B309586DB /* UsergridResponse.swift in Sources */,
+				30AF94A57E600E0E425A3DCF /* UsergridResponseError.swift in Sources */,
+				05D0782987ABD2E9B0DFEEE8 /* UsergridSDK-dummy.m in Sources */,
+				0D13237A3F2DD55B0F559965 /* UsergridSessionDelegate.swift in Sources */,
+				A28F4F4CFB8675B377673C03 /* UsergridUser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		9348C303257F2715CAE383A12D8A03CA /* PBXTargetDependency */ = {
+		3FA09F96190C1619545B7875 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = UsergridSDK;
-			target = 91A155DE5B0AEF892B605F508D34A8D1 /* UsergridSDK */;
-			targetProxy = FC8684722D61896CF73846098287814D /* PBXContainerItemProxy */;
+			target = F3ACAC7D254B2FAF772C3E10 /* UsergridSDK */;
+			targetProxy = DBA0B17E751AEE1EB8D15A77 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		0BFC63587235C16A10D457450E5AAF2B /* Debug */ = {
+		10262FF12DACF58A674FE1A4 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 21142951EF32B28967C43E472BB8D10F /* UsergridSDK.xcconfig */;
+			baseConfigurationReference = 6BFA6572B0588D314FC328AD /* Pods.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods/Pods.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = Pods;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		22ABA7CF60FC401CB78CDA33 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 577DAE6557AECE6B491D42C8 /* UsergridSDK.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -366,18 +397,17 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/UsergridSDK/UsergridSDK.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = UsergridSDK;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Debug;
+			name = Release;
 		};
-		5CE5176205D06FF3FFE3DDDA9291E44B /* Debug */ = {
+		64BE7E2913926CC4B94E7EE0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -416,37 +446,7 @@
 			};
 			name = Debug;
 		};
-		6C51959E74FA4700FAEDBDAB03131FC9 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = DA312349A49333542E6F4B36B329960E /* Pods.release.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods/Pods.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_NAME = Pods;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		74857149DC1E0D599B8A01A78349A926 /* Release */ = {
+		A630F5E09405D300F5EA7FC1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -480,40 +480,9 @@
 			};
 			name = Release;
 		};
-		DBBA1E2FF25223046FE6C8A18B282EFC /* Debug */ = {
+		C293B8A34DABDEBC87DFDEB0 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 977577C045EDA9D9D1F46E2598D19FC7 /* Pods.debug.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods/Pods.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_NAME = Pods;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		FCA7F52D84F95D5A53F1E7DD6B7604D1 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 21142951EF32B28967C43E472BB8D10F /* UsergridSDK.xcconfig */;
+			baseConfigurationReference = 577DAE6557AECE6B491D42C8 /* UsergridSDK.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -528,8 +497,39 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/UsergridSDK/UsergridSDK.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = UsergridSDK;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		EDA2922B250CE93BE6C84481 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F46CDA70A60EA56A70A90F4D /* Pods.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods/Pods.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = Pods;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -541,34 +541,34 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+		0BE38FB481CD20BA40D64C20 /* Build configuration list for PBXNativeTarget "UsergridSDK" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				5CE5176205D06FF3FFE3DDDA9291E44B /* Debug */,
-				74857149DC1E0D599B8A01A78349A926 /* Release */,
+				C293B8A34DABDEBC87DFDEB0 /* Debug */,
+				22ABA7CF60FC401CB78CDA33 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		78A8D9CBA9713851ED4A0FEE5DB2B519 /* Build configuration list for PBXNativeTarget "Pods" */ = {
+		C8A44726CD6B983A68BB64A3 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				DBBA1E2FF25223046FE6C8A18B282EFC /* Debug */,
-				6C51959E74FA4700FAEDBDAB03131FC9 /* Release */,
+				64BE7E2913926CC4B94E7EE0 /* Debug */,
+				A630F5E09405D300F5EA7FC1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C62B13C4059EA08E1C971A5B35FD2261 /* Build configuration list for PBXNativeTarget "UsergridSDK" */ = {
+		F3CF2C0C9F3E5806AFA53DF1 /* Build configuration list for PBXNativeTarget "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				0BFC63587235C16A10D457450E5AAF2B /* Debug */,
-				FCA7F52D84F95D5A53F1E7DD6B7604D1 /* Release */,
+				10262FF12DACF58A674FE1A4 /* Debug */,
+				EDA2922B250CE93BE6C84481 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+	rootObject = 102DA316FFE6A8AEE2639C18 /* Project object */;
 }
