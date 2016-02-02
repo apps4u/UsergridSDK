@@ -131,6 +131,7 @@ public class UsergridAsset: NSObject, NSCoding {
                 self.init(filename:fileNameToUse,data:assetData,originalLocation:fileURL.absoluteString,contentType:fileContentType)
             } else {
                 print("Usergrid Error: Failed to imply content type of the asset.")
+                self.init(filename:"",data:NSData(),contentType:"")
                 return nil
             }
         } else {

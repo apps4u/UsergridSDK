@@ -455,9 +455,19 @@ public class UsergridEntity: NSObject, NSCoding {
     */
     public func save(client:UsergridClient, completion: UsergridResponseCompletion? = nil) {
         if let _ = self.uuid { // If UUID exists we PUT otherwise POST
-            client.PUT(self, completion: completion)
+            client.PUT(self, completion: { (response) -> Void in
+                if let responseEntity = response.entity {
+                    self.copyInternalsFromEntity(responseEntity)
+                }
+                completion?(response: response)
+            })
         } else {
-            client.POST(self, completion: completion)
+            client.POST(self, completion: { (response) -> Void in
+                if let responseEntity = response.entity {
+                    self.copyInternalsFromEntity(responseEntity)
+                }
+                completion?(response: response)
+            })
         }
     }
 
