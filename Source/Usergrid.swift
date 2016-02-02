@@ -35,7 +35,7 @@ Use of this class depends on initialization of the shared instance of the `Userg
 provided you will need to call one of the shared instance initialization methods.  Failure to do so will result in failure from all methods.
 */
 
-public let UsergridSDKVersion = "0.0.4"
+public let UsergridSDKVersion = "2.1.0"
 
 public class Usergrid: NSObject {
 
