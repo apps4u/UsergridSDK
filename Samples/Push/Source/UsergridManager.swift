@@ -27,15 +27,16 @@
 import Foundation
 import UsergridSDK
 
-/// This class handles the primary communications to the UsergirdSDK.
+/// This class handles the primary communications to the UsergridSDK.
 public class UsergridManager {
 
     static let ORG_ID = "rwalsh"
     static let APP_ID = "sandbox"
     static let NOTIFIER_ID = "usergridpushsample"
+    static let BASE_URL = "https://api.usergrid.com"
 
     static func initializeSharedInstance() {
-        Usergrid.initSharedInstance(configuration: UsergridClientConfig(orgId: UsergridManager.ORG_ID, appId: UsergridManager.APP_ID))
+        Usergrid.initSharedInstance(configuration: UsergridClientConfig(orgId: UsergridManager.ORG_ID, appId: UsergridManager.APP_ID, baseUrl: UsergridManager.BASE_URL))
     }
 
     static func applyPushToken(deviceToken:NSData) {
