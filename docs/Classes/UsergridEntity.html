@@ -14,7 +14,7 @@
     <a title="UsergridEntity Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">UsergridSDK Docs</a> (99% documented)</p>
+        <p><a href="../index.html">UsergridSDK Docs</a> (100% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -644,16 +644,67 @@ usergridEntity[&quot;propertyName&quot;] = propertyValue
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Designated initializer for <code><a href="../Classes/UsergridEntity.html">UsergridEntity</a></code> objects</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">UsergridEntity</span><span class="p">:</span> <span class="kt">NSObject</span><span class="p">,</span> <span class="kt">NSCoding</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">required</span> <span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">type</span><span class="p">:</span><span class="kt">String</span><span class="p">,</span> <span class="nv">name</span><span class="p">:</span><span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">propertyDict</span><span class="p">:[</span><span class="kt">String</span><span class="p">:</span><span class="kt">AnyObject</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>type</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The type associated with the <code>UsergridEntity</code> object.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The optional name associated with the <code>UsergridEntity</code> object.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>propertyDict</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The optional property dictionary that the <code>UsergridEntity</code> object will start out with.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A new <code><a href="../Classes/UsergridEntity.html">UsergridEntity</a></code> object.</p>
+
                       </div>
                     </section>
                   </div>
@@ -731,16 +782,41 @@ usergridEntity[&quot;propertyName&quot;] = propertyValue
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Class convenience constructor for creating <code><a href="../Classes/UsergridEntity.html">UsergridEntity</a></code> objects dynamically.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">UsergridEntity</span><span class="p">:</span> <span class="kt">NSObject</span><span class="p">,</span> <span class="kt">NSCoding</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">entity</span><span class="p">(</span><span class="n">jsonDict</span> <span class="nv">jsonDict</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span><span class="kt">AnyObject</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kt">UsergridEntity</span><span class="p">?</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>jsonDict</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A valid JSON dictionary which must contain at the very least a value for the <code>type</code> key.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A <code><a href="../Classes/UsergridEntity.html">UsergridEntity</a></code> object provided that the <code><a href="../Classes/UsergridEntity.html#/s:vC11UsergridSDK14UsergridEntity4typeSS">type</a></code> key within the dictionay exists. Otherwise nil.</p>
+
                       </div>
                     </section>
                   </div>
@@ -2526,7 +2602,7 @@ usergridEntity[&quot;propertyName&quot;] = propertyValue
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2016 <a class="link" href="https://github.com/RobertWalsh/UsergridSDK" target="_blank" rel="external">Robert Walsh</a>. All rights reserved. (Last updated: 2016-02-02)</p>
+          <p>&copy; 2016 <a class="link" href="https://github.com/RobertWalsh/UsergridSDK" target="_blank" rel="external">Robert Walsh</a>. All rights reserved. (Last updated: 2016-02-08)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.5.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

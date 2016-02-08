@@ -1,5 +1,0 @@
-UsergridEntity.swift
-	required public init(type:String, name:String? = nil, propertyDict:[String:AnyObject]? = nil)
-	public class func entity(jsonDict jsonDict: [String:AnyObject]) -> UsergridEntity?
-Usergrid.swift
-	public class Usergrid: NSObject
