@@ -563,7 +563,7 @@
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				IBSC_MODULE = WatchSample_Extension;
 				INFOPLIST_FILE = WatchSample/Info.plist;
-				PRODUCT_BUNDLE_IDENTIFIER = com.apigee.usergridsample.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.usergrid.activityfeed.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -581,7 +581,7 @@
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				IBSC_MODULE = WatchSample_Extension;
 				INFOPLIST_FILE = WatchSample/Info.plist;
-				PRODUCT_BUNDLE_IDENTIFIER = com.apigee.usergridsample.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.usergrid.activityfeed.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -597,7 +597,7 @@
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "WatchSample Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.apigee.usergridsample.watchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.usergrid.activityfeed.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -613,7 +613,7 @@
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "WatchSample Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.apigee.usergridsample.watchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.usergrid.activityfeed.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -713,7 +713,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Robert WALSH (ZDVX697LCZ)";
 				INFOPLIST_FILE = Source/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.apigee.usergridsample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.usergrid.activityfeed;
 				PRODUCT_NAME = ActivityFeed;
 				PROVISIONING_PROFILE = "fc62482c-0c41-4623-b17d-e695af279c7c";
 				SWIFT_INSTALL_OBJC_HEADER = NO;
@@ -732,7 +732,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Robert WALSH (ZDVX697LCZ)";
 				INFOPLIST_FILE = Source/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.apigee.usergridsample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.usergrid.activityfeed;
 				PRODUCT_NAME = ActivityFeed;
 				PROVISIONING_PROFILE = "fc62482c-0c41-4623-b17d-e695af279c7c";
 				SWIFT_INSTALL_OBJC_HEADER = NO;

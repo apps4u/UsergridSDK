@@ -2,7 +2,7 @@ use_frameworks!
 inhibit_all_warnings!
 
 def shared_pods
-    pod 'UsergridSDK',:git => 'https://github.com/RobertWalsh/UsergridSDK'
+    pod 'UsergridSDK'
 end
 
 target 'ActivityFeed' do

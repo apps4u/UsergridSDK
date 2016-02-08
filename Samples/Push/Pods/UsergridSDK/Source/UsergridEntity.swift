@@ -103,7 +103,7 @@ public class UsergridEntity: NSObject, NSCoding {
 
     // MARK: - Initialization -
 
-    /*!
+    /**
     Designated initializer for `UsergridEntity` objects
 
     - parameter type:         The type associated with the `UsergridEntity` object.
@@ -143,7 +143,7 @@ public class UsergridEntity: NSObject, NSCoding {
         UsergridEntity.subclassMappings[type] = toSubclass
     }
 
-    /*!
+    /**
     Class convenience constructor for creating `UsergridEntity` objects dynamically.
 
     - parameter jsonDict: A valid JSON dictionary which must contain at the very least a value for the `type` key.

@@ -26,17 +26,17 @@
 
 import Foundation
 
-/**
-The `Usergrid` class acts as a static shared instance manager for the `UsergridClient` class.
-
-The methods and variables in this class are all static and therefore you will never need or want to initialize an instance of the `Usergrid` class.
-
-Use of this class depends on initialization of the shared instance of the `UsergridClient` object.  Because of this, before using any of the static methods
-provided you will need to call one of the shared instance initialization methods.  Failure to do so will result in failure from all methods.
-*/
-
+/// The version number for the Usergrid Swift SDK.
 public let UsergridSDKVersion = "2.1.0"
 
+/**
+ The `Usergrid` class acts as a static shared instance manager for the `UsergridClient` class.
+
+ The methods and variables in this class are all static and therefore you will never need or want to initialize an instance of the `Usergrid` class.
+
+ Use of this class depends on initialization of the shared instance of the `UsergridClient` object.  Because of this, before using any of the static methods
+ provided you will need to call one of the shared instance initialization methods.  Failure to do so will result in failure from all methods.
+ */
 public class Usergrid: NSObject {
 
     // MARK: - Static Variables -

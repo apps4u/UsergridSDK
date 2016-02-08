@@ -236,7 +236,7 @@ public class UsergridAssetUploadRequest: UsergridRequest {
         request.setValue(String(format: "%lu", self.multiPartHTTPBody.length), forHTTPHeaderField: UsergridRequest.CONTENT_LENGTH)
     }
 
-    private static let ASSET_UPLOAD_BOUNDARY = "apigee-asset-upload-boundary"
+    private static let ASSET_UPLOAD_BOUNDARY = "usergrid-asset-upload-boundary"
     private static let ASSET_UPLOAD_CONTENT_HEADER = "multipart/form-data; boundary=\(UsergridAssetUploadRequest.ASSET_UPLOAD_BOUNDARY)"
     private static let CONTENT_DISPOSITION = "Content-Disposition"
     private static let MULTIPART_START = "--\(UsergridAssetUploadRequest.ASSET_UPLOAD_BOUNDARY)\r\n"

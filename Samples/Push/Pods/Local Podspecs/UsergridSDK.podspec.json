@@ -1,13 +1,13 @@
 {
   "name": "UsergridSDK",
-  "version": "0.0.4",
+  "version": "2.1.0",
   "summary": "Usergrid SDK for iOS written in Swift",
   "homepage": "https://github.com/RobertWalsh/UsergridSDK",
   "license": "Apache 2.0",
   "authors": {
     "Robert Walsh": "rjwalsh1985@gmail.com"
   },
-  "social_media_url": "https://twitter.com/Apigee",
+  "social_media_url": "https://twitter.com/usergrid",
   "requires_arc": true,
   "platforms": {
     "ios": "8.0",
@@ -18,7 +18,7 @@
   "source": {
     "git": "https://github.com/RobertWalsh/UsergridSDK.git",
     "branch": "master",
-    "tag": "v0.0.4"
+    "tag": "v2.1.0"
   },
   "source_files": "Source/*.swift"
 }
