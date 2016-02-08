@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
   s.homepage = 'https://github.com/RobertWalsh/UsergridSDK'
   s.license = 'Apache 2.0'
   s.author = { 'Robert Walsh' => 'rjwalsh1985@gmail.com' }
-  s.social_media_url = 'https://twitter.com/Apigee'
+  s.social_media_url = 'https://twitter.com/usergrid'
   s.requires_arc = true
 
   s.ios.deployment_target = '8.0'
