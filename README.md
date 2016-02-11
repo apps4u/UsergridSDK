@@ -7,6 +7,9 @@ Usergrid SDK written in Swift
 
 ## Requirements
 
+> **While the Usergrid SDK is written in Swift, the functionality remains compatible with Objective-C.
+    Use `#import <UsergridSDK/UsergridSDK-Swift.h>` in your objective-c files to enable the use of the SDK.**
+
 - iOS 8.0+ / Mac OS X 10.11+ / tvOS 9.1+ / watchOS 2.1+
 - Xcode 7.1+
 
@@ -73,7 +76,7 @@ There are two fundamental ways to implement the Usergrid Node.js SDK:
 Usergrid.initSharedInstance(orgID: "orgID", appID: "appID")
 ```
 
-2. The Instance pattern enables the develper to manage instances of the Usergrid client independently and in an isolated fashion. The primary use-case for this is when an application connects to multiple Usergrid targets:
+2. The Instance pattern enables the developer to manage instances of the Usergrid client independently and in an isolated fashion. The primary use-case for this is when an application connects to multiple Usergrid targets.
 
 ```swift
 let client = UsergridClient(orgID: "orgID", appID: "appID")
@@ -87,7 +90,7 @@ _Note: You must have an Apple Developer account along with valid provisioning pr
 
 In order to utilize Usergrid push notifications, you must register the device with an Usergrid push notifier identifier.
 
-For a more thorough example of recieving push notifications and sending push notifications (from the device) refer to the Push sample app located in the `/Samples` folder.
+> For a more thorough example of recieving push notifications and sending push notifications (from the device) refer to the Push sample app located in the `/Samples` folder.
 
 The following code snippet shows how you would register for push notifications and apply the push token within the application delegate.
 
