@@ -316,7 +316,9 @@ Usergrid.GET("users", uuidOrName:"<uuid-or-name>") { (response) in
 
 ## Connections
 
-Connections can be managed using `Usergrid.connect()`, `Usergrid.disconnect()`, and `Usergrid.getConnections()`, or entity convenience methods of the same name.
+Connections can be managed using `Usergrid.connect()`, `Usergrid.disconnect()`, and `Usergrid.getConnections()`, or entity convenience methods of the same name. 
+
+When retrieving connections via `Usergrid.getConnections()`, you can pass in a optional `UsergridQuery` object in order to filter the connectioned entities returned.
 
 ### connect
 
@@ -357,3 +359,64 @@ Usergrid.disconnect(entity1, relationship: "relationship", from: entity2) { (res
     // entity1's outbound connection to entity2 has been destroyed
 }
 ```
+
+## Assets
+
+Assets can be uploaded and downloaded either directly using `Usergrid.uploadAsset()` or `Usergrid.downloadAsset()`, or via `UsergridEntity` convenience methods with the same names. Before uploading an asset, you will need to initialize a `UsergridAsset` instance.
+
+### UsergridAsset init
+
+When initializing a `UsergridAsset` object specifying a file name is optional.
+
+**Init using raw a NSData object**
+
+```swift
+let image = UIImage(contentsOfFile: "path/to/image")
+let data = UIImagePNGRepresentation(image)
+let asset = UsergridAsset(fileName:"<file-name-or-nil>", data: data!, contentType:"image/png")
+```
+
+**Init using an UIImage object**
+
+```swift
+let image = UIImage(contentsOfFile: "path/to/image")
+let asset = UsergridAsset(fileName:"<file-name-or-nil>", image: image!, imageContentType: .Png)
+```
+
+**Init using a local file Url**
+
+```swift
+let fileUrl = NSURL(string: "local/path/to/file")
+if fileUrl.isFileReferenceURL() {  // This must be a file reference url.
+    let asset = UsergridAsset(fileName:"<file-name-or-nil>", fileUrl: fileUrl!, contentType:"<content-type>")
+}
+```
+
+### UsergridAsset Upload
+
+```swift
+let image = UIImage(contentsOfFile: "path/to/image")
+let asset = UsergridAsset(fileName:"<file-name-or-nil>", image: image!, imageContentType: .Png)!
+Usergrid.uploadAsset(entity,
+                     asset: asset,
+                     progress: { (bytesFinished, bytesExpected) -> Void in
+                        // Monitor the upload progress
+                     },
+                     completion: { (response, asset, error) -> Void in
+                        // The asset is now uploaded to Usergrid and entity.asset == asset
+})
+```
+
+### UsergridAsset Download
+
+```swift
+Usergrid.downloadAsset(entity,
+                       contentType: "image/png",
+                       progress: { (bytesFinished, bytesExpected) -> Void in
+                            // Monitor the download progress
+                       },
+                       completion:{ (asset, error) -> Void in
+                            // The asset is now downloaded to Usergrid and entity.asset == asset
+})
+```
+
