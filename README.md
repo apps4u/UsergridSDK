@@ -73,13 +73,13 @@ There are two fundamental ways to implement the Usergrid Node.js SDK:
 1. The singleton pattern is both convenient and enables the developer to use a globally available and always-initialized instance of Usergrid. 
 
 ```swift
-Usergrid.initSharedInstance(orgID: "orgID", appID: "appID")
+Usergrid.initSharedInstance(orgId: "orgId", appId: "appId")
 ```
 
 2. The Instance pattern enables the developer to manage instances of the Usergrid client independently and in an isolated fashion. The primary use-case for this is when an application connects to multiple Usergrid targets.
 
 ```swift
-let client = UsergridClient(orgID: "orgID", appID: "appID")
+let client = UsergridClient(orgId: "orgId", appId: "appId")
 ```
 
 _Note: Examples in this readme assume you are using the `Usergrid` shared instance. If you've implemented the instance pattern instead, simply replace `Usergrid` with your client instance variable._
