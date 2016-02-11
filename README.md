@@ -79,7 +79,42 @@ Usergrid.initSharedInstance(orgID: "orgID", appID: "appID")
 let client = UsergridClient(orgID: "orgID", appID: "appID")
 ```
 
-_Note: The following examples assume you are using the `Usergrid` shared instance. If you've implemented the instance pattern instead, simply replace `Usergrid` with your client instance variable._
+_Note: Examples in this readme assume you are using the `Usergrid` shared instance. If you've implemented the instance pattern instead, simply replace `Usergrid` with your client instance variable._
+
+## Push Notifications
+
+_Note: You must have an Apple Developer account along with valid provisioning profiles set in order to receive push notifications._
+
+In order to utilize Usergrid push notifications, you must register the device with an Usergrid push notifier identifier.
+
+For a more thorough example of recieving push notifications and sending push notifications (from the device) refer to the Push sample app located in the `/Samples` folder.
+
+The following code snippet shows how you would register for push notifications and apply the push token within the application delegate.
+
+```swift
+import UsergridSDK
+
+@UIApplicationMain class AppDelegate: UIResponder, UIApplicationDelegate {
+
+    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+
+        // Initialize the shared instance of Usergrid.
+        Usergrid.initSharedInstance(orgId:"orgId", appId: "appId")
+
+        // Register for APN
+        application.registerUserNotificationSettings(UIUserNotificationSettings( forTypes: [.Alert, .Badge, .Sound], categories: nil))
+        application.registerForRemoteNotifications()
+
+        return true
+    }
+
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        Usergrid.applyPushToken(deviceToken, notifierID: "notifierId") { response in
+            // The push notification is now added to Usergrid for this device and this device will now be able to recieve notifications.
+        }
+    }
+}
+```
 
 ## RESTful operations
 
