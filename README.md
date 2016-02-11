@@ -368,7 +368,7 @@ Assets can be uploaded and downloaded either directly using `Usergrid.uploadAsse
 
 When initializing a `UsergridAsset` object specifying a file name is optional.
 
-**Init using raw a NSData object**
+**Init using a NSData object**
 
 ```swift
 let image = UIImage(contentsOfFile: "path/to/image")
@@ -411,12 +411,12 @@ Usergrid.uploadAsset(entity,
 
 ```swift
 Usergrid.downloadAsset(entity,
-                       contentType: "image/png",
+                       contentType: "<expected-content-type>",
                        progress: { (bytesFinished, bytesExpected) -> Void in
                             // Monitor the download progress
                        },
                        completion:{ (asset, error) -> Void in
-                            // The asset is now downloaded to Usergrid and entity.asset == asset
+                            // The asset is now downloaded from Usergrid and entity.asset == asset
 })
 ```
 
