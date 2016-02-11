@@ -736,6 +736,8 @@ Usergrid.downloadAsset(entity,
 
 Creating custom subclasses of the base `UsergridEntity` class (just like `UsergridUser` and `UsergridDevice`) is possible.
 
+> For a working example of creating a custom subclass refer to the ActivityFeed sample app located in the `/Samples` folder.  The custom subclass there is named `ActivityEntity`.
+
 - To do so, subclass `UsergridEntity` and implement the required methods:
 
 	```swift
@@ -752,7 +754,7 @@ Creating custom subclasses of the base `UsergridEntity` class (just like `Usergr
 	    }
 	}
 	```
-- Once the custom subclass is created you will need to register the new class as a subclass before :
+- You will also need to register the custom subclass:
 
 	```swift
 	Usergrid.initSharedInstance(orgId: "orgId", appId: "appId")
@@ -761,10 +763,10 @@ Creating custom subclasses of the base `UsergridEntity` class (just like `Usergr
 
 By registering your custom subclass, the `UsergridEntity` and `UsergridResponse` classes are able to generate instances of these classes based on the an entities `type`.
 
-In the above example entities which have a `type` value of `activity` will now automatically be generated as `ActivityEntity` objects. e.g.:
+In the above example, entities which have a `type` value of `activity` can now be cast as `ActivityEntity` objects. e.g.:
 
 ```swift
 Usergrid.GET("activity") { response in
-    var activityEntities: [ActivityEntity] = response.entities
+    var activityEntities: [ActivityEntity]? = response.entities as? [ActivityEntity]
 }
 ```
