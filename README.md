@@ -90,7 +90,7 @@ When making any RESTful call, a `type` parameter (or `path`) is always required.
 **GET entities in a collection**
 
 ```swift
-Usergrid.GET("collection") { (response) in
+Usergrid.GET("collection") { response in
     var entities: [UsergridEntity]? = response.entities
 }
 ```
@@ -98,7 +98,7 @@ Usergrid.GET("collection") { (response) in
 **GET a specific entity in a collection by uuid or name**
 
 ```swift
-Usergrid.GET("collection", uuidOrName:"<uuid-or-name>") { (response) in
+Usergrid.GET("collection", uuidOrName:"<uuid-or-name>") { response in
     var entity: UsergridEntity? = response.entity?
 }
 ```
@@ -116,7 +116,7 @@ var query = UsergridQuery("cats").gt("weight", value: 2.4)
 // this will build out the following query:
 // select * where weight > 2.4 and color contains 'bl*' and not color = 'blue' or color = 'orange'
 
-Usergrid.GET("collection", query:query) { (response) in
+Usergrid.GET("collection", query:query) { response in
     var entities: [UsergridEntity]? = response.entities
 }
 ```
@@ -130,7 +130,7 @@ POST and PUT requests both require a JSON body payload. You can pass either a Sw
 ```swift
 var entity = UsergridEntity(type: "restaurant", propertyDict: ["restaurant": "Dino's Deep Dish","cuisine": "pizza"])
 
-Usergrid.POST(entity) { (response) -> Void in
+Usergrid.POST(entity) { response in
     // entity should now have a uuid property and be created
 }
 
@@ -139,7 +139,7 @@ Usergrid.POST(entity) { (response) -> Void in
 var entities = [UsergridEntity(type: "restaurant", propertyDict:["restaurant": "Dino's Deep Dish","cuisine": "pizza"]), 
                 UsergridEntity(type: "restaurant", propertyDict:["restaurant": "Pizza da Napoli","cuisine": "pizza"])]
 
-Usergrid.POST(entities) { (response) -> Void in
+Usergrid.POST(entities) { response in
     // response.entities should now contain now valid posted entities.
 }
 ```
@@ -149,7 +149,7 @@ Usergrid.POST(entities) { (response) -> Void in
 ```swift
 var entity = UsergridEntity(type: "restaurant", propertyDict:["restaurant": "Dino's Deep Dish", "cuisine": "pizza"])
 
-Usergrid.POST(entity) { (response) -> Void in
+Usergrid.POST(entity) { response in
     if let responseEntity = response.entity {
         responseEntity["owner"] = "Mia Carrara"
         Usergrid.PUT(responseEntity) { (response) -> Void in
@@ -162,7 +162,7 @@ Usergrid.POST(entity) { (response) -> Void in
 
 var query = UsergridQuery("restaurants").eq("cuisine", value:"italian")
 
-Usergrid.PUT(query, jsonBody: ["keywords":["pasta"]]) { (response) -> Void in
+Usergrid.PUT(query, jsonBody: ["keywords":["pasta"]]) { response in
 
     /* the first 10 entities matching this query criteria will be updated:
     e.g.:
@@ -191,7 +191,7 @@ DELETE requests require either a specific entity or a `UsergridQuery` object to 
 **DELETE a specific entity in a collection by uuid or name**
 
 ```swift
-Usergrid.DELETE("collection", uuidOrName: "<uuid-or-name>") { (response) -> Void in
+Usergrid.DELETE("collection", uuidOrName: "<uuid-or-name>") { response in
     // if successful, entity will now be deleted
 })
 ```
@@ -206,7 +206,7 @@ let query = UsergridQuery("cats").eq("color", value:"black")
 // this will build out the following query:
 // select * where color = 'black' or color = 'white'
 
-Usergrid.DELETE(query) { (response) -> Void in
+Usergrid.DELETE(query) { response in
     // the first 10 entities matching this query criteria will be deleted
 }
 ```
@@ -218,7 +218,7 @@ Usergrid.DELETE(query) { (response) -> Void in
 ### reload
 
 ```swift
-entity.reload { (response) -> Void in
+entity.reload() { response in
     // entity is now reloaded from the server
 }
 ```
@@ -227,7 +227,7 @@ entity.reload { (response) -> Void in
 
 ```swift
 entity["aNewProperty"] = "A new value"
-entity.save() { (response) -> Void in
+entity.save() { response in
     // entity is now updated on the server
 }
 ```
@@ -235,7 +235,7 @@ entity.save() { (response) -> Void in
 ### remove
 
 ```swift
-entity.remove() { (response) -> Void in
+entity.remove() { response in
     // entity is now deleted on the server and the local instance should be destroyed
 }
 ```
@@ -253,7 +253,7 @@ If a request fails, the `error` property will contain information about the prob
 You can check `UsergridResponse.ok`, a `Bool` value, to see if the response was successful. Any status code `< 400` returns true.
 
 ```swift
-Usergrid.GET("collection") { (response) in
+Usergrid.GET("collection") { response in
     if response.ok {
         // woo!
     }
@@ -277,7 +277,7 @@ Depending on the call you make, any entities returned in the response will be au
 Examples:
 
 ```swift
-Usergrid.GET("collection") { (response) in
+Usergrid.GET("collection") { response in
     // you can also access:
     //     response.entities (the returned entities)
     //     response.first (the first entity)
@@ -285,7 +285,7 @@ Usergrid.GET("collection") { (response) in
     //     response.last (the last entity returned)
 }
 
-Usergrid.GET("collection", uuidOrName:"<uuid-or-name>") { (response) in
+Usergrid.GET("collection", uuidOrName:"<uuid-or-name>") { response in
     // you can also access:
     //     response.entity (the returned entity) 
     //     response.entities (containing only the returned entity)
@@ -293,7 +293,7 @@ Usergrid.GET("collection", uuidOrName:"<uuid-or-name>") { (response) in
     //     response.last (same as response.entity)
 }
 
-Usergrid.GET("users") { (response) in
+Usergrid.GET("users") { response in
     // you can also access:
     //     response.users (the returned users)
     //     response.entities (same as response.users)
@@ -303,7 +303,7 @@ Usergrid.GET("users") { (response) in
     //     response.last (the last user)
 }
 
-Usergrid.GET("users", uuidOrName:"<uuid-or-name>") { (response) in
+Usergrid.GET("users", uuidOrName:"<uuid-or-name>") { response in
     // you can also access;
     //     response.users (containing only the one user)
     //     response.entities (same as response.users)
@@ -325,7 +325,7 @@ When retrieving connections via `Usergrid.getConnections()`, you can pass in a o
 **Create a connection between two entities**
 
 ```swift
-Usergrid.connect(entity1, relationship: "relationship", to: entity2) { (response) in
+Usergrid.connect(entity1, relationship: "relationship", to: entity2) { response in
     // entity1 now has an outbound connection to entity2
 }
 ```
@@ -335,7 +335,7 @@ Usergrid.connect(entity1, relationship: "relationship", to: entity2) { (response
 **Retrieve outbound connections**
 
 ```swift
-Usergrid.getConnections(.Out, entity: entity1, relationship: "relationship", query: nil) { (response) -> Void in
+Usergrid.getConnections(.Out, entity: entity1, relationship: "relationship", query: nil) { response in
     // entities is an array of entities that entity1 is connected to via 'relationship'
     // in this case, we'll see entity2 in the array
 }
@@ -344,7 +344,7 @@ Usergrid.getConnections(.Out, entity: entity1, relationship: "relationship", que
 **Retrieve inbound connections**
 
 ```swift
-Usergrid.getConnections(.In, entity: entity2, relationship: "relationship", query: nil) { (response) -> Void in
+Usergrid.getConnections(.In, entity: entity2, relationship: "relationship", query: nil) { response in
     // entities is an array of entities that connect to entity2 via 'relationship'
     // in this case, we'll see entity1 in the array
 }
@@ -355,7 +355,7 @@ Usergrid.getConnections(.In, entity: entity2, relationship: "relationship", quer
 **Delete a connection between two entities**
 
 ```swift
-Usergrid.disconnect(entity1, relationship: "relationship", from: entity2) { (response) in
+Usergrid.disconnect(entity1, relationship: "relationship", from: entity2) { response in
     // entity1's outbound connection to entity2 has been destroyed
 }
 ```
@@ -399,10 +399,10 @@ let image = UIImage(contentsOfFile: "path/to/image")
 let asset = UsergridAsset(fileName:"<file-name-or-nil>", image: image!, imageContentType: .Png)!
 Usergrid.uploadAsset(entity,
                      asset: asset,
-                     progress: { (bytesFinished, bytesExpected) -> Void in
+                     progress: { bytesFinished, bytesExpected in
                         // Monitor the upload progress
                      },
-                     completion: { (response, asset, error) -> Void in
+                     completion: { response, asset, error in
                         // The asset is now uploaded to Usergrid and entity.asset == asset
 })
 ```
@@ -412,10 +412,10 @@ Usergrid.uploadAsset(entity,
 ```swift
 Usergrid.downloadAsset(entity,
                        contentType: "<expected-content-type>",
-                       progress: { (bytesFinished, bytesExpected) -> Void in
+                       progress: { bytesFinished, bytesExpected in
                             // Monitor the download progress
                        },
-                       completion:{ (asset, error) -> Void in
+                       completion:{ asset, error in
                             // The asset is now downloaded from Usergrid and entity.asset == asset
 })
 ```
