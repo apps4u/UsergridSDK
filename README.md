@@ -7,8 +7,9 @@ Usergrid SDK written in Swift
 
 ## Requirements
 
-> **While the Usergrid SDK is written in Swift, the functionality remains compatible with Objective-C.
-    Use `#import <UsergridSDK/UsergridSDK-Swift.h>` in your objective-c files to enable the use of the SDK.**
+> **While the Usergrid SDK is written in Swift, the functionality remains compatible with Objective-C.**
+    
+> **Use `#import <UsergridSDK/UsergridSDK-Swift.h>` in your Objective-C files to enable the use of the SDK.**
 
 - iOS 8.0+ / Mac OS X 10.11+ / tvOS 9.1+ / watchOS 2.1+
 - Xcode 7.1+
@@ -40,15 +41,15 @@ $ pod install
 
 - Open up Terminal, `cd` into your top-level project directory, and run the following command "if" your project is not initialized as a git repository:
 
-```bash
-$ git init
-```
+	```bash
+	$ git init
+	```
 
 - Add UsergridSDK as a git submodule by running the following command:
 
-```bash
-$ git submodule add https://github.com/apache/usergrid
-```
+	```bash
+	$ git submodule add https://github.com/apache/usergrid
+	```
 
 - Open the `sdks/swift` folder, and drag the `UsergridSDK.xcodeproj` into the Project Navigator of your application's Xcode project.
 
@@ -72,15 +73,15 @@ There are two different ways of initializing the Usergrid Swift SDK:
 
 1. The singleton pattern is both convenient and enables the developer to use a globally available and always-initialized instance of Usergrid. 
 
-```swift
-Usergrid.initSharedInstance(orgId: "orgId", appId: "appId")
-```
+	```swift
+	Usergrid.initSharedInstance(orgId: "orgId", appId: "appId")
+	```
 
 2. The Instance pattern enables the developer to manage instances of the Usergrid client independently and in an isolated fashion. The primary use-case for this is when an application connects to multiple Usergrid targets.
 
-```swift
-let client = UsergridClient(orgId: "orgId", appId: "appId")
-```
+	```swift
+	let client = UsergridClient(orgId: "orgId", appId: "appId")
+	```
 
 _Note: Examples in this readme assume you are using the `Usergrid` shared instance. If you've implemented the instance pattern instead, simply replace `Usergrid` with your client instance variable._
 
@@ -125,135 +126,137 @@ When making any RESTful call, a `type` parameter (or `path`) is always required.
 
 ### GET
 
-**GET entities in a collection**
+- To get entities in a collection:
 
-```swift
-Usergrid.GET("collection") { response in
-    var entities: [UsergridEntity]? = response.entities
-}
-```
+	```swift
+	Usergrid.GET("collection") { response in
+	    var entities: [UsergridEntity]? = response.entities
+	}
+	```
 
-**GET a specific entity in a collection by uuid or name**
+- To get a specific entity in a collection by uuid or name:
 
-```swift
-Usergrid.GET("collection", uuidOrName:"<uuid-or-name>") { response in
-    var entity: UsergridEntity? = response.entity?
-}
-```
+	```swift
+	Usergrid.GET("collection", uuidOrName:"<uuid-or-name>") { response in
+	    var entity: UsergridEntity? = response.entity?
+	}
+	```
 
-**GET specific entities in a collection by passing a UsergridQuery object**
+- To get specific entities in a collection by passing a `UsergridQuery` object:
 
-```swift
-var query = UsergridQuery("cats").gt("weight", value: 2.4)
-                                 .containsString("color", value:"bl*")
-                                 .not()
-                                 .eq("color", value:"blue")
-                                 .or()
-                                 .eq("color", value:"orange")
-
-// this will build out the following query:
-// select * where weight > 2.4 and color contains 'bl*' and not color = 'blue' or color = 'orange'
-
-Usergrid.GET("collection", query:query) { response in
-    var entities: [UsergridEntity]? = response.entities
-}
-```
+	```swift
+	var query = UsergridQuery("cats").gt("weight", value: 2.4)
+	                                 .containsString("color", value:"bl*")
+	                                 .not()
+	                                 .eq("color", value:"blue")
+	                                 .or()
+	                                 .eq("color", value:"orange")
+	
+	// this will build out the following query:
+	// select * where weight > 2.4 and color contains 'bl*' and not color = 'blue' or color = 'orange'
+	
+	Usergrid.GET("collection", query:query) { response in
+	    var entities: [UsergridEntity]? = response.entities
+	}
+	```
 
 ### POST and PUT
 
 POST and PUT requests both require a JSON body payload. You can pass either a Swift object or a `UsergridEntity` instance. While the former works in principle, best practise is to use a `UsergridEntity` wherever practical. When an entity has a uuid or name property and already exists on the server, use a PUT request to update it. If it does not, use POST to create it.
 
-**POST (create) a new entity in a collection**
+- To create a new entity in a collection (**POST**):
 
-```swift
-var entity = UsergridEntity(type: "restaurant", propertyDict: ["restaurant": "Dino's Deep Dish","cuisine": "pizza"])
+	```swift
+	var entity = UsergridEntity(type: "restaurant", propertyDict: ["restaurant": "Dino's Deep Dish","cuisine": "pizza"])
+	
+	Usergrid.POST(entity) { response in
+	    // entity should now have a uuid property and be created
+	}
+	
+	// you can also POST an array of entities:
+	
+	var entities = [UsergridEntity(type: "restaurant", propertyDict:["restaurant": "Dino's Deep Dish","cuisine": "pizza"]), 
+	                UsergridEntity(type: "restaurant", propertyDict:["restaurant": "Pizza da Napoli","cuisine": "pizza"])]
+	
+	Usergrid.POST(entities) { response in
+	    // response.entities should now contain now valid posted entities.
+	}
+	```
 
-Usergrid.POST(entity) { response in
-    // entity should now have a uuid property and be created
-}
+- To update an entity in a collection (**PUT**):
 
-// you can also POST an array of entities:
-
-var entities = [UsergridEntity(type: "restaurant", propertyDict:["restaurant": "Dino's Deep Dish","cuisine": "pizza"]), 
-                UsergridEntity(type: "restaurant", propertyDict:["restaurant": "Pizza da Napoli","cuisine": "pizza"])]
-
-Usergrid.POST(entities) { response in
-    // response.entities should now contain now valid posted entities.
-}
-```
-
-**PUT (update) an entity in a collection**
-
-```swift
-var entity = UsergridEntity(type: "restaurant", propertyDict:["restaurant": "Dino's Deep Dish", "cuisine": "pizza"])
-
-Usergrid.POST(entity) { response in
-    if let responseEntity = response.entity {
-        responseEntity["owner"] = "Mia Carrara"
-        Usergrid.PUT(responseEntity) { (response) -> Void in
-            // entity now has the property 'owner'
-        }
-    }
-}
-
-// or update a set of entities by passing a UsergridQuery object
-
-var query = UsergridQuery("restaurants").eq("cuisine", value:"italian")
-
-Usergrid.PUT(query, jsonBody: ["keywords":["pasta"]]) { response in
-
-    /* the first 10 entities matching this query criteria will be updated:
-    e.g.:
-        [
-            {
-                "type": "restaurant",
-                "restaurant": "Il Tarazzo",
-                "cuisine": "italian",
-                "keywords": ["pasta"]
-            },
-            {
-                "type": "restaurant",
-                "restaurant": "Cono Sur Pizza & Pasta",
-                "cuisine": "italian",
-                "keywords": ["pasta"]
-            }
-        ]
-    */
-}
-```
+	```swift
+	var entity = UsergridEntity(type: "restaurant", propertyDict:["restaurant": "Dino's Deep Dish", "cuisine": "pizza"])
+	
+	Usergrid.POST(entity) { response in
+	    if let responseEntity = response.entity {
+	        responseEntity["owner"] = "Mia Carrara"
+	        Usergrid.PUT(responseEntity) { (response) -> Void in
+	            // entity now has the property 'owner'
+	        }
+	    }
+	}
+	
+	// or update a set of entities by passing a UsergridQuery object
+	
+	var query = UsergridQuery("restaurants").eq("cuisine", value:"italian")
+	
+	Usergrid.PUT(query, jsonBody: ["keywords":["pasta"]]) { response in
+	
+	    /* the first 10 entities matching this query criteria will be updated:
+	    e.g.:
+	        [
+	            {
+	                "type": "restaurant",
+	                "restaurant": "Il Tarazzo",
+	                "cuisine": "italian",
+	                "keywords": ["pasta"]
+	            },
+	            {
+	                "type": "restaurant",
+	                "restaurant": "Cono Sur Pizza & Pasta",
+	                "cuisine": "italian",
+	                "keywords": ["pasta"]
+	            }
+	        ]
+	    */
+	}
+	```
 
 ### DELETE
 
 DELETE requests require either a specific entity or a `UsergridQuery` object to be passed as an argument.
 
-**DELETE a specific entity in a collection by uuid or name**
+- To delete a specific entity in a collection by uuid or name:
 
-```swift
-Usergrid.DELETE("collection", uuidOrName: "<uuid-or-name>") { response in
-    // if successful, entity will now be deleted
-})
-```
+	```swift
+	Usergrid.DELETE("collection", uuidOrName: "<uuid-or-name>") { response in
+	    // if successful, entity will now be deleted
+	})
+	```
 
-**DELETE specific entities in a collection by passing a UsergridQuery object**
+- To specific entities in a collection to delete by passing a `UsergridQuery` object:
 
-```swift
-let query = UsergridQuery("cats").eq("color", value:"black")
-                                 .or()
-                                 .eq("color", value:"white")
-
-// this will build out the following query:
-// select * where color = 'black' or color = 'white'
-
-Usergrid.DELETE(query) { response in
-    // the first 10 entities matching this query criteria will be deleted
-}
-```
+	```swift
+	let query = UsergridQuery("cats").eq("color", value:"black")
+	                                 .or()
+	                                 .eq("color", value:"white")
+	
+	// this will build out the following query:
+	// select * where color = 'black' or color = 'white'
+	
+	Usergrid.DELETE(query) { response in
+	    // the first 10 entities matching this query criteria will be deleted
+	}
+	```
 
 ## Entity operations and convenience methods
 
 `UsergridEntity` has a number of helper/convenience methods to make working with entities more convenient.
 
-### reload
+### reload()
+
+Reloads the entity from the server:
 
 ```swift
 entity.reload() { response in
@@ -261,7 +264,10 @@ entity.reload() { response in
 }
 ```
 
-### save
+### save()
+
+Saves (or creates) the entity on the server:
+
 
 ```swift
 entity["aNewProperty"] = "A new value"
@@ -270,13 +276,277 @@ entity.save() { response in
 }
 ```
 
-### remove
+### remove()
+
+Deletes the entity from the server:
 
 ```swift
 entity.remove() { response in
     // entity is now deleted on the server and the local instance should be destroyed
 }
 ```
+
+## Authentication, current user, and auth-fallback
+
+### appAuth and authenticateApp()
+
+`Usergrid` can use the app client ID and secret that were passed upon initialization and automatically retrieve an app-level token for these credentials.
+
+```swift
+Usergrid.setAppAuth("<client-id>", "<client-secret>")
+Usergrid.authenticateApp() { response in
+    // Usergrid.appAuth is authenticated automatically when this call is successful
+}
+```
+
+### currentUser, userAuth, and authenticateUser()
+
+`Usergrid` has a special `currentUser` property. 
+
+By default, when calling `authenticateUser()`, `.currentUser` will be set to this user if the authentication flow is successful.
+
+```swift
+let userAuth = UsergridUserAuth(username: "<username>", password: "<password>")
+Usergrid.authenticateUser(userAuth) { auth, user, error in
+    // Usergrid.currentUser is set to the authenticated user and the token is stored within that context
+}
+```
+    
+If you want to utilize authenticateUser without setting as the current user, simply pass a `false` boolean value as the second parameter:
+
+```swift
+let userAuth = UsergridUserAuth(username: "<username>", password: "<password>")
+Usergrid.authenticateUser(userAuth,setAsCurrentUser: false) { auth, user, error in
+    // user is authenticated but Usergrid.currentUser is not set.
+}
+```
+
+### authFallback
+
+Auth-fallback defines what the client should do when a user token is not present. 
+
+By default, `Usergrid.authFallback` is set to `.None`, whereby when a token is *not* present, an API call will be performed unauthenticated. 
+
+If instead `Usergrid.authFallback` is set to `.App`, the API call will instead be performed using client credentials, _if_ they're available (i.e. `authenticateApp()` was performed at some point). 
+
+### usingAuth()
+
+At times it is desireable to have complete, granular control over the authentication context of an API call. 
+
+To facilitate this, the passthrough function `.usingAuth()` allows you to pre-define the auth context of the next API call.
+
+```swift
+// assume Usergrid.authFallback = UsergridAuth.AUTH_FALLBACK_NONE
+    
+Usergrid.usingAuth(Usergrid.appAuth!).POST("roles/guest/permissions", jsonBody: ["permission" : "get,post,put,delete:/**"] ) { response in
+    // here we've temporarily used the client credentials to modify permissions
+    // subsequent calls will not use this auth context
+}
+```
+
+## User operations and convenience methods
+
+`UsergridUser` has a number of helper/convenience methods to make working with user entities more convenient. If you are _not_ utilizing the `Usergrid` shared instance, you must pass an instance of `UsergridClient` as the first argument to any of these helper methods.
+    
+### create()
+
+Creating a new user:
+
+```swift
+let user = UsergridUser(username: "username", password: "password")
+user.create() { response in
+    // user has now been created and should have a valid uuid
+}
+```
+
+### login()
+
+A simpler means of retrieving a user-level token:
+
+```swift
+user.login("username", password: "password") { auth, user, error in
+	// user is now logged in
+}
+```
+
+### logout()
+
+Logs out the selected user. You can also use this convenience method on `Usergrid.currentUser`.
+
+```swift
+user.logout() { response in
+	// user is now logged out
+}
+```
+
+### resetPassword()
+
+Resets the password for the selected user.
+
+```swift
+user.resetPassword("oldPassword", new: "newPassword") { error, didSucceed in
+    // if it was done correctly, the new password will be changed
+    // 'didSucceed' is a boolean value that indicates whether it was changed successfully
+}
+```
+
+### UsergridUser.CheckAvailable()
+
+This is a class (static) method that allows you to check whether a username or email address is available or not.
+
+```swift
+UsergridUser.checkAvailable("email", username: nil) { error, available in
+    // 'available' == whether an email already exists for a user
+}
+
+UsergridUser.checkAvailable(nil, username: "username") { error, available in
+    // 'available' == whether an username already exists for a user
+}
+
+UsergridUser.checkAvailable("email", username: "username") { error, available in
+    // 'available' == whether an email or username already exist for a user
+}
+```
+
+## Querying and filtering data
+
+### UsergridQuery initialization
+
+The `UsergridQuery` class allows you to build out complex query filters using the Usergrid [query syntax](http://docs.apigee.com/app-services/content/querying-your-data).
+
+The first parameter of the `UsergridQuery` builder pattern should be the collection (or type) you intend to query. You can either pass this as an argument, or as the first builder object:
+
+```swift
+var query = UsergridQuery("cats")
+// or
+var query = UsergridQuery().collection("cats")
+```
+
+You then can layer on additional queries:
+
+```swift
+var query = UsergridQuery("cats").gt("weight", value: 2.4)
+                                 .containsWord("color", value: "bl*")
+                                 .not()
+                                 .eq("color", value:"white")
+                                 .or()
+                                 .eq("color", value:"orange")
+```
+
+You can also adjust the number of results returned:
+
+```swift
+var query = UsergridQuery("cats").eq("color", value: "black")
+                                 .limit(100)
+                                 
+// returns a maximum of 100 entiteis
+```
+
+And sort the results:
+
+```swift
+var query = UsergridQuery("cats").eq("color", value: "black")
+                                 .limit(100)
+                                 .asc("name")
+                                 
+// sorts by 'name', ascending
+```
+
+And you can do geo-location queries:
+
+```swift
+var query = UsergridQuery("devices").locationWithin(<distance>, latitude: <lat>, longitude: <long>)
+```
+
+### Using a query in a request
+
+Queries can be passed as parameters to GET, PUT, and DELETE requests:
+
+```swift
+Usergrid.GET("type", query: query) { response in
+    // Gets entities of a given type matching the query.
+}
+
+Usergrid.PUT(query, jsonBody: ["aNewProperty":"A new value"]) { response in
+    // Updates the entities matching the query with the new property.
+}
+
+Usergrid.DELETE(query) { response in
+    // Deletes entities of a given type matching the query.
+}
+```
+### List of query builder objects
+
+`collection("string")`
+
+> The collection name to query
+
+`eq("key", value: "value")` or `equal("key", value: "value")`
+
+> Equal to (e.g. `where color = 'black'`)
+
+`contains("key", value: "value")`
+
+> Contains a string (e.g.` where color contains 'bl*'`)
+
+`gt("key", value: "value")` or `greaterThan("key", value: "value")`
+
+> Greater than (e.g. `where weight > 2.4`)
+
+`gte("key", value: "value")` or `greaterThanOrEqual("key", value: "value")`
+
+> Greater than or equal to (e.g. `where weight >= 2.4`)
+
+`lt("key", value: "value")` or `lessThan("key", value: "value")`
+
+> Less than (e.g. `where weight < 2.4`)
+
+`lte("key", value: "value")` or `lessThanOrEqual("key", value: "value")`
+
+> Less than or equal to (e.g. `where weight <= 2.4`)
+
+`not()`
+
+> Negates the next block in the builder pattern, e.g.:
+
+```swift
+var query = UsergridQuery("cats").not().eq("color", value: "black")
+// select * from cats where not color = 'black'
+```
+
+`or()`
+
+> Joins two queries by requiring only one of them. `or` is never implied. e.g.:
+
+```swift
+var query = UsergridQuery("cats").eq("color",value: "black").or().eq("color", value: "white")
+```
+    
+> When using `or` and `and` operators, `and` joins will take precedence over `or` joins. You can read more about query operators and precedence [here](http://docs.apigee.com/api-baas/content/supported-query-operators-data-types).
+
+`locationWithin(distanceInMeters, latitude: latitude, longitude: longitude)`
+
+> Returns entities which have a location within the specified radius. Arguments can be `float` or `int`.
+
+`asc("key")`
+
+> Sorts the results by the specified property, ascending
+
+`desc("key")`
+
+> Sorts the results by the specified property, descending
+
+`sort("key", value: "order")`
+
+> Sorts the results by the specified property, in the specified order (`asc` or `desc`).
+ 
+`limit(int)`
+
+> The maximum number of entities to return
+
+`cursor("string")`
+
+> A pagination cursor string
 
 ## UsergridResponse object
 
@@ -358,9 +628,9 @@ Connections can be managed using `Usergrid.connect()`, `Usergrid.disconnect()`, 
 
 When retrieving connections via `Usergrid.getConnections()`, you can pass in a optional `UsergridQuery` object in order to filter the connectioned entities returned.
 
-### connect
+### Connect
 
-**Create a connection between two entities**
+Create a connection between two entities:
 
 ```swift
 Usergrid.connect(entity1, relationship: "relationship", to: entity2) { response in
@@ -368,9 +638,9 @@ Usergrid.connect(entity1, relationship: "relationship", to: entity2) { response 
 }
 ```
 
-### getConnections
+### Retrieve Connections
 
-**Retrieve outbound connections**
+Retrieve outbound connections:
 
 ```swift
 Usergrid.getConnections(.Out, entity: entity1, relationship: "relationship", query: nil) { response in
@@ -379,7 +649,7 @@ Usergrid.getConnections(.Out, entity: entity1, relationship: "relationship", que
 }
 ```
 
-**Retrieve inbound connections**
+Retrieve inbound connections:
 
 ```swift
 Usergrid.getConnections(.In, entity: entity2, relationship: "relationship", query: nil) { response in
@@ -388,9 +658,9 @@ Usergrid.getConnections(.In, entity: entity2, relationship: "relationship", quer
 }
 ```
 
-### disconnect
+### Disconnect
 
-**Delete a connection between two entities**
+Delete a connection between two entities:
 
 ```swift
 Usergrid.disconnect(entity1, relationship: "relationship", from: entity2) { response in
@@ -402,35 +672,37 @@ Usergrid.disconnect(entity1, relationship: "relationship", from: entity2) { resp
 
 Assets can be uploaded and downloaded either directly using `Usergrid.uploadAsset()` or `Usergrid.downloadAsset()`, or via `UsergridEntity` convenience methods with the same names. Before uploading an asset, you will need to initialize a `UsergridAsset` instance.
 
-### UsergridAsset init
+### Initialization
 
-When initializing a `UsergridAsset` object specifying a file name is optional.
+_Note: When initializing a `UsergridAsset` object specifying a file name is optional._
 
-**Init using a NSData object**
+- Using NSData:
 
-```swift
-let image = UIImage(contentsOfFile: "path/to/image")
-let data = UIImagePNGRepresentation(image)
-let asset = UsergridAsset(fileName:"<file-name-or-nil>", data: data!, contentType:"image/png")
-```
+	```swift
+	let image = UIImage(contentsOfFile: "path/to/image")
+	let data = UIImagePNGRepresentation(image)
+	let asset = UsergridAsset(fileName:"<file-name-or-nil>", data: data!, contentType:"image/png")
+	```
 
-**Init using an UIImage object**
+- Using an UIImage object:
 
-```swift
-let image = UIImage(contentsOfFile: "path/to/image")
-let asset = UsergridAsset(fileName:"<file-name-or-nil>", image: image!, imageContentType: .Png)
-```
+	```swift
+	let image = UIImage(contentsOfFile: "path/to/image")
+	let asset = UsergridAsset(fileName:"<file-name-or-nil>", image: image!, imageContentType: .Png)
+	```
 
-**Init using a local file Url**
+- Using a file URL:
 
-```swift
-let fileUrl = NSURL(string: "local/path/to/file")
-if fileUrl.isFileReferenceURL() {  // This must be a file reference url.
-    let asset = UsergridAsset(fileName:"<file-name-or-nil>", fileUrl: fileUrl!, contentType:"<content-type>")
-}
-```
+	```swift
+	let fileUrl = NSURL(string: "local/path/to/file")
+	if fileUrl.isFileReferenceURL() {  // This must be a file reference url.
+	    let asset = UsergridAsset(fileName:"<file-name-or-nil>", fileUrl: fileUrl!, contentType:"<content-type>")
+	}
+	```
 
-### UsergridAsset Upload
+### Uploading
+
+Upload an image and connect it to an entity:
 
 ```swift
 let image = UIImage(contentsOfFile: "path/to/image")
@@ -445,7 +717,9 @@ Usergrid.uploadAsset(entity,
 })
 ```
 
-### UsergridAsset Download
+### Downloading
+
+Download an image which is connected to an entity:
 
 ```swift
 Usergrid.downloadAsset(entity,
@@ -457,4 +731,3 @@ Usergrid.downloadAsset(entity,
                             // The asset is now downloaded from Usergrid and entity.asset == asset
 })
 ```
-
