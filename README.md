@@ -68,7 +68,7 @@ The documentation for this library is available [here](http://cocoadocs.org/docs
 
 ## Initialization
 
-There are two fundamental ways to implement the Usergrid Node.js SDK: 
+There are two differnt ways of initializing the Usergrid Swift SDK: 
 
 1. The singleton pattern is both convenient and enables the developer to use a globally available and always-initialized instance of Usergrid. 
 
